@@ -1,0 +1,97 @@
+Namespace: kae::models::mcim
+Domain :
+  type: object
+  properties:
+    DomainID:
+      type: string
+    Name:
+      type: string
+    Description:
+      type: string
+    ConceptualClasses:
+      type: array
+      items:
+        $ref: '#/definitions/ConceptualClass'
+    DataTypes:
+      type: array
+      items:
+        $ref: '#/definitions/DataType'
+    Relationships:
+      type: array
+      items:
+        $ref: '#/definitions/Relationship'
+
+definitions:
+  ConceptualClass:
+    type: object
+    properties:
+      ClassID:
+        type: string
+      Name:
+        type: string
+      Description:
+        type: string
+      Properties:
+        type: array
+        items:
+          $ref: '#/definitions/Property'
+  Property:
+    type: object
+    properties:
+      PropertyID:
+        type: string
+      Name:
+        type: string
+      Description:
+        type: string
+      DataType:
+        $ref: '#/definitions/DataType'
+  DataType:
+    type: object
+    properties:
+      DataTypeID:
+        type: string
+      Name:
+        type: string
+      Description:
+        type: string
+      PrimitiveType:
+        type: string
+        enum: [string, integer, real, boolean, date, datetime]
+  Relationship:
+    type: object
+    properties:
+      RelationshipID:
+        type: string
+      Name:
+        type: string
+      Description:
+        type: string
+      Formalizations:
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/FormalizationOfRelationship'
+  FormalizationOfRelationship:
+    type: object
+    properties:
+      FromParticipant:
+        $ref: '#/definitions/ParticipantClassFormalization'
+      ToParticipant:
+        $ref: '#/definitions/ParticipantClassFormalization'
+  ParticipantClassFormalization:
+    type: object
+    properties:
+      ClassName:  # An instance of the ConceptualClass with that mame must exist in the model
+        type: 'string'
+      PropertyNames: # Properties with these names must exist in the ConceptualClass
+        type: array
+        minItems: 1
+        items:
+          type: string
+      Phraise:
+        type: string
+        required: false
+      Cardinality:
+        type: string
+        enum: [zero_or_one, one, zero_or_many, one_or_many
