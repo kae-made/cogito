@@ -1,0 +1,125 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Conceptual Modeling Minimal Schema
+description: A minimal schema for defining a Conceptual Information Model (CIM) in a structured format
+type: object
+required:
+  - domain
+
+$defs:
+  # property type definition
+  propertyType:
+    type: string
+    enum:
+      - UNIQUE_ID
+      - STRING
+      - INTEGER
+      - BOOLEAN
+ 
+  # class property structure definition
+  classProperty:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        $ref: '#/$defs/propertyType'
+      identity:
+        type: integer
+        minimum: 0
+  # class structure definition
+  class:
+    type: object
+    required:
+      - key_letter
+      - name
+      - number
+      - properties
+    properties:
+      key_letter:
+        type: string
+      name:
+        type: string
+      number:
+        type: integer
+        minimum: 1
+      properties:
+        type: object
+        additionalProperties:
+          $ref: '#/$defs/classProperty'
+
+  # from/to relationship structure definition
+  relationshipEnd:
+    type: object
+    required:
+      - multiplicity
+      - class
+      - properties
+    properties:
+      multiplicity:
+        type: string
+        enum: ["1", "1C", "M", "MC"]
+      class:
+        type: string
+      properties:
+        type: array
+        items:
+          type: string
+      phrase:
+        type: string
+
+  # relationship structure definition
+  relationship:
+    type: object
+    required:
+      - index
+      - from
+      - to
+    properties:
+      index:
+        type: string
+        pattern: "^R[1-9][0-9]*$"
+      from:
+        $ref: '#/$defs/relationshipEnd'
+      to:
+        $ref: '#/$defs/relationshipEnd'
+      phrase:
+        type: string
+        pattern: "^'(?:[^']|'{2})*'$"
+
+# main CIM structure definition
+properties:
+  domain:
+    type: object
+    required:
+      - name
+      - classes
+      - relationships
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+        
+      # class definition structure
+      classes:
+        type: object
+        required:
+          - class
+        properties:
+          class:
+            type: array
+            uniqueItems: true
+            uniqueItemProperties:
+              - key_letter
+            items:
+              $ref: '#/$defs/class'
+      # relationship definition structure
+      relationships:
+        type: object
+        required:
+          - relationship
+        properties:
+          relationship:
+            type: array
+            items:
+              $ref: '#/$defs/relationship'

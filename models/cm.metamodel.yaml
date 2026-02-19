@@ -1,0 +1,84 @@
+# yaml-language-server: $shema: ../schemas/minimal.schema.yaml
+# comceptual model definition
+
+domain:
+  name: "metamodel of conceptual model"
+  classes:
+    class:
+      - key_letter: O_OBJ
+        properties:
+          property:
+            Obj_ID:
+              type: UNIQUE_ID
+            Name:
+              type: STRING
+            Numb:
+              type: INTEGER
+            Key_Lett:
+              type: STRING
+            Descrip:
+              type: STRING
+            SS_IDdeprecated:
+              type: UNIQUE_ID
+      - key_letter: O_ATTR
+        properties:
+          property:
+            Attr_ID:
+              type: UNIQUE_ID
+            Obj_ID:
+              type: UNIQUE_ID
+            PAttr_ID:
+              type: UNIQUE_ID
+            Name:
+              type: STRING
+            Descrip:
+              type: STRING
+            Prefix:
+              type: STRING
+            Root_Nam:
+              type: STRING
+            DT_ID:
+              type: UNIQUE_ID
+            Dimensions:
+              type: STRING
+            DefaultValue:
+              type: STRING
+      - key_letter: O_IOBJ
+        properties:
+          property:
+            IObj_ID:
+              type: UNIQUE_ID
+            Obj_ID:
+              type: UNIQUE_ID
+            Modl_Typ:
+              type: INTEGER
+            SS_IDdeprecated:
+              type: UNIQUE_ID
+            Obj_Name:
+              type: STRING
+            Obj_KL:
+              type: STRING
+  relationships:
+    relationship:
+      - index: R101
+        from:
+          class: O_IOBJ
+          multiplicity: MC
+          properties:
+            - Obj_ID
+        to:
+          class: O_OBJ
+          multiplicity: 1C
+          properties:
+            - Obj_ID
+      - index: R102
+        from:
+          class: O_ATTR
+          multiplicity: MC
+          properties:
+            - Obj_ID
+        to:
+          class: O_OBJ
+          multiplicity: 1
+          properties:
+            - Obj_ID
