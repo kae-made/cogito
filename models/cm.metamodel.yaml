@@ -3,8 +3,8 @@
 
 domain:
   name: "metamodel of conceptual model"
-  classes:
-    class:
+  cclasses:
+    cclass:
       - key_letter: O_OBJ
         properties:
           property:
@@ -62,23 +62,23 @@ domain:
     relationship:
       - index: R101
         from:
-          class: O_IOBJ
+          cclass: O_IOBJ
           multiplicity: MC
           properties:
             - Obj_ID
         to:
-          class: O_OBJ
+          cclass: O_OBJ
           multiplicity: 1C
           properties:
             - Obj_ID
       - index: R102
         from:
-          class: O_ATTR
+          cclass: O_ATTR
           multiplicity: MC
           properties:
             - Obj_ID
         to:
-          class: O_OBJ
+          cclass: O_OBJ
           multiplicity: 1
           properties:
             - Obj_ID

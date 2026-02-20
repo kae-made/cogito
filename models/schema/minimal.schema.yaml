@@ -15,50 +15,40 @@ $defs:
       - INTEGER
       - BOOLEAN
  
-  # class property structure definition
-  classProperty:
+  # conceptual class property structure definition
+  cclassProperty:
     type: object
     required:
       - type
     properties:
       type:
         $ref: '#/$defs/propertyType'
-      identity:
-        type: integer
-        minimum: 0
-  # class structure definition
-  class:
+  # conceptual class structure definition
+  cclass:
     type: object
     required:
       - key_letter
-      - name
-      - number
       - properties
     properties:
       key_letter:
         type: string
-      name:
-        type: string
-      number:
-        type: integer
-        minimum: 1
       properties:
         type: object
         additionalProperties:
-          $ref: '#/$defs/classProperty'
+          $ref: '#/$defs/cclassProperty'
 
   # from/to relationship structure definition
   relationshipEnd:
     type: object
     required:
       - multiplicity
-      - class
+      - cclass
       - properties
     properties:
       multiplicity:
         type: string
         enum: ["1", "1C", "M", "MC"]
-      class:
+      cclass:
         type: string
       properties:
         type: array
@@ -100,19 +90,19 @@ properties:
       description:
         type: string
         
-      # class definition structure
-      classes:
+      # conceptual class definition structure
+      cclasses:
         type: object
         required:
-          - class
+          - cclass
         properties:
-          class:
+          cclass:
             type: array
             uniqueItems: true
             uniqueItemProperties:
               - key_letter
             items:
-              $ref: '#/$defs/class'
+              $ref: '#/$defs/cclass'
       # relationship definition structure
       relationships:
         type: object
