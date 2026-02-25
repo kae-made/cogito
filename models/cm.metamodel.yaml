@@ -1,4 +1,4 @@
-# yaml-language-server: $shema: ../schemas/minimal.schema.yaml
+# yaml-language-server: $shema: ../schema/minimal.schema.yaml
 # comceptual model definition
 
 domain:

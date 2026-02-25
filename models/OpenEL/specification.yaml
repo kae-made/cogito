@@ -1,0 +1,20 @@
+# yaml-language-server: $schema: ../schema/cim.schema.yaml
+# OepnEL Device Driver Specification
+
+domain:
+  name: "OpenEL Device Driver Specification"
+  cclasses:
+    cclass:
+      - key_letter: OE_DK
+        name: "Device Kind"
+        number: 1
+        properties:
+          property:
+            DeviceKindID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [2]
+            Description:
+              type: STRING
