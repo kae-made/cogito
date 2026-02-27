@@ -13,9 +13,14 @@ $defs:
       - UNIQUE_ID
       - STRING
       - INTEGER
+      - REAL
       - BOOLEAN
+      - TIMESTAMP
+      - OTHER
  
+  # ---------------------------------------------------------
   # class property structure definition
+  # ---------------------------------------------------------
   classProperty:
     type: object
     required:
@@ -24,9 +29,18 @@ $defs:
       type:
         $ref: '#/$defs/propertyType'
       identity:
-        type: integer # should be array of integers
-        minimum: 0
+        type: array
+        items:
+          type: integer
+          minimum: 1
+          maximum: 3
+        uniqueItems: true
+      matematical:
+        type: boolean
+  
+  # ---------------------------------------------------------
   # class structure definition
+  # ---------------------------------------------------------
   class:
     type: object
     required:
@@ -40,54 +54,114 @@ $defs:
       name:
         type: string
       number:
-        type: array
-        items:
-          type: integer
-          enum: [1,2,3] 
-        uniqueItems: true
+        type: integer
       properties:
         type: object
         additionalProperties:
           $ref: '#/$defs/classProperty'
 
-  # from/to relationship structure definition
-  relationshipEnd:
-    type: object
-    required:
-      - multiplicity
-      - class
-      - properties
-    properties:
-      multiplicity:
-        type: string
-        enum: ["1", "1C", "M", "MC"]
-      class:
-        type: string
-      properties:
-        type: array
-        items:
-          type: string
-      phrase:
-        type: string
-
-  # relationship structure definition
+  # ---------------------------------------------------------
+  # relationship schema definition
+  # ---------------------------------------------------------
   relationship:
     type: object
-    required:
-      - index
-      - from
-      - to
+    required: ["index", "kind"]
     properties:
       index:
         type: string
-        pattern: "^R[1-9][0-9]*$"
-      from:
-        $ref: '#/$defs/relationshipEnd'
-      to:
-        $ref: '#/$defs/relationshipEnd'
-      phrase:
+
+      kind:
         type: string
-        pattern: "^'(?:[^']|'{2})*'$"
+        enum: ["binary", "is-a"]
+
+      # --- binary relationship ---
+      one:
+        $ref: "#/$defs/relationshipEnd"
+
+      other:
+        $ref: "#/$defs/relationshipEnd"
+
+      referencing:
+        oneOf:
+          # usual referencing: [ { key: key }, ... ]
+          - type: array
+            items:
+              type: object
+              additionalProperties:
+                type: string
+
+          # special referencing for associative class: { key: value, ... }
+          # referencing:
+          #   one:
+          #     - CalibrationID: CalibrationID
+          #   other:
+          #     - VariableID: VariableID
+          - type: object
+            properties:
+              one:
+                type: array
+                items:
+                  type: object
+                  additionalProperties:
+                    type: string
+              other:
+                type: array
+                items:
+                  type: object
+                  additionalProperties:
+                    type: string
+            required: ["one", "other"]
+
+      # --- associative relationship (extension of binary) ---
+      associative:
+        type: object
+        properties:
+          cclass: { type: string }
+        required: ["cclass"]
+
+      # --- is-a relationship ---
+      referent:
+        $ref: "#/$defs/isAEnd"
+
+      participant:
+        type: array
+        items:
+          $ref: "#/$defs/isAEnd"
+
+    oneOf:
+      # 1. binary
+      - required: ["one", "other", "referencing"]
+
+      # 2. binary + associative
+      - required: ["one", "other", "referencing", "associative"]
+
+      # 3. is-a
+      - required: ["referent", "participant"]
+
+
+  # ---------------------------------------------------------
+  # binary relationship end
+  # ---------------------------------------------------------
+  relationshipEnd:
+    type: object
+    properties:
+      cclass: { type: string }
+      multiplicity: { type: string }
+      phrase: { type: string }
+    required: ["cclass", "multiplicity"]
+
+
+  # ---------------------------------------------------------
+  # is-a relationship end
+  # ---------------------------------------------------------
+  isAEnd:
+    type: object
+    properties:
+      cclass: { type: string }
+      properties:
+        type: array
+        items: { type: string }
+    required: ["cclass", "properties"]
 
 # main CIM structure definition
 properties:

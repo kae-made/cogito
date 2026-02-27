@@ -5,6 +5,7 @@ domain:
   name: "OpenEL Device Driver Specification"
   cclasses:
     cclass:
+      # OpenEL::Specification Sub system
       - key_letter: OE_DK
         name: "Device Kind"
         number: 1
@@ -18,3 +19,281 @@ domain:
               identity: [2]
             Description:
               type: STRING
+      - key_letter: OE_PD
+        name: "Product"
+        number: 2
+        properties:
+          property:
+            ProductID :
+              type: UNIQUE_ID
+              identity: [1, 2]
+            ProductName:
+              type: STRING
+              identity: [3]
+            Description:
+              type: STRING
+            VendorID:
+              type: UNIQUE_ID
+              identity: [1,2]
+      - key_letter: OE_Vendor
+        name: "Vendor"
+        number: 3
+        properties:
+          property:
+            VendorID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [2]
+            VendorShortName:
+              type: STRING
+              identity: [3]
+            Description:
+              type: STRING
+      - key_letter: OE_C
+        name: "Component"
+        number: 4
+        properties:
+          property:
+            ComponentID :
+              type: UNIQUE_ID
+              identity: [1, 2]
+            DeviceKindID:
+              type: UNIQUE_ID
+              identity: [1]
+            ProductID:
+              type: UNIQUE_ID
+              identity: [1]
+            VendorID:
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OE_DDS
+        name: "Device Driver Specification"
+        number: 5
+        properties:
+          property:
+            DeviceKindID:
+              type: UNIQUE_ID
+              identity: [2]
+            ProductID:
+              type: UNIQUE_ID
+              identity: [2]
+            VendorID:
+              type: UNIQUE_ID
+              identity: [2]
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [1, 2]
+      - key_letter: OE_SDDS
+        name: "Sensor Device Driver Specification"
+        number: 6
+        properties:
+          property:
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [1]
+            Parent_ComponentID:
+              type: UNIQUE_ID
+      - key_letter: OE_ADDS
+        name: "Actuator Device Driver Specification"
+        number: 7
+        properties:
+          property:
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [1]
+            Parent_ComponentID:
+              type: UNIQUE_ID
+      - key_letter: OE_VAS
+        name: "Vendor's Device Driver Specification"
+        number: 8
+        properties:
+          property:
+            VariableID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [2]
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [2]
+            Description:
+              type: STRING
+            Next_Name:
+              type: STRING
+      # OpenEL::Calibration Sub system
+      - key_letter: OEC_CB
+        name: "Calibration"
+        number: 400
+        properties:
+          property:
+            CalibrationID:
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [2]
+            Name:
+              type: STRING
+              identity: [2]
+            Description:
+              type: STRING
+      - key_letter: OEC_CBM
+        name: "Calibration with Model"
+        number: 401
+        properties:
+          property:
+            CalibrationID:
+              type: UNIQUE_ID
+              identity: [1]
+            Model:
+              type: STRING
+      - key_letter: OEC_CBV
+        name: "Calibration with Variable"
+        number: 402
+        properties:
+          property:
+            CalibrationID:
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_CV
+        name: "Calibration Variable"
+        number: 403
+        properties:
+          property:
+            CalVariableID:
+              type: UNIQUE_ID
+              identity: [1, 2, 3]
+            CalibrationID:
+              type: UNIQUE_ID
+              identity: [2, 3]
+            VariableID:
+              type: UNIQUE_ID
+              identity: [3]
+      - key_letter: OEC_CSV
+        name: "Calibration Variable"
+        number: 404
+        properties:
+          property:
+            CalVariableID:
+              type: UNIQUE_ID
+              identity: [1,2,3]
+            VariableID:
+              type: UNIQUE_ID
+              identity: [3]
+            CalibrationID:
+              type: UNIQUE_ID
+              identity: [2,3]
+  relationships:
+    relationship:
+      # OpenEL::Specification Sub system
+      - index: R2
+        kind: binary
+        one:
+          cclass: OE_V
+          multiplicity: "1"
+          phrase: "provide"
+        other:
+           cclass: OE_PD
+           multiplicity: "MC"
+           phrase: "is defined by"
+        referencing:
+          - VendorID: VendorID
+      - index: R3
+        kind: binary
+        one:
+          cclass: OE_DK
+          multiplicity: "1"
+          phrase: "is kind of"
+        other:
+           cclass: OE_C
+           multiplicity: "MC" # "*"
+           phrase: "is realization for"
+        referencing:
+          - DeviceKindID: DeviceKindID
+      - index: R4
+        kind: binary
+        one:
+          cclass: OE_PD
+          multiplicity: "1"
+          phrase: "is target of"
+        other:
+          cclass: OE_C
+          multiplicity: "M" # "1..*"
+          phrase: "is part of"
+        referencing:
+          - ProductID: ProductID
+          - VendorID: VendorID
+      - index: R5
+        kind: binary
+        one:
+          cclass: OE_C
+          multiplicity: "1"
+          phrase: "presents"
+        other:
+          cclass: OE_DDS
+          multiplicity: "1"
+          phrase: "is described by"
+        referencing:
+          - DeviceKindID: DeviceKindID
+          - ProductID: ProductID 
+          - VendorID: VendorID
+          - ComponentID: ComponentID
+      - index: R6
+        kind: is-a
+        referent:
+          cclass: OE_DDS
+          properties:
+            - ComponentID
+        participant:
+          - cclass: OE_SDDS
+            properties:
+              - ComponentID
+          - cclass: OE_ADDS
+            properties:
+              - ComponentID
+      # OpenEL::Calibration Sub system
+      - index: R400
+        kind: binary
+        one:
+          cclass: OEC_C
+          multiplicity: "1"
+          phrase: "is target of"
+        other:
+          cclass: OEC_CB
+          multiplicity: "MC"
+          phrase: "is mechanism for adjusting"
+        referencing:
+          - CalibrationID: CalibrationID
+      - index: R401
+        kind: is-a
+        referent:
+          cclass: OEC_CB
+          properties:
+            - CalibrationID
+        participant:
+          - cclass: OEC_CBM
+            properties:
+              - CalibrationID
+          - cclass: OEC_CBV
+            properties:
+              - CalibrationID
+      - index: R402
+        kind: binary
+        one:
+          cclass: OEC_CBV
+          multiplicity: "MC"
+          phrase: "may use as specification"
+        other:
+          cclass: OE_VAS
+          multiplicity: "M"
+          phrase: "is specification for"
+        associative:
+          cclass: OEC_CSV
+        referencing:
+          one:
+            - CalibrationID: CalibrationID
+          other:
+            - VariableID: VariableID
