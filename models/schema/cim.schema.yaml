@@ -35,7 +35,7 @@ $defs:
           minimum: 1
           maximum: 3
         uniqueItems: true
-      matematical:
+      mathematical:
         type: boolean
   
   # ---------------------------------------------------------
@@ -64,39 +64,71 @@ $defs:
   # relationship schema definition
   # ---------------------------------------------------------
   relationship:
-    type: object
-    required: ["index", "kind"]
-    properties:
-      index:
-        type: string
-
-      kind:
-        type: string
-        enum: ["binary", "is-a"]
-
-      # --- binary relationship ---
-      one:
-        $ref: "#/$defs/relationshipEnd"
-
-      other:
-        $ref: "#/$defs/relationshipEnd"
-
-      referencing:
-        oneOf:
-          # usual referencing: [ { key: key }, ... ]
-          - type: array
+    oneOf:
+      # ---------------------------------------------------------
+      # 1. binary relationship
+      # ---------------------------------------------------------
+      - type: object
+        required: ["index", "kind", "referent", "participant", "referencing"]
+        properties:
+          index:
+            type: string
+          kind:
+            const: "binary"
+          # binary の referent / participant
+          referent:
+            $ref: "#/$defs/relationshipEnd"
+          participant:
+            $ref: "#/$defs/relationshipEnd"
+          referencing:
+            type: array
             items:
               type: object
               additionalProperties:
                 type: string
 
-          # special referencing for associative class: { key: value, ... }
-          # referencing:
-          #   one:
-          #     - CalibrationID: CalibrationID
-          #   other:
-          #     - VariableID: VariableID
-          - type: object
+      # ---------------------------------------------------------
+      # 2. is-a relationship
+      # ---------------------------------------------------------
+      - type: object
+        required: ["index", "kind", "referent", "participants"]
+        properties:
+          index:
+            type: string
+
+          kind:
+            const: "is-a"
+
+          # is-a の referent / participants
+          referent:
+            $ref: "#/$defs/isAEnd"
+
+          participants:
+            type: array
+            items:
+              $ref: "#/$defs/isAEnd"
+
+      # ---------------------------------------------------------
+      # 3. binary-associative relationship
+      # ---------------------------------------------------------
+      - type: object
+        required: ["index", "kind", "one", "other", "associative", "referencing"]
+        properties:
+          index:
+            type: string
+          kind:
+            const: "binary-associative"
+          one:
+            $ref: "#/$defs/relationshipEnd"
+          other:
+            $ref: "#/$defs/relationshipEnd"
+          associative:
+            type: object
+            properties:
+              cclass: { type: string }
+            required: ["cclass"]
+          referencing:
+            type: object
             properties:
               one:
                 type: array
@@ -112,32 +144,10 @@ $defs:
                     type: string
             required: ["one", "other"]
 
-      # --- associative relationship (extension of binary) ---
-      associative:
-        type: object
-        properties:
-          cclass: { type: string }
-        required: ["cclass"]
-
-      # --- is-a relationship ---
-      referent:
-        $ref: "#/$defs/isAEnd"
-
-      participant:
-        type: array
-        items:
-          $ref: "#/$defs/isAEnd"
-
-    oneOf:
-      # 1. binary
-      - required: ["one", "other", "referencing"]
-
-      # 2. binary + associative
-      - required: ["one", "other", "referencing", "associative"]
-
-      # 3. is-a
-      - required: ["referent", "participant"]
-
+        not:
+          anyOf:
+            - required: ["referent"]
+            - required: ["participant"]
 
   # ---------------------------------------------------------
   # binary relationship end

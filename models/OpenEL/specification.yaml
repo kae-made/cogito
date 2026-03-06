@@ -106,11 +106,11 @@ domain:
             Parent_ComponentID:
               type: UNIQUE_ID
       - key_letter: OE_VAS
-        name: "Vendor's Device Driver Specification"
+        name: "Variable Specification"
         number: 8
         properties:
           property:
-            VariableID:
+            VariableID: # "VarID" is name on CIM.
               type: UNIQUE_ID
               identity: [1]
             Name:
@@ -122,6 +122,375 @@ domain:
             Description:
               type: STRING
             Next_Name:
+              type: STRING
+      - key_letter: OE_OVS
+        name: "Observed Variable Specification" # "Observed VS" is name on CIM.
+        number: 9
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+      - key_letter: OE_IVS
+        name: "Instruct Variable Specification" # "Instruct VS" is name on CIM.
+        number: 10
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+      - key_letter: OE_ISVS
+        name: "Internal State Variable Specification" # "Internal State VS" is name on CIM.
+        number: 11
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+      - key_letter: OEC_CVS
+        name: "Configuration Variable Specification" # "Configuration VS" is name on CIM.
+        number: 12
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ConfigurationID: # "ConfID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OE_EVS
+        name: "Environment Variable Specification" # "Environment VS" is name on CIM.
+        number: 13
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OE_PS
+        name: "Parameter Specification"
+        number: 14
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [1]
+            Description:
+              type: STRING
+            DataTypeID:
+              type: UNIQUE_ID
+            Next_Name:
+              type: STRING
+      - key_letter: OE_CF
+        name: "Configuration"
+        number: 15
+        properties:
+          property:
+            ConfigurationID: # "ConfID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [2]
+            Name:
+              type: STRING
+              identity: [2]
+            Description:
+              type: STRING
+      # OpenEL::Operational Equipment Sub system
+      - key_letter: OEOE_EQ
+        name: "Equipment"
+        number: 100
+        properties:
+          property:
+            EquipmentID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+            Description:
+              type: STRING
+      - key_letter: OEOE_EC
+        name: "Executing Component"
+        number: 101
+        properties:
+          property:
+            InstanceID:
+              type: UNIQUE_ID
+              identity: [1]
+            EquipmentID:
+              type: UNIQUE_ID
+              identity: [1]
+            DeviceKindID:
+              type: UNIQUE_ID
+            VendorID:
+              type: UNIQUE_ID
+            ProductID:
+              type: UNIQUE_ID
+      - key_letter: OEOE_P
+        name: "Parameter"
+        number: 102
+        properties:
+          property:
+            InstanceID:
+              type: UNIQUE_ID
+              identity: [1]
+            EquipmentID:
+              type: UNIQUE_ID
+              identity: [1]
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [1]
+            CurrentValue:
+              type: OTHER
+            Time:
+              type: TIMESTAMP
+      # OpenEL::Specification Approvement Sub system
+      - key_letter: OESA_AP
+        name: "Approvement"
+        number: 200
+        properties:
+          property:
+            ApprovementID:  # "AppID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ApplicationDate:
+              type: TIMESTAMP
+            ApprovalDate:
+              type: TIMESTAMP
+            AuthorizerName:
+              type: STRING
+      - key_letter: OESA_DKAP
+        name: "Device Kind Approvement"
+        number: 201
+        properties:
+          property:
+            ApprovementID:  # "AppID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            DeviceKindID:
+              type: UNIQUE_ID
+            Remarks:
+              type: STRING
+      - key_letter: OESA_VAP
+        name: "Vendor Approvement"
+        number: 202
+        properties:
+          property:
+            ApprovementID:  # "AppID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            VendorID:
+              type: UNIQUE_ID
+      - key_letter: OESA_PA
+        name: "Product Approvement"
+        number: 203
+        properties:
+          property:
+            ApprovementID:  # "AppID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            ProductID:
+              type: UNIQUE_ID
+      - key_letter: OESA_AT
+        name: "Authorizer"
+        number: 204
+        properties:
+          property:
+            Name:
+              type: STRING
+              identity: [1]
+            Description:
+              type: STRING
+      # OpenEL::Data Type Sub system
+      - key_letter: OE_DT
+        name: "Data Type"
+        number: 300
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            Description:
+              type: STRING
+      - key_letter: OE_SDT
+        name: "Specific Data Type"
+        number: 301
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            ComponentID:
+              type: UNIQUE_ID
+              identity: [2]
+            Name:
+              type: STRING
+              identity: [2]
+      - key_letter: OE_BDT
+        name: "Base Data Type"
+        number: 302
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [2]
+            NotationID:
+              type: UNIQUE_ID
+      - key_letter: OE_PDT
+        name: "Primitive Data Type"
+        number: 303
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            Base_DataTypeID:
+              type: UNIQUE_ID
+            NotationID:
+              type: UNIQUE_ID
+      - key_letter: OE_EDT
+        name: "Enumerated Data Type"
+        number: 304
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OE_EDTI
+        name: "Enumerated Data Type Item"
+        number: 305
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [1]
+            Description:
+              type: STRING
+      - key_letter: OE_CDT
+        name: "Composite Data Type"
+        number: 306
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OE_CDTI
+        name: "Composite Data Type Item"
+        number: 307
+        properties:
+          property:
+            DataTypeID:
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [1]
+            Description:
+              type: STRING
+            Next_Name:
+              type: STRING
+      - key_letter: OE_VNR
+        name: "Value Notation Rule"
+        number: 308
+        properties:
+          property:
+            NotationID:
+              type: UNIQUE_ID
+              identity: [1]
+            Rule:
+              type: STRING # regular expression for validation
+            Description:
+              type: STRING
+      # OpenEL::Variable & Parameter Order Sub system
+      - key_letter: OE_MB
+        name: "Memory Block"
+        number: 20
+        properties:
+          property:
+            MemoryBlockID:  # MB_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            Length:
+              type: INTEGER
+              mathematical: true
+      - key_letter: OE_CMB
+        name: "CDT Memory Block" # "CDT MB" is name on CIM.
+        number: 21
+        properties:
+          property:
+            MemoryBlockID:  # MB_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            DataTypeID:
+              type: UNIQUE_ID
+      - OE_VMB:
+        name: "Variable Memory Block" # "Var MB" is name on CIM.
+        number: 22
+        properties:
+          property:
+            MemoryBlockID:  # MB_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+      - OE_PIM:
+        name: "Position in Memory"
+        number: 23
+        properties:
+          property:
+            PositionInMemoryID:  # PIM_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            MemoryBlockID:  # MB_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [2]
+            OffsetInMemoryBlock:  # "OffsetInMB" is name on CIM.
+              type: INTEGER
+              identity: [2]
+            PositionInBits:
+              type: INTEGER
+              identity: [2]
+      - key_letter: OE_CPIM
+        name: "CDTI Position in Memory" # "CDTI PIM" is name on CIM.
+        number: 24
+        properties:
+          property:
+            PositionInMemoryID:  # PIM_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            DataTypeID:
+              type: UNIQUE_ID
+            Name:
+              type: STRING
+      - key_letter: OE_PPIM
+        name: "Parameter Position in Memory" # "Param PIM" is name on CIM.
+        number: 25
+        properties:
+          property:
+            PositionInMemoryID:  # PIM_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+            Name:
               type: STRING
       # OpenEL::Calibration Sub system
       - key_letter: OEC_CB
@@ -163,13 +532,13 @@ domain:
         number: 403
         properties:
           property:
-            CalVariableID:
+            CalVariableID:  # "CalVarID" is name on CIM.
               type: UNIQUE_ID
               identity: [1, 2, 3]
-            CalibrationID:
+            CalibrationID:  # "CalID" is name on CIM.
               type: UNIQUE_ID
               identity: [2, 3]
-            VariableID:
+            VariableID: # "VarID" is name on CIM.
               type: UNIQUE_ID
               identity: [3]
       - key_letter: OEC_CSV
@@ -177,25 +546,103 @@ domain:
         number: 404
         properties:
           property:
-            CalVariableID:
+            CalVariableID: # "CalVarID" is name on CIM.
               type: UNIQUE_ID
               identity: [1,2,3]
-            VariableID:
+            VariableID: # "VarID" is name on CIM.
               type: UNIQUE_ID
               identity: [3]
-            CalibrationID:
+            CalibrationID:  # "CalID" is name on CIM.
               type: UNIQUE_ID
               identity: [2,3]
+      - key_letter: OEC_ECSV
+        name: "Environment Calibration Specification Variable"  # "Environment CSV" is name on CIM.
+        number: 405
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_ICSV
+        name: "Instruct State Calibration Specification Variable"  # "Instruct CSV" is name on CIM.
+        number: 406
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_CEV
+        name: "Caibration Expected Variable"
+        number: 407
+        properties:
+          property:
+            CalVariableID: # "CalVarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_ECEV
+        name: "Environment Calibration Expected Variable"  # "Environment CEV" is name on CIM.
+        number: 408
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_OCEV
+        name: "Observed Calibration Expected Variable"  # "Observed CEV" is name on CIM.
+        number: 409
+        properties:
+          property:
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: OEC_CP
+        name: "Calibration Parameter"
+        number: 410
+        properties:
+          property:
+            CalVariableID: # "CalVarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            CalibrationID:  # "CalID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            VariableID: # "VarID" is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            Name:
+              type: STRING
+              identity: [1]
+            Value:
+              type: OTHER
+              type: TIMESTAMP
   relationships:
     relationship:
       # OpenEL::Specification Sub system
       - index: R2
         kind: binary
-        one:
+        referent:
           cclass: OE_V
           multiplicity: "1"
           phrase: "provide"
-        other:
+        participant:
            cclass: OE_PD
            multiplicity: "MC"
            phrase: "is defined by"
@@ -203,11 +650,11 @@ domain:
           - VendorID: VendorID
       - index: R3
         kind: binary
-        one:
+        referent:
           cclass: OE_DK
           multiplicity: "1"
           phrase: "is kind of"
-        other:
+        participant:
            cclass: OE_C
            multiplicity: "MC" # "*"
            phrase: "is realization for"
@@ -215,11 +662,11 @@ domain:
           - DeviceKindID: DeviceKindID
       - index: R4
         kind: binary
-        one:
+        referent:
           cclass: OE_PD
           multiplicity: "1"
           phrase: "is target of"
-        other:
+        participant:
           cclass: OE_C
           multiplicity: "M" # "1..*"
           phrase: "is part of"
@@ -228,11 +675,11 @@ domain:
           - VendorID: VendorID
       - index: R5
         kind: binary
-        one:
+        referent:
           cclass: OE_C
           multiplicity: "1"
           phrase: "presents"
-        other:
+        participant:
           cclass: OE_DDS
           multiplicity: "1"
           phrase: "is described by"
@@ -247,21 +694,496 @@ domain:
           cclass: OE_DDS
           properties:
             - ComponentID
-        participant:
+        participants:
           - cclass: OE_SDDS
             properties:
               - ComponentID
           - cclass: OE_ADDS
             properties:
               - ComponentID
+      - index: R7
+        kind: binary
+        referent:
+          cclass: OE_ADDS
+          multiplicity: "1C"
+          phrase: "may be child of"
+        participant:
+          cclass: OE_DDS
+          multiplicity: "MC"
+          phrase: "may have"
+        referencing:
+          - ComponentID: Parent_ComponentID
+      - index: R8
+        kind: binary
+        referent:
+          cclass: OE_DDS
+          multiplicity: "1"
+          phrase: "is part of"
+        participant:
+          cclass: OE_VAS
+          multiplicity: "MC"
+          phrase: "is owner of"
+        referencing:
+          - ComponentID: ComponentID
+      - index: R9
+        kind: is-a
+        referent:
+          cclass: OE_VAS
+          properties:
+            - VariableID
+        participants:
+          - cclass: OE_OVS
+            properties:
+              - VariableID
+          - cclass: OE_IVS
+            properties:
+              - VariableID
+          - cclass: OE_ISVS
+            properties:
+              - VariableID
+          - cclass: OE_CVS
+            properties:
+              - VariableID
+          - cclass: OE_EVS
+            properties:
+              - VariableID
+      - index: R10
+        kind: binary
+        referent:
+          cclass: OE_SDDS
+          multiplicity: "1"
+          phrase: "provide"
+        participant:
+          cclass: OE_OVS
+          multiplicity: "M"
+          phrase: "is able to observe"
+        referencing:
+          - ComponentID: ComponentID
+      - index: R11
+        kind: binary
+        referent:
+          cclass: OE_DDS
+          multiplicity: "1"
+          phrase: "instructs"
+        participant:
+          cclass: OE_IVS
+          multiplicity: "M"
+          phrase: "is able to instructed by"
+        referencing:
+          - ComponentID: ComponentID
+      - index: R12
+        kind: binary
+        referent:
+          cclass: OE_VAS
+          multiplicity: "1"
+          phrase: "consist from"
+        participant:
+          cclass: OE_PS
+          multiplicity: "M"
+          phrase: "is detail of"
+        referencing:
+          - VariableID: VariableID
+      - index: R13
+        kind: binary
+        referent:
+          cclass: OE_C
+          multiplicity: "1"
+          phrase: "is target of"
+        participant:
+          cclass: OE_CF
+          multiplicity: "MC"
+          phrase: "configure"
+        referencing:
+          - ComponentID: ComponentID
+      - index: R14
+        kind: binary
+        referent:
+          cclass: OE_CF
+          multiplicity: "1"
+          phrase: "is configured by"
+        participant:
+          cclass: OE_CVS
+          multiplicity: "M"
+          phrase: "is supplemental value of"
+        referencing:
+          - ConfigurationID: ConfigurationID
+      # OpenEL::Operational Equipment Sub system
+      - index: R101
+        kind: binary
+        referent:
+          cclass: OEOE_EQ
+          multiplicity: "1"
+          phrase: "run with"
+        participant:
+          cclass: OEOE_EC
+          multiplicity: "M"
+          phrase: "is a part of"
+        referencing:
+          - EquipmentID: EquipmentID
+      - index: R102
+        kind: binary
+        participant:
+          cclass: OEOE_EC
+          multiplicity: "MC"
+          phrase: "is imprelemtation for"
+        referent:
+          cclass: OE_C
+          multiplicity: "1"
+          phrase: "is specification of"
+        referencing:
+          - DeviceKindID: DeviceKindID
+          - VendorID: VendorID
+          - ProductID: ProductID
+      - index: R103
+        kind: binary
+        referent:
+          cclass: OEOE_EC
+          multiplicity: "1"
+          phrase: "run with"
+        participant:
+          cclass: OEOE_P
+          multiplicity: "M"
+          phrase: "represent current status of"
+        referencing:
+          - InstanceID: InstanceID
+          - EquipmentID: EquipmentID
+      - index: R104
+        kind: binary
+        participant:
+          cclass: OEOE_P
+          multiplicity: "MC"
+          phrase: "is imprelemtation for"
+        referent:
+          cclass: OE_PS
+          multiplicity: "1"
+          phrase: "is specification of"
+        referencing:
+          - VariableID: VariableID
+      # OpenEL::Specification Approvement Sub system
+      - index: R201
+        kind: binary
+        referent:
+          cclass: OESA_AT
+          multiplicity: "1"
+          phrase: "authorize"
+        participant:
+          cclass: OESA_AP
+          multiplicity: "MC"
+          phrase: "is approved by"
+        referencing:
+          - Name: AuthorizerName
+      - index: R202
+        kind: is-a
+        referent:
+          cclass: OESA_AP
+          properties:
+            - ApprovementID
+        participants:
+          - cclass: OESA_DKAP
+            properties:
+              - ApprovementID
+          - cclass: OESA_VAP
+            properties:
+              - ApprovementID
+          - cclass: OESA_PA
+            properties:
+              - ApprovementID
+      - index: R203
+        kind: binary
+        participant:
+          cclass: OESA_DKAP
+          multiplicity: "1"
+          phrase: "approved"
+        referent:
+          cclass: OE_DK
+          multiplicity: "1"
+          phrase: "is target of"
+        referencing:
+          - DeviceKindID: DeviceKindID
+      - index: R204
+        kind: binary 
+        participant:
+          cclass: OESA_VAP
+          multiplicity: "1"
+          phrase: "approved"
+        referent:
+          cclass: OE_V
+          multiplicity: "1"
+          phrase: "is target of"
+        referencing:
+          - VendorID: VendorID
+      - index: R205
+        kind: binary
+        participant:
+          cclass: OESA_PA
+          multiplicity: "1"
+          phrase: "approved"
+        referent:
+          cclass: OE_PD
+          multiplicity: "1"
+          phrase: "is target of"
+        referencing:
+          - ProductID: ProductID
+      # OpenEL::Data Type Sub system
+      - index: R301
+        kind: binary
+        referent:
+          cclass: OE_DT
+          multiplicity: "1"
+          phrase: "is data type of"
+        participant:
+          cclass: OE_PS
+          multiplicity: "MC"
+          phrase: "is specified by"
+        referencing:
+          - DataTypeID: DataTypeID
+      - index: R302
+        kind: is-a
+        referent:
+          cclass: OE_DT
+          properties:
+            - DataTypeID
+        participants:
+          - cclass: OE_SDT
+            properties:
+              - DataTypeID
+          - cclass: OE_BDT
+            properties:
+              - DataTypeID
+      - index: R303
+        kind: binary
+        referent:
+          cclass: OE_C
+          multiplicity: "1"
+          phrase: "is owner of"
+        participant:
+          cclass: OE_SDT
+          multiplicity: "MC"
+          phrase: "is defined for"
+      - index: R304
+        kind: is-a
+        referent:
+          cclass: OE_SDT
+          properties:
+            - DataTypeID
+        participants:
+          - cclass: OE_CDT
+            properties:
+              - DataTypeID
+          - cclass: OE_CDT
+            properties:
+              - DataTypeID
+          - cclass: OE_EDT
+            properties:
+              - DataTypeID
+      - index: R305
+        kind: binary
+        referent:
+          cclass: OE_EDT
+          multiplicity: "1"
+          phrase: "has"
+        participant:
+          cclass: OE_EDTI
+          multiplicity: "M"
+          phrase: "is value of"
+        referencing:
+          - DataTypeID: DataTypeID
+      - index: R306
+        kind: binary
+        referent:
+          cclass: OE_BDT
+          multiplicity: "1"
+          phrase: "is base data type of"
+        participant:
+          cclass: OE_PDT
+          multiplicity: "MC"
+          phrase: "is derived from"
+        referencing:
+          - DataTypeID: Base_DataTypeID
+      - index: R307
+        kind: binary
+        referent:
+          cclass: OE_CDT
+          multiplicity: "1"
+          phrase: "consist from"
+        participant:
+          cclass: OE_CDTI
+          multiplicity: "M"
+          phrase: "is item of"
+        referencing:
+          - DataTypeID: Base_DataTypeID
+      - index: R308
+        kind: binary
+        referent:
+          cclass: OE_DT
+          multiplicity: "1"
+          phrase: "is data type of"
+        participant:
+          cclass: OE_CDTI
+          multiplicity: "MC"
+          phrase: "is specified by"
+        referencing:
+          - DataTypeID: DataTypeID
+      - index: R309
+        kind: binary
+        referent:
+          cclass: OE_VNR
+          multiplicity: "1C"
+          phrase: "define value constraints"
+        participant:
+          cclass: OE_BDT
+          multiplicity: "MC"
+          phrase: "may be ruled by"
+        referencing:
+          - NotationID: NotationID
+      - index: R310
+        kind: binary
+        referent:
+          cclass: OE_VNR
+          multiplicity: "1C"
+          phrase: "define value constraints"
+        participant:
+          cclass: OE_PDT
+          multiplicity: "MC"
+          phrase: "may be ruled by"
+        referencing:
+          - NotationID: NotationID
+      # OpenEL::Variable & Parameter Order Sub system
+      - index: R20
+        kind: binary
+        referent:
+          cclass: OE_VAS
+          multiplicity: "1C"
+          phrase: "precedes"
+        participant:
+          cclass: OE_VAS
+          multiplicity: "1C"
+          phrase: "succeeds"
+        referencing:
+          - ComponentID: ComponentID
+          - Name: Next_Name
+      - index: R21
+        kind: binary
+        referent:
+          cclass: OE_PS
+          multiplicity: "1C"
+          phrase: "precedes"
+        participant:
+          cclass: OE_PS
+          multiplicity: "1C"
+          phrase: "succeeds"
+        referencing:
+          - VariableID: VariableID
+          - Name: Next_Name
+      - index: R22
+        kind: binary
+        referent:
+          cclass: OE_MB
+          multiplicity: "1"
+          phrase: "are arranged in"
+        participant:
+          cclass: OE_PIM
+          multiplicity: "M"
+          phrase: "is filled in"
+        referencing:
+          - MemoryBlockID: MemoryBlockID
+      - index: R23
+        kind: is-a
+        referent:
+          cclass: OE_MB
+          properties:
+            - MemoryBlockID
+        participants:
+          - cclass: OE_CMB
+            properties:
+              - MemoryBlockID
+          - cclass: OE_VMB
+            properties:
+              - MemoryBlockID
+      - index: R24
+        kind: is-a
+        referent:
+          cclass: OE_PIM
+          properties:
+            - PositionInMemoryID
+        participants:
+          - cclass: OE_CPIM
+            properties:
+              - PositionInMemoryID
+          - cclass: OE_PPIM
+            properties:
+              - PositionInMemoryID
+      - index: R25
+        kind: binary
+        referent:
+          cclass: OE_VAS
+          multiplicity: "1"
+          phrase: "define the placement in implementation"
+        participant:
+          cclass: OE_VMB
+          multiplicity: "1C"
+          phrase: "needs for implementation"
+        referencing:
+          - VariableID: VariableID
+      - index: R26
+        kind: binary
+        referent:
+          cclass: OE_PS
+          multiplicity: "1"
+          phrase: "define the placement of"
+        participant:
+          cclass: OE_PPIM
+          multiplicity: "1C"
+          phrase: "is placed in"
+        referencing:
+          - VariableID: VariableID
+          - Name: Name
+      - index: R27
+        kind: binary
+        referent:
+          cclass: OE_CDT
+          multiplicity: "1"
+          phrase: "define the placement in implementation"
+        participant:
+          cclass: OE_CMB
+          multiplicity: "1C"
+          phrase: "needs for implementation"
+        referencing:
+          - DataTypeID: DataTypeID
+      - index: R28
+        kind: binary
+        referent:
+          cclass: OE_CDTI
+          multiplicity: "1"
+          phrase: "define the placement of"
+        participant:
+          cclass: OE_CPIM
+          multiplicity: "1C"
+          phrase: "is placed in"
+        referencing:
+          - DataTypeID: DataTypeID
+          - Name: Name
+      - index: R320
+        kind: binary
+        referent:
+          cclass: OE_CDTI
+          multiplicity: "1C"
+          phrase: "precedes"
+        participant:
+          cclass: OE_CDTI
+          multiplicity: "1C"
+          phrase: "succeeds"
+        referencing:
+          - DataTypeID: DataTypeID
+          - Name: Next_Name
       # OpenEL::Calibration Sub system
       - index: R400
         kind: binary
-        one:
+        referent:
           cclass: OEC_C
           multiplicity: "1"
           phrase: "is target of"
-        other:
+        participant:
           cclass: OEC_CB
           multiplicity: "MC"
           phrase: "is mechanism for adjusting"
@@ -273,7 +1195,7 @@ domain:
           cclass: OEC_CB
           properties:
             - CalibrationID
-        participant:
+        participants:
           - cclass: OEC_CBM
             properties:
               - CalibrationID
@@ -281,7 +1203,7 @@ domain:
             properties:
               - CalibrationID
       - index: R402
-        kind: binary
+        kind: binary-associative
         one:
           cclass: OEC_CBV
           multiplicity: "MC"
@@ -297,3 +1219,167 @@ domain:
             - CalibrationID: CalibrationID
           other:
             - VariableID: VariableID
+      - index: R403
+        kind: binary-associative
+        one:
+          cclass: OEC_CBV
+          multiplicity: "MC"
+          phrase: "may use as expecting"
+        other:
+          cclass: OE_VAS
+          multiplicity: "M"
+          phrase: "is expected of"
+        associative:
+          cclass: OEC_CEV
+        referencing:
+          one:
+            - CalibrationID: CalibrationID
+          other:
+            - VariableID: VariableID
+      - index: R404
+        kind: is-a
+        referent:
+          cclass: OEC_CV
+          properties:
+            - CalVariableID
+            - CalibrationID
+        participants:
+          - cclass: OEC_CSV
+            properties:
+              - CalVariableID
+              - CalibrationID
+          - cclass: OEC_CEV
+            properties:
+              - CalVariableID
+              - CalibrationID
+      - index: R405
+        kind: binary
+        referent:
+          cclass: OEC_CBV
+          multiplicity: "1"
+          phrase: "belong to"
+        participant:
+          cclass: OEC_CV
+          multiplicity: "M"
+          phrase: "is supplemental variable of"
+        referencing:
+          - CalibrationID: CalibrationID
+      - index: R406
+        kind: binary
+        referent:
+          cclass: OE_VAS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_CV
+          multiplicity: "M"
+          phrase: "specify"
+        referencing:
+          - VariableID: VariableID
+      - index: R407
+        kind: is-a
+        referent:
+          cclass: OEC_CSV
+          properties:
+            - CalibrationID
+            - VariableID
+        participants:
+          - cclass: OEC_ECSV
+            properties:
+              - CalibrationID
+              - VariableID
+          - cclass: OEC_ICSV
+            properties:
+              - CalibrationID
+              - VariableID
+      - index: R408
+        kind: is-a
+        referent:
+          cclass: OEC_CEV
+          properties:
+            - CalibrationID
+            - VariableID
+        participants:
+          - cclass: OEC_ECEV
+            properties:
+              - CalibrationID
+              - VariableID
+          - cclass: OEC_OCEV
+            properties:
+              - CalibrationID
+              - VariableID
+      - index: R410
+        kind: binary
+        referent:
+          cclass: OE_EVS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_ECSV
+          multiplicity: "MC"
+          phrase: "may use as specification"
+        referencing:
+          - VariableID: VariableID
+      - index: R411
+        kind: binary
+        referent:
+          cclass: OE_IVS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_ICSV
+          multiplicity: "MC"
+          phrase: "may use as specification"
+        referencing:
+          - VariableID: VariableID
+      - index: R412
+        kind: binary
+        referent:
+          cclass: OE_OVS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_ECSV
+          multiplicity: "MC"
+          phrase: "may use as specification"
+        referencing:
+          - VariableID: VariableID
+      - index: R413
+        kind: binary
+        referent:
+          cclass: OE_EVS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_OCEV
+          multiplicity: "MC"
+          phrase: "may use as specification"
+        referencing:
+          - VariableID: VariableID
+      - index: R414
+        kind: binary
+        referent:
+          cclass: OEC_CV
+          multiplicity: "1"
+          phrase: "is target of"
+        participant:
+          cclass: OEC_CP
+          multiplicity: "MC"
+          phrase: "specify value of"
+        referencing:
+          - CalVariableID: CalVariableID
+          - CalibrationID: CalibrationID
+          - VariableID: VariableID
+      - index: R415
+        kind: binary
+        referent:
+          cclass: OE_PS
+          multiplicity: "1"
+          phrase: "is specification of"
+        participant:
+          cclass: OEC_CP
+          multiplicity: "MC"
+          phrase: "specify"
+        referencing:
+          - VariableID: VariableID
+          - Name: Name
