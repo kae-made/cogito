@@ -641,11 +641,11 @@ domain:
         referent:
           cclass: OE_V
           multiplicity: "1"
-          phrase: "provide"
+          phrase: "is provided by"
         participant:
            cclass: OE_PD
            multiplicity: "MC"
-           phrase: "is defined by"
+           phrase: "provide"
         referencing:
           - VendorID: VendorID
       - index: R3
@@ -653,11 +653,11 @@ domain:
         referent:
           cclass: OE_DK
           multiplicity: "1"
-          phrase: "is kind of"
+          phrase: "is realization for"
         participant:
            cclass: OE_C
            multiplicity: "MC" # "*"
-           phrase: "is realization for"
+           phrase: "is kind of"
         referencing:
           - DeviceKindID: DeviceKindID
       - index: R4
@@ -665,11 +665,11 @@ domain:
         referent:
           cclass: OE_PD
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "is part of"
         participant:
           cclass: OE_C
           multiplicity: "M" # "1..*"
-          phrase: "is part of"
+          phrase: "is target of"
         referencing:
           - ProductID: ProductID
           - VendorID: VendorID
@@ -678,11 +678,11 @@ domain:
         referent:
           cclass: OE_C
           multiplicity: "1"
-          phrase: "presents"
+          phrase: "serve as the operational specification for "
         participant:
           cclass: OE_DDS
           multiplicity: "1"
-          phrase: "is described by"
+          phrase: "is operated under the control of"
         referencing:
           - DeviceKindID: DeviceKindID
           - ProductID: ProductID 
@@ -752,11 +752,11 @@ domain:
         referent:
           cclass: OE_SDDS
           multiplicity: "1"
-          phrase: "provide"
+          phrase: "is specification of the observed data for" # "is the data of the observed data for" is phrase on CIM diagram.
         participant:
           cclass: OE_OVS
           multiplicity: "M"
-          phrase: "is able to observe"
+          phrase: "provide"
         referencing:
           - ComponentID: ComponentID
       - index: R11
@@ -764,11 +764,11 @@ domain:
         referent:
           cclass: OE_DDS
           multiplicity: "1"
-          phrase: "instructs"
+          phrase: "is specification of the instruction data for"  # "is the instruction data for" is phrase on CIM diagram.
         participant:
           cclass: OE_IVS
           multiplicity: "M"
-          phrase: "is able to instructed by"
+          phrase: "provide"
         referencing:
           - ComponentID: ComponentID
       - index: R12
@@ -776,11 +776,11 @@ domain:
         referent:
           cclass: OE_VAS
           multiplicity: "1"
-          phrase: "consist from"
+          phrase: "is the detail of"
         participant:
           cclass: OE_PS
           multiplicity: "M"
-          phrase: "is detail of"
+          phrase: "is accompanied by"
         referencing:
           - VariableID: VariableID
       - index: R13
@@ -788,11 +788,11 @@ domain:
         referent:
           cclass: OE_C
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "configure"
         participant:
           cclass: OE_CF
           multiplicity: "MC"
-          phrase: "configure"
+          phrase: "is target of"
         referencing:
           - ComponentID: ComponentID
       - index: R14
@@ -800,11 +800,11 @@ domain:
         referent:
           cclass: OE_CF
           multiplicity: "1"
-          phrase: "is configured by"
+          phrase: "is supplemental value of"
         participant:
           cclass: OE_CVS
           multiplicity: "M"
-          phrase: "is supplemental value of"
+          phrase: "is determined by"
         referencing:
           - ConfigurationID: ConfigurationID
       # OpenEL::Operational Equipment Sub system
@@ -813,11 +813,11 @@ domain:
         referent:
           cclass: OEOE_EQ
           multiplicity: "1"
-          phrase: "run with"
+          phrase: "is part of"
         participant:
           cclass: OEOE_EC
           multiplicity: "M"
-          phrase: "is a part of"
+          phrase: "run with"
         referencing:
           - EquipmentID: EquipmentID
       - index: R102
@@ -825,11 +825,11 @@ domain:
         participant:
           cclass: OEOE_EC
           multiplicity: "MC"
-          phrase: "is imprelemtation for"
+          phrase: "is specification of"
         referent:
           cclass: OE_C
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "is imprelemtation for"
         referencing:
           - DeviceKindID: DeviceKindID
           - VendorID: VendorID
@@ -839,11 +839,11 @@ domain:
         referent:
           cclass: OEOE_EC
           multiplicity: "1"
-          phrase: "run with"
+          phrase: "represent current status of"
         participant:
           cclass: OEOE_P
           multiplicity: "M"
-          phrase: "represent current status of"
+          phrase: "run with"
         referencing:
           - InstanceID: InstanceID
           - EquipmentID: EquipmentID
@@ -852,11 +852,11 @@ domain:
         participant:
           cclass: OEOE_P
           multiplicity: "MC"
-          phrase: "is imprelemtation for"
+          phrase: "is specification of"
         referent:
           cclass: OE_PS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "is imprelemtation for"
         referencing:
           - VariableID: VariableID
       # OpenEL::Specification Approvement Sub system
@@ -865,11 +865,11 @@ domain:
         referent:
           cclass: OESA_AT
           multiplicity: "1"
-          phrase: "authorize"
+          phrase: "is approved by"
         participant:
           cclass: OESA_AP
           multiplicity: "MC"
-          phrase: "is approved by"
+          phrase: "authorize"
         referencing:
           - Name: AuthorizerName
       - index: R202
@@ -893,11 +893,11 @@ domain:
         participant:
           cclass: OESA_DKAP
           multiplicity: "1"
-          phrase: "approved"
+          phrase: "is target of"
         referent:
           cclass: OE_DK
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "approved"
         referencing:
           - DeviceKindID: DeviceKindID
       - index: R204
@@ -905,11 +905,11 @@ domain:
         participant:
           cclass: OESA_VAP
           multiplicity: "1"
-          phrase: "approved"
+          phrase: "is target of"
         referent:
           cclass: OE_V
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "approved"
         referencing:
           - VendorID: VendorID
       - index: R205
@@ -917,11 +917,11 @@ domain:
         participant:
           cclass: OESA_PA
           multiplicity: "1"
-          phrase: "approved"
+          phrase: "is target of"
         referent:
           cclass: OE_PD
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "approved"
         referencing:
           - ProductID: ProductID
       # OpenEL::Data Type Sub system
@@ -930,11 +930,11 @@ domain:
         referent:
           cclass: OE_DT
           multiplicity: "1"
-          phrase: "is data type of"
+          phrase: "is specified by"
         participant:
           cclass: OE_PS
           multiplicity: "MC"
-          phrase: "is specified by"
+          phrase: "is data type of"
         referencing:
           - DataTypeID: DataTypeID
       - index: R302
@@ -955,11 +955,11 @@ domain:
         referent:
           cclass: OE_C
           multiplicity: "1"
-          phrase: "is owner of"
+          phrase: "is defined in the scope of"
         participant:
           cclass: OE_SDT
           multiplicity: "MC"
-          phrase: "is defined for"
+          phrase: "is owner of"
       - index: R304
         kind: is-a
         referent:
@@ -981,11 +981,11 @@ domain:
         referent:
           cclass: OE_EDT
           multiplicity: "1"
-          phrase: "has"
+          phrase: "is permitted for"
         participant:
           cclass: OE_EDTI
           multiplicity: "M"
-          phrase: "is value of"
+          phrase: "have"
         referencing:
           - DataTypeID: DataTypeID
       - index: R306
@@ -993,11 +993,11 @@ domain:
         referent:
           cclass: OE_BDT
           multiplicity: "1"
-          phrase: "is base data type of"
+          phrase: "add specific semantics to"
         participant:
           cclass: OE_PDT
           multiplicity: "MC"
-          phrase: "is derived from"
+          phrase: "is base data type of"
         referencing:
           - DataTypeID: Base_DataTypeID
       - index: R307
@@ -1005,11 +1005,11 @@ domain:
         referent:
           cclass: OE_CDT
           multiplicity: "1"
-          phrase: "consist from"
+          phrase: "is item of"
         participant:
           cclass: OE_CDTI
           multiplicity: "M"
-          phrase: "is item of"
+          phrase: "consist from"
         referencing:
           - DataTypeID: Base_DataTypeID
       - index: R308
@@ -1017,11 +1017,11 @@ domain:
         referent:
           cclass: OE_DT
           multiplicity: "1"
-          phrase: "is data type of"
+          phrase: "is specified by"
         participant:
           cclass: OE_CDTI
           multiplicity: "MC"
-          phrase: "is specified by"
+          phrase: "is data type of"
         referencing:
           - DataTypeID: DataTypeID
       - index: R309
@@ -1029,11 +1029,11 @@ domain:
         referent:
           cclass: OE_VNR
           multiplicity: "1C"
-          phrase: "define value constraints"
+          phrase: "may be ruled by"
         participant:
           cclass: OE_BDT
           multiplicity: "MC"
-          phrase: "may be ruled by"
+          phrase: "define value constraints"
         referencing:
           - NotationID: NotationID
       - index: R310
@@ -1041,11 +1041,11 @@ domain:
         referent:
           cclass: OE_VNR
           multiplicity: "1C"
-          phrase: "define value constraints"
+          phrase: "may be ruled by"
         participant:
           cclass: OE_PDT
           multiplicity: "MC"
-          phrase: "may be ruled by"
+          phrase: "define value constraints"
         referencing:
           - NotationID: NotationID
       # OpenEL::Variable & Parameter Order Sub system
@@ -1182,11 +1182,11 @@ domain:
         referent:
           cclass: OEC_C
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "is mechanism for adjusting"
         participant:
           cclass: OEC_CB
           multiplicity: "MC"
-          phrase: "is mechanism for adjusting"
+          phrase: "is target of"
         referencing:
           - CalibrationID: CalibrationID
       - index: R401
@@ -1207,11 +1207,11 @@ domain:
         one:
           cclass: OEC_CBV
           multiplicity: "MC"
-          phrase: "may use as specification"
+          phrase: "may be used as definition
         other:
           cclass: OE_VAS
           multiplicity: "M"
-          phrase: "is specification for"
+          phrase: "define its correction using"
         associative:
           cclass: OEC_CSV
         referencing:
@@ -1224,11 +1224,11 @@ domain:
         one:
           cclass: OEC_CBV
           multiplicity: "MC"
-          phrase: "may use as expecting"
+          phrase: "may be used as expecting"
         other:
           cclass: OE_VAS
           multiplicity: "M"
-          phrase: "is expected of"
+          phrase: "expect a value defined by"
         associative:
           cclass: OEC_CEV
         referencing:
@@ -1261,7 +1261,7 @@ domain:
         participant:
           cclass: OEC_CV
           multiplicity: "M"
-          phrase: "is supplemental variable of"
+          phrase: "operation is accompanied by"
         referencing:
           - CalibrationID: CalibrationID
       - index: R406
@@ -1269,11 +1269,11 @@ domain:
         referent:
           cclass: OE_VAS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "is defined by"
         participant:
           cclass: OEC_CV
           multiplicity: "M"
-          phrase: "specify"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
       - index: R407
@@ -1313,11 +1313,11 @@ domain:
         referent:
           cclass: OE_EVS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "may use as specification"
         participant:
           cclass: OEC_ECSV
           multiplicity: "MC"
-          phrase: "may use as specification"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
       - index: R411
@@ -1325,11 +1325,11 @@ domain:
         referent:
           cclass: OE_IVS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "may use as specification"
         participant:
           cclass: OEC_ICSV
           multiplicity: "MC"
-          phrase: "may use as specification"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
       - index: R412
@@ -1337,11 +1337,11 @@ domain:
         referent:
           cclass: OE_OVS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "may use as specification"
         participant:
           cclass: OEC_ECSV
           multiplicity: "MC"
-          phrase: "may use as specification"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
       - index: R413
@@ -1349,11 +1349,11 @@ domain:
         referent:
           cclass: OE_EVS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "may use as specification"
         participant:
           cclass: OEC_OCEV
           multiplicity: "MC"
-          phrase: "may use as specification"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
       - index: R414
@@ -1361,11 +1361,11 @@ domain:
         referent:
           cclass: OEC_CV
           multiplicity: "1"
-          phrase: "is target of"
+          phrase: "is the detail of"
         participant:
           cclass: OEC_CP
           multiplicity: "MC"
-          phrase: "specify value of"
+          phrase: "is accompanied by"
         referencing:
           - CalVariableID: CalVariableID
           - CalibrationID: CalibrationID
@@ -1375,11 +1375,11 @@ domain:
         referent:
           cclass: OE_PS
           multiplicity: "1"
-          phrase: "is specification of"
+          phrase: "is defined by"
         participant:
           cclass: OEC_CP
           multiplicity: "MC"
-          phrase: "specify"
+          phrase: "is specification of"
         referencing:
           - VariableID: VariableID
           - Name: Name
