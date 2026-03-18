@@ -1,0 +1,28 @@
+# yaml-language-server: $schema: ../schema/cim.schema.yaml
+# comceptual modeling metamodel definition
+
+domain:
+  name: "metamodel of conceptual model"
+  cclasses:
+    # Conceptual Model
+    cclass:
+      - key_letter: CIM_CD
+        name: Conceptual Domain
+        number: 0
+        properties:
+          property:
+            - name: Name
+              type: STRING
+              identity: [1]
+            - name: Description
+              type: STRING
+      - key_letter: CIM_CC
+        name: Conceptual Class
+        number: 1
+        properties:
+          property:
+            - name: DomainName
+              type: STRING
+              identity: [1,2,3]
+      - 
+            

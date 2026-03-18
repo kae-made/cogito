@@ -16,6 +16,9 @@ $defs:
       - REAL
       - BOOLEAN
       - TIMESTAMP
+      - REFERENCE
+      - INSTANCE
+      - INSTANCE_SET
       - OTHER
  
   # ---------------------------------------------------------
@@ -24,8 +27,11 @@ $defs:
   classProperty:
     type: object
     required:
+      - name
       - type
     properties:
+      name:
+        type: string
       type:
         $ref: '#/$defs/propertyType'
       identity:
@@ -56,9 +62,10 @@ $defs:
       number:
         type: integer
       properties:
-        type: object
-        additionalProperties:
-          $ref: '#/$defs/classProperty'
+        property:
+          type: array
+          items:
+            $ref: '#/$defs/classProperty'
 
   # ---------------------------------------------------------
   # relationship schema definition
