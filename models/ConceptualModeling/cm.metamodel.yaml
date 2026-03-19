@@ -22,7 +22,703 @@ domain:
         properties:
           property:
             - name: DomainName
-              type: STRING
+              type: REFERENCE
               identity: [1,2,3]
-      - 
-            
+            - name: Name
+              type: STRING
+              identity: [1]
+            - name: KeyLetter
+              type: STRING
+              identity: [2]
+            - name: Number
+              type: STRING
+              identity: [3]
+      - key_letter: CIM_PR
+        name: Property
+        number: 2
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: Name
+              type: STRING
+              identity: [1]
+            - name: DataTypeName
+              type: REFERENCE
+      - key_letter: CIM_REL
+        name: Relationships
+        number: 3
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: index
+              type: STRING
+              identity: [1]
+      - key_letter: CIM_DT
+        name: Data Type
+        number: 4
+        properties:
+          property:
+            - name: Name
+              type: STRING
+              identity: [1]
+      - key_letter: CIM_ID
+        name: identity
+        number: 5
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: Level
+              type: INTEGER
+              identity: [1]
+      - key_letter: CIM_BPR
+        name: Base Property
+        number: 6
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: PropertyName
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_RPR
+        name: Reference Property
+        number: 7
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: PropertyName
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_ISR
+        name: is-a Relationship
+        number: 8
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: Index
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BR
+        name: Binary Relationship
+        number: 9
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: Index
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AR
+        name: Associative Relationship
+        number: 10
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: Index
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_CIR
+        name: CClass in Relationship
+        number: 11
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_RIR
+        name: Referent in Relationship
+        number: 12
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_PIR
+        name: Participant in Relationship
+        number: 12
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+            - name: Level
+              type: REFERENCE
+      - key_letter: CIM_CPID
+        name: Property in CClass Identity
+        number: 13
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: PropertyName
+              type: REFERENCE
+              identity: [1]
+            - name: Level
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_IPIR
+        name: Identity Property in Relationship
+        number: 14
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+            - name: PropertyName
+              type: REFERENCE
+              identity: [1]
+            - name: Level
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_REF
+        name: Reference
+        number: 15
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+            - name: PropertyName
+              type: REFERENCE
+              identity: [1]
+            - name: Level
+              type: REFERENCE
+              identity: [1]
+            - name: RefPropertyName
+              type: REFERENCE
+      - key_letter: CIM_SRIR
+        name: Super RIR
+        number: 16
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_FRIR
+        name: Form RIR
+        number: 17
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+            - name: Multiplicity
+              type: STRING
+            - name: Conditionality
+              type: BOOLEAN
+            - name: TextPhrase
+              type: STRING
+      - key_letter: CIM_BFRIR
+        name: Super RIR
+        number: 18
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_ONRIR
+        name: Binary Form RIR
+        number: 19
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_ONRIR
+        name: One RIR
+        number: 20
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_OTRIR
+        name: Other RIR
+        number: 21
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SPIR
+        name: Sub PIR
+        number: 22
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_PPIR
+        name: Part PIR
+        number: 23
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+            - name: Multiplicity
+              type: STRING
+            - name: Conditionality
+              type: BOOLEAN
+            - name: TextPhrase
+              type: STRING
+      - key_letter: CIM_APIR
+        name: Associative PIR
+        number: 24
+        properties:
+          property:
+            - name: DomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+            - name: RIndex
+              type: REFERENCE
+              identity: [1]
+  relationships:
+    relationship:
+      - index: R1
+        kind: binary
+        referent:
+          cclass: CIM_CD
+          multiplicity: "1"
+          phrase: "is meaningful within"
+        participant:
+          cclass: CIM_CC
+          multiplicity: "M"
+          phrase: "is FoS of"
+        referencing:
+          - Name: DomainName
+      - index: R2
+        kind: binary
+        referent:
+          cclass: CIM_CD
+          multiplicity: "1"
+          phrase: "is meaningful within"
+        participant:
+          cclass: CIM_REL
+          multiplicity: "MC"
+          phrase: "is FoS of"
+        referencing:
+          - Name: DomainName
+      - index: R3
+        kind: binary
+        referent:
+          cclass: CIM_CC
+          multiplicity: "1"
+          phrase: "define the characteristic of"
+        participant:
+          cclass: CIM_PR
+          multiplicity: "M"
+          phrase: "is essentially characterized by"
+        referencing:
+          - DomainName: DomainName
+          - Name: CClassName
+      - index: R4
+        kind: binary
+        referent:
+          cclass: CIM_DT
+          multiplicity: "1"
+          phrase: "is characterized as taking its value within"
+        participant:
+          cclass: CIM_PR
+          multiplicity: "MC"
+          phrase: "is data type of"
+        referencing:
+          - Name: DataTypeName
+      - index: R5
+        kind: binary
+        referent:
+          cclass: CIM_CC
+          multiplicity: "1"
+          phrase: "define the identity of"
+        participant:
+          cclass: CIM_ID
+          multiplicity: "MC"
+          phrase: "derives its uniqueness from"
+        referencing:
+          - DomainName: DomainName
+          - Name: CClassName
+      - index: R6
+        kind: binary-associative
+        one:
+          cclass: CIM_PR
+          multiplicity: "M"
+          phrase: "denotes the participation of"
+        other:
+          cclass: CIM_ID
+          multiplicity: "MC"
+          phrase: "is target identity of"
+        referencing:
+          one:
+            - DomainName: DomainName
+            - CClassName: CClassName
+            - Name: PropertyName
+          other:
+            - DomainName: DomainName
+            - CClassName: CClassName
+            - Level: Level
+      - index: R7
+        kind: is-a
+        referent:
+          cclass: CIM_REL
+          properties:
+            - DomainName
+            - Index
+        participants:
+          - cclass: CIM_ISR
+            properties:
+              - DomainName
+              - Index
+          - cclass: CIM_BR
+            properties:
+              - DomainName
+              - Index
+          - cclass: CIM_AR
+            properties:
+              - DomainName
+              - Index
+      - index: R8
+        kind: binary-associative
+        one:
+          cclass: CIM_CC
+          multiplicity: "M"
+          phrase: "indicate that conceptual class is participating"
+        other:
+          cclass: R_REL
+          multiplicity: "MC"
+          phrase: "indecate that relationship is participating"
+        referencing:
+          one:
+            - DomainName: DomainName
+            - Name: CClassName
+          other:
+            - DomainName: DomainName
+            - Index: RIndex
+      - index: R9
+        kind: is-a
+        referent:
+          cclass: CIM_CIR
+          properties:
+            - DomainName
+            - CClassName
+            - RIndex
+        participants:
+          - cclass: CIM_RIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+          - cclass: CIM_PIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+      - index: R10
+        kind: is-a
+        referent:
+          cclass: CIM_RIR
+          properties:
+            - DomainName
+            - CClassName
+            - RIndex
+        participants:
+          - cclass: CIM_SRIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+          - cclass: CIM_FRIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+      - index: R11
+        kind: is-a
+        refernt:
+          cclass: CIM_PIR
+          properties:
+            - DomainName
+            - CClassName
+            - RIndex
+        participants:
+          - cclass: CIM_SPIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+          - cclass: CIM_PPIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+          - cclass: CIM_APIR
+            properties:
+              - DomainName
+              - CClassName
+              - RIndex
+      - index: R12
+        kind: binary
+        referent:
+          cclass: CIM_ISR
+          multiplicity: "1"
+          phrase: "is super side of"
+        participant:
+          cclass: CIM_SRIR
+          multiplicity: "1"
+          phrase: "derives its meaning from"
+        referencing:
+          - DomainName: DomainName
+          - Index: RIndex
+      - index: R13
+        kind: binary
+        referent:
+          cclass: CIM_ISR
+          multiplicity: "1"
+          phrase: "is sub side of"
+        participant:
+          cclass: CIM_SPIR
+          multiplicity: "MC"
+          phrase: "derive its meaning from"
+        referencing:
+          - DomainName: DomainName
+          - Index: RIndex
+      - index: R14
+        kind: binary
+        referent:
+          cclass: CIM_BR
+          multiplicity: "1"
+          phrase: "is form side of"
+        participant:
+          cclass: CIM_BFRIR
+          multiplicity: "1"
+          phrase: "derive its meaning from"
+        referencing:
+          - DomanName: DomainName
+          - Index: RIndex
+      - index: R15
+        kind: binary
+        referent:
+          cclass: CIM_BR
+          multiplicity: "1"
+          phrase: "is part side of"
+        participant:
+          cclass: CIM_PPIR
+          multiplicity: "1"
+          phrase: "derive its meaning from"
+        referencing:
+          - DomainName: DomainName
+          - Index: RIndex
+      - index: R16
+        kind: binary
+        referent:
+          cclass: CIM_AR
+          multiplicity: "1"
+          phrase: "is associative side of"
+        participant:
+          cclass: CIM_APIR
+          multiplicity: "1"
+          phrase: "derive its meaning from"
+        referencing:
+          - DomainName: DomainName
+          - Index: RIndex
+      - index: R17
+        kind: binary
+        referent:
+          cclass: CIM_AR
+          multiplicity: "1"
+          phrase: "is one side of"
+        participant:
+          cclass: CIM_ONRIR
+          multiplicity: "1"
+          phrase: "derive its meaning from"
+        referencing:
+          - DomainName: DomanName
+          - Index: RIndex
+      - index: R18
+        kind: binary
+        referent:
+          cclass: CIM_AR
+          multiplicity: "1"
+          phrase: "is other side of"
+        participant:
+          cclass: CIM_OTRIR
+          multiplicity: "1"
+          phrase: "derive its meaning from"
+      - index: R19
+        kind: binary
+        referent:
+          cclass: CIM_ID
+          multiplicity: "1C"
+          phrase: "participant on"
+        participant:
+          cclass: CIM_PIR
+          multiplicity: "MC"
+          phrase: "is identity of participant of"
+        referencing:
+          - DomainName: DomainName
+          - CClassName: CClassName
+          - Level: Level
+      - index: R20
+        kind: is-a
+        referent:
+          cclass: CIM_PR
+          properties:
+            - DomainName
+            - CClassName
+            - Name
+        participants:
+          - cclass: CIM_BPR
+            properties:
+              - DomainName
+              - CClassName
+              - PropertyName
+          - cclass: CIM_RPR
+            properties:
+              - DomainName
+              - CClassName
+              - PropertyName
+      - index: R21
+        kind: binary-associative
+        one:
+          cclass: CIM_CPID
+          multiplicity: "MC"
+          phrase: "is participant property of"
+        other:
+          cclass: CIM_PIR
+          multiplicity: "MC"
+          phrase: "is participant relationship of"
+        referencing:
+          one:
+            - DomainName: DomainName
+            - CClassName: CClassName
+            - PropertyName: PropertyName
+            - Level: Level
+          other:
+            - DomainName: DomainName
+            - CClassName: CClassName
+            - RIndex: RIndex
+            - Level: Level
+      - index: R22
+        kind: binary
+        referent:
+          cclass: CIM_RPR
+          multiplicity: "1"
+          phrase: "use as reference"
+        participant:
+          cclass: CIM_REF
+          multiplicity: "M"
+          phrase: "is property of"
+        referencing:
+          - DomainName: DomainName
+          - CClassName: RefCClassName
+          - PropetyName: RefPropertyName

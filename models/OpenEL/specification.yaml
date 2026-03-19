@@ -33,7 +33,7 @@ domain:
             - name: Description
               type: STRING
             - name: VendorID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1,2]
       - key_letter: OE_Vendor
         name: "Vendor"
@@ -60,13 +60,13 @@ domain:
               type: UNIQUE_ID
               identity: [1, 2]
             - name: DeviceKindID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ProductID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VendorID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OE_DDS
         name: "Device Driver Specification"
@@ -74,16 +74,16 @@ domain:
         properties:
           property:
             - name: DeviceKindID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: ProductID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: VendorID
-              type: UNIQUE_ID
+              type: REAL
               identity: [2]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1, 2]
       - key_letter: OE_SDDS
         name: "Sensor Device Driver Specification"
@@ -91,20 +91,18 @@ domain:
         properties:
           property:
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Parent_ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OE_ADDS
         name: "Actuator Device Driver Specification"
         number: 7
         properties:
           property:
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
-            - name: Parent_ComponentID
-              type: UNIQUE_ID
       - key_letter: OE_VAS
         name: "Variable Specification"
         number: 8
@@ -117,52 +115,52 @@ domain:
               type: STRING
               identity: [2]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: Description
               type: STRING
             - name: Next_Name
-              type: STRING
+              type: REFERENCE
       - key_letter: OE_OVS
         name: "Observed Variable Specification" # "Observed VS" is name on CIM.
         number: 9
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OE_IVS
         name: "Instruct Variable Specification" # "Instruct VS" is name on CIM.
         number: 10
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OE_ISVS
         name: "Internal State Variable Specification" # "Internal State VS" is name on CIM.
         number: 11
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OEC_CVS
         name: "Configuration Variable Specification" # "Configuration VS" is name on CIM.
         number: 12
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ConfigurationID # "ConfID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OE_EVS
         name: "Environment Variable Specification" # "Environment VS" is name on CIM.
@@ -170,7 +168,7 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OE_PS
         name: "Parameter Specification"
@@ -178,7 +176,7 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
@@ -186,9 +184,9 @@ domain:
             - name: Description
               type: STRING
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: Next_Name
-              type: STRING
+              type: REFERENCE
       - key_letter: OE_CF
         name: "Configuration"
         number: 15
@@ -198,7 +196,7 @@ domain:
               type: UNIQUE_ID
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: Name
               type: STRING
@@ -227,30 +225,30 @@ domain:
               type: UNIQUE_ID
               identity: [1]
             - name: EquipmentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: DeviceKindID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: VendorID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: ProductID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OEOE_P
         name: "Parameter"
         number: 102
         properties:
           property:
             - name: InstanceID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: EquipmentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
-              type: STRING
+              type: REFERENCE
               identity: [1]
             - name: CurrentValue
               type: OTHER
@@ -270,17 +268,17 @@ domain:
             - name: ApprovalDate
               type: TIMESTAMP
             - name: AuthorizerName
-              type: STRING
+              type: REFERENCE
       - key_letter: OESA_DKAP
         name: "Device Kind Approvement"
         number: 201
         properties:
           property:
             - name: ApprovementID  # "AppID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: DeviceKindID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: Remarks
               type: STRING
       - key_letter: OESA_VAP
@@ -289,20 +287,20 @@ domain:
         properties:
           property:
             - name: ApprovementID  # "AppID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VendorID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OESA_PA
         name: "Product Approvement"
         number: 203
         properties:
           property:
             - name: ApprovementID  # "AppID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ProductID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OESA_AT
         name: "Authorizer"
         number: 204
@@ -330,10 +328,10 @@ domain:
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: Name
               type: STRING
@@ -344,32 +342,32 @@ domain:
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
               identity: [2]
             - name: NotationID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OE_PDT
         name: "Primitive Data Type"
         number: 303
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Base_DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: NotationID
-              type: UNIQUE_ID
+              type: REFERENCE
       - key_letter: OE_EDT
         name: "Enumerated Data Type"
         number: 304
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OE_EDTI
         name: "Enumerated Data Type Item"
@@ -377,7 +375,7 @@ domain:
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
@@ -390,7 +388,7 @@ domain:
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OE_CDTI
         name: "Composite Data Type Item"
@@ -398,7 +396,7 @@ domain:
         properties:
           property:
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
@@ -406,7 +404,7 @@ domain:
             - name: Description
               type: STRING
             - name: Next_Name
-              type: STRING
+              type: REFERENCE
       - key_letter: OE_VNR
         name: "Value Notation Rule"
         number: 308
@@ -437,20 +435,20 @@ domain:
         properties:
           property:
             - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
       - OE_VMB:
         name: "Variable Memory Block" # "Var MB" is name on CIM.
         number: 22
         properties:
           property:
             - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
       - OE_PIM:
         name: "Position in Memory"
         number: 23
@@ -460,7 +458,7 @@ domain:
               type: UNIQUE_ID
               identity: [1]
             - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: OffsetInMemoryBlock  # "OffsetInMB" is name on CIM.
               type: INTEGER
@@ -474,24 +472,24 @@ domain:
         properties:
           property:
             - name: PositionInMemoryID  # PIM_ID is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: DataTypeID
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: Name
-              type: STRING
+              type: REFERENCE
       - key_letter: OE_PPIM
         name: "Parameter Position in Memory" # "Param PIM" is name on CIM.
         number: 25
         properties:
           property:
             - name: PositionInMemoryID  # PIM_ID is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
             - name: Name
-              type: STRING
+              type: REFERENCE
       # OpenEL::Calibration Sub system
       - key_letter: OEC_CB
         name: "Calibration"
@@ -502,7 +500,7 @@ domain:
               type: UNIQUE_ID
               identity: [1]
             - name: ComponentID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2]
             - name: Name
               type: STRING
@@ -515,7 +513,7 @@ domain:
         properties:
           property:
             - name: CalibrationID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Model
               type: OTHER
@@ -525,7 +523,7 @@ domain:
         properties:
           property:
             - name: CalibrationID
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_CV
         name: "Calibration Variable"
@@ -536,10 +534,10 @@ domain:
               type: UNIQUE_ID
               identity: [1, 2, 3]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2, 3]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [3]
       - key_letter: OEC_CSV
         name: "Calibration Variable"
@@ -547,13 +545,13 @@ domain:
         properties:
           property:
             - name: CalVariableID # "CalVarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1,2,3]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [3]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [2,3]
       - key_letter: OEC_ECSV
         name: "Environment Calibration Specification Variable"  # "Environment CSV" is name on CIM.
@@ -561,10 +559,10 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_ICSV
         name: "Instruct State Calibration Specification Variable"  # "Instruct CSV" is name on CIM.
@@ -572,10 +570,10 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_CEV
         name: "Caibration Expected Variable"
@@ -583,13 +581,13 @@ domain:
         properties:
           property:
             - name: CalVariableID # "CalVarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_ECEV
         name: "Environment Calibration Expected Variable"  # "Environment CEV" is name on CIM.
@@ -597,10 +595,10 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_OCEV
         name: "Observed Calibration Expected Variable"  # "Observed CEV" is name on CIM.
@@ -608,10 +606,10 @@ domain:
         properties:
           property:
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
       - key_letter: OEC_CP
         name: "Calibration Parameter"
@@ -619,20 +617,19 @@ domain:
         properties:
           property:
             - name: CalVariableID # "CalVarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: VariableID # "VarID" is name on CIM.
-              type: UNIQUE_ID
+              type: REFERENCE
               identity: [1]
             - name: Name
-              type: STRING
+              type: REFERENCE
               identity: [1]
             - name: Value
               type: OTHER
-              type: TIMESTAMP
   relationships:
     relationship:
       # OpenEL::Specification Sub system
