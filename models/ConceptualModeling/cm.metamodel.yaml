@@ -56,18 +56,30 @@ domain:
           property:
             - name: DomainName
               type: REFERENCE
-              identity: [1]
+              identity: [1,2]
             - name: index
               type: STRING
               identity: [1]
+              mathematical: true
+            - name: Number
+              type: INTEGER
+              identity: [2]
       - key_letter: CIM_DT
         name: Data Type
         number: 4
         properties:
           property:
+            - name: DT_Id
+              type: UNIQUE_ID
+              identity: [1]
             - name: Name
               type: STRING
-              identity: [1]
+              identity: [2]
+            - name: DomainName
+              type: STRING
+              identity: [2]
+            - name: Grammar
+              type: STRING
       - key_letter: CIM_ID
         name: identity
         number: 5
@@ -384,6 +396,202 @@ domain:
             - name: RIndex
               type: REFERENCE
               identity: [1]
+      # State Model
+      - key_letter: CIM_SM
+        name: State Model
+        number: 100
+        properties:
+          property:
+            - name: SM_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: DomainName
+              type: REFERENCE
+              identity: [2]
+            - name: CClassName
+              type: REFERENCE
+              identity: [2]
+      - key_letter: CIM_STT
+        name: State
+        number: 101
+        properties:
+          property:
+            - name: SMStt_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: SM_Id
+              type: REFERENCE
+              identity: [2,3]
+            - name: Number
+              type: INTEGER
+              identity: [2]
+            - name: Name
+              type: STRING
+              identity: [3]
+            - name: FinalState
+              type: BOOLEAN
+      - key_letter: CIM_SMEVT
+        name: Event
+        number: 102
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: SM_Id
+              type: REFERENCE
+              identity: [2,3]
+            - name: Label
+              type: STRING
+              identity: [2]
+              mathematical: true
+            - name: Number
+              type: INTEGER
+              identity: [2]
+            - name: Meaning
+              type: STRING
+              identity: [3]
+            - name: DelayTime
+              type: TIMESPAN
+      - key_letter: CIM_TXN
+        name: Transition
+        number: 103
+        properties:
+          property:
+            - name: Txn_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: SM_Id
+              type: REFERENCE
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_EVTDI
+        name: Event Supplemental Data Item
+        number: 104
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Name
+              type: STRING
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+      - key_letter: CIM_PEVT
+        name: Polymorphic Event
+        number: 105
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SEVT
+        name: Simple Event
+        number: 106
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_NLEVT
+        name: Non Local Event
+        number: 107
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: PolySMEvt_Id
+              type: REFERENCE
+      - key_letter: CIM_LEVT
+        name: Local Event
+        number: 108
+        properties:
+          property:
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Txn_Id
+              type: REFERENCE
+            - name: SMStt_Id
+              type: REFERENCE
+      - key_letter: CIM_TXNC
+        name: Transition Cell
+        number: 109
+        properties:
+          property:
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SMCHN
+        name: Can't  Happen Cell
+        number: 110
+        properties:
+          property:
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SMIGN
+        name: Ignore Cell
+        number: 111
+        properties:
+          property:
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_NTXN
+        name: Normal Transition
+        number: 112
+        properties:
+          property:
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: SMEvt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Txn_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DestinationSMStt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_CRTXN
+        name: Creation Transition
+        number: 113
+        properties:
+          property:
+            - name: Txn_Id
+              type: REFERENCE
+              identity: [1]
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_NETXN   # depricated ?
+        name: NE Transition
+        number: 199
+        properties:
+          property:
+            - name: SMStt_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Txn_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DestinationSMStt_Id
+              type: REFERENCE
+              identity: [1]
   relationships:
     relationship:
       - index: R1
@@ -458,6 +666,8 @@ domain:
           cclass: CIM_ID
           multiplicity: "MC"
           phrase: "is target identity of"
+        associative:
+          cclass: CIM_CPID
         referencing:
           one:
             - DomainName: DomainName
@@ -497,6 +707,8 @@ domain:
           cclass: R_REL
           multiplicity: "MC"
           phrase: "indecate that relationship is participating"
+        associative:
+          cclass: CIM_CIR
         referencing:
           one:
             - DomainName: DomainName
@@ -697,6 +909,8 @@ domain:
           cclass: CIM_PIR
           multiplicity: "MC"
           phrase: "is participant relationship of"
+        associative:
+          cclass: CIM_REF
         referencing:
           one:
             - DomainName: DomainName
@@ -722,3 +936,216 @@ domain:
           - DomainName: DomainName
           - CClassName: RefCClassName
           - PropetyName: RefPropertyName
+      - index: R23
+        kind: binary
+        referent:
+          cclass: CIM_CD
+          multiplicity: "1"
+          phrase: "is defined on"
+        participant:
+          cclass: CIM_DT
+          multiplicity: "M"
+          phrase: "'s possible states are grounded in"
+      # State Model
+      - index: R100
+        kind: binary
+        referent:
+          cclass: CIM_CC
+          multiplicity: "1"
+          phrase: "is lifecycle of"
+        participant:
+          cclass: CIM_SM
+          multiplicity: "1C"
+          phrase: "behave accoding to"
+        referencing:
+          - DomainName: DomainName
+          - Name: CClassName
+      - index: R101
+        kind: binary
+        referent:
+          cclass: CIM_SM
+          multiplicity: "1"
+          phrase: "define the life stage of"
+        participant:
+          cclass: CIM_STT
+          multiplicity: "MC"
+          phrase: "is composed of"
+        referencing:
+          - SM_Id: SM_Id
+      - index: R102
+        kind: binary
+        refrent:
+          cclass: CIM_SM
+          multiplicity: "1"
+          phrase: "is the tigger for state transition of"
+        participant:
+          cclass: CIM_SMEVT
+          multiplicity: "MC"
+          phrase: "is composed of"
+        referencing:
+          - SM_Id: SM_Id
+      - index: R103
+        kind: binary
+        referent:
+          cclass: CIM_SM
+          multiplicity: "1"
+          phrase: "define the transition of"
+        participant:
+          cclass: CIM_TXN
+          multiplicity: "MC"
+          phrase: "is composed of"
+        referencing:
+          - SM_Id: SM_Id
+      - index: R104
+        kind: binary
+        referent:
+          cclass: CIM_STT
+          multiplicity: "1"
+          phrase: "indcate ～ as its destination state"
+        participant:
+          cclass: CIM_TXN
+          multiplicity: "MC"
+          phrase: "is destination state of"
+        referencing:
+          - SMStt_Id: SMStt_Id
+      - index: R105
+        kind: binary
+        referent:
+          cclass: CIM_SMEVT
+          multiplicity: "1"
+          phrase: "is property of"
+        participant:
+          cclass: CIM_EVTDI
+          multiplicity: "MC"
+          phrase: "is accompanied by"
+        referencing:
+          - SMEvt_Id: SMEvt_Id
+      - index: R106
+        kind: binary-associative
+        one:
+          cclass: CIM_STT
+          multiplicity: "MC"
+          phrase: "is consumed by"
+        other:
+          cclass: CIM_SMEVT
+          multiplicity: "MC"
+          phrase: "receive"
+        associative:
+          cclass: CIM_TXNC
+        referencing:
+          one:
+            - SMStt_Id: SMStt_Id
+          other:
+            - SMEvt_Id: SMEvt_Id
+      - index: R107
+        kind: is-a
+        refrent:
+          cclass: CIM_TXNC
+          properties:
+            - SMStt_Id
+            - SMEvt_Id
+        participants:
+          - cclass: CIM_NTXN
+            properties:
+              - SMStt_Id
+              - SMEvt_Id
+          - cclass: CIM_SMCHN
+            properties:
+              - SMStt_Id
+              - SMEvt_Id
+          - cclass: CIM_SMIGN
+            properties:
+              - SMStt_Id
+              - SMEvt_Id
+      - index: R108
+        kind: is-a
+        referent:
+          cclass: CIM_TXN
+          properties:
+            - Txn_Id
+        participants:
+          - cclass: CIM_NTXN
+            properties:
+              - Txn_Id
+          - cclass: CIM_CRTXN
+            properties:
+              - Txn_Id
+          - cclass: CIM_NETXN
+            properties:
+              - Txn_Id
+      - index: R109
+        kind: is-a
+        referent:
+          cclass: CIM_SMEVT
+          properties:
+            - SMEvt_Id
+        participants:
+          - cclass: CIM_PEVT
+            properties:
+              - SMEvt_Id
+          - cclass: CIM_SEVT
+            properties:
+              - SMEvt_Id
+      - index: R110
+        kind: is-a
+        referent:
+          cclass: CIM_SEVT
+          properties:
+            - SMEvt_Id
+        participants:
+          - cclass: CIM_NLEVT
+            properties:
+              - SMEvt_Id
+          - cclass: CIM_LEVT
+            properties:
+              - SMEvt_Id
+      - index: R111
+        kind: binary
+        referent:
+          cclass: CIM_PEVT
+          multiplicity: "1"
+          phrase: "is an event derived from"
+        participant:
+          cclass: CIM_NLEVT
+          multiplicity: "MC"
+          phrase: "delegate to"
+        referencing:
+          - SMEvt_Id: PolySMEvt_Id
+      - index: R112
+        kind: binary
+        referent:
+          cclass: CIM_CRTXN
+          multiplicity: "1C"
+          phrase: "produce"
+        participant:
+          cclass: CIM_LEVT
+          multiplicity: "1C"
+          phrase: "is triggered by"
+        referencing:
+          - Txn_Id: Txn_Id
+          - SMStt_Id: SMStt_Id
+      - index: R114
+        kind: binary
+        referent:
+          cclass: CIM_DT
+          multiplicity: "1"
+          phrase: "is specified by"
+        participant:
+          cclass: CIM_EVTDI
+          multiplicity: "MC"
+          phrase: "is data type of"
+        referencing:
+          - DT_Id: DT_Id
+      - index: R199   # deprecated ?
+        kind: binary
+        referent:
+          cclass: CIM_STT
+          multiplicity: "1"
+          phrase: "describe the transition to"
+        participant:
+          cclass: CIM_NETXN
+          multiplicity: "MC"
+          phrase: "is the destination of"
+        referencing:
+          - SMStt_Id: DestinationSMStt_Id
+          

@@ -16,6 +16,7 @@ $defs:
       - REAL
       - BOOLEAN
       - TIMESTAMP
+      - TIMESPAN
       - REFERENCE
       - INSTANCE
       - INSTANCE_SET
@@ -43,6 +44,8 @@ $defs:
         uniqueItems: true
       mathematical:
         type: boolean
+      grammar:
+        type: string
   
   # ---------------------------------------------------------
   # class structure definition
@@ -62,10 +65,14 @@ $defs:
       number:
         type: integer
       properties:
-        property:
-          type: array
-          items:
-            $ref: '#/$defs/classProperty'
+        type: object
+        properties:
+          property:
+            type: array
+            items:
+              $ref: '#/$defs/classProperty'
+        required:
+          - property
 
   # ---------------------------------------------------------
   # relationship schema definition
@@ -163,7 +170,13 @@ $defs:
     type: object
     properties:
       cclass: { type: string }
-      multiplicity: { type: string }
+      multiplicity:
+        type: string
+        enum:
+          - "1"
+          - "1C"
+          - "M"
+          - "MC"
       phrase: { type: string }
     required: ["cclass", "multiplicity"]
 
