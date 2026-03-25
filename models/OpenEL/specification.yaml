@@ -35,7 +35,7 @@ domain:
             - name: VendorID
               type: REFERENCE
               identity: [1,2]
-      - key_letter: OE_Vendor
+      - key_letter: OE_V
         name: "Vendor"
         number: 3
         properties:
@@ -103,12 +103,12 @@ domain:
             - name: ComponentID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_VAS
-        name: "Variable Specification"
+      - key_letter: OE_ITS
+        name: "Item Specification"
         number: 8
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: UNIQUE_ID
               identity: [1]
             - name: Name
@@ -121,53 +121,53 @@ domain:
               type: STRING
             - name: Next_Name
               type: REFERENCE
-      - key_letter: OE_OVS
-        name: "Observed Variable Specification" # "Observed VS" is name on CIM.
+      - key_letter: OE_OIS
+        name: "Observed Item Specification" # "Observed IS" is name on CIM.
         number: 9
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: ComponentID
               type: REFERENCE
-      - key_letter: OE_IVS
-        name: "Instruct Variable Specification" # "Instruct VS" is name on CIM.
+      - key_letter: OE_IIS
+        name: "Instruct Item Specification" # "Instruct IS" is name on CIM.
         number: 10
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: ComponentID
               type: REFERENCE
-      - key_letter: OE_ISVS
-        name: "Internal State Variable Specification" # "Internal State VS" is name on CIM.
+      - key_letter: OE_ISIS
+        name: "Internal State Item Specification" # "Internal State IS" is name on CIM.
         number: 11
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: ComponentID
               type: REFERENCE
-      - key_letter: OEC_CVS
-        name: "Configuration Variable Specification" # "Configuration VS" is name on CIM.
+      - key_letter: OEC_CIS
+        name: "Configuration Item Specification" # "Configuration IS" is name on CIM.
         number: 12
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: ConfigurationID # "ConfID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_EVS
-        name: "Environment Variable Specification" # "Environment VS" is name on CIM.
+      - key_letter: OE_EIS
+        name: "Environment Item Specification" # "Environment IS" is name on CIM.
         number: 13
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
       - key_letter: OE_PS
@@ -175,7 +175,7 @@ domain:
         number: 14
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: Name
@@ -244,7 +244,7 @@ domain:
             - name: EquipmentID
               type: REFERENCE
               identity: [1]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: Name
@@ -417,7 +417,7 @@ domain:
               type: STRING # regular expression for validation
             - name: Description
               type: STRING
-      # OpenEL::Variable & Parameter Order Sub system
+      # OpenEL::Item & Parameter Order Sub system
       - key_letter: OE_MB
         name: "Memory Block"
         number: 20
@@ -439,15 +439,15 @@ domain:
               identity: [1]
             - name: DataTypeID
               type: REFERENCE
-      - OE_VMB:
-        name: "Variable Memory Block" # "Var MB" is name on CIM.
+      - OE_IMB:
+        name: "Item Memory Block" # "Item MB" is name on CIM.
         number: 22
         properties:
           property:
             - name: MemoryBlockID  # MB_ID is name on CIM.
               type: REFERENCE
               identity: [1]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
       - OE_PIM:
         name: "Position in Memory"
@@ -486,7 +486,7 @@ domain:
             - name: PositionInMemoryID  # PIM_ID is name on CIM.
               type: REFERENCE
               identity: [1]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
             - name: Name
               type: REFERENCE
@@ -517,95 +517,95 @@ domain:
               identity: [1]
             - name: Model
               type: OTHER
-      - key_letter: OEC_CBV
-        name: "Calibration with Variable"
+      - key_letter: OEC_CBI
+        name: "Calibration with Item"
         number: 402
         properties:
           property:
             - name: CalibrationID
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_CV
-        name: "Calibration Variable"
+      - key_letter: OEC_CI
+        name: "Calibration Item"
         number: 403
         properties:
           property:
-            - name: CalVariableID  # "CalVarID" is name on CIM.
+            - name: CalItemID
               type: UNIQUE_ID
               identity: [1, 2, 3]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [2, 3]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [3]
-      - key_letter: OEC_CSV
-        name: "Calibration Variable"
+      - key_letter: OEC_CSI
+        name: "Calibration Item"
         number: 404
         properties:
           property:
-            - name: CalVariableID # "CalVarID" is name on CIM.
+            - name: CalItemID
               type: REFERENCE
               identity: [1,2,3]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [3]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [2,3]
-      - key_letter: OEC_ECSV
-        name: "Environment Calibration Specification Variable"  # "Environment CSV" is name on CIM.
+      - key_letter: OEC_ECSI
+        name: "Environment Calibration Specification Item"  # "Environment CSI" is name on CIM.
         number: 405
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_ICSV
-        name: "Instruct State Calibration Specification Variable"  # "Instruct CSV" is name on CIM.
+      - key_letter: OEC_ICSI
+        name: "Instruct State Calibration Specification Item"  # "Instruct CSI" is name on CIM.
         number: 406
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_CEV
-        name: "Caibration Expected Variable"
+      - key_letter: OEC_CEI
+        name: "Caibration Expected Item"
         number: 407
         properties:
           property:
-            - name: CalVariableID # "CalVarID" is name on CIM.
+            - name: CalItemID
               type: REFERENCE
               identity: [1]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_ECEV
-        name: "Environment Calibration Expected Variable"  # "Environment CEV" is name on CIM.
+      - key_letter: OEC_ECEI
+        name: "Environment Calibration Expected Item"  # "Environment CEI" is name on CIM.
         number: 408
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_OCEV
-        name: "Observed Calibration Expected Variable"  # "Observed CEV" is name on CIM.
+      - key_letter: OEC_OCEI
+        name: "Observed Calibration Expected Item"  # "Observed CEI" is name on CIM.
         number: 409
         properties:
           property:
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID 
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
@@ -616,13 +616,13 @@ domain:
         number: 410
         properties:
           property:
-            - name: CalVariableID # "CalVarID" is name on CIM.
+            - name: CalItemID
               type: REFERENCE
               identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-            - name: VariableID # "VarID" is name on CIM.
+            - name: ItemID
               type: REFERENCE
               identity: [1]
             - name: Name
@@ -717,7 +717,7 @@ domain:
           multiplicity: "1"
           phrase: "is part of"
         participant:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "MC"
           phrase: "is owner of"
         referencing:
@@ -725,25 +725,25 @@ domain:
       - index: R9
         kind: is-a
         referent:
-          cclass: OE_VAS
+          cclass: OE_ITS
           properties:
-            - VariableID
+            - ItemID
         participants:
-          - cclass: OE_OVS
+          - cclass: OE_OIS
             properties:
-              - VariableID
-          - cclass: OE_IVS
+              - ItemID
+          - cclass: OE_IIS
             properties:
-              - VariableID
-          - cclass: OE_ISVS
+              - ItemID
+          - cclass: OE_ISIS
             properties:
-              - VariableID
-          - cclass: OE_CVS
+              - ItemID
+          - cclass: OE_CIS
             properties:
-              - VariableID
-          - cclass: OE_EVS
+              - ItemID
+          - cclass: OE_EIS
             properties:
-              - VariableID
+              - ItemID
       - index: R10
         kind: binary
         referent:
@@ -751,7 +751,7 @@ domain:
           multiplicity: "1"
           phrase: "is specification of the observed data for" # "is the data of the observed data for" is phrase on CIM diagram.
         participant:
-          cclass: OE_OVS
+          cclass: OE_OIS
           multiplicity: "M"
           phrase: "provide"
         referencing:
@@ -763,7 +763,7 @@ domain:
           multiplicity: "1"
           phrase: "is specification of the instruction data for"  # "is the instruction data for" is phrase on CIM diagram.
         participant:
-          cclass: OE_IVS
+          cclass: OE_IIS
           multiplicity: "M"
           phrase: "provide"
         referencing:
@@ -771,7 +771,7 @@ domain:
       - index: R12
         kind: binary
         referent:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "1"
           phrase: "is the detail of"
         participant:
@@ -779,7 +779,7 @@ domain:
           multiplicity: "M"
           phrase: "is accompanied by"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R13
         kind: binary
         referent:
@@ -799,11 +799,23 @@ domain:
           multiplicity: "1"
           phrase: "is supplemental value of"
         participant:
-          cclass: OE_CVS
+          cclass: OE_CIS
           multiplicity: "M"
           phrase: "is determined by"
         referencing:
           - ConfigurationID: ConfigurationID
+      - index: R15
+        kind: binary
+        referent:
+          cclass: OE_ADDS
+          multiplicity: "1"
+          phrase: "represents state of"
+        participant:
+          cclass: OE_ISIS
+          multiplicity: "MC"
+          phrase: "may hold"
+        referencing:
+          - ComponentID: ComponentID
       # OpenEL::Operational Equipment Sub system
       - index: R101
         kind: binary
@@ -855,7 +867,7 @@ domain:
           multiplicity: "1"
           phrase: "is imprelemtation for"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       # OpenEL::Specification Approvement Sub system
       - index: R201
         kind: binary
@@ -1045,15 +1057,15 @@ domain:
           phrase: "define value constraints"
         referencing:
           - NotationID: NotationID
-      # OpenEL::Variable & Parameter Order Sub system
+      # OpenEL::Item & Parameter Order Sub system
       - index: R20
         kind: binary
         referent:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "1C"
           phrase: "precedes"
         participant:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "1C"
           phrase: "succeeds"
         referencing:
@@ -1070,7 +1082,7 @@ domain:
           multiplicity: "1C"
           phrase: "succeeds"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
           - Name: Next_Name
       - index: R22
         kind: binary
@@ -1113,7 +1125,7 @@ domain:
       - index: R25
         kind: binary
         referent:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "1"
           phrase: "define the placement in implementation"
         participant:
@@ -1121,7 +1133,7 @@ domain:
           multiplicity: "1C"
           phrase: "needs for implementation"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R26
         kind: binary
         referent:
@@ -1133,7 +1145,7 @@ domain:
           multiplicity: "1C"
           phrase: "is placed in"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
           - Name: Name
       - index: R27
         kind: binary
@@ -1196,67 +1208,67 @@ domain:
           - cclass: OEC_CBM
             properties:
               - CalibrationID
-          - cclass: OEC_CBV
+          - cclass: OEC_CBI
             properties:
               - CalibrationID
       - index: R402
         kind: binary-associative
         one:
-          cclass: OEC_CBV
+          cclass: OEC_CBI
           multiplicity: "MC"
           phrase: "may be used as definition
         other:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "M"
           phrase: "define its correction using"
         associative:
-          cclass: OEC_CSV
+          cclass: OEC_CSI
         referencing:
           one:
             - CalibrationID: CalibrationID
           other:
-            - VariableID: VariableID
+            - ItemID: ItemID
       - index: R403
         kind: binary-associative
         one:
-          cclass: OEC_CBV
+          cclass: OEC_CBI
           multiplicity: "MC"
           phrase: "may be used as expecting"
         other:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "M"
           phrase: "expect a value defined by"
         associative:
-          cclass: OEC_CEV
+          cclass: OEC_CEI
         referencing:
           one:
             - CalibrationID: CalibrationID
           other:
-            - VariableID: VariableID
+            - ItemID: ItemID
       - index: R404
         kind: is-a
         referent:
-          cclass: OEC_CV
+          cclass: OEC_CI
           properties:
-            - CalVariableID
+            - CalItemID
             - CalibrationID
         participants:
-          - cclass: OEC_CSV
+          - cclass: OEC_CSI
             properties:
-              - CalVariableID
+              - CalItemID
               - CalibrationID
-          - cclass: OEC_CEV
+          - cclass: OEC_CEI
             properties:
-              - CalVariableID
+              - CalItemID
               - CalibrationID
       - index: R405
         kind: binary
         referent:
-          cclass: OEC_CBV
+          cclass: OEC_CBI
           multiplicity: "1"
           phrase: "belong to"
         participant:
-          cclass: OEC_CV
+          cclass: OEC_CI
           multiplicity: "M"
           phrase: "operation is accompanied by"
         referencing:
@@ -1264,99 +1276,99 @@ domain:
       - index: R406
         kind: binary
         referent:
-          cclass: OE_VAS
+          cclass: OE_ITS
           multiplicity: "1"
           phrase: "is defined by"
         participant:
-          cclass: OEC_CV
+          cclass: OEC_CI
           multiplicity: "M"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R407
         kind: is-a
         referent:
-          cclass: OEC_CSV
+          cclass: OEC_CSI
           properties:
             - CalibrationID
-            - VariableID
+            - ItemID
         participants:
-          - cclass: OEC_ECSV
+          - cclass: OEC_ECSI
             properties:
               - CalibrationID
-              - VariableID
-          - cclass: OEC_ICSV
+              - ItemID
+          - cclass: OEC_ICSI
             properties:
               - CalibrationID
-              - VariableID
+              - ItemID
       - index: R408
         kind: is-a
         referent:
-          cclass: OEC_CEV
+          cclass: OEC_CEI
           properties:
             - CalibrationID
-            - VariableID
+            - ItemID
         participants:
-          - cclass: OEC_ECEV
+          - cclass: OEC_ECEI
             properties:
               - CalibrationID
-              - VariableID
-          - cclass: OEC_OCEV
+              - ItemID
+          - cclass: OEC_OCEI
             properties:
               - CalibrationID
-              - VariableID
+              - ItemID
       - index: R410
         kind: binary
         referent:
-          cclass: OE_EVS
+          cclass: OE_EIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:
-          cclass: OEC_ECSV
+          cclass: OEC_ECSI
           multiplicity: "MC"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R411
         kind: binary
         referent:
-          cclass: OE_IVS
+          cclass: OE_IIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:
-          cclass: OEC_ICSV
+          cclass: OEC_ICSI
           multiplicity: "MC"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R412
         kind: binary
         referent:
-          cclass: OE_OVS
+          cclass: OE_OIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:
-          cclass: OEC_ECSV
+          cclass: OEC_ECEI
           multiplicity: "MC"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R413
         kind: binary
         referent:
-          cclass: OE_EVS
+          cclass: OE_EIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:
-          cclass: OEC_OCEV
+          cclass: OEC_OCEI
           multiplicity: "MC"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R414
         kind: binary
         referent:
-          cclass: OEC_CV
+          cclass: OEC_CI
           multiplicity: "1"
           phrase: "is the detail of"
         participant:
@@ -1364,9 +1376,9 @@ domain:
           multiplicity: "MC"
           phrase: "is accompanied by"
         referencing:
-          - CalVariableID: CalVariableID
+          - CalItemID: CalItemID
           - CalibrationID: CalibrationID
-          - VariableID: VariableID
+          - ItemID: ItemID
       - index: R415
         kind: binary
         referent:
@@ -1378,5 +1390,5 @@ domain:
           multiplicity: "MC"
           phrase: "is specification of"
         referencing:
-          - VariableID: VariableID
+          - ItemID: ItemID
           - Name: Name

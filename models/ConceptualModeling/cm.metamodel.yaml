@@ -7,7 +7,7 @@ domain:
     # Conceptual Model
     cclass:
       - key_letter: CIM_CD
-        name: Conceptual Domain
+        name: "Conceptual Domain"
         number: 0
         properties:
           property:
@@ -17,7 +17,7 @@ domain:
             - name: Description
               type: STRING
       - key_letter: CIM_CC
-        name: Conceptual Class
+        name: "Conceptual Class"
         number: 1
         properties:
           property:
@@ -34,7 +34,7 @@ domain:
               type: STRING
               identity: [3]
       - key_letter: CIM_PR
-        name: Property
+        name: "Property"
         number: 2
         properties:
           property:
@@ -50,7 +50,7 @@ domain:
             - name: DataTypeName
               type: REFERENCE
       - key_letter: CIM_REL
-        name: Relationships
+        name: "Relationships"
         number: 3
         properties:
           property:
@@ -65,7 +65,7 @@ domain:
               type: INTEGER
               identity: [2]
       - key_letter: CIM_DT
-        name: Data Type
+        name: "Data Type"
         number: 4
         properties:
           property:
@@ -81,7 +81,7 @@ domain:
             - name: Grammar
               type: STRING
       - key_letter: CIM_ID
-        name: identity
+        name: "Identity"
         number: 5
         properties:
           property:
@@ -95,7 +95,7 @@ domain:
               type: INTEGER
               identity: [1]
       - key_letter: CIM_BPR
-        name: Base Property
+        name: "Base Property"
         number: 6
         properties:
           property:
@@ -109,7 +109,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_RPR
-        name: Reference Property
+        name: "Reference Property"
         number: 7
         properties:
           property:
@@ -123,7 +123,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_ISR
-        name: is-a Relationship
+        name: "is-a Relationship"
         number: 8
         properties:
           property:
@@ -134,7 +134,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_BR
-        name: Binary Relationship
+        name: "Binary Relationship"
         number: 9
         properties:
           property:
@@ -145,7 +145,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_AR
-        name: Associative Relationship
+        name: "Associative Relationship"
         number: 10
         properties:
           property:
@@ -156,7 +156,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_CIR
-        name: CClass in Relationship
+        name: "CClass in Relationship"
         number: 11
         properties:
           property:
@@ -170,7 +170,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_RIR
-        name: Referent in Relationship
+        name: "Referent in Relationship"
         number: 12
         properties:
           property:
@@ -184,7 +184,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_PIR
-        name: Participant in Relationship
+        name: "Participant in Relationship"
         number: 12
         properties:
           property:
@@ -200,7 +200,7 @@ domain:
             - name: Level
               type: REFERENCE
       - key_letter: CIM_CPID
-        name: Property in CClass Identity
+        name: "Property in CClass Identity"
         number: 13
         properties:
           property:
@@ -217,7 +217,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_IPIR
-        name: Identity Property in Relationship
+        name: "Identity Property in Relationship"
         number: 14
         properties:
           property:
@@ -237,7 +237,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_REF
-        name: Reference
+        name: "Reference"
         number: 15
         properties:
           property:
@@ -259,7 +259,7 @@ domain:
             - name: RefPropertyName
               type: REFERENCE
       - key_letter: CIM_SRIR
-        name: Super RIR
+        name: "Super RIR"
         number: 16
         properties:
           property:
@@ -273,7 +273,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_FRIR
-        name: Form RIR
+        name: "Form RIR"
         number: 17
         properties:
           property:
@@ -293,7 +293,7 @@ domain:
             - name: TextPhrase
               type: STRING
       - key_letter: CIM_BFRIR
-        name: Super RIR
+        name: "Binary Form RIR"
         number: 18
         properties:
           property:
@@ -307,7 +307,7 @@ domain:
               type: REFERENCE
               identity: [1]
       - key_letter: CIM_ONRIR
-        name: Binary Form RIR
+        name: "One RIR"
         number: 19
         properties:
           property:
@@ -320,8 +320,8 @@ domain:
             - name: RIndex
               type: REFERENCE
               identity: [1]
-      - key_letter: CIM_ONRIR
-        name: One RIR
+      - key_letter: CIM_OTRIR
+        name: "Other RIR"
         number: 20
         properties:
           property:
@@ -334,8 +334,8 @@ domain:
             - name: RIndex
               type: REFERENCE
               identity: [1]
-      - key_letter: CIM_OTRIR
-        name: Other RIR
+      - key_letter: CIM_SPIR
+        name: "Sub PIR"
         number: 21
         properties:
           property:
@@ -348,23 +348,9 @@ domain:
             - name: RIndex
               type: REFERENCE
               identity: [1]
-      - key_letter: CIM_SPIR
-        name: Sub PIR
-        number: 22
-        properties:
-          property:
-            - name: DomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
       - key_letter: CIM_PPIR
-        name: Part PIR
-        number: 23
+        name: "Part PIR"
+        number: 22
         properties:
           property:
             - name: DomainName
@@ -383,8 +369,8 @@ domain:
             - name: TextPhrase
               type: STRING
       - key_letter: CIM_APIR
-        name: Associative PIR
-        number: 24
+        name: "Associative PIR"
+        number: 23
         properties:
           property:
             - name: DomainName
