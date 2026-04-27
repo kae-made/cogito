@@ -1,0 +1,98 @@
+# This schema defines the concrete specification format for device drivers standardized under OpenEL.
+# 2026-04-27 : Under Construction for discussion. Not finalized yet.
+# This schema will be generated from ../../OpenEL/specification.yaml by a code generator
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$title: "OpenEL FOS Schema"
+type: object
+required: [fos]
+properties:
+  fos:
+    type: object
+    required: [fosId, domain, date, instances]
+    properties:
+      fosId:
+        type: string
+        format: uuid
+      domain:
+        type: string
+      date:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      instances:
+        type: array
+        items:
+          type: object
+          required: [instance, cclass, properties]
+          properties:
+            instance:
+              type: string
+              format: uuid
+            cclass:
+              type: string
+              enum: [OESA_AT, OE_DK, OESA_AP, OESA_DKAP]
+              # these enumerator will be increased.
+            properties:
+              oneOf:
+                - $ref: "#/$defs/OESA_AT"
+                - $ref: "#/$defs/OE_DK"
+                - $ref: "#/$defs/OESA_AP"
+                - $ref: "#/$defs/OESA_DKAP"
+                # these references will be increased.
+          discriminator:
+            propertyName: cclass
+            mapping:
+              OESA_AT: "#/$defs/OESA_AT"
+              OE_DK: "#/$defs/OE_DK"
+              OESA_AP: "#/$defs/OESA_AP"
+              OESA_DKAP: "#/$defs/OESA_DKAP"
+              # these mappings will be increased.
+
+$defs:
+
+  OESA_AT:
+    type: object
+    required: [Name]
+    properties:
+      Name:
+        type: string
+      Description:
+        type: string
+
+  OE_DK:
+    type: object
+    required: [Name, DeviceKindID, No]
+    properties:
+      Name:
+        type: string
+      DeviceKindID:
+        oneOf:
+          - type: string
+          - type: integer
+      No:
+        type: integer
+      Description:
+        type: string
+
+  OESA_AP:
+    type: object
+    required: [AppID]
+    properties:
+      AppID:
+        type: string
+      ApplicationDate:
+        type: string
+        pattern: "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+      AuthorizerName:
+        type: string
+      Remarks:
+        type: string
+
+  OESA_DKAP:
+    type: object
+    required: [AppID]
+    properties:
+      AppID:
+        type: string
+      Remarks:
+        type: string
+  # these definitions will be increased.

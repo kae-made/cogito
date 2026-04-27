@@ -7,7 +7,7 @@ required:
 
 $defs:
   # property type definition
-  propertyType:
+  baseDataType:
     type: string
     enum:
       - UNIQUE_ID
@@ -20,8 +20,96 @@ $defs:
       - REFERENCE
       - INSTANCE
       - INSTANCE_SET
+      - EVENT_INSTANCE
       - OTHER
  
+  # -----------------------------
+  # Primitive type
+  # -----------------------------
+  primitiveType:
+    type: object
+    required: [basetype]
+    properties:
+      kind:
+        const: primitive
+      basetype:
+        $ref: '#/$defs/baseDataType'
+      unit:
+        type: string
+      grammar:
+        type: string
+
+  # -----------------------------
+  # Enumeration type
+  # -----------------------------
+  enumerationType:
+    type: object
+    required: [items]
+    properties:
+      kind:
+        const: enumeration
+      items:
+        type: array
+        items:
+          type: string
+
+  # -----------------------------
+  # Complex type
+  # -----------------------------
+  complexType:
+    type: object
+    required: [items]
+    properties:
+      kind:
+        const: complex
+      items:
+        type: array
+        items:
+          type: object
+          required: [name, type]
+          properties:
+            name:
+              type: string
+            type:
+              type: string
+
+  # -----------------------------
+  # Specific Datatype
+  # -----------------------------
+  specificDatatype:
+    type: object
+    required: [name, kind]
+    properties:
+      name:
+        type: string
+      kind:
+        type: string
+        enum: [enumeration, primitive, complex]
+      description:
+        type: string
+    allOf:
+      - oneOf:
+          - allOf:
+              - properties:
+                  kind: { const: enumeration }
+              - $ref: "#/$defs/enumerationType"
+          - allOf:
+              - properties:
+                  kind: { const: primitive }
+              - $ref: "#/$defs/primitiveType"
+          - allOf:
+              - properties:
+                  kind: { const: complex }
+              - $ref: "#/$defs/complexType"
+
+  # ---------------------------------------------------------
+  # type of class property
+  # ---------------------------------------------------------
+  propertyType:
+    oneOf:
+      - $ref: '#/$defs/baseDataType'
+      - $ref: '#/$defs/specificDatatype'
+
   # ---------------------------------------------------------
   # class property structure definition
   # ---------------------------------------------------------
@@ -32,6 +120,8 @@ $defs:
       - type
     properties:
       name:
+        type: string
+      description:
         type: string
       type:
         $ref: '#/$defs/propertyType'
@@ -64,6 +154,8 @@ $defs:
         type: string
       number:
         type: integer
+      description:
+        type: string
       properties:
         type: object
         properties:
@@ -206,7 +298,14 @@ properties:
         type: string
       description:
         type: string
-        
+      datatypes:
+        type: object
+        required: [datatype]
+        properties:
+          datatype:
+            type: array
+            items:
+              $ref: '#/$defs/specificDatatype'
       # class definition structure
       classes:
         type: object

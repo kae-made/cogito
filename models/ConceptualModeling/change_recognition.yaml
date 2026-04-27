@@ -1,0 +1,536 @@
+# yaml-language-server: $schema: ../schema/cim.schema.yaml
+# conceptual modeling metamodel based change recognition definition
+
+domain:
+  name: "change recognition"
+  datatypes:
+    datatype:
+      - name: LifeStage
+        kind: "eunmeration"
+        items:
+          - "created"
+          - "deleted"
+      - name: temperature
+        kind: "primitive"
+        basetype: "INTEGER"
+      - name: pressure
+        kind: "primitive"
+        basetype: "REAL"
+        unit: "Pascal"
+      - name: identity_code
+        kind: "primitive"
+        basetype: "STRING"
+        pattern: "^[A-Z]{3}-\\d{4}$"
+      - name: acceleration
+        kind: "complex"
+        items:
+          - name: "x"
+            type: "REAL"
+          - name: "y"
+            type: "REAL"
+          - name: "z"
+            type: "REAL"
+  cclasses:
+    cclass:
+      - key_letter: "L_T"
+        name: "Target"
+        number: 1
+        properties:
+          property:
+            - name: "Target_Id"
+              type: UNIQUE_ID
+              identity: [1,2]
+            - name: "DomainName"
+              type: REFERENCE
+              identity: [2]
+            - name: "FoS_Id"
+              type: REFERENCE
+              identity: [2]
+      - key_letter: "L_TI"
+        name: "Instance Target"
+        number: 2
+        properties:
+          property:
+            - name: "Target_Id"
+              type: REFERENCE
+              identity: [1,2]
+            - name: "DomainName"
+              type: REFERENCE
+              identity: [1,2]
+            - Name: "ClassName"
+              type: STRING
+              identity: [2]
+      - key_letter: "L_TP"
+        name: "Property Target"
+        number: 3
+        properties:
+          property:
+            - name: "Target_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "DomainName"
+              type: REFERENCE
+              identity: [1]
+            - Name: "Instance_Target_Id"
+              type: REFERENCE
+              identity: [2]
+            - name: "Instance_ClassName"
+              type: REFERENCE
+            - Name: "PropertyName"
+              type: STRING
+              identity: [2]
+            - name: "FoS_Id"
+              type: REFERENCE
+              identity: [1]
+      - key_letter: "L_TL"
+        name: "Link Target"
+        number: 4
+        properties:
+          property:
+            - name: "Target_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "DomainName"
+              type: REFERENCE
+              identity: [1]
+            - name: RelationshipIndex
+              type: STRING
+            - Name: "OneSide_Target_Id"
+              type: REFERENCE
+            - name: "OtherSide_Target_Id"
+              type: REFERENCE
+            - Name: "FoS_Id"
+              type: REFERENCE
+              identity: [1]
+      - key_letter: "L_TEI"
+        name: "Event Instance Target"
+        number: 5
+        properties:
+          property:
+            - name: "Target_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "DomainName"
+              type: REFERENCE
+              identity: [1]
+            - Name: "EventLabel"
+              type: STRING
+              identity: [2]
+            - name: "Destination_Target_Id"
+              type: REFERENCE
+            - name: "Destination_ClassName"
+              type: REFERENCE
+            - name: "Sender_Target_Id"
+              type: REFERENCE
+            - name: "FoS_Id"
+              type: REFERENCE
+              identity: [1]
+      - key_letter: "L_ESD"
+        name: "Event Supplemental Data"
+        number: 6
+        properties:
+          property:
+            - name: "Target_Id"
+              type: REFERENCE
+              identity: [1]
+            - Name: "EventLabel"
+              type: STRING
+              identity: [1]
+            - name: "ParameterName"
+              type: STRING
+              identity: [2]
+            - name: "Value"
+              type: OTHER
+      - key_letter: "L_C"
+        name: "Changed"
+        number: 7
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: UNIQUE_ID
+              identity: [1]
+            - name: "EventTime"
+              type: TIMESTAMP
+            - name: "Event_TA_Id"
+              type: REFERENCE
+      - key_letter: "L_VC"
+        name: "Value Changed"
+        number: 8
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "Target_DomainName"
+              type: REFERENCE
+            - name: "Target_Target_Id"
+              type: REFERENCE
+            - name: Value
+              type: OTHER
+            - name: "FoS_Id"
+              type: REFERENCE
+      - key_letter: "L_CLF"
+        name: "Life Changed"
+        number: 9
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "LifeStage"
+              type: LifeStage
+              identity: [1]
+      - key_letter: "L_CI"
+        name: "Instance Changed"
+        number: 10
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "Target_DomainName"
+              type: REFERENCE
+            - Name: "Target_Target_Id"
+              type: REFERENCE
+              identity: [2]
+            - name: "LifeStage"
+              type: REFERENCE
+              identity: [1,2]
+            - name: "FoS_Id"
+              type: REFERENCE
+      - key_letter: "L_CLK"
+        name: "Link Changed"
+        number: 11
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "Target_DomainName"
+              type: REFERENCE
+            - Name: "Target_Target_Id"
+              type: REFERENCE
+              identity: [2]
+            - name: "LifeStage"
+              type: REFERENCE
+              identity: [1,2]
+            - name: "FoS_Id"
+              type: REFERENCE
+      - key_letter: "L_CEO"
+        name: "Event Occurance Changed"
+        number: 12
+        properties:
+          property:
+            - name: "Changed_Id"
+              type: REFERENCE
+              identity: [1]
+            - name: "Target_DomainName"
+              type: REFERENCE
+            - Name: "Target_Target_Id"
+              type: REFERENCE
+              identity: [2]
+            - Name: "LifeStage"
+              type: REFERENCE
+              identity: [1,2]
+            - name: "FoS_Id"
+              type: REFERENCE
+      - key_letter: "L_FOS"
+        name: "Field of Sense"
+        number: 13
+        properties:
+          property:
+            - name: "FoS_Id"
+              type: UNIQUE_ID
+              identity: [1]
+            - name: "DomainName"
+              type: STRING
+      - key_letter: "L_TA"
+        name: "Temporal Axis"
+        number: 14
+        properties:
+          property:
+            - name: "TA_Id"
+              type: UNIQUE_ID
+              identity: [1]
+            - name: "Name"
+              type: STRING
+      - key_letter: "L_CD"
+        name: "Change Detection"
+        number: 15
+        properties:
+          property:
+            - name: "Detection_Id"
+              type: UNIQUE_ID
+              identity: [1]
+            - name: "DetectionTime"
+              type: TIMESTAMP
+            - name: Changed_Id
+              type: REFERENCE
+            - name: "TA_Id"
+              type: REFERENCE
+  relationships:
+    relationship:
+      - index: R1001
+        kind: "is-a"
+        referent:
+          cclass: L_T
+          properties:
+            - Target_Id
+            - DomainName
+            - FoS_Id
+        participants:
+          - cclass: L_TI
+            properties:
+              - Target_Id
+              - DomainName
+              - FoS_Id
+          - cclass: L_TP
+            properties:
+              - Target_Id
+              - DomainName
+              - FoS_Id
+          - cclass: L_TL
+            properties:
+              - Target_Id
+              - DomainName
+              - FoS_Id
+          - cclass: L_TEI
+            properties:
+              - Target_Id
+              - DomainName
+              - FoS_Id
+      - index: R2
+        kind: "binary"
+        referent:
+          cclass: L_TI
+          multiplicity: "1"
+          phrase: "represent"
+        participant:
+          cclass: L_TP
+          multiplicity: "MC"
+          phrase: "is propertized by"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: Instance_Target_Id
+          - ClassName: Instance_ClassName
+      - index: R3
+        kind: "binary"
+        referent:
+          cclass: L_TI
+          multiplicity: "1"
+          phrase: "kink to as one side"
+        participant:
+          cclass: L_TL
+          multiplicity: "1C"
+          phrase: "is one side of"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: OneSide_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R4
+        kind: "binary"
+        referent: 
+          cclass: L_TI
+          multiplicity: "1"
+          phrase: "link to as other side"
+        participant:
+          cclass: L_TL
+          multiplicity: "1C"
+          phrase: "is other side of"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: OtherSide_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R5
+        kind: "binary"
+        referent:
+          cclass: L_TL
+          multiplicity: "1C"
+          phrase: "may has as associative class"
+        participant:
+          cclass: L_TI
+          multiplicity: "1C"
+          phrase: "may be associated class of"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: Associative_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R6
+        kind: "binary"
+        referent:
+          cclass: L_TI
+          multiplicity: "1"
+          phrase: "is destination of"
+        participant:
+          cclass: L_TA
+          multiplicity: "MC"
+          phrase: "receive"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: Destination_Target_Id
+          - ClassName: Target_ClassName
+      - index: R7
+        kind: "binary"
+        referent:
+          cclass: L_TEI
+          multiplicity: "1"
+          phrase: "supplement"
+        participant:
+          cclass: L_ESD
+          multiplicity: "MC"
+          phrase: "have"
+        referencing:
+          - Target_Id: Sender_Target_Id
+          - EventLabel: EventLabel
+      - index: R8
+        kind: "binary"
+        referent:
+          cclass: L_TI
+          multiplicity: "0..1"
+          phrase: "is sent by"
+        participant:
+          cclass: L_TEI
+          multiplicity: "MC"
+          phrase: "may send"
+        referencing:
+          - DomainName: DomainName
+          - Target_Id: Sender_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R9
+        kind: "is-a"
+        referent:
+          cclass: L_C
+          properties:
+            - Changed_Id
+        participants:
+          - cclass: L_VC
+            properties:
+              - Changed_Id
+          - cclass: L_CLF
+            properties:
+              - Changed_Id
+      - index: R10
+        kind: "binary"
+        referent:
+          cclass: L_TP
+          multiplicity: "1"
+          phrase: "records the change of"
+        participant:
+          cclass: L_VC
+          multiplicity: "M"
+          phrase: "has as it history"
+        referencing:
+          - DomanName: Target_DomainName
+          - Target_Id: Target_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R11
+        kind: "is-a"
+        referent:
+          cclass: L_CLF
+          properties:
+            - Changed_Id
+            - LifeStage
+        participants:
+          - cclass: L_CI
+            properties:
+              - Changed_Id
+              - LifeStage
+          - cclass: L_CLK
+            properties:
+              - Changed_Id
+              - LifeStage
+          - cclass: L_CEO
+            properties:
+              - Changed_Id
+              - LifeStage
+      - index: R12
+        kind: "binary"
+        referent:
+          cclass: L_TI
+          multiplicity: "1"
+          phrase: "rrecords the change of"
+        participant:
+          cclass: L_CI
+          multiplicity: "M"
+          phrase: "has as it history"
+        referencing:
+          - DomanName: Target_DomainName
+          - Target_Id: Target_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R13
+        kind: "binary"
+        referent:
+          cclass: L_TL
+          multiplicity: "1"
+          phrase: "records the change of"
+        participant:
+          cclass: L_CLK
+          multiplicity: "M"
+          phrase: "has as it history"
+        referencing:
+          - DomanName: Target_DomainName
+          - Target_Id: Target_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R14
+        kind: "binary"
+        referent:
+          cclass: L_TEI
+          multiplicity: "1"
+          phrase: "records the change of"
+        participant:
+          cclass: L_CEO
+          multiplicity: "M"
+          phrase: "has as it history"
+        referencing:
+          - DomanName: Target_DomainName
+          - Target_Id: Target_Target_Id
+          - FoS_Id: FoS_Id
+      - index: R15
+        kind: "binary"
+        referent:
+          cclass: L_FOS
+          multiplicity: "1"
+          phrase: "presence within"
+        participant:
+          cclass: L_T
+          multiplicity: "M"
+          phrase: "confers meaning upon"
+        referencing:
+          - DomainName: DomainName
+          - FoS_Id: FoS_Id
+      - index: R16
+        kind: "binary"
+        referent:
+          cclass: L_TA
+          multiplicity: "1"
+          phrase: "is measured along"
+        participant:
+          cclass: L_C
+          multiplicity: "MC"
+          phrase: "is the axis of"
+        referencing:
+          - TA_Id: TA_Id
+      - index: R17
+        kind: "binary"
+        referent:
+          cclass: L_C
+          multiplicity: "1"
+          phrase: "detect"
+        participant:
+          cclass: L_CD
+          multiplicity: "MC"
+          phrase: "is detected by"
+        referencing:
+          - Changed_Id: Changed_Id
+      - index: R18
+        kind: "binary"
+        referent:
+          cclass: L_TA
+          multiplicity: "1"
+          phrase: "is detected along"
+        participant:
+          cclass: L_C
+          multiplicity: "MC"
+          phrase: "is the axis of"
+        referencing:
+          - TA_Id: TA_Id

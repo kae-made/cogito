@@ -1,0 +1,49 @@
+# yaml-language-server: $schema: ./SpecificationSchema.yaml
+# OepnEL Device Driver Official Published Specification
+# Under Construction for discussion. Not finalized yet.
+fos:
+  fosId: 9f01b85b-afd7-4d76-a4cd-bc730795c718
+  domain: "OpenEL Device Driver Specification"
+  date: "2026-04-27"
+  instances:
+    - instance: bf5b877d-21f9-424c-b57f-1d80e1e074c6
+      cclass: OESA_AT
+      properties:
+        Name: "JASA"
+        Description: ""
+    - instance: 9c8e1b3e-5a7c-4f0d-9b1e-2a1e5f6d8c9a
+      cclass: OE_DK
+      properties:
+        Name: "Test"
+        DeviceKindID: 0x00000000
+        No: 0
+        Description: "For development use"
+    - instance: 12345678-90ab-cdef-1234-567890abcdef
+      cclass: OESA_AP
+      properties:
+        AppID: e5a434dc-9cb0-4f6d-91cf-b198aa5f4e35
+        ApplicationDate: "2018-05-07"
+        AuthorizerName: "JASA"
+    - instance: 12345678-90ab-cdef-1234-567890abcdef
+      cclass: OESA_DKAP
+      properties:
+        AppID: "e5a434dc-9cb0-4f6d-91cf-b198aa5f4e35"
+        Remarks: "JASA OpenEL Standardization Committee"
+    - instance: 1fe3076b-97d2-4374-baef-856348252403
+      cclass: OE_DK
+      properties:
+        Name: "Motor"
+        DeviceKindID: 0x00000001
+        No: 1
+        Description: "Mortor"
+    - instance: 2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f
+      cclass: OESA_AP
+      properties:
+        AppID: "4eb00c2a-9465-4daf-bf6f-0b919ca2918a"
+        Remarks: "JASA OpenEL Standardization Committee"
+    - instance: 2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f
+      cclass: OESA_DKAP
+      properties:
+        AppID: "4eb00c2a-9465-4daf-bf6f-0b919ca2918a"
+        Remarks: "JASA OpenEL Standardization Committee"
+

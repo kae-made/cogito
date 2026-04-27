@@ -17,7 +17,12 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
+            - name: No
+              type: INTEGER
+              identity: [3]
             - name: Description
+              type: STRING
+            - name: Remarks
               type: STRING
       - key_letter: OE_PD
         name: "Product"
