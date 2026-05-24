@@ -5,6 +5,8 @@ domain:
   name: "metamodel of conceptual model"
   cclasses:
     # Conceptual Model
+    # diagram: ./images/meta-model-cim-domain-cclass.svg
+    # diagram: ./images/meta-model-cim-relationship.svg
     cclass:
       - key_letter: CIM_CD
         name: "Conceptual Domain"
@@ -14,6 +16,7 @@ domain:
             - name: Name
               type: STRING
               identity: [1]
+              denote: true
             - name: Description
               type: STRING
       - key_letter: CIM_CC
@@ -21,24 +24,27 @@ domain:
         number: 1
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1,2,3]
             - name: Name
               type: STRING
               identity: [1]
+              denote: true
             - name: KeyLetter
               type: STRING
               identity: [2]
             - name: Number
               type: STRING
               identity: [3]
+            - name: Description
+              type: STRING
       - key_letter: CIM_PR
         name: "Property"
         number: 2
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -47,6 +53,9 @@ domain:
             - name: Name
               type: STRING
               identity: [1]
+              denote: true
+            - name: Description
+              type: STRING
             - name: DataTypeName
               type: REFERENCE
       - key_letter: CIM_REL
@@ -54,7 +63,7 @@ domain:
         number: 3
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1,2]
             - name: index
@@ -75,17 +84,20 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
-            - name: DomainName
+              denote: true
+            - name: CDomainName
               type: STRING
               identity: [2]
             - name: Grammar
+              type: STRING
+            - name: Description
               type: STRING
       - key_letter: CIM_ID
         name: "Identity"
         number: 5
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -99,7 +111,7 @@ domain:
         number: 6
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -113,7 +125,7 @@ domain:
         number: 7
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -127,7 +139,7 @@ domain:
         number: 8
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: Index
@@ -138,7 +150,7 @@ domain:
         number: 9
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: Index
@@ -149,7 +161,7 @@ domain:
         number: 10
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: Index
@@ -160,7 +172,7 @@ domain:
         number: 11
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -174,7 +186,7 @@ domain:
         number: 12
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -188,7 +200,7 @@ domain:
         number: 13
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -204,7 +216,7 @@ domain:
         number: 14
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -221,7 +233,7 @@ domain:
         number: 15
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -241,7 +253,7 @@ domain:
         number: 16
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -263,7 +275,7 @@ domain:
         number: 17
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -277,7 +289,7 @@ domain:
         number: 18
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -297,7 +309,7 @@ domain:
         number: 19
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -311,7 +323,7 @@ domain:
         number: 20
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -325,7 +337,7 @@ domain:
         number: 21
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -339,7 +351,7 @@ domain:
         number: 22
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -353,7 +365,7 @@ domain:
         number: 23
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -373,7 +385,7 @@ domain:
         number: 24
         properties:
           property:
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -383,6 +395,15 @@ domain:
               type: REFERENCE
               identity: [1]
       # Data Type
+      # Diagram: ./images/meta-model-cim-data-type.svg
+      - key_leter: CIM_BDT
+        name: "Base Data Type"
+        number: 30
+        properties:
+          property:
+            - name: DT_Id
+              type: UNIQUE_ID
+              identity: [1]
       - key_letter: CIM_RDT
         name: "Reference Data Type"
         number: 31
@@ -424,6 +445,9 @@ domain:
             - name: Name
               type: STRING
               identity: [1]
+              denote: true
+            - name: Description
+              type: STRING
       - key_letter: CIM_SDT
         name: "Structured Data Type"
         number: 35
@@ -445,7 +469,50 @@ domain:
               identity: [1]
             - name: Item_DT_Id
               type: REFERENCE
+            - name: Description
+              type: STRING
+              denote: true
+      - key_letter: CIM_CIRDT
+        name: "CClass Instance Reference Data Type"
+        number: 37
+        properties:
+          property:
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: CDomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIMEIRDT
+        name: "Event Instance Reference Data Type"
+        number: 38
+        properties:
+          property:
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Event_SM_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Event_Label
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SODT
+        name: "Set of Data Type"
+        number: 39
+        properties:
+          property:
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Element_DT_Id
+              type: REFERENCE
+              identity: [1]
       # State Model
+      # Diagram: ./images/meta-model-state-model.svg
       - key_letter: CIM_SM
         name: "State Model"
         number: 100
@@ -454,7 +521,7 @@ domain:
             - name: SM_Id
               type: UNIQUE_ID
               identity: [1]
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [2]
             - name: CClassName
@@ -477,6 +544,9 @@ domain:
             - name: Name
               type: STRING
               identity: [3]
+              denote: true
+            - name: Description
+              type: STRING
             - name: FinalState
               type: BOOLEAN
       - key_letter: CIM_SMEVT
@@ -494,6 +564,7 @@ domain:
               type: STRING
               identity: [2]
               mathematical: true
+              denote: true
             - name: Number
               type: INTEGER
               identity: [2]
@@ -502,6 +573,8 @@ domain:
               identity: [3]
             - name: DelayTime
               type: TIMESPAN
+            - name: Description
+              type: STRING
       - key_letter: CIM_TXN
         name: "Transition"
         number: 103
@@ -526,8 +599,11 @@ domain:
             - name: Name
               type: STRING
               identity: [1]
+              denote: true
             - name: DT_Id
               type: REFERENCE
+            - name: Description
+              type: STRING
       - key_letter: CIM_PEVT
         name: "Polymorphic Event"
         number: 105
@@ -642,6 +718,7 @@ domain:
               type: REFERENCE
               identity: [1]
       # Operation and Function
+      # Diagram: ./images/meta-model-operation-function.svg
       - key_letter: CIM_EE
         name: "External Entity"
         number: 200
@@ -650,21 +727,70 @@ domain:
             - name: EE_Id
               type: UNIQUE_ID
               identity: [1]
-            - name: DomainName
+            - name: CDomainName
+              type: REFERENCE
+              identity: [2, 3]
+            - name: Name
+              type: STRING
+              identity: [3]
+              denote: true
+            - name: KeyLetter
+              type: STRING
+              identity: [2]
+            - name: Description
+              type: STRING
+      - key_letter: CIM_FUNC
+        name: "Function"
+        number: 201
+        properties:
+          property:
+            - name: Func_Id
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: CIMEEF
+        name: "External Entity Function"
+        # This is another name for BridgePoint’s Bridge
+        number: 202
+        properties:
+          property:
+            - name: Func_Id
+              type: REFERENCE
+              identity: [1]
+            - name: EE_Id
               type: REFERENCE
               identity: [2]
             - name: Name
               type: STRING
               identity: [2]
-      - key_letter: CIM_COP
-        name: "Conceptual Class Operation"
-        number: 201
+              denote: true
+            - name: Description
+              type: STRING
+      - key_letter: CIM_DF
+        name: "Domain Function"
+        number: 203
         properties:
           property:
-            - name: CCO_Id
-              type: UNIQUE_ID
+            - name: Func_Id
+              type: REFERENCE
               identity: [1]
-            - name: DomainName
+            - name: CDomainName
+              type: REFERENCE
+              identity: [2]
+            - name: Name
+              type: STRING
+              identity: [2]
+              denote: true
+            - name: Description
+              type: STRING
+      - key_letter: CIM_COP
+        name: "CClass Operation"
+        number: 204
+        properties:
+          property:
+            - name: Func_Id
+              type: REFERENCE
+              identity: [1]
+            - name: CDomainName
               type: REFERENCE
               identity: [2]
             - name: CClassName
@@ -673,89 +799,63 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
-      - key_letter: CIM_CDF
-        name: "Conceptual Domain Function"
-        number: 202
-        properties:
-          property:
-            - name: CDF_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: DomainName
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-      - key_letter: CIM_BRG
-        name: "Bridge Function"
-        number: 203
-        properties:
-          property:
-            - name: BRG_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: EE_Id
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-      - key_letter: CIM_DFP
-        name: "Data Flow Parameter"
-        number: 204
-        properties:
-          property:
-            - name: DFP_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-            - name: InOrOut # True=In, False=Out
+              denote: true
+            - name: IsInstanceOperation
               type: BOOLEAN
-      - key_letter: CIMCOPPRM
-        name: "Conceptual Class Operation Parameter"
+              mathematical: true # true CIOP[R207], false CCOP[R207]
+            - name: Description
+              type: STRING
+      - key_letter: CIM_FNP
+        name: "Function Parameter"
         number: 205
         properties:
           property:
-            - name: CCO_Id
+            - name: Func_Id
               type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
               identity: [1]
-            - name: DFP_Id
+              denote: true
+            - name: DataDirection
+              type: BOOLEAN   # true for input, false for output
+              mathematical: true
+            - name: DT_Id
               type: REFERENCE
-              identity: [2]
-      - key_letter: CIMM_DFPRM
-        name: "Domain Function Parameter"
+            - name: Description
+              type: STRING
+      - key_letter: CIM_CCOP
+        name: CClass Class Operation
         number: 206
         properties:
           property:
-            - name: CDF_Id
+            - name CDomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
               type: REFERENCE
               identity: [1]
             - name: Name
-              type: STRING
-              identity: [1]
-            - name: DFP_Id
               type: REFERENCE
-              identity: [2]
-      - key_letter: CIM_BRGPRM
-        name: "Bridge Function Parameter"
+              identity: [1]
+      - key_letter: CIM_CIOP
+        name: "CClass Instance Operation"
         number: 207
         properties:
           property:
-            - name: BRG_Id
+            - name: CDomainName
+              type: REFERENCE
+              identity: [1]
+            - name: CClassName
               type: REFERENCE
               identity: [1]
             - name: Name
-              type: STRING
-              identity: [1]
-            - name: DFP_Id
               type: REFERENCE
-              identity: [2]
-      # Action Model
+              identity: [1]
+      # Action Home Model
+      # Diagram: ./images/meta-model-action-home-part1.svg
+      # Diagram: ./images/meta-model-action-home-part2.svg
+      # Diagram: ./images/meta-model-action-home-part3.svg
       - key_letter: CIM_AH
         name: "Action Home"
         number: 300
@@ -766,28 +866,26 @@ domain:
               identity: [1]
             - name: ActionDescription
               type: STRING
-      - key_letter: CIM_POAH
-        name: "Parameter of Action Home"
+      - key_letter: CIM_EEFAH
+        name: "External Entity Function Action Home"
         number: 301
         properties:
           property:
             - name: AH_Id
               type: REFERENCE
               identity: [1]
-            - name: DFP_Id
+            - name: Func_Id
               type: REFERENCE
-              identity: [1]
-      - key_letter: CIM_SEAH
-        name: "State Entry Action Home"
+      - key_letter: CIM_CDFAH
+        name: "Conceptual Domain Function Action Home"
         number: 302
         properties:
           property:
             - name: AH_Id
               type: REFERENCE
               identity: [1]
-            - name: SMStt_Id
+            - name: Func_Id
               type: REFERENCE
-              identity: [1]
       - key_letter: CIM_CCOAH
         name: "Conceptual Class Operation Action Home"
         number: 303
@@ -796,21 +894,403 @@ domain:
             - name: AH_Id
               type: REFERENCE
               identity: [1]
-            - name: CCO_Id
+            - name: Func_Id
               type: REFERENCE
-              identity: [1]
-      - key_letter: CIM_CDFAH
-        name: "Conceptual Domain Function Action Home"
+      - key_letter: CIM_SEAH
+        name: "State Entry Action Home"
         number: 304
         properties:
           property:
             - name: AH_Id
               type: REFERENCE
               identity: [1]
-            - name: CDF_Id
+            - name: SMStt_Id
+              type: REFERENCE
+      - key_letter: CIM_ACT
+        name: "Action"
+        number: 305
+        properties:
+          property:
+            - name: ACT_Id
+              type: UNIQUE_ID
+              identity: [1, 2]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [2]
+            - name: Parent_ACT_Id
+              type: REFERENCE
+      - key_letter: CIM_BACT
+        name: "Block Action"
+        number: 306
+        properties:
+          property:
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_PACT
+        name: "Primitive Action"
+        number: 307
+        properties:
+          property:
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_DF
+        name: "Data Flow"
+        number: 308
+        properties:
+          property:
+            - name: DF_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_DPN
+        name: "Data Pin"
+        number: 309
+        properties:
+          property:
+            - name: DPN_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_PAR
+        name: Pin Arrangement
+        number: 312
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AHPAR
+        name: "Action Home Pin Arrangement"
+        number: 313
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_APAR
+        name: "Action Pin Arrangement"
+        number: 314
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BPAR
+        name: "Block Action Pin Arrangement"
+        number: 315
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_IPN
+        name: "Input Pin"
+        number: 316
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_OPN
+        name: "Output Pin"
+        number: 317
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SOPN
+        name: "Source Pin"
+        number: 318
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_SIPN
+        name: "Sink Pin"
+        number: 319
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AHSOPN
+        name: "Action Home Source Pin" # "AH Source Pin" on Diagram.
+        number: 320
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AHSIPN
+        name: "Action Home Sink Pin" # "AH Sink Pin" on Diagram.
+        number: 321
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BASOPN
+        name: "Block Action Source Pin" # "BA Source Pin" on Diagram.
+        number: 322
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BASIPN
+        name: "Block Action Sink Pin" # "BA Sink Pin" on Diagram.
+        number: 323
+        properties:
+          property:
+            - name: DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIMIODF
+        name: "Input Pin To Output Pin Data Flow" # "I2O Data Flow" on Diagram.
+        number: 324
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AHSIDF
+        name: "Action Home Source Pin To Input Pin Data Flow" # "AHS2OI Data Flow" on Diagram.
+        number: 325
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_AHSOBASODF
+        name: "Action Home Source Pin To Block Action Source Pin Data Flow" # "AHSO2OBASO Data Flow" on Diagram.
+        number: 326
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BASOIDF
+        name: "Block Action Source Pin To Input Pin Data Flow" # "BASO2I Data Flow" on Diagram.
+        number: 327
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_OBASIFD
+        name: "Output Pin To Block Action Sink Pin Data Flow" # "O2BBASI Data Flow" on Diagram.
+        number: 328
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_OAHSIDF
+        name: "Output Pin To Action Home Sink Pin Data Flow" # "O2AHSI Data Flow" on Diagram.
+        number: 329
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: CIM_BASIAHSIDF
+        name: "Block Action Sink Pin To Action Home Sink Pin Data Flow" # "BASI2AHSI Data Flow" on Diagram.
+        number: 330
+        properties:
+          property:
+            - name: DF_Id
+              type: REFERENCE
+              identity: [1]
+            - name: AH_Id
+              type: REFERENCE
+              identity: [1]
+            - name: DT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_ACT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: From_DPN_Id
+              type: REFERENCE
+              identity: [1]
+            - name: To_DPN_Id
               type: REFERENCE
               identity: [1]
       # Instance Model
+      # Diagram: ./images/meta-model-instance-model.svg
       - key_letter: CIMI_FOS
         name: "Field of Sense"
         number: 1000
@@ -830,7 +1310,7 @@ domain:
             - name: FoS_Id
               type: REFERENCE
               identity: [2]
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [2]
             - name: CClassName
@@ -850,7 +1330,7 @@ domain:
             - name: FoS_Id
               type: REFERENCE
               identity: [1]
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -872,7 +1352,7 @@ domain:
             - name: FoS_Id
               type: REFERENCE
               identity: [2]
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [2]
             - name: CClassName
@@ -889,7 +1369,7 @@ domain:
             - name: FoS_Id
               type: REFERENCE
               identity: [1]
-            - name: DomainName
+            - name: CDomainName
               type: REFERENCE
               identity: [1]
             - name: CClassName
@@ -977,7 +1457,7 @@ domain:
           multiplicity: "M"
           phrase: "is FoS of"
         referencing:
-          - Name: DomainName
+          - Name: CDomainName
       - index: R2
         kind: binary
         referent:
@@ -989,7 +1469,7 @@ domain:
           multiplicity: "MC"
           phrase: "is FoS of"
         referencing:
-          - Name: DomainName
+          - Name: CDomainName
       - index: R3
         kind: binary
         referent:
@@ -1001,7 +1481,7 @@ domain:
           multiplicity: "M"
           phrase: "is essentially characterized by"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Name: CClassName
       - index: R4
         kind: binary
@@ -1026,7 +1506,7 @@ domain:
           multiplicity: "MC"
           phrase: "derives its uniqueness from"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Name: CClassName
       - index: R6
         kind: binary-associative
@@ -1042,11 +1522,11 @@ domain:
           cclass: CIM_CPID
         referencing:
           one:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - CClassName: CClassName
             - Name: PropertyName
           other:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - CClassName: CClassName
             - Level: Level
       - index: R7
@@ -1054,20 +1534,20 @@ domain:
         referent:
           cclass: CIM_REL
           properties:
-            - DomainName
+            - CDomainName
             - Index
         participants:
           - cclass: CIM_ISR
             properties:
-              - DomainName
+              - CDomainName
               - Index
           - cclass: CIM_BR
             properties:
-              - DomainName
+              - CDomainName
               - Index
           - cclass: CIM_AR
             properties:
-              - DomainName
+              - CDomainName
               - Index
       - index: R8
         kind: binary-associative
@@ -1083,28 +1563,28 @@ domain:
           cclass: CIM_CIR
         referencing:
           one:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - Name: CClassName
           other:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - Index: RIndex
       - index: R9
         kind: is-a
         referent:
           cclass: CIM_CIR
           properties:
-            - DomainName
+            - CDomainName
             - CClassName
             - RIndex
         participants:
           - cclass: CIM_RIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
           - cclass: CIM_PIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
       - index: R10
@@ -1112,18 +1592,18 @@ domain:
         referent:
           cclass: CIM_RIR
           properties:
-            - DomainName
+            - CDomainName
             - CClassName
             - RIndex
         participants:
           - cclass: CIM_SRIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
           - cclass: CIM_FRIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
       - index: R11
@@ -1131,23 +1611,23 @@ domain:
         refernt:
           cclass: CIM_PIR
           properties:
-            - DomainName
+            - CDomainName
             - CClassName
             - RIndex
         participants:
           - cclass: CIM_SPIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
           - cclass: CIM_PPIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
           - cclass: CIM_APIR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - RIndex
       - index: R12
@@ -1161,7 +1641,7 @@ domain:
           multiplicity: "1"
           phrase: "derives its meaning from"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Index: RIndex
       - index: R13
         kind: binary
@@ -1174,7 +1654,7 @@ domain:
           multiplicity: "MC"
           phrase: "derive its meaning from"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Index: RIndex
       - index: R14
         kind: binary
@@ -1187,7 +1667,7 @@ domain:
           multiplicity: "1"
           phrase: "derive its meaning from"
         referencing:
-          - DomanName: DomainName
+          - DomanName: CDomainName
           - Index: RIndex
       - index: R15
         kind: binary
@@ -1200,7 +1680,7 @@ domain:
           multiplicity: "1"
           phrase: "derive its meaning from"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Index: RIndex
       - index: R16
         kind: binary
@@ -1213,7 +1693,7 @@ domain:
           multiplicity: "1"
           phrase: "derive its meaning from"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Index: RIndex
       - index: R17
         kind: binary
@@ -1226,7 +1706,7 @@ domain:
           multiplicity: "1"
           phrase: "derive its meaning from"
         referencing:
-          - DomainName: DomanName
+          - CDomainName: DomanName
           - Index: RIndex
       - index: R18
         kind: binary
@@ -1249,7 +1729,7 @@ domain:
           multiplicity: "MC"
           phrase: "is identity of participant of"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
           - Level: Level
       - index: R20
@@ -1257,18 +1737,18 @@ domain:
         referent:
           cclass: CIM_PR
           properties:
-            - DomainName
+            - CDomainName
             - CClassName
             - Name
         participants:
           - cclass: CIM_BPR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - PropertyName
           - cclass: CIM_RPR
             properties:
-              - DomainName
+              - CDomainName
               - CClassName
               - PropertyName
       - index: R21
@@ -1285,12 +1765,12 @@ domain:
           cclass: CIM_REF
         referencing:
           one:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - CClassName: CClassName
             - PropertyName: PropertyName
             - Level: Level
           other:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - CClassName: CClassName
             - RIndex: RIndex
             - Level: Level
@@ -1305,7 +1785,7 @@ domain:
           multiplicity: "M"
           phrase: "is property of"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: RefCClassName
           - PropetyName: RefPropertyName
       - index: R23
@@ -1338,16 +1818,25 @@ domain:
           - cclass: CIM_SDT
             properties:
               - DT_Id
+          - cclass: CIM_CIRDT
+            properties:
+              - DT_Id
+          - cclass: CIM_EIRDT
+            properties:
+              - DT_Id
+          - cclass: CIM_SODT
+            properties:
+              - DT_Id
       - index: R31
         kind: binary
         referent:
           cclass: CIM_DT
           multiplicity: "1"
-          phrase: "is refering to"
+          phrase: "is referring to"
         participant:
           cclass: CIM_RDT
           multiplicity: "MC"
-          phrase: "is refered by"
+          phrase: "is referred by"
         referencing:
           - DT_Id: Refering_DT_Id
       - index: R32
@@ -1374,12 +1863,12 @@ domain:
           phrase: "consist from
         referencing:
           - DT_Id: DT_Id
-      - indcate: R34
+      - index: R34
         kind: binary
         referent:
           cclass: CIM_SDT
           multiplicity: "1"
-          phrase: "is an Component of"
+          phrase: "is an component of"
         participant:
           cclass: CIM_SDTI
           multiplicity: "MC"
@@ -1398,6 +1887,44 @@ domain:
           phrase: "is data type of"
         referencing:
           - DT_Id : Item_DT_Id
+      - index: R36
+        kind: binary
+        referent:
+          cclass: CIM_CC
+          multiplicity: "1C"
+          phrase: "is typed as"
+        participant:
+          cclass: CIM_CIRDT
+          multiplicity: "MC"
+          phrase: "instances are referenced through"
+        referencing:
+          - CDomainName: CDomainName
+          - Name: CClassKeyLetter
+      - index: R37
+        kind: binary
+        referent:
+          cclass: CIM_SMEVT
+          multiplicity: "1C"
+          phrase: "is typed as"
+        participant:
+          cclass: CIM_EIRDT
+          multiplicity: "MC"
+          phrase: "instances are referenced through"
+        referencing:
+          - SM_Id: Event_SM_Id
+          - Label: Event_Label
+      - index: R38
+        kind: binary
+        referent:
+          cclass: CIM_DT
+          multiplicity: "1C"
+          phrase: "contain element of type"
+        participant:
+          cclass: CIM_SODT
+          multiplicity: "MC"
+          phrase: "define the element type of"
+        referencing:
+          - DT_Id: Element_DT_Id
       # State Model
       - index: R100
         kind: binary
@@ -1410,7 +1937,7 @@ domain:
           multiplicity: "1C"
           phrase: "behave accoding to"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Name: CClassName
       - index: R101
         kind: binary
@@ -1606,115 +2133,123 @@ domain:
         referent:
           cclass:CIM_CD
           multiplicity: "1"
-          phrase: "lies outside the semantics of"
+          phrase: "is window to the external FoS for"
         participant:
           cclass: CIM_EE
           multiplicity: "MC"
-          phrase: "is given functionality through"
+          phrase: "refer as external field of sense of"
         referencing:
-          - Name: DomainName
+          - Name: CDomainName
       - index: R201
-        kind: binary
+        kind: "is-a"
         referent:
-          cclass: CIM_CC
-          multiplicity: "1"
-          phrase: "berong to"
-        participant:
-          cclass: CIM_COP
-          multiplicity: "MC"
-          phrase: "may be accompanied by"
-        referencing:
-          - DomainName: DomainName
-          - Name: CClassName
+          cclass: CIM_FUNC
+          properties:
+            - FUNC_Id
+        participants:
+          - cclass: CIM_EEF
+            properties:
+              - FUNC_Id
+          - cclass: CIM_DF
+            properties:
+              - FUNC_Id
+          - cclass: CIM_COP
+            properties:
+              - FUNC_Id
       - index: R202
         kind: binary
         referent:
-          cclass: CIM_COP
+          cclass: CIM_EE
           multiplicity: "1"
-          prhase: "is the data flow of"
+          phrase: "provide each functionality of"
         participant:
-          cclass: CIM_COPPRM
+          cclass: CIM_EEF
           multiplicity: "MC"
-          phrase: "is accompanied by"
+          phrase: "has as functionality"
         referencing:
-          - CCO_Id: CCO_Id
+          - EE_Id: EE_Id
       - index: R203
-        kind: "is-a"
-        referent:
-          cclass: CIM_DFP
-          properties:
-            - DFP_Id
-        participants:
-          - cclass: CIM_COPPRM
-            properties:
-              - DFP_Id
-          - cclass: CIM_DFPRM
-            properties:
-              - DFP_Id
-          - cclass: CIM_BRGPRM
-            properties:
-              - DFP_Id
-      - index: R204
         kind: binary
         referent:
           cclass: CIM_CD
           multiplicity: "1"
-          phrase: "belong to"
+          phrase: "operate"
         participant:
-          cclass CIM_CDF
+          cclass: CIM_DF
           multiplicity: "MC"
-          phrase: "may be accompanied by"
+          phrase: "is operation target of"
         referencing:
-          - Name: DomainName
+          - Name: CDomainName
+      - index: R204
+        kind: binary
+        referent:
+          cclass: CIM_CC
+          multiplicity: "1"
+          phrase: "operate"
+        participant:
+          cclass: CIM_COP
+          multiplicity: "MC"
+          phrase: "is operation target of"
+        referencing:
+          - CDomainName: CDomainName
+          - Name: CClassName
       - index: R205
         kind: binary
         referent:
-          cclass: CIM_CDF
+          cclass: CIM_FUNC
           multiplicity: "1"
-          phrase: "is the data flow of"
+          phrase: "carry data on"
         participant:
-          cclass: CIM_CDFPRM
+          cclass: CIM_FNP
           multiplicity: "MC"
-          phrase: "is accompanied by"
+          phrase: "may be accompanied by"
         referencing:
-          - CDF_Id: CDF_Id
+          - Func_Id: Func_Id
       - index: R206
         kind: binary
         refrent:
-          cclass CIM_DT
+          cclass: CIM_DT
           multiplicity: "1"
-          phrase: "has type as"
+          phrase: "is specified by"
         participant:
-          cclass: CIM_DFP
+          cclass: CIM_FNP
           multiplicity: "MC"
           phrase: "is data type of"
         referencing:
           - DT_Id: DT_Id
       - index: R207
-        kind: binary
+        kind: "is-a"
         referent:
-          cclass: CIM_EE
-          multiplicity: "1"
-          phrase: "belong to"
-        participant:
-          cclass: CIM_BRG
-          multiplicity: "MC"
-          phrase: "is accompanied by"
-        referencing:
-          - EE_Id: EE_Id
+          cclass: CIM_COP
+          properties:
+            - CDomainName
+            - CClassName
+            - Name
+        participants:
+          - cclass: CIM_CCOP
+            properties:
+              - CDomainName
+              - CClassName
+              - Name
+          - cclass: CIM_CIOP
+            properties:
+              - CDomainName
+              - CClassName
+              - Name
       - index: R208
         kind: binary
         referent:
-          cclass: CIM_BRG
+          cclass: CIM_CC
           multiplicity: "1"
-          phrase: "is the data flow of"
+          phrase: "target an instance of"
         participant:
-          cclass: CIM_BRGPRM
+          cclass: CIM_CIOP
           multiplicity: "MC"
-          phrase: "is accompanied by"
+          phrase: "is operation target of"
         referencing:
-          - BRG_Id: BRG_Id
-      # Action Model
+          - CDomainName: CDomainName
+          - Name: CClassName
+      # Action Home Model
       - index: R300
         kind: "is-a"
         referent:
@@ -1722,33 +2257,55 @@ domain:
           properties:
             - AH_Id
         participants:
-          - cclass: CIM_SEAH
-            properties:
-              - AH_Id
-          - cclass: CIM_CCOAH
+          - cclass: CIM_EEFAH
             properties:
               - AH_Id
           - cclass: CIM_CDFAH
             properties:
               - AH_Id
+          - cclass: CIM_CCOAH
+            properties:
+              - AH_Id
+          - cclass: CIM_SEAH
+            properties:
+              - AH_Id
       - index: R301
-        kind: "binary-associative"
-        one:
-          cclass: CIM_AH
+        kind: binary
+        referent:
+          cclass: CIM_EEFAH
+          multiplicity: "1C"
+          phrase: "may have"
+        participant:
+          cclass: CIM_EEF
           multiplicity: "1"
-          phrase: "carry data for"
-        other:
-          cclass: CIM_DFP
-          multiplicity: "MC"
-          phrase: "is data flow of"
-        associative:
-          cclass: CIM_POAH
+          phrase: "is action home of"
         referencing:
-          one:
-            - AH_Id: AH_Id
-          other:
-            - DFP_Id: DFP_Id
+          - Func_Id: Func_Id
       - index: R302
+        kind: binary
+        referent:
+          cclass: CIM_DF
+          multiplicity: "1"
+          phrase: "is action home of"
+        participant:
+          cclass: CIM_CDFAH
+          multiplicity: "1"
+          phrase: "has"
+        referencing:
+          - Func_Id: Func_Id
+      - index: R303
+        kind: binary
+        referent:
+          cclass: CIM_COP
+          multiplicity: "1"
+          phrase: "is action home of"
+        participant:
+          cclass: CIM_CCOAH
+          multiplicity: "1"
+          phrase: "has"
+        referencing:
+          - Func_Id: Func_Id
+      - index: R304
         kind: binary
         referent:
           cclass: CIM_STT
@@ -1757,33 +2314,457 @@ domain:
         participant:
           cclass: CIM_SEAH
           multiplicity: "1"
-          phrase: "is owner of"
+          phrase: "has"
         referencing:
           - SMStt_Id: SMStt_Id
-      - index: R303
-        kind: binary
-        refrent:
-          cclass: CIM_COP
-          multiplicity: "1"
-          phrase: "is action home of"
-        participant:
-          cclass: CIM_CCOAH
-          multiplicity: "1C"
-          phrase: "is owner of"
-        referencing:
-          - COP_Id: COP_Id
-      - index: R304
+      - index: R305
         kind: binary
         referent:
-          cclass: CIM_CDF
+          cclass: CIM_AH
           multiplicity: "1"
-          phrase: "is action home of"
+          phrase: "is part of"
         participant:
-          cclass: CIM_CDFAH
-          multiplicity: "1"
-          phrase: "is owner of"
+          cclass: CIM_ACT
+          multiplicity: "MC"
+          phrase: "is home of"
         referencing:
-          - CDF_Id: CDF_Id
+          - AH_Id: AH_Id
+      - index: R306
+        kind: "is-a"
+        referent:
+          cclass: CIM_ACT
+          properties:
+            - ACT_Id
+            - AH_Id
+        participants:
+          - cclass: CIM_BACT
+            properties:
+              - ACT_Id
+              - AH_Id
+          - cclass: CIM_PACT
+            properties:
+              - ACT_Id
+              - AH_Id
+      - index: R307
+        kind: binary
+        refrent:
+          cclass: CIM_BACT
+          multiplicity: "1C"
+          phrase: "may be child of"
+        participant:
+          cclass: CIM_ACT
+          multiplicity: "MC"
+          phrase: "is parent of"
+        referencing:
+          - AH_ID: AH_Id
+          - ACT_Id: Parent_ACT_Id
+      - index: R308
+        kind: binary
+        referent:
+          cclass: CIM_AH
+          multiplicity: "1"
+          phrase: "is part of"
+        participant:
+          cclass: CIM_DF
+          multiplicity: "MC"
+          phrase: "is home of"
+        referencing:
+          - AH_Id: AH_Id
+      - index: R310
+        kind: binary
+        referent:
+          cclass: CIM_DT
+          multiplicity: "1"
+          phrase: "is specified by"
+        participant:
+          cclass: CIM_DPN
+          multiplicity: "MC"
+          phrase: "is data type of"
+        referencing:
+          - DT_Id: DT_Id
+      - index: R311
+        kind: "is-a"
+        referent:
+          cclass: CIM_DPN
+          properties:
+            - DPN_Id
+            - DT_Id
+        participants:
+          - cclass: CIM_IPN
+            properties:
+              - DPN_Id
+              - DT_Id
+          - cclass: CIM_OPN
+            properties:
+              - DPN_Id
+              - DT_Id
+          - cclass: CIM_SOPN
+            properties:
+              - DPN_Id
+              - DT_Id
+          - cclass: CIM_SIPN
+            properties:
+              - DPN_Id
+              - DT_Id
+      - index: R312
+        kind: "is-a"
+        referent:
+          cclass: CIM_SOPN
+          properties:
+            - DPN_Id
+            - DT_Id
+        participants:
+          - cclass: CIM_BASOPN
+            properties:
+              - DPN_Id
+              - DT_Id
+          - cclass: CIM_AHSOPN
+            properties:
+              - DPN_Id
+              - DT_Id
+      - index: R313
+        kind: "is-a"
+        referent:
+          cclass: CIM_SIPN
+          properties:
+            - DPN_Id
+            - DT_Id
+        participants:
+          - cclass : CIM_BASIPN
+            properties:
+              - DPN_Id
+              - DT_Id
+          - cclass: CIM_AHSIPN
+            properties:
+              - DPN_Id
+              - DT_Id
+      - index: R320
+        kind: binary
+        referent:
+          cclass: CIM_DPN
+          multiplicity: "1"
+          phrase: "is position of"
+        participant:
+          cclass: CIM_PAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        referencing:
+          - DPN_Id: DPN_Id
+      - index: R321
+        kind: "is-a"
+        referent:
+          cclass: CIM_PAR
+          properties:
+            - DPN_Id
+        participants:
+          - cclass: CIM_AHPAR
+            properties:
+              - DPN_Id
+          - cclass: CIMAPAR
+            properties:
+              - DPN_Id
+          - cclass: CIM_BPAR
+            properties:
+              - DPN_Id
+      - index: R322
+        kind: binary
+        referent:
+          cclass: CIMAH
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_AHPAR
+          multiplicity: "M"
+          phrase: "is position of"
+        referencing:
+          - AH_Id: AH_Id
+      - index: R323
+        kind: binary
+        referent:
+          cclass: CIM_ACT
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_APAR
+          multiplicity: "M"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R324
+        kind: binary
+        referent:
+          cclass: CIMBACT
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_BPAR
+          multiplicity: "M"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R325
+        kind: binary
+        referent:
+          cclass: CIM_APAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_IPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R326
+        kind: binary
+        referent:
+          cclass: CIM_APAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_OPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R327
+        kind: binary
+        referent:
+          cclass: CIM_AHPAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_AHSOPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - AH_Id: AH_Id
+      - index: R328
+        kind: binary
+        referent:
+          cclass: CIM_AHPAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_AHSIPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - AH_Id: AH_Id
+      - index: R329
+        kind: binary
+        referent:
+          cclass: CIM_BPAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_BASOPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R330
+        kind: binary
+        referent:
+          cclass: CIM_BPAR
+          multiplicity: "1"
+          phrase: "is represented by its placement in"
+        participant:
+          cclass: CIM_BASIPN
+          multiplicity: "1"
+          phrase: "is position of"
+        referencing:
+          - ACT_Id: ACT_Id
+      - index: R332
+        kind: "is-a"
+        referent:
+          cclass: CIM_DF
+          properties:
+            - DF_Id
+            - AH_Id
+            - DT_Id
+        participants:
+          - cclass: CIM_IODF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_AHSIDF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_AHSOBASODF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_BASOIDF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_OBASIDF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_OAHSIDF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+          - cclass: CIM_BASIAHSIDF
+            properties:
+              - DF_Id
+              - AH_Id
+              - DT_Id
+      - index: R333
+        kind: "binary-associative"
+        one:
+          cclass: CIM_IPN
+          multiplicity: "1C"
+          phrase: "provide data to"
+        other:
+          cclass: CIM_OPN
+          multiplicity: "MC"
+          phrase: "is provided with data from"
+        associative:
+          cclass: CIM_IODF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - ACT_Id: To_Act_Id
+            - DPN_Id: To_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - ACT_Id: From_Act_Id
+            - DPN_Id: From_DPN_Id
+      - index: R334
+        kind: "binary-associative"
+        one:
+          cclass: CIM_AHSOPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_IPN
+          multiplicity: "MC"
+          phrase: "provide data to"
+        associative:
+          cclass: CIM_AHSIDF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - AH_Id: AH_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - AH_Id: To_AH_Id
+            - DPN_Id: To_DPN_Id
+      - index: R335
+        kind: "binary-associative"
+        one:
+          cclass: CIM_AHSOPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_BASOPN
+          multiplicity: "MC"
+          phrase: "provide data to"
+        associative:
+          cclass: CIM_AHSOBASODF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - AH_Id: AH_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - ACT_Id: To_Act_Id
+            - DPN_Id: To_DPN_Id
+      - index: R336
+        kind: "binary-associative"
+        one:
+          cclass: CIM_BASOPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_IPN
+          multiplicity: "MC"
+          phrase: "provide data to"
+        associative:
+          cclass: CIM_BASOIDF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - ACT_Id: From_ACT_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - ACT_Id: To_Act_Id
+            - DPN_Id: To_DPN_Id
+      - index: R337
+        kind: "binary-associative"
+        one:
+          cclass: CIM_OPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_BASIPN
+          multiplicity: "1C"
+          phrase: "provide data to"
+        associative:
+          cclass: CIM_OBASIDF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - ACT_Id: From_ACT_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - ACT_Id: To_Act_Id
+            - DPN_Id: To_DPN_Id
+      - index: R338
+        kind: "binary-associative"
+        one:
+          cclass: CIM_OPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_AHSIPN
+          multiplicity: "1C"
+          phrase: "provide data to"
+        associative:
+          cclass: CIMOAHSIDF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - ACT_Id: From_ACT_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - AH_Id: AH_Id
+            - DPN_Id: To_DPN_Id
+      - index: R339
+        kind: "binary-associative"
+        one:
+          cclass: CIM_BASIPN
+          multiplicity: "1C"
+          phrase: "is provided with data from"
+        other:
+          cclass: CIM_AHSIPN
+          multiplicity: "1C"
+          phrase: "provide data to"
+        associative:
+          cclass: CIM_BASIAHSIDF
+        referencing:
+          one:
+            - DT_Id: DT_Id
+            - ACT_Id: From_ACT_Id
+            - DPN_Id: From_DPN_Id
+          other:
+            - DT_Id: DT_Id
+            - AH_Id: AH_Id
+            - DPN_Id: To_DPN_Id
       # Instance Model
       - index: R1000
         kind: binary
@@ -1796,7 +2777,7 @@ domain:
           multiplicity: "MC"
           phrase: "is meaning schema of"
         referencing:
-          - Name: DomainName
+          - Name: CDomainName
       - index:  R1001
         kind: binary
         referent:
@@ -1808,7 +2789,7 @@ domain:
           multiplicity: "MC"
           phrase: "is the formative pattern of"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - Name: CClassName
       - index: R1002
         kind: binary
@@ -1822,7 +2803,7 @@ domain:
           phrase: "is composed of"
         referencing:
           - FoS_Id: FoS_Id
-          - DomainName: DomainName
+          - CDomainName: CDomainName
       - index: R1003
         kind: binary
         referent:
@@ -1834,7 +2815,7 @@ domain:
           multiplicity: "MC"
           phrase: "is the formative property of"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
           - Name: PropertyName
       - index: R1004
@@ -1849,7 +2830,7 @@ domain:
           phrase: "is propertied by"
         referencing:
           - FoS_Id: FoS_Id
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
           - INST_Id: INST_Id
       - index: R1005
@@ -1864,7 +2845,7 @@ domain:
           phrase: "may be accompanied by"
         referencing:
           - FoS_Id: FoS_Id
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
           - INST_Id: INST_Id
       - index: R1006
@@ -1878,7 +2859,7 @@ domain:
           multiplicity: "MC"
           phrase: "is the formative pattern of"
         referencing:
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
       - index: R1007
         kind: binary-associative
@@ -1895,10 +2876,10 @@ domain:
         referencing:
           one:
             - FoS_Id: FoS_Id
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - INST_Id: INST_Id
           other:
-            - DomainName: DomainName
+            - CDomainName: CDomainName
             - CClassName: CClassName
             - Name: StateName
       - index: R1008
@@ -1913,7 +2894,7 @@ domain:
           phrase: "may be in the state of"
         referencing:
           - FoS_Id: FoS_Id
-          - DomainName: DomainName
+          - CDomainName: CDomainName
           - CClassName: CClassName
           - INST_Id: INST_Id
       - index: R1009

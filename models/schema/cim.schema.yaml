@@ -136,6 +136,8 @@ $defs:
         type: boolean
       grammar:
         type: string
+      denote:
+        type: boolean
   
   # ---------------------------------------------------------
   # class structure definition
