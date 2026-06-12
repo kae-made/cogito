@@ -31,10 +31,10 @@ domain:
           property:
             - name: ProductID
               type: UNIQUE_ID
-              identity: [1, 2]
+              identity: [1]
             - name: ProductName
               type: STRING
-              identity: [3]
+              identity: [2]
             - name: Description
               type: STRING
             - name: VendorID
@@ -48,12 +48,9 @@ domain:
             - name: VendorID
               type: UNIQUE_ID
               identity: [1]
-            - name: Name
-              type: STRING
+            - name: ShortName
+              type: REFERENCE
               identity: [2]
-            - name: VendorShortName
-              type: STRING
-              identity: [3]
             - name: Description
               type: STRING
       - key_letter: OE_C
@@ -208,6 +205,19 @@ domain:
               identity: [2]
             - name: Description
               type: STRING
+      - key_letter: OE_ORG
+        name: "Organization"
+        number: 16
+        properties:
+          property:
+            - name: Name
+              type: UNIQUE_ID
+              identity: [1]
+            - name: ShortName
+              type: STRING
+              identity: [2]
+            - name: Description
+              type: STRING
       # OpenEL::Operational Equipment Sub system
       - key_letter: OEOE_EQ
         name: "Equipment"
@@ -274,6 +284,10 @@ domain:
               type: TIMESTAMP
             - name: AuthorizerName
               type: REFERENCE
+            - name: ApplicantName
+              type: REFERENCE
+            - name: Remarks
+              type: STRING
       - key_letter: OESA_DKAP
         name: "Device Kind Approvement"
         number: 201
@@ -284,8 +298,6 @@ domain:
               identity: [1]
             - name: DeviceKindID
               type: REFERENCE
-            - name: Remarks
-              type: STRING
       - key_letter: OESA_VAP
         name: "Vendor Approvement"
         number: 202
@@ -311,8 +323,8 @@ domain:
         number: 204
         properties:
           property:
-            - name: Name
-              type: STRING
+            - name: ShortName
+              type: REFERENCE
               identity: [1]
             - name: Description
               type: STRING
@@ -821,6 +833,16 @@ domain:
           phrase: "may hold"
         referencing:
           - ComponentID: ComponentID
+      - index: R16
+        kind: binary
+        referent:
+          cclass: OE_ORG
+          multiplicity: "1C"
+          phrase: "is"
+        participant:
+          cclass: OE_V
+          multiplicity: "1C"
+          phrase: "may be"  
       # OpenEL::Operational Equipment Sub system
       - index: R101
         kind: binary
@@ -885,7 +907,7 @@ domain:
           multiplicity: "MC"
           phrase: "authorize"
         referencing:
-          - Name: AuthorizerName
+          - ShortName: AuthorizerName
       - index: R202
         kind: is-a
         referent:
@@ -938,6 +960,30 @@ domain:
           phrase: "approved"
         referencing:
           - ProductID: ProductID
+      - index: R206
+        kind: binary
+        referent:
+          cclass: OE_ORG
+          multiplicity: "1"
+          phrase: "is"
+        participant:
+          cclass: OESA_AT
+          multiplicity: "1C"
+          phrase: "may be"
+        referencing:
+          - ShortName: ShortName
+      - index: R207
+        kind: binary
+        referent:
+          cclass OE_ORG
+          multiplicity: "1"
+          phrase: "is applied by"
+        participant:
+          cclass: OESA_AP
+          multiplicity: "MC"
+          phrase: "is applicant of"
+        referencing:
+          - ShortName: ApplicantName
       # OpenEL::Data Type Sub system
       - index: R301
         kind: binary
