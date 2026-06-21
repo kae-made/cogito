@@ -103,7 +103,7 @@ $defs:
               - $ref: "#/$defs/complexType"
 
   # ---------------------------------------------------------
-  # type of class property
+  # type of conceptual class property
   # ---------------------------------------------------------
   propertyType:
     oneOf:
@@ -111,7 +111,7 @@ $defs:
       - $ref: '#/$defs/specificDatatype'
 
   # ---------------------------------------------------------
-  # class property structure definition
+  # conceptual class property structure definition
   # ---------------------------------------------------------
   classProperty:
     type: object
@@ -140,9 +140,9 @@ $defs:
         type: boolean
   
   # ---------------------------------------------------------
-  # class structure definition
+  # conceptual class structure definition
   # ---------------------------------------------------------
-  class:
+  cclass:
     type: object
     required:
       - key_letter
@@ -293,7 +293,7 @@ properties:
     type: object
     required:
       - name
-      - classes
+      - cclasses
       - relationships
     properties:
       name:
@@ -308,21 +308,17 @@ properties:
             type: array
             items:
               $ref: '#/$defs/specificDatatype'
-      # class definition structure
-      classes:
+      # conceptual class definition structure
+      cclasses:
         type: object
         required:
-          - class
+          - cclass
         properties:
-          class:
+          cclass:
             type: array
-            uniqueItems: true
-            uniqueItemProperties:
-              - key_letter
-              - name
-              - number
             items:
-              $ref: '#/$defs/class'
+              $ref: '#/$defs/cclass'
+            uniqueItems: true
       # relationship definition structure
       relationships:
         type: object

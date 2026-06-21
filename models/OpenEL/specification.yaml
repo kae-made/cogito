@@ -82,7 +82,7 @@ domain:
               type: REFERENCE
               identity: [2]
             - name: VendorID
-              type: REAL
+              type: REFERENCE
               identity: [2]
             - name: ComponentID
               type: REFERENCE
@@ -153,7 +153,7 @@ domain:
               identity: [1]
             - name: ComponentID
               type: REFERENCE
-      - key_letter: OEC_CIS
+      - key_letter: OE_CIS
         name: "Configuration Item Specification" # "Configuration IS" is name on CIM.
         number: 12
         properties:
@@ -248,6 +248,8 @@ domain:
               type: REFERENCE
             - name: ProductID
               type: REFERENCE
+            - name: ComponentID
+              type: REFERENCE
       - key_letter: OEOE_P
         name: "Parameter"
         number: 102
@@ -317,6 +319,8 @@ domain:
               type: REFERENCE
               identity: [1]
             - name: ProductID
+              type: REFERENCE
+            - name: VendorID
               type: REFERENCE
       - key_letter: OESA_AT
         name: "Authorizer"
@@ -412,12 +416,14 @@ domain:
         number: 307
         properties:
           property:
-            - name: DataTypeID
+            - name: Parent_DataTypeID
               type: REFERENCE
               identity: [1]
             - name: Name
               type: STRING
               identity: [1]
+            - name: DataTypeID
+              type: REFERENCE
             - name: Description
               type: STRING
             - name: Next_Name
@@ -456,7 +462,7 @@ domain:
               identity: [1]
             - name: DataTypeID
               type: REFERENCE
-      - OE_IMB:
+      - key_letter: OE_IMB
         name: "Item Memory Block" # "Item MB" is name on CIM.
         number: 22
         properties:
@@ -466,7 +472,7 @@ domain:
               identity: [1]
             - name: ItemID
               type: REFERENCE
-      - OE_PIM:
+      - key_letter: OE_PIM
         name: "Position in Memory"
         number: 23
         properties:
@@ -563,13 +569,13 @@ domain:
           property:
             - name: CalItemID
               type: REFERENCE
-              identity: [1,2,3]
+              identity: [2]
             - name: ItemID
               type: REFERENCE
-              identity: [3]
+              identity: [1]
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
-              identity: [2,3]
+              identity: [1]
       - key_letter: OEC_ECSI
         name: "Environment Calibration Specification Item"  # "Environment CSI" is name on CIM.
         number: 405
@@ -599,7 +605,7 @@ domain:
           property:
             - name: CalItemID
               type: REFERENCE
-              identity: [1]
+              identity: [2]
             - name: ItemID
               type: REFERENCE
               identity: [1]
@@ -722,7 +728,7 @@ domain:
           multiplicity: "1C"
           phrase: "may be child of"
         participant:
-          cclass: OE_DDS
+          cclass: OE_SDDS
           multiplicity: "MC"
           phrase: "may have"
         referencing:
@@ -843,6 +849,8 @@ domain:
           cclass: OE_V
           multiplicity: "1C"
           phrase: "may be"  
+        referencing:
+          - ShortName: ShortName
       # OpenEL::Operational Equipment Sub system
       - index: R101
         kind: binary
@@ -870,6 +878,7 @@ domain:
           - DeviceKindID: DeviceKindID
           - VendorID: VendorID
           - ProductID: ProductID
+          - ComponentID: ComponentID
       - index: R103
         kind: binary
         referent:
@@ -895,6 +904,7 @@ domain:
           phrase: "is imprelemtation for"
         referencing:
           - ItemID: ItemID
+          - Name: Name
       # OpenEL::Specification Approvement Sub system
       - index: R201
         kind: binary
@@ -960,6 +970,7 @@ domain:
           phrase: "approved"
         referencing:
           - ProductID: ProductID
+          - VendorID: VendorID
       - index: R206
         kind: binary
         referent:
@@ -975,7 +986,7 @@ domain:
       - index: R207
         kind: binary
         referent:
-          cclass OE_ORG
+          cclass: OE_ORG
           multiplicity: "1"
           phrase: "is applied by"
         participant:
@@ -1020,6 +1031,8 @@ domain:
           cclass: OE_SDT
           multiplicity: "MC"
           phrase: "is owner of"
+        referencing:
+          - ComponentID: ComponentID
       - index: R304
         kind: is-a
         referent:
@@ -1027,7 +1040,7 @@ domain:
           properties:
             - DataTypeID
         participants:
-          - cclass: OE_CDT
+          - cclass: OE_PDT
             properties:
               - DataTypeID
           - cclass: OE_CDT
@@ -1071,7 +1084,7 @@ domain:
           multiplicity: "M"
           phrase: "consist from"
         referencing:
-          - DataTypeID: Base_DataTypeID
+          - DataTypeID: Parent_DataTypeID
       - index: R308
         kind: binary
         referent:
@@ -1157,7 +1170,7 @@ domain:
           - cclass: OE_CMB
             properties:
               - MemoryBlockID
-          - cclass: OE_VMB
+          - cclass: OE_IMB
             properties:
               - MemoryBlockID
       - index: R24
@@ -1180,7 +1193,7 @@ domain:
           multiplicity: "1"
           phrase: "define the placement in implementation"
         participant:
-          cclass: OE_VMB
+          cclass: OE_IMB
           multiplicity: "1C"
           phrase: "needs for implementation"
         referencing:
@@ -1221,7 +1234,7 @@ domain:
           multiplicity: "1C"
           phrase: "is placed in"
         referencing:
-          - DataTypeID: DataTypeID
+          - Parent_DataTypeID: DataTypeID
           - Name: Name
       - index: R320
         kind: binary
@@ -1234,13 +1247,13 @@ domain:
           multiplicity: "1C"
           phrase: "succeeds"
         referencing:
-          - DataTypeID: DataTypeID
+          - Parent_DataTypeID: DataTypeID
           - Name: Next_Name
       # OpenEL::Calibration Sub system
       - index: R400
         kind: binary
         referent:
-          cclass: OEC_C
+          cclass: OE_C
           multiplicity: "1"
           phrase: "is mechanism for adjusting"
         participant:
@@ -1248,7 +1261,7 @@ domain:
           multiplicity: "MC"
           phrase: "is target of"
         referencing:
-          - CalibrationID: CalibrationID
+          - ComponentID: ComponentID
       - index: R401
         kind: is-a
         referent:
@@ -1267,7 +1280,7 @@ domain:
         one:
           cclass: OEC_CBI
           multiplicity: "MC"
-          phrase: "may be used as definition
+          phrase: "may be used as definition"
         other:
           cclass: OE_ITS
           multiplicity: "M"
