@@ -1,0 +1,34 @@
+# yaml-language-server: $schema: ./SpecificationSchema.yaml
+# OepnEL Device Driver Official Published Specification
+# Under Construction for discussion. Not finalized yet.
+fos:
+  fosId: "9f01b85b-afd7-4d76-a4cd-bc730795c718"
+  domain: "OpenEL Device Driver Specification"
+  date: "2026-06-22"
+  instances:
+    - instance: "39b52473-c64d-4b07-a6d4-9337fb0b28d5"
+      cclass: OE_ORG
+      properties:
+        Name: "Knowledge and Experience"
+        ShortName: "KAE"
+        Description: ""
+    - instance: "07e27923-b691-4dda-a109-621fef29dff8"
+      cclass: OE_V
+      properties:
+        VendorID: 0x00001000
+        ShortName: "KAE"
+        Description: ""
+    - instance: "8fd805fd-6962-4571-9872-9431c47ad6df"
+      cclass: OE_DK
+      properties:
+        DeviceKindID: 0x00001000
+        Name: "Light Sensor"
+        Description: ""
+        No: 1000
+    - instance: "9baf0bec-9739-4c38-af79-2e6497971bfa"
+      cclass: OE_PD
+      properties:
+        ProductID: 0x00001000
+        ProductName: "TSL2561"
+        Description: "Digital Light Sensor"
+        VendorID: 0x0000000E

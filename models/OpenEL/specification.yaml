@@ -87,6 +87,8 @@ domain:
             - name: ComponentID
               type: REFERENCE
               identity: [1, 2]
+            - name: Description
+              type: STRING
       - key_letter: OE_SDDS
         name: "Sensor Device Driver Specification"
         number: 6
@@ -196,10 +198,10 @@ domain:
           property:
             - name: ConfigurationID # "ConfID" is name on CIM.
               type: UNIQUE_ID
-              identity: [1]
+              identity: [1, 3]
             - name: ComponentID
               type: REFERENCE
-              identity: [2]
+              identity: [2, 3]
             - name: Name
               type: STRING
               identity: [2]
@@ -218,6 +220,17 @@ domain:
               identity: [2]
             - name: Description
               type: STRING
+      - key_letter: OE_CFDDS
+        name: "Configuration for Device Driver Specification"
+        number: 17
+        properties:
+          property:
+            - name: ConfigurationID # "ConfID" is name on CIM.
+              type: REFERENCE
+              identity: [1]
+            - name: ComponentID
+              type: REFERENCE
+              identity: [1]
       # OpenEL::Operational Equipment Sub system
       - key_letter: OEOE_EQ
         name: "Equipment"
@@ -851,6 +864,24 @@ domain:
           phrase: "may be"  
         referencing:
           - ShortName: ShortName
+      - index: R17
+        kind: "binary-associative"
+        one: 
+          cclass: OE_DDS
+          multiplicity: "1C"
+          phrase: "determine the operating conditions of"
+        other:
+          cclass: OE_CF
+          multiplicity: "1C"
+          phrase: "change its operating conditions based on"
+        associative:
+          cclass: OE_CFDDS
+        referencing:
+          one:
+            - ComponentID: ComponentID
+          other:
+            - ComponentID: ComponentID
+            - ConfigurationID: ConfigurationID
       # OpenEL::Operational Equipment Sub system
       - index: R101
         kind: binary
@@ -938,7 +969,7 @@ domain:
         kind: binary
         participant:
           cclass: OESA_DKAP
-          multiplicity: "1"
+          multiplicity: "1C"
           phrase: "is target of"
         referent:
           cclass: OE_DK
@@ -950,7 +981,7 @@ domain:
         kind: binary 
         participant:
           cclass: OESA_VAP
-          multiplicity: "1"
+          multiplicity: "1C"
           phrase: "is target of"
         referent:
           cclass: OE_V
@@ -962,7 +993,7 @@ domain:
         kind: binary
         participant:
           cclass: OESA_PA
-          multiplicity: "1"
+          multiplicity: "1C"
           phrase: "is target of"
         referent:
           cclass: OE_PD

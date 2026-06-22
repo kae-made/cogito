@@ -91,12 +91,6 @@ fos:
         Name: "Seeed Studio, Inc."
         ShortName: "SEEED"
         Description: ""
-    - instance: "39b52473-c64d-4b07-a6d4-9337fb0b28d5"
-      cclass: OE_ORG
-      properties:
-        Name: "Knowledge and Experience"
-        ShortName: "KAE"
-        Description: ""
     - instance: "0651fa9d-65eb-4739-8b82-3365e0f5492d"
       cclass: OE_ORG
       properties:
