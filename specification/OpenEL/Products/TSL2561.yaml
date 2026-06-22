@@ -129,3 +129,52 @@ fos:
         NotationID: "0fab8ba0-2fc5-4099-910e-d38bf44318b4"
         Rule: '^(?:0|[1-9]\d*)$'
         Description: "zero or positive integer"
+    # Memory Variable & Parameter Order
+    # For Configuration
+    - instance: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+      cclass: OE_MB
+      properties:
+        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        Length: 4 # sizeof(Integer)
+    - instance: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+      cclass: OE_IMB
+      properties:
+        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
+    - instance: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+      cclass: OE_PIM
+      properties:
+        PIM_ID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        OffsetMB: 0
+        PossitionInBits: 0
+    - instance: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+      cclass: OE_PPIM
+      properties:
+        PIM_ID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+        ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
+        Name: "GainMode"
+    # For Light Sense
+    - instance: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+      cclass: OE_MB
+      properties:
+        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        Length: 8 # sizeof(Real)
+    - instance: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+      cclass: OE_IMB
+      properties:
+        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
+    - instance: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+      cclass: OE_PIM
+      properties:
+        PIM_ID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        OffsetInMB: 0
+        PossitionInBits: 0
+    - instance: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+      cclass: OE_PPIM
+      properties:
+        PIM_ID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+        ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
+        Name: "intensity"
