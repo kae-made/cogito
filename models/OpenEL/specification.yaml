@@ -14,6 +14,7 @@ domain:
             - name: DeviceKindID
               type: UNIQUE_ID
               identity: [1]
+              grammar: "^0x[0-9A-Fa-f]{8}$"
             - name: Name
               type: STRING
               identity: [2]
@@ -22,8 +23,7 @@ domain:
               identity: [3]
             - name: Description
               type: STRING
-            - name: Remarks
-              type: STRING
+              nullable: true
       - key_letter: OE_PD
         name: "Product"
         number: 2
@@ -32,11 +32,13 @@ domain:
             - name: ProductID
               type: UNIQUE_ID
               identity: [1]
+              grammar: "^0x[0-9A-Fa-f]{8}$"
             - name: ProductName
               type: STRING
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
             - name: VendorID
               type: REFERENCE
               identity: [1,2]
@@ -48,11 +50,13 @@ domain:
             - name: VendorID
               type: UNIQUE_ID
               identity: [1]
+              grammar: "^0x[0-9A-Fa-f]{8}$"
             - name: ShortName
               type: REFERENCE
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_C
         name: "Component"
         number: 4
@@ -70,6 +74,8 @@ domain:
             - name: VendorID
               type: REFERENCE
               identity: [1]
+            - name: DefinedVendorID
+              type: REFERENCE
       - key_letter: OE_DDS
         name: "Device Driver Specification"
         number: 5
@@ -89,6 +95,7 @@ domain:
               identity: [1, 2]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_SDDS
         name: "Sensor Device Driver Specification"
         number: 6
@@ -99,6 +106,7 @@ domain:
               identity: [1]
             - name: Parent_ComponentID
               type: REFERENCE
+              nullable: true
       - key_letter: OE_ADDS
         name: "Actuator Device Driver Specification"
         number: 7
@@ -123,8 +131,10 @@ domain:
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
             - name: Next_Name
               type: REFERENCE
+              nullable: true
       - key_letter: OE_OIS
         name: "Observed Item Specification" # "Observed IS" is name on CIM.
         number: 9
@@ -187,6 +197,7 @@ domain:
               identity: [1]
             - name: Description
               type: STRING
+              nullable: true
             - name: DataTypeID
               type: REFERENCE
             - name: Next_Name
@@ -207,19 +218,21 @@ domain:
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_ORG
         name: "Organization"
         number: 16
         properties:
           property:
             - name: Name
-              type: UNIQUE_ID
+              type: STRING
               identity: [1]
             - name: ShortName
               type: STRING
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_CFDDS
         name: "Configuration for Device Driver Specification"
         number: 17
@@ -244,6 +257,7 @@ domain:
               type: STRING
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OEOE_EC
         name: "Executing Component"
         number: 101
@@ -345,6 +359,7 @@ domain:
               identity: [1]
             - name: Description
               type: STRING
+              nullable: true
       # OpenEL::Data Type Sub system
       - key_letter: OE_DT
         name: "Data Type"
@@ -356,6 +371,7 @@ domain:
               identity: [1]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_SDT
         name: "Specific Data Type"
         number: 301
@@ -383,6 +399,7 @@ domain:
               identity: [2]
             - name: NotationID
               type: REFERENCE
+              nullable: true
       - key_letter: OE_PDT
         name: "Primitive Data Type"
         number: 303
@@ -395,6 +412,7 @@ domain:
               type: REFERENCE
             - name: NotationID
               type: REFERENCE
+              nullable: true
       - key_letter: OE_EDT
         name: "Enumerated Data Type"
         number: 304
@@ -416,6 +434,7 @@ domain:
               identity: [1]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OE_CDT
         name: "Composite Data Type"
         number: 306
@@ -439,8 +458,10 @@ domain:
               type: REFERENCE
             - name: Description
               type: STRING
+              nullable: true
             - name: Next_Name
               type: REFERENCE
+              nullable: true
       - key_letter: OE_VNR
         name: "Value Notation Rule"
         number: 308
@@ -453,6 +474,7 @@ domain:
               type: STRING # regular expression for validation
             - name: Description
               type: STRING
+              nullable: true
       # OpenEL::Item & Parameter Order Sub system
       - key_letter: OE_MB
         name: "Memory Block"
@@ -543,6 +565,7 @@ domain:
               identity: [2]
             - name: Description
               type: STRING
+              nullable: true
       - key_letter: OEC_CBM
         name: "Calibration with Model"
         number: 401
@@ -553,6 +576,7 @@ domain:
               identity: [1]
             - name: Model
               type: OTHER
+              nullable: true
       - key_letter: OEC_CBI
         name: "Calibration with Item"
         number: 402
@@ -666,6 +690,7 @@ domain:
               identity: [1]
             - name: Value
               type: OTHER
+              nullable: true
   relationships:
     relationship:
       # OpenEL::Specification Sub system
@@ -701,7 +726,7 @@ domain:
           phrase: "is part of"
         participant:
           cclass: OE_C
-          multiplicity: "M" # "1..*"
+          multiplicity: "MC" # "*"
           phrase: "is target of"
         referencing:
           - ProductID: ProductID
@@ -882,6 +907,18 @@ domain:
           other:
             - ComponentID: ComponentID
             - ConfigurationID: ConfigurationID
+      - index: R18
+        kind: binary
+        referent:
+          cclass: OE_V
+          multiplicity: "1"
+          phrase: "is specified by"
+        participant:
+          cclass: OE_C
+          multiplicity: "MC"
+          phrase: "describe details of"
+        referencing:
+          - VendorID: DefinedVendorID
       # OpenEL::Operational Equipment Sub system
       - index: R101
         kind: binary

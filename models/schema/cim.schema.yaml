@@ -138,6 +138,8 @@ $defs:
         type: string
       denote:
         type: boolean
+      nullable:
+        type: boolean
   
   # ---------------------------------------------------------
   # conceptual class structure definition

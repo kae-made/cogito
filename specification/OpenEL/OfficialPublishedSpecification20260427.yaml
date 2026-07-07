@@ -7,835 +7,816 @@ fos:
   date: "2026-04-27"
   instances:
     - instance: "38df16d1-b04f-42fa-becf-5322c7c706b5"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "Japan Embedded Sysmtems Technology Association"
         ShortName: "JASA"
-        VendorShortName: "JASA"
-        Description: ""
+        Description: NULL
     - instance: "908fb572-1e59-46e0-8983-3f6fadc38b39"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "Upwind Technology, Inc."
         ShortName: "UTI"
-        Description: ""
+        Description: NULL
     - instance: "fa82152d-750b-4deb-a6b0-00957b21331f"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "ORIENTAL MOTOR CO., LTD."
         ShortName: "OM"
-        Description: ""
+        Description: NULL
     - instance: "d18236b9-e838-49ff-b728-bdf8d5f5474b"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "NIDEC CORPORATION"
         ShortName: "NIDEC"
-        Description: ""
+        Description: NULL
     - instance: "0dee13b4-e9ea-405d-bf21-e1545fb98ee1"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "RT Corporation"
         ShortName: "RT"
-        Description: ""
+        Description: NULL
     - instance: "92a3fd86-44e1-411e-b41d-c8aeb4b34a90"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "ASAKUSAGIKEN"
         ShortName: "AG"
-        Description: ""
+        Description: NULL
     - instance: "23da1e62-2c95-437d-8d02-3cc96cf8730f"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "Sensirion"
         ShortName: "SEN"
-        Description: ""
+        Description: NULL
     - instance: "f13b0dd6-e1e9-4aae-80ec-c977a39150e9"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "Diarkis"
         ShortName: "DIA"
-        Description: ""
+        Description: NULL
     - instance: "550726ae-cf5d-49ad-bca4-cad124e7d0b2"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "LEGO"
         ShortName: "LEGO"
-        Description: ""
+        Description: NULL
     - instance: "0be95359-7a90-419b-a46e-169e715b8d91"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "M5Stack"
         ShortName: "M5"
-        Description: ""
+        Description: NULL
     - instance: "d77ad5a0-3ac3-435c-ad1e-3b128cb7416e"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "NVIDIA"
         ShortName: "NVIDIA"
-        Description: ""
+        Description: NULL
     - instance: "f5748f24-62f0-4ce7-9276-25c1d95f22e4"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "BOSCH"
         ShortName: "BOSCH"
-        Description: ""
+        Description: NULL
     - instance: "72e10955-d9a8-4ce0-a42a-2fadc5e0ea0b"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "STMicroelectronics"
         ShortName: "STM"
-        Description: ""
+        Description: NULL
     - instance: "3d311d9c-37ba-4147-95f8-8a2800f7f63f"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "Seeed Studio, Inc."
         ShortName: "SEEED"
-        Description: ""
+        Description: NULL
     - instance: "0651fa9d-65eb-4739-8b82-3365e0f5492d"
-      cclass: OE_ORG
       properties:
+        cclass: OE_ORG
         Name: "For development use"
         ShortName: "TEST"
-        Description: ""
+        Description: NULL
     - instance: "bf5b877d-21f9-424c-b57f-1d80e1e074c6"
-      cclass: OESA_AT
       properties:
+        cclass: OESA_AT
         ShortName: "JASA"
-        Description: ""
+        Description: NULL
     - instance: "9c8e1b3e-5a7c-4f0d-9b1e-2a1e5f6d8c9a"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "Test"
-        DeviceKindID: 0x00000000
+        DeviceKindID: "0x00000000"
         No: 0
         Description: "For development use"
     - instance: "12345678-90ab-cdef-1234-567890abcdef"
-      cclass: OESA_AP
       properties:
-        AppID: "12345678-90ab-cdef-1234-567890abcdef"
+        cclass: OESA_AP
+        ApprovementID: "12345678-90ab-cdef-1234-567890abcdef"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "12345678-90ab-cdef-1234-567890abcdef"
-      cclass: OESA_DKAP
+    - instance: "228a6f3a-b1d7-463e-83f2-8d784e8b379d"
       properties:
-        AppID: "12345678-90ab-cdef-1234-567890abcdef"
-        DeviceKindID: 0x00000000
+        cclass: OESA_DKAP
+        ApprovementID: "12345678-90ab-cdef-1234-567890abcdef"
+        DeviceKindID: "0x00000000"
     - instance: "1fe3076b-97d2-4374-baef-856348252403"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "Motor"
-        DeviceKindID: 0x00000001
+        DeviceKindID: "0x00000001"
         No: 1
         Description: "Mortor"
     - instance: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
-      cclass: OESA_AP
       properties:
-        AppID: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
+        cclass: OESA_AP
+        ApprovementID: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
-      cclass: OESA_DKAP
+    - instance: "e2d9bd07-8417-4233-8563-bcf845265489"
       properties:
-        AppID: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
-        DeviceKindID: 0x00000001
+        cclass: OESA_DKAP
+        ApprovementID: "2a1e5f6d-8c9a-4b0d-9b1e-5f6d8c9a1e5f"
+        DeviceKindID: "0x00000001"
     - instance: "fd491fb5-72d3-4b25-9538-054c115fe136"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "GyroSensor"
-        DeviceKindID: 0x00000002
+        DeviceKindID: "0x00000002"
         No: 2
         Description: "Gyroscope Sensor"
     - instance: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
-      cclass: OESA_AP
       properties:
-        AppID: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
+        cclass: OESA_AP
+        ApprovementID: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
-      cclass: OESA_DKAP
+    - instance: "07d9034e-ff40-4122-bf23-b73a5393af03"
       properties:
-        AppID: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
-        DeviceKindID: 0x00000002
+        cclass: OESA_DKAP
+        ApprovementID: "0abe1bf2-125a-4a0b-9901-c8af56768bcf"
+        DeviceKindID: "0x00000002"
     - instance: "2a107ed0-f776-43aa-84ec-dd6e419b3d00"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "TorqueSensor"
-        DeviceKindID: 0x00000003
+        DeviceKindID: "0x00000003"
         No: 3
         Description: "Torque Sensor"
     - instance: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
-      cclass: OESA_AP
       properties:
-        AppID: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
+        cclass: OESA_AP
+        ApprovementID: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
-      cclass: OESA_DKAP
+    - instance: "b1a1377d-0c69-4bb9-908f-d052ca08611e"
       properties:
-        AppID: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
-        DeviceKindID: 0x00000003
+        cclass: OESA_DKAP
+        ApprovementID: "7d6b1af6-a25e-4635-b56d-fe20ee1b93cb"
+        DeviceKindID: "0x00000003"
     - instance: "71117960-f0a1-43a4-aa1e-df0c3af6133c"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "AccelerationSensor"
-        DeviceKindID: 0x00000004
+        DeviceKindID: "0x00000004"
         No: 4
         Description: "Acceleration Sensor"
     - instance: "30c3dce8-1ccf-4227-8024-623a03618cbd"
-      cclass: OESA_AP
       properties:
-        AppID: "30c3dce8-1ccf-4227-8024-623a03618cbd"
+        cclass: OESA_AP
+        ApprovementID: "30c3dce8-1ccf-4227-8024-623a03618cbd"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "30c3dce8-1ccf-4227-8024-623a03618cbd"
-      cclass: OESA_DKAP
+    - instance: "bf26ce7c-c15d-4528-8e3e-2485e50ee8de"
       properties:
-        AppID: "30c3dce8-1ccf-4227-8024-623a03618cbd"
-        DeviceKindID: 0x00000004
+        cclass: OESA_DKAP
+        ApprovementID: "30c3dce8-1ccf-4227-8024-623a03618cbd"
+        DeviceKindID: "0x00000004"
     - instance: "56298a92-20d8-49c0-b679-6bd10df36761"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "CompassSensor"
-        DeviceKindID: 0x00000005
+        DeviceKindID: "0x00000005"
         No: 5
         Description: "Compass Sensor"
     - instance: "2599b7ef-6902-44b2-a951-b64830da114e"
-      cclass: OESA_AP
       properties:
-        AppID: "2599b7ef-6902-44b2-a951-b64830da114e"
+        cclass: OESA_AP
+        ApprovementID: "2599b7ef-6902-44b2-a951-b64830da114e"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "2599b7ef-6902-44b2-a951-b64830da114e"
-      cclass: OESA_DKAP
+    - instance: "a8f7acb5-d186-46b3-827a-091b0cb03401"
       properties:
-        AppID: "2599b7ef-6902-44b2-a951-b64830da114e"
-        DeviceKindID: 0x00000005
+        cclass: OESA_DKAP
+        ApprovementID: "2599b7ef-6902-44b2-a951-b64830da114e"
+        DeviceKindID: "0x00000005"
     - instance: "2804a979-b50b-4778-894d-8505210ef2b9"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "DistanceSensor"
-        DeviceKindID: 0x00000006
-        No: 0
+        DeviceKindID: "0x00000006"
+        No: 6
         Description: "Distance Sensor"
     - instance: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
-      cclass: OESA_AP
       properties:
-        AppID: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
+        cclass: OESA_AP
+        ApprovementID: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
-      cclass: OESA_DKAP
+    - instance: "1c568d64-2c23-40b8-95c2-9c8f1d76d63e"
       properties:
-        AppID: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
-        DeviceKindID: 0x00000006
+        cclass: OESA_DKAP
+        ApprovementID: "c19d4e8f-4df9-4394-a151-8e16ff7cc87b"
+        DeviceKindID: "0x00000006"
     - instance: "1023698d-4e41-41cd-8cc2-fefe70215d06"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "ForceSensor"
-        DeviceKindID: 0x00000007
+        DeviceKindID: "0x00000007"
         No: 7
         Description: "Force Sensor"
     - instance: "b880a221-b999-47c1-b41f-280c47ef09c1"
-      cclass: OESA_AP
       properties:
-        AppID: "b880a221-b999-47c1-b41f-280c47ef09c1"
+        cclass: OESA_AP
+        ApprovementID: "b880a221-b999-47c1-b41f-280c47ef09c1"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "b880a221-b999-47c1-b41f-280c47ef09c1"
-      cclass: OESA_DKAP
+    - instance: "d337b264-db07-4bcf-80f7-0789a24b8835"
       properties:
-        AppID: "b880a221-b999-47c1-b41f-280c47ef09c1"
-        DeviceKindID: 0x00000007
+        cclass: OESA_DKAP
+        ApprovementID: "b880a221-b999-47c1-b41f-280c47ef09c1"
+        DeviceKindID: "0x00000007"
     - instance: "69a0b836-694c-4d39-940e-e6d6b37bf69f"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "TemperatureSensor"
-        DeviceKindID: 0x00000008
+        DeviceKindID: "0x00000008"
         No: 8
         Description: "Temperature Sensor"
     - instance: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
-      cclass: OESA_AP
       properties:
-        AppID: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
+        cclass: OESA_AP
+        ApprovementID: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
     - instance: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
-      cclass: OESA_DKAP
       properties:
-        AppID: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
-        DeviceKindID: 0x00000008
+        cclass: OESA_DKAP
+        ApprovementID: "746518db-9a94-4ce9-9ec4-7cb4cb04f673"
+        DeviceKindID: "0x00000008"
     - instance: "e5ddf4cb-a4ea-4304-b407-f4881a910578"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "HumiditySensor"
-        DeviceKindID: 0x00000009
+        DeviceKindID: "0x00000009"
         No: 9
         Description: "Humidity Sensor"
     - instance: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
-      cclass: OESA_AP
       properties:
-        AppID: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
+        cclass: OESA_AP
+        ApprovementID: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL Standardization Committee"
-    - instance: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
-      cclass: OESA_DKAP
+    - instance: "be64adaf-1d53-451a-b7bd-ed7a578676e6"
       properties:
-        AppID: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
-        DeviceKindID: 0x00000009
+        cclass: OESA_DKAP
+        ApprovementID: "9d848c9b-c820-4eab-b8e7-76b5a666dbbb"
+        DeviceKindID: "0x00000009"
     - instance: "deef0a57-9bec-4e29-896b-e26346fc72a7"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "CO2Sensor"
-        DeviceKindID: 0x0000000A
+        DeviceKindID: "0x0000000A"
         No: 10
         Description: "CO2 Sensor"
     - instance: "08a273bf-d77b-49c2-b37e-ef91872f9303"
-      cclass: OESA_AP
       properties:
-        AppID: "08a273bf-d77b-49c2-b37e-ef91872f9303"
+        cclass: OESA_AP
+        ApprovementID: "08a273bf-d77b-49c2-b37e-ef91872f9303"
         ApplicationDate: "2021-02-01"
         ApprovalDate: "2021-03-29"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "08a273bf-d77b-49c2-b37e-ef91872f9303"
-      cclass: OESA_DKAP
+    - instance: "df07c6fd-121c-4e41-a8ba-c6d6191a0ff0"
       properties:
-        AppID: "08a273bf-d77b-49c2-b37e-ef91872f9303"
-        DeviceKindID: 0x0000000A
+        cclass: OESA_DKAP
+        ApprovementID: "08a273bf-d77b-49c2-b37e-ef91872f9303"
+        DeviceKindID: "0x0000000A"
     - instance: "d35574bd-6397-43b6-9b23-5aa6c0242002"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "ColorSensor"
-        DeviceKindID: 0x0000000B
+        DeviceKindID: "0x0000000B"
         No: 11
         Description: "Color Sensor"
     - instance: "bbd46930-f611-408a-8ae5-db3846610e93"
-      cclass: OESA_AP
       properties:
-        AppID: "bbd46930-f611-408a-8ae5-db3846610e93"
+        cclass: OESA_AP
+        ApprovementID: "bbd46930-f611-408a-8ae5-db3846610e93"
         ApplicationDate: "2021-02-01"
         ApprovalDate: "2021-04-19"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "bbd46930-f611-408a-8ae5-db3846610e93"
-      cclass: OESA_DKAP
+    - instance: "de9545a7-0fd9-4d41-80d9-6a3b0c23579a"
       properties:
-        AppID: "bbd46930-f611-408a-8ae5-db3846610e93"
-        DeviceKindID: 0x0000000B
+        cclass: OESA_DKAP
+        ApprovementID: "bbd46930-f611-408a-8ae5-db3846610e93"
+        DeviceKindID: "0x0000000B"
     - instance: "7b4c68fd-f81b-4fc5-8cb4-d8d7e212a0f5"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "TouchSensor"
-        DeviceKindID: 0x0000000C
+        DeviceKindID: "0x0000000C"
         No: 12
         Description: "Touch Sensor"
     - instance: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
-      cclass: OESA_AP
       properties:
-        AppID: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
+        cclass: OESA_AP
+        ApprovementID: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
         ApplicationDate: "2021-04-19"
         ApprovalDate: "2021-04-19"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
-      cclass: OESA_DKAP
+    - instance: "e516fe57-6faf-4572-b1ce-dbaf7d5618d1"
       properties:
-        AppID: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
-        DeviceKindID: 0x0000000C
+        cclass: OESA_DKAP
+        ApprovementID: "ddbb8d4e-8d35-48b7-b697-97d67cd7c745"
+        DeviceKindID: "0x0000000C"
     - instance: "bdec7d83-85a0-41c5-88c7-cf7614f82711"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "CurrentSensor"
-        DeviceKindID: 0x0000000D
+        DeviceKindID: "0x0000000D"
         No: 13
         Description: "Current Sensor"
     - instance: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
-      cclass: OESA_AP
       properties:
-        AppID: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
+        cclass: OESA_AP
+        ApprovementID: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
         ApplicationDate: "2022-02-28"
         ApprovalDate: "2022-02-01"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
-      cclass: OESA_DKAP
+    - instance: "fffdd9c6-2b44-4012-888c-681c727a4cb9"
       properties:
-        AppID: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
-        DeviceKindID: 0x0000000D
+        cclass: OESA_DKAP
+        ApprovementID: "9887ccd7-575b-43d9-a743-ec33b55fe47c"
+        DeviceKindID: "0x0000000D"
     - instance: "d85e60bf-933d-4c6d-905f-43e8f643ae8d"
-      cclass: OE_DK
       properties:
+        cclass: OE_DK
         Name: "RotaryAngleSensor"
-        DeviceKindID: 0x0000000E
+        DeviceKindID: "0x0000000E"
         No: 14
         Description: "Rotary Angle Sensor"
     - instance: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
-      cclass: OESA_AP
       properties:
-        AppID: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
+        cclass: OESA_AP
+        ApprovementID: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
         ApplicationDate: "2025-05-05"
         ApprovalDate: "2025-05-05"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
-      cclass: OESA_DKAP
+    - instance: "8884421c-38ea-4e61-974b-a1d5cb29c3ae"
       properties:
-        AppID: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
-        DeviceKindID: 0x0000000E
+        cclass: OESA_DKAP
+        ApprovementID: "f2b4d901-87c1-4a50-aaf8-0d8d83655f33"
+        DeviceKindID: "0x0000000E"
     - instance: "56280fb0-7f24-42ab-87cb-ee5801a9c3f5"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000000
+        cclass: OE_V
+        VendorID: "0x00000000"
         ShortName: "TEST"
         Description: "For development use"
     - instance: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
-      cclass: OESA_AP
       properties:
-        AppID: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
+        cclass: OESA_AP
+        ApprovementID: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
-      cclass: OESA_VAP
+    - instance: "da6fffbc-3d4f-4f0e-83a0-a8fe16772a48"
       properties:
-        AppID: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
-        VendorID: 0x00000000
+        cclass: OESA_VAP
+        ApprovementID: "7aef35f9-b9b5-4985-9a12-65c61b18d77e"
+        VendorID: "0x00000000"
     - instance: "e47598f3-7230-4886-998c-45244ffa236e"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000001
+        cclass: OE_V
+        VendorID: "0x00000001"
         ShortName: "JASA"
-        Description: ""
+        Description: NULL
     - instance: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
-      cclass: OESA_AP
       properties:
-        AppID: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
+        cclass: OESA_AP
+        ApprovementID: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "JASA"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
-      cclass: OESA_VAP
+    - instance: "10a48d72-a5f6-40da-b69a-f8149221b2bb"
       properties:
-        AppID: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
-        VendorID: 0x00000001
+        cclass: OESA_VAP
+        ApprovementID: "6f3e75f4-24b4-4b19-8f9d-170c865252f7"
+        VendorID: "0x00000001"
     - instance: "495adfcb-96f1-456d-b68f-3a1d9c6f9727"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000002
+        cclass: OE_V
+        VendorID: "0x00000002"
         ShortName: "UTI"
-        Description: ""
+        Description: NULL
     - instance: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
-      cclass: OESA_AP
       properties:
-        AppID: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
+        cclass: OESA_AP
+        ApprovementID: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
-      cclass: OESA_VAP
+    - instance: "73bf982e-ed81-4a5a-8d34-5d437c1bd876"
       properties:
-        AppID: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
-        VendorID: 0x00000002
+        cclass: OESA_VAP
+        ApprovementID: "cd831c92-26ae-4dc3-8c25-58112205f3ea"
+        VendorID: "0x00000002"
     - instance: "8251e712-7446-407b-bb10-d613ffbcc7ca"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000003
+        cclass: OE_V
+        VendorID: "0x00000003"
         ShortName: "OM"
-        Description: ""
+        Description: NULL
     - instance: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
-      cclass: OESA_AP
       properties:
-        AppID: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
+        cclass: OESA_AP
+        ApprovementID: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "OM"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
-      cclass: OESA_VAP
+    - instance: "06d1a8b6-3b20-4420-b4a1-7b03348f0ea4"
       properties:
-        AppID: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
-        VendorID: 0x00000003
+        cclass: OESA_VAP
+        ApprovementID: "aea70219-e7c0-44bc-af08-6cdb0b8cad5d"
+        VendorID: "0x00000003"
     - instance: "0123ce26-020d-4e98-9f5a-3b3702aad80b"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000004
+        cclass: OE_V
+        VendorID: "0x00000004"
         ShortName: "NIDEC"
-        Description: ""
+        Description: NULL
     - instance: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
-      cclass: OESA_AP
       properties:
-        AppID: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
+        cclass: OESA_AP
+        ApprovementID: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "NIDEC"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
-      cclass: OESA_VAP
+    - instance: "97311ae2-c31e-4eb0-a8de-b28d08fae544"
       properties:
-        AppID: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
-        VendorID: 0x00000004
+        cclass: OESA_VAP
+        ApprovementID: "d751aa5e-9071-4868-afe6-0649a5f4de2e"
+        VendorID: "0x00000004"
     - instance: "49361cbb-3329-4934-8448-d06c1bd3c310"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000005
+        cclass: OE_V
+        VendorID: "0x00000005"
         ShortName: "RT"
-        Description: ""
+        Description: NULL
     - instance: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
-      cclass: OESA_AP
       properties:
-        AppID: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
+        cclass: OESA_AP
+        ApprovementID: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
-      cclass: OESA_VAP
+    - instance: "f653990b-8b85-421f-ad40-15e0a0ad7938"
       properties:
-        AppID: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
-        VendorID: 0x00000005
+        cclass: OESA_VAP
+        ApprovementID: "7959dc28-c4bc-4668-b0a6-af2b01bcbb1d"
+        VendorID: "0x00000005"
     - instance: "c34b8431-3073-40bf-b838-e00ea795cb32"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000006
+        cclass: OE_V
+        VendorID: "0x00000006"
         ShortName: "AG"
-        Description: ""
+        Description: NULL
     - instance: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
-      cclass: OESA_AP
       properties:
-        AppID: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
+        cclass: OESA_AP
+        ApprovementID: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
         ApplicationDate: "2018-05-07"
         ApprovalDate: "2018-05-07"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL International Standardization Committee"
-    - instance: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
-      cclass: OESA_VAP
+    - instance: "d23a47ed-50b8-4854-8822-11c41ea7e528"
       properties:
-        AppID: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
-        VendorID: 0x00000006
+        cclass: OESA_VAP
+        ApprovementID: "d2cea4ee-87a8-4ed3-bbc8-808abbbbf95f"
+        VendorID: "0x00000006"
     - instance: "16682235-3b99-489d-a9ee-3fed0682fa98"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000007
+        cclass: OE_V
+        VendorID: "0x00000007"
         ShortName: "SEN"
-        Description: ""
+        Description: NULL
     - instance: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
-      cclass: OESA_AP
       properties:
-        AppID: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
+        cclass: OESA_AP
+        ApprovementID: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
         ApplicationDate: "2021-02-01"
         ApprovalDate: "2021-03-29"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
-      cclass: OESA_VAP
+    - instance: "673066f0-89c6-4394-af42-8f5be1933634"
       properties:
-        AppID: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
-        VendorID: 0x00000007
+        cclass: OESA_VAP
+        ApprovementID: "1038bb91-11d6-431b-8650-2e7d5ee1f335"
+        VendorID: "0x00000007"
     - instance: "ba76f6d4-4752-4c40-919b-87ed037d7b00"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000008
+        cclass: OE_V
+        VendorID: "0x00000008"
         ShortName: "DIA"
-        Description: ""
+        Description: NULL
     - instance: "5dcea2ad-1ddc-4972-bb02-b16c3d7f862c"
-      cclass: OESA_AP
       properties:
-        AppID: "5dcea2ad-1ddc-4972-bb02-b16c3d7f862c"
+        cclass: OESA_AP
+        ApprovementID: "5dcea2ad-1ddc-4972-bb02-b16c3d7f862c"
         ApplicationDate: "2021-02-01"
         ApprovalDate: "2021-03-29"
         AuthorizerName: "JASA"
         ApplicantName: "DIA"
         Remarks: "JASA OpenEL WG"
     - instance: "e384693b-8916-419f-84a8-93300197148c"
-      cclass: OE_V
       properties:
-        VendorID: 0x00000009
+        cclass: OE_V
+        VendorID: "0x00000009"
         ShortName: "LEGO"
-        Description: ""
+        Description: NULL
     - instance: "1f1b0485-9949-4125-b9a4-060798a1d652"
-      cclass: OESA_AP
       properties:
-        AppID: "1f1b0485-9949-4125-b9a4-060798a1d652"
+        cclass: OESA_AP
+        ApprovementID: "1f1b0485-9949-4125-b9a4-060798a1d652"
         ApplicationDate: "2021-04-19"
         ApprovalDate: "2021-04-19"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "1f1b0485-9949-4125-b9a4-060798a1d652"
-      cclass: OESA_VAP
+    - instance: "f6fb7a4c-b208-47de-adef-65388e3b9849"
       properties:
-        AppID: "1f1b0485-9949-4125-b9a4-060798a1d652"
-        VendorID: 0x00000009
+        cclass: OESA_VAP
+        ApprovementID: "1f1b0485-9949-4125-b9a4-060798a1d652"
+        VendorID: "0x00000009"
     - instance: "6f45e8f3-1de0-4352-8806-d00437cfa89f"
-      cclass: OE_V
       properties:
-        VendorID: 0x0000000A
+        cclass: OE_V
+        VendorID: "0x0000000A"
         ShortName: "M5"
-        Description: ""
+        Description: NULL
     - instance: "928cd081-24ef-49a5-9783-e72469b97883"
-      cclass: OESA_AP
       properties:
-        AppID: "928cd081-24ef-49a5-9783-e72469b97883"
+        cclass: OESA_AP
+        ApprovementID: "928cd081-24ef-49a5-9783-e72469b97883"
         ApplicationDate: "2021-04-19"
         ApprovalDate: "2021-04-19"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "928cd081-24ef-49a5-9783-e72469b97883"
-      cclass: OESA_VAP
+    - instance: "740bca43-3d4f-4038-bc6e-fd1b761ac70e"
       properties:
-        AppID: "928cd081-24ef-49a5-9783-e72469b97883"
-        VendorID: 0x0000000A
+        cclass: OESA_VAP
+        ApprovementID: "928cd081-24ef-49a5-9783-e72469b97883"
+        VendorID: "0x0000000A"
     - instance: "55d25c03-c3f6-49b9-8ef9-17e1324946b0"
-      cclass: OE_V
       properties:
-        VendorID: 0x0000000B
+        cclass: OE_V
+        VendorID: "0x0000000B"
         ShortName: "NVIDIA"
-        Description: ""
+        Description: NULL
     - instance: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
-      cclass: OESA_AP
       properties:
-        AppID: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
+        cclass: OESA_AP
+        ApprovementID: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
         ApplicationDate: "2022-02-01"
         ApprovalDate: "2022-02-28"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
-      cclass: OESA_VAP
+    - instance: "67ff65e8-3b3c-460f-8062-804320f4fc24"
       properties:
-        AppID: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
-        VendorID: 0x0000000B
+        cclass: OESA_VAP
+        ApprovementID: "4b3b1e40-bce1-4dfd-b012-6156dc5caf20"
+        VendorID: "0x0000000B"
     - instance: "d34974c7-33e8-4b1d-b489-bbee7abfbbff"
-      cclass: OE_V
       properties:
-        VendorID: 0x0000000C
+        cclass: OE_V
+        VendorID: "0x0000000C"
         ShortName: "BOSCH"
-        Description: ""
+        Description: NULL
     - instance: "09e56e3f-268d-4327-a807-e8edf8293813"
-      cclass: OESA_AP
       properties:
-        AppID: "09e56e3f-268d-4327-a807-e8edf8293813"
+        cclass: OESA_AP
+        ApprovementID: "09e56e3f-268d-4327-a807-e8edf8293813"
         ApplicationDate: "2022-04-11"
         ApprovalDate: "2022-04-11"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "09e56e3f-268d-4327-a807-e8edf8293813"
-      cclass: OESA_VAP
+    - instance: "324b567d-6562-4ed3-96a2-c928cc13a36b"
       properties:
-        AppID: "09e56e3f-268d-4327-a807-e8edf8293813"
-        VendorID: 0x0000000C
+        cclass: OESA_VAP
+        ApprovementID: "09e56e3f-268d-4327-a807-e8edf8293813"
+        VendorID: "0x0000000C"
     - instance: "1f55c4e9-41ff-483b-a651-856445d5d9a2"
-      cclass: OE_V
       properties:
-        VendorID: 0x0000000D
+        cclass: OE_V
+        VendorID: "0x0000000D"
         ShortName: "STM"
-        Description: ""
+        Description: NULL
     - instance: "bc6c586a-b194-4412-9ace-e52160b17f5b"
-      cclass: OESA_AP
       properties:
-        AppID: "bc6c586a-b194-4412-9ace-e52160b17f5b"
+        cclass: OESA_AP
+        ApprovementID: "bc6c586a-b194-4412-9ace-e52160b17f5b"
         ApplicationDate: "2022-04-21"
         ApprovalDate: "2022-04-21"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
-    - instance: "bc6c586a-b194-4412-9ace-e52160b17f5b"
-      cclass: OESA_VAP
+    - instance: "fe889ae1-fc8a-4b7b-bb28-69da9fd4e119"
       properties:
-        AppID: "bc6c586a-b194-4412-9ace-e52160b17f5b"
-        VendorID: 0x0000000D
+        cclass: OESA_VAP
+        ApprovementID: "bc6c586a-b194-4412-9ace-e52160b17f5b"
+        VendorID: "0x0000000D"
     - instance: "b7dd54e3-6367-419e-9492-ffefb0831a71"
-      cclass: OE_V
       properties:
-        VendorID: 0x0000000E
+        cclass: OE_V
+        VendorID: "0x0000000E"
         ShortName: "SEEED"
-        Description: ""
+        Description: NULL
     - instance: "d4f1c40b-6e53-4d1b-8b91-bca2c18c2b53"
-      cclass: OESA_AP
       properties:
-        AppID: "d4f1c40b-6e53-4d1b-8b91-bca2c18c2b53"
+        cclass: OESA_AP
+        ApprovementID: "d4f1c40b-6e53-4d1b-8b91-bca2c18c2b53"
         ApplicationDate: "2025-05-05"
         ApprovalDate: "2025-05-05"
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
     - instance: "3c57e4ca-bc0d-4bc6-b2a7-b4a79cebee2f"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "UTRX-17"
-        VendorID: 0x00000001
-        Description: ""
+        VendorID: "0x00000001"
+        Description: NULL
     - instance: "a98420b2-afba-4f4f-95e5-cda3e2bd1db4"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "USB-9AXIS"
-        VendorID: 0x00000005
-        Description: ""
+        VendorID: "0x00000005"
+        Description: NULL
     - instance: "c38653a1-102d-4b46-afd7-e1002d506ecc"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "AGB65-DCM"
-        VendorID: 0x00000005
-        Description: ""
-    - instance: "1a15d50f-b4bc-4e10-965a-900c659c66e3"
-      cclass: OE_PD
-      properties:
-        ProductID: 0x00000001
-        ProductName: "AGB65-DCM"
-        VendorID: 0x00000006
-        Description: ""
+        VendorID: "0x00000006"
+        Description: NULL
     - instance: "d91e8c1d-d98f-407c-80e4-7e34eb93aff6"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "SCD30"
-        VendorID: 0x00000007
-        Description: ""
+        VendorID: "0x00000007"
+        Description: NULL
     - instance: "086e08ad-66f9-4101-a22c-f69e159c0bd6"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "Diarkis"
-        VendorID: 0x00000008
-        Description: ""
+        VendorID: "0x00000008"
+        Description: NULL
     - instance: "960ff961-33ae-4187-8173-14aaad80886a"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "EV3"
-        VendorID: 0x00000009
-        Description: ""
+        VendorID: "0x00000009"
+        Description: NULL
     - instance: "a6cabe9a-7613-4e0b-ad3e-fb0fe39e5c1f"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "BALA2"
-        VendorID: 0x0000000A
-        Description: ""
+        VendorID: "0x0000000A"
+        Description: NULL
     - instance: "9fe490c8-791b-4cfc-9afc-b688d280abb7"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "JETBOT"
-        VendorID: 0x0000000B
-        Description: ""
+        VendorID: "0x0000000B"
+        Description: NULL
     - instance: "892f498d-e79a-4a33-a6cb-b8370ba5da39"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "BME280"
-        VendorID: 0x0000000C
-        Description: ""
+        VendorID: "0x0000000C"
+        Description: NULL
     - instance: "b5c77bdd-f718-461f-a862-fb4ce5b412df"
-      cclass: OE_PD
       properties:
-        ProductID: 0x00000001
+        cclass: OE_PD
+        ProductID: "0x00000001"
         ProductName: "Grove Rotary Angle Sensor"
-        VendorID: 0x0000000D
-        Description: ""
+        VendorID: "0x0000000D"
+        Description: NULL
     - instance: "385aaba4-8fb2-4bfe-aa0d-e9eb63895135"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "385aaba4-8fb2-4bfe-aa0d-e9eb63895135"
-        Description: ""
-    - instance: "385aaba4-8fb2-4bfe-aa0d-e9eb63895135"
-      cclass:OE_BDT
+        Description: NULL
+    - instance: "d4a64950-5c3c-4696-b4ef-5b2a1bb8161d"
       properties:
+        cclass: OE_BDT
         DataTypeID: "385aaba4-8fb2-4bfe-aa0d-e9eb63895135"
         Name: "Boolean"
         NotationID: NULL
     - instance: "8aa01859-2bcb-4000-83b0-772527e9ff74"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "8aa01859-2bcb-4000-83b0-772527e9ff74"
-        Description: ""
-    - instance: "8aa01859-2bcb-4000-83b0-772527e9ff74"
-      cclass: OE_BDT
+        Description: NULL
+    - instance: "6a7a03eb-9340-42b4-9cd5-09ee1744d594"
       properties:
+        cclass: OE_BDT
         DataTypeID: "8aa01859-2bcb-4000-83b0-772527e9ff74"
-        Name: "Integer"
-        NotationID: NULL
-    - instance: "e945ab8e-4347-4fc3-b058-3f8a140f7447"
-      cclass: OE_DT
-      properties:
-        DataTypeID: "e945ab8e-4347-4fc3-b058-3f8a140f7447"
-        Description: ""
-    - instance: "e945ab8e-4347-4fc3-b058-3f8a140f7447"
-      cclass: OE_BDT
-      properties:
-        DataTypeID: "e945ab8e-4347-4fc3-b058-3f8a140f7447"
         Name: "Integer"
         NotationID: NULL
     - instance: "ebf98abb-e3b4-4a87-bf04-b1881cb16c3a"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "ebf98abb-e3b4-4a87-bf04-b1881cb16c3a"
-        Description: ""
-    - instance: "ebf98abb-e3b4-4a87-bf04-b1881cb16c3a"
-      cclass: OE_BDT
+        Description: NULL
+    - instance: "7103528d-af24-498c-aa81-00a64997bb0f"
       properties:
+        cclass: OE_BDT
         DataTypeID: "ebf98abb-e3b4-4a87-bf04-b1881cb16c3a"
         Name: "Real"
         NotationID: NULL
     - instance: "f87ba695-d908-46e5-a517-e5834b2ba27e"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "f87ba695-d908-46e5-a517-e5834b2ba27e"
-        Description: ""
-    - instance: "f87ba695-d908-46e5-a517-e5834b2ba27e"
-      cclass: OE_BDT
+        Description: NULL
+    - instance: "1a2fb582-a2fd-455b-90d6-0ae4cbd4dbaf"
       properties:
+        cclass: OE_BDT
         DataTypeID: "f87ba695-d908-46e5-a517-e5834b2ba27e"
         Name: "String"
         NotationID: NULL

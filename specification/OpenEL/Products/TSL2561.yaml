@@ -7,174 +7,180 @@ fos:
   date: "2026-06-22"
   instances:
     - instance: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
-      cclass: OE_C
       properties:
-        DeviceKindID  : 0x00001000
-        ProductID     : 0x00001000
-        VendorID      : 0x0000000E
-        ComponentID   : 0x00000001
+        cclass: OE_C
+        DeviceKindID  : "0x00001000"
+        ProductID     : "0x00001000"
+        VendorID      : "0x0000000E"
+        ComponentID   : "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
+        DefinedVendorID: "0x0000000E"
     - instance: "29020367-f4a4-451b-8331-a7afa22352a5"
-      cclass: OE_CF
       properties:
+        cclass: OE_CF
         ConfigurationID: "29020367-f4a4-451b-8331-a7afa22352a5"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Name: "Set the gain for measurement"
         Description: "0:x1,1:x16  gain setting"
     - instance: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
-      cclass: OE_ITS
       properties:
+        cclass: OE_ITS
         ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
         Name: "GainMode"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Description: "0:x1, 1:x16"
         Next_Name: NULL
-    - instance: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
-      cclass: OE_CIS
+    - instance: "4842aa5e-de3e-4fb7-b43f-936ccd774c71"
       properties:
+        cclass: OE_CIS
         ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
         ConfigurationID: "29020367-f4a4-451b-8331-a7afa22352a5"
     - instance: "155ff5be-fb51-47f6-8174-9dd6e2dbbf90"
-      cclass: OE_PS
       properties:
+        cclass: OE_PS
         ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
         Name: "GainMode"
-        Descritption: ""
+        Description: NULL
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd" # "GainMode"
         Next_Name: NULL
     - instance: "63c1b9cf-b0b6-4f9a-b046-0ac4caf78366"
-      cclass: OE_DDS
       properties:
-        DeviceKindID : 0x00001000
-        ProductID: 0x00001000
-        VendorID: 0x0000000E
-        ComponentID: 0x00000001
+        cclass: OE_DDS
+        DeviceKindID : "0x00001000"
+        ProductID: "0x00001000"
+        VendorID: "0x0000000E"
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
+        Description: NULL
         # Who is defined and developer?
-    - instance: "63c1b9cf-b0b6-4f9a-b046-0ac4caf78366"
-      cclass: OE_SDDS
+    - instance: "97d9d414-98a3-4af8-8646-843378427b7b"
       properties:
-        ComponentID: 0x00000001
+        cclass: OE_SDDS
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Parent_ComponentID: NULL
     - instance: "19744cbf-ea5f-43a7-be4d-aefebe278821"
-      cclass: OE_ITS
       properties:
+        cclass: OE_ITS
         ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
         Name: "Illuminance"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Description: "Measurement of the illuminance."
         Next_Name: NULL
-    - instance: "19744cbf-ea5f-43a7-be4d-aefebe278821"
-      cclass: OE_OIS
+    - instance: "ca17b247-9fb2-43a2-b392-a8d3129af8bd"
       properties:
+        cclass: OE_OIS
         ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
     - instance: "0b9a2fd3-9fed-4345-9cb2-4f9b25c22fea"
-      cclass: OE_PS
       properties:
+        cclass: OE_PS
         ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
         Name: "intensity"
-        ComponentID: 0x00000001
         Description: "illuminance"
         DataTypeID: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
         Next_Name: NULL
     # specific data type definitions
     # gain setting
     - instance: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
         Description: "Gain Mode for TSL2561"
-    - instance: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
-      cclass: OE_SDT
+    - instance: "5571247d-f984-4e26-bc94-51df4ee4ebdc"
       properties:
+        cclass: OE_SDT
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Name: "GainMode"
-    - instance: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
-      cclass: OE_EDT
+    - instance: "5d64766d-10ee-4861-a7cf-a207455a643b"
       properties:
+        cclass: OE_EDT
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
     - instance: "6d55a0fe-4689-435c-a1ad-059dc602b33d"
-      cclass: OE_EDTI
       properties:
+        cclass: OE_EDTI
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
         Name: "Gain1"
         Description: "Gain mode : x 1"
     - instance: "33892d13-0e35-46ec-a206-d0afe255b3eb"
-      cclass: OE_EDTI
       properties:
+        cclass: OE_EDTI
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
         Name: "Gain16"
         Description: "Gain mode : x 16"
     # lux
     - instance: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
-      cclass: OE_DT
       properties:
+        cclass: OE_DT
         DataTypeID: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
         Description: "Illuminance of light"
-    - instance: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
-      cclass: OE_SDT
+    - instance: "4f5f5d5b-c78d-4d2b-8974-7fb2bf5f5594"
       properties:
+        cclass: OE_SDT
         DataTypeID: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
-        ComponentID: 0x00000001
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Name: "lux"
-    - instance: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
-      cclass: OE_PDT
+    - instance: "a6c04a9c-96ee-4226-aaa4-cb25a55146f8"
       properties:
+        cclass: OE_PDT
         DataTypeID: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
         Base_DataTypeID: "8aa01859-2bcb-4000-83b0-772527e9ff74"
         NotationID: NULL
     - instance: "71e71281-da18-43c6-b0cb-d35413764e0c"
-      cclass: OE_VNR
       properties:
+        cclass: OE_VNR
         NotationID: "0fab8ba0-2fc5-4099-910e-d38bf44318b4"
         Rule: '^(?:0|[1-9]\d*)$'
         Description: "zero or positive integer"
     # Memory Variable & Parameter Order
     # For Configuration
     - instance: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
-      cclass: OE_MB
       properties:
-        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
-        Length: 4 # sizeof(Integer)
-    - instance: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
-      cclass: OE_IMB
+        cclass: OE_MB
+        MemoryBlockID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        # Length: 4 # sizeof(Integer) - This property is calculated by the sum of all PIMs in this MB.
+    - instance: "a9034e1e-78fa-4a07-9c2b-5f382077a153"
       properties:
-        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        cclass: OE_IMB
+        MemoryBlockID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
         ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
     - instance: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
-      cclass: OE_PIM
       properties:
-        PIM_ID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
-        MB_ID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
-        OffsetMB: 0
-        PossitionInBits: 0
-    - instance: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
-      cclass: OE_PPIM
+        cclass: OE_PIM
+        PositionInMemoryID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+        MemoryBlockID: "b891fdd0-2ee1-4e5f-aac8-c97610cc5049"
+        OffsetInMemoryBlock: 0
+        PositionInBits: 0
+    - instance: "cf8d0902-7316-4eeb-ad81-2ee2429bfd11"
       properties:
-        PIM_ID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
+        cclass: OE_PPIM
+        PositionInMemoryID: "a3e413a4-37d3-47b6-a59f-58b490d0d739"
         ItemID: "892e3f6f-6b0e-431a-9b11-13699bf2fae2"
         Name: "GainMode"
     # For Light Sense
     - instance: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
-      cclass: OE_MB
       properties:
-        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
-        Length: 8 # sizeof(Real)
-    - instance: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
-      cclass: OE_IMB
+        cclass: OE_MB
+        MemoryBlockID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        # Length: 4 # sizeof(Integer) - This property is calculated by the sum of all PIMs in this MB.
+    - instance: "f434542c-8178-43a7-b243-ad39c329be5c"
       properties:
-        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        cclass: OE_IMB
+        MemoryBlockID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
         ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
     - instance: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
-      cclass: OE_PIM
       properties:
-        PIM_ID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
-        MB_ID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
-        OffsetInMB: 0
-        PossitionInBits: 0
-    - instance: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
-      cclass: OE_PPIM
+        cclass: OE_PIM
+        PositionInMemoryID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+        MemoryBlockID: "07e7d13a-a0fd-4a58-a6ec-cc7ee07e5b3d"
+        OffsetInMemoryBlock: 0
+        PositionInBits: 0
+    - instance: "5977cf5c-6ad3-41cf-8215-11b0329ddbbf"
       properties:
-        PIM_ID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
+        cclass: OE_PPIM
+        PositionInMemoryID: "8ec8b5ee-9024-45e9-b735-34abb1c4fbb8"
         ItemID: "19744cbf-ea5f-43a7-be4d-aefebe278821"
         Name: "intensity"
+    - instance: "b8506bbf-0bd9-4f6a-b678-af21e1ca7699"
+      properties:
+        cclass: OE_CFDDS
+        ConfigurationID: "29020367-f4a4-451b-8331-a7afa22352a5"
+        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
