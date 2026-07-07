@@ -18,6 +18,7 @@ namespace KAE.CMTools.Core.DataType
 
         public PrimitiveDataType(DataTypeKind kind) : base(kind.ToString())
         {
+            dataTypeKind = kind;
         }
 
         public static Dictionary<DataTypeKind, PrimitiveDataType> GetPrimitiveDataTypes()
@@ -54,7 +55,7 @@ namespace KAE.CMTools.Core.DataType
                 case DataTypeKind.STRING:
                     type = typeof(string); break;
                 case DataTypeKind.INTEGER:
-                    type = typeof(int); break;
+                    type = typeof(long); break;
                 case DataTypeKind.REAL:
                     type = typeof(double); break;
                 case DataTypeKind.BOOLEAN:

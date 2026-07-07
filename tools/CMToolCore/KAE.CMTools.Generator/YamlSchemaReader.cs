@@ -4,6 +4,7 @@
 using KAE.CMTools.Core;
 using KAE.CMTools.Core.DataType;
 using KAE.CMTools.Generator.Core;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
@@ -18,9 +19,9 @@ namespace KAE.CMTools.Generator
     {
         public void Parse(InstanceRepository repository)
         {
-            if (formatValidSchemaJson != null)
+            if (validDescripJson != null)
             {
-                foreach(var prop in  formatValidSchemaJson)
+                foreach (var prop in validDescripJson)
                 {
                     if (prop.Key == "domain")
                     {
@@ -40,23 +41,24 @@ namespace KAE.CMTools.Generator
                                 JObject cclasses = (JObject)domainProp.Value;
                                 foreach (var cclassesProp in cclasses.Properties())
                                 {
-                                    if (cclassesProp.Value.Type== JTokenType.Array)
+                                    if (cclassesProp.Value.Type == JTokenType.Array)
                                     {
                                         foreach (var cclass in (JArray)cclassesProp.Value)
                                         {
                                             var parsedCClass = ParseConceptualClass(parsedDomain, (JObject)cclass);
-                                        }                                    }
+                                        }
+                                    }
                                 }
 
                             }
                             else if (domainProp.Key == "relationships")
                             {
-                                JObject relationships = (JObject)domainProp.Value; 
-                                foreach(var relationshipProp in relationships.Properties())
+                                JObject relationships = (JObject)domainProp.Value;
+                                foreach (var relationshipProp in relationships.Properties())
                                 {
                                     if (relationshipProp.Value.Type == JTokenType.Array)
                                     {
-                                        foreach(var relationship in (JArray)relationshipProp.Value)
+                                        foreach (var relationship in (JArray)relationshipProp.Value)
                                         {
                                             var parsedRelationship = ParseRelationship(parsedDomain, (JObject)relationship);
                                         }
@@ -73,7 +75,7 @@ namespace KAE.CMTools.Generator
             }
         }
 
-        private ConceptualClass ParseConceptualClass(ConceptualDomain domain,  JObject conceptualClassDef)
+        private ConceptualClass ParseConceptualClass(ConceptualDomain domain, JObject conceptualClassDef)
         {
             string cclassName = "";
             string keyLetter = "";
@@ -95,19 +97,19 @@ namespace KAE.CMTools.Generator
                 }
                 else if (cclassDef.Key == "description")
                 {
-                    description= (string)cclassDef.Value;
+                    description = (string)cclassDef.Value;
                 }
             }
 
-            if (string.IsNullOrEmpty(cclassName)||string.IsNullOrEmpty(keyLetter)||string.IsNullOrEmpty(number))
+            if (string.IsNullOrEmpty(cclassName) || string.IsNullOrEmpty(keyLetter) || string.IsNullOrEmpty(number))
             {
 
             }
 
-            Console.WriteLine($"Parsing Conceptual Class - '{cclassName}"+"{"+$"{keyLetter}, {number}"+"}'");
+            logger.LogInformation($"Parsing Conceptual Class - '{cclassName}" + "{" + $"{keyLetter}, {number}" + "}'");
             var parsedCClass = new ConceptualClassBase(domain, cclassName, keyLetter, number, description);
 
-            var identities = new Dictionary<int, Dictionary<string,Property>>();
+            var identities = new Dictionary<int, Dictionary<string, Property>>();
 
             foreach (var cclassDef in conceptualClassDef)
             {
@@ -123,8 +125,9 @@ namespace KAE.CMTools.Generator
                                 string dataTypeName = "";
                                 description = null;
                                 bool isMath = false;
-                                string grammer = null;
+                                string grammar = null;
                                 bool isDenote = false;
+                                bool nullable = false;
                                 // parsing property description
                                 foreach (var aPropDef in (JObject)propDef)
                                 {
@@ -144,33 +147,41 @@ namespace KAE.CMTools.Generator
                                     {
                                         isMath = (bool)aPropDef.Value;
                                     }
-                                    else if (aPropDef.Key == "grammer")
+                                    else if (aPropDef.Key == "grammar")
                                     {
-                                        grammer = (string)aPropDef.Value;
+                                        grammar = (string)aPropDef.Value;
                                     }
                                     else if (aPropDef.Key == "denote")
                                     {
                                         isDenote = (bool)aPropDef.Value;
                                     }
+                                    else if (aPropDef.Key == "nullable")
+                                    {
+                                        nullable = (bool)aPropDef.Value;
+                                    }
                                 }
                                 DataType dataType = null;
                                 if (!string.IsNullOrEmpty(dataTypeName))
                                 {
-                                    dataType = PrimitiveDataType.GetPrimitiveDataTypes().Where(kv=>kv.Key.ToString()== dataTypeName).FirstOrDefault().Value;
+                                    dataType = PrimitiveDataType.GetPrimitiveDataTypes().Where(kv => kv.Key.ToString() == dataTypeName).FirstOrDefault().Value;
                                 }
-                                var parsedProperty = new Property(name, dataType, isDenote, isMath, grammer, description);
+                                var parsedProperty = new Property(name, dataType, isDenote, isMath, grammar, description);
+                                if (nullable)
+                                {
+                                    parsedProperty.IsNullable = true;
+                                }
 
                                 parsedCClass.AddProperty(parsedProperty);
 
-                                foreach(var aPropDef in (JObject)propDef)
+                                foreach (var aPropDef in (JObject)propDef)
                                 {
                                     if (aPropDef.Key == "identity")
                                     {
-                                        foreach(var idDef in (JArray)aPropDef.Value)
+                                        foreach (var idDef in (JArray)aPropDef.Value)
                                         {
                                             int idLevel = (int)idDef;
                                             parsedCClass.AddIdentity(idLevel, parsedProperty);
-                                        }                                        
+                                        }
                                     }
                                 }
                             }
@@ -219,7 +230,7 @@ namespace KAE.CMTools.Generator
                 }
             }
 
-            Console.WriteLine($"Parsing Relationship - {rIndex}...");
+            logger.LogInformation($"Parsing Relationship - {rIndex}...");
 
             Func<JObject, (string, string, string)> ParseEdge = token =>
             {
@@ -246,9 +257,9 @@ namespace KAE.CMTools.Generator
 
             Action<string, string, string> ShowRelationshipError = (rIndex, keyLett, reason) =>
             {
-                Console.WriteLine("Description Error :");
-                Console.WriteLine($" - in Relationship : {rIndex}");
-                Console.WriteLine($"   '{keyLett}' {reason}.");
+                logger.LogInformation("Description Error :");
+                logger.LogInformation($" - in Relationship : {rIndex}");
+                logger.LogInformation($"   '{keyLett}' {reason}.");
 
             };
 
@@ -461,7 +472,7 @@ namespace KAE.CMTools.Generator
                                     {
                                         var propPair = (JProperty)propDef;
                                         otherProps.Add(propPair.Name);
-                                        assocOnOneProps.Add((string)((JValue)propPair.Value).Value);
+                                        assocOnOtherProps.Add((string)((JValue)propPair.Value).Value);
                                     }
                                 }
                             }
@@ -486,21 +497,37 @@ namespace KAE.CMTools.Generator
 
         protected void TraverseShcemaDefinition(JToken token)
         {
-           
+
         }
 
-
-        public void Read(Stream formatStream, Stream schemaStream)
+        public bool Read(Stream schemaStream, Stream descripStream)
         {
-            string formatText = "";
-            string yamlText = "";
-            using (var reader = new StreamReader(formatStream))
+            var validator = new YamlValidator(schemaStream, descripStream) { Logger = logger };
+            logger.LogInformation("Validating...");
+            if (validator.Validate())
             {
-                formatText = reader.ReadToEnd();
+                logger.LogInformation("Validated.");
+                validDescripJson = validator.ValidatedDescripJson;
+                return true;
             }
+            else
+            {
+                validator.ShowErrors();
+            }
+            return false;
+        }
+
+        public void ReadOld(Stream schemaStream, Stream descripStream)
+        {
+            string schemaText = "";
+            string descripYamlText = "";
             using (var reader = new StreamReader(schemaStream))
             {
-                yamlText = reader.ReadToEnd();
+                schemaText = reader.ReadToEnd();
+            }
+            using (var reader = new StreamReader(descripStream))
+            {
+                descripYamlText = reader.ReadToEnd();
             }
 
             IList<string> erros = new List<string>();
@@ -512,20 +539,20 @@ namespace KAE.CMTools.Generator
 
             try
             {
-                var yamlObject = deserializer.Deserialize<object>(yamlText);
-                string jsonYaml = JsonConvert.SerializeObject(yamlObject);
+                var descripYamlObject = deserializer.Deserialize<object>(descripYamlText);
+                string descripJsonYaml = JsonConvert.SerializeObject(descripYamlObject);
                 try
                 {
-                    var formatObject = deserializer.Deserialize<object>(formatText);
-                    var formatJsonText = JsonConvert.SerializeObject(formatObject);
+                    var schemaObject = deserializer.Deserialize<object>(schemaText);
+                    var schemaJsonText = JsonConvert.SerializeObject(schemaObject);
 
                     try
                     {
-                        JSchema format = JSchema.Parse(formatJsonText);
+                        JSchema schema = JSchema.Parse(schemaJsonText);
 
-                        JObject parsedYamlObject = JObject.Parse(jsonYaml);
+                        JObject parsedDescripYamlObject = JObject.Parse(descripJsonYaml);
 
-                        var validated = parsedYamlObject.IsValid(format, out erros);
+                        var validated = parsedDescripYamlObject.IsValid(schema, out erros);
                         if (!validated)
                         {
                             var yamlFormatErrors = new List<YamlFormatError>();
@@ -537,15 +564,15 @@ namespace KAE.CMTools.Generator
                                 var periodPos = error.LastIndexOf('.');
                                 var posPos = error.Substring(pos + posStr.Length, periodPos - pos - posStr.Length);
                                 int errorPosition = int.Parse(posPos);
-                                yamlFormatErrors.Add(new YamlFormatError() { Message = error, JsonText = jsonYaml.Substring(errorPosition, 50) });
+                                yamlFormatErrors.Add(new YamlFormatError() { Message = error, JsonText = descripJsonYaml.Substring(errorPosition, 50) });
                             }
                             throw new YamlSchemaValidationException(yamlFormatErrors);
                         }
-                        formatValidSchemaJson = parsedYamlObject;
+                        validDescripJson = parsedDescripYamlObject;
                     }
                     catch (Newtonsoft.Json.Schema.JSchemaReaderException ex)
                     {
-                        string missingDescrip = "..." + formatJsonText.Substring(ex.LinePosition, 100) + "...";
+                        string missingDescrip = "..." + schemaJsonText.Substring(ex.LinePosition, 100) + "...";
                         throw new YamlFormatSyntaxValidationException(ex, missingDescrip);
                     }
                 }
@@ -568,30 +595,43 @@ namespace KAE.CMTools.Generator
             foreach (var domainName in currentRepository.ConceptualDomains.Keys)
             {
                 var domain = currentRepository.ConceptualDomains[domainName];
-                Console.WriteLine($"Validating Domain : '{domain.Name}' ...");
+                logger.LogInformation($"Validating Domain : '{domain.Name}' ...");
                 foreach (var relIndex in domain.Relationships.Keys)
                 {
                     var relationship = domain.Relationships[relIndex];
-                    Console.WriteLine($" Validating Relationship - {relationship.RIndex}...");
-                    result = relationship.Validate();
+                    logger.LogInformation($" Validating Relationship - {relationship.RIndex}...");
+                    result = relationship.Validate(logger);
                     if (result == false)
                     {
-                        Console.WriteLine("Validation Failed.");
+                        logger.LogInformation("Validation Failed.");
                         break;
+                    }
+                }
+
+                foreach (var cclassKeyLett in domain.ConceptualClasses.Keys)
+                {
+                    var cclass = domain.ConceptualClasses[cclassKeyLett];
+                    foreach (var propName in cclass.Properties.Keys)
+                    {
+                        var property = cclass.Properties[propName];
+                        property.FixBaseDataType();
                     }
                 }
             }
 
             if (result)
             {
-                Console.WriteLine("Validation Done without any problem!");
+
+                logger.LogInformation("Validation Done without any problem!");
             }
 
             return result;
         }
 
-        protected JObject formatValidSchemaJson = null;
+        protected JObject validDescripJson = null;
 
+        public ILogger Logger { get => logger; set => logger = value; }
+        protected ILogger logger;
     }
 
     public class YamlFormatError

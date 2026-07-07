@@ -37,7 +37,6 @@ namespace KAE.CMTools.Core.DataType
             this.name = name;
         }
 
-
         protected string name;
     }
 }

@@ -16,6 +16,7 @@ namespace KAE.CMTools.Core
 
         public IReadOnlyDictionary<string, Relationship> Relationships { get => relationships; }
 
+
         public ConceptualDomain(string Name)
         {
             this.cDomainName = Name;

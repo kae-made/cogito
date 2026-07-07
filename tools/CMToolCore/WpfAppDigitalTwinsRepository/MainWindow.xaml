@@ -1,0 +1,97 @@
+﻿<Window x:Class="WpfAppDigitalTwinsRepository.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppDigitalTwinsRepository"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="CIM Schema File Path : " VerticalAlignment="Center"/>
+            <TextBox Name="tbCIMSchemaFilePath" VerticalAlignment="Center" Grid.Column="1"/>
+            <Button Name="buttonSelectCIMSchemaFilePath" Content="Select" Grid.Column="2" Margin="1" Click="buttonSelectCIMSchemaFilePath_Click"/>
+            <TextBlock Text="CIM Definition File Path : " VerticalAlignment="Center" Grid.Row="1"/>
+            <TextBox Name="tbCIMDefFilePath" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            <Button Name="buttonSelectCIMDefFilePath" Content="Select" Grid.Row="1" Grid.Column="2" Margin="1" Click="buttonSelectCIMDefFilePath_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Name="cbIsValidation" IsChecked="True" Content="Validation" VerticalAlignment="Center"/>
+            <Button Name="buttonReadCIMDef" Content="Read and Parse" Grid.Column="1" Margin="1" IsEnabled="False" Click="buttonReadCIMDef_Click"/>
+            <CheckBox Name="cbIsGenerateInstSchema" IsChecked="False" Content="Generate Schema" Grid.Column="2" VerticalAlignment="Center" Checked="cbIsGenerateInstSchema_Checked"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="55.277"/>
+                <ColumnDefinition Width="94.723"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Instance Schema File Path : " VerticalAlignment="Center"/>
+            <TextBox Name="tbInstSchemaFilePath" VerticalAlignment="Center" Grid.Column="1"/>
+            <Button Name="buttonSetInstSchemaFilePath" Content="Set or Select" Grid.Column="2" Margin="1,1,1,1" IsEnabled="False" Click="buttonSetInstSchemaFilePath_Click" Grid.ColumnSpan="2"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="buttonSelectInstanceModel" Content="Select Instance Model" VerticalAlignment="Center" IsEnabled="False" Click="buttonSelectInstanceModel_Click"/>
+            <TextBox Name="tbInstanceModelFilePath" VerticalAlignment="Center" Grid.Column="1"/>
+            <Button Name="buttonRead" Content="Read and Parse" Grid.Column="2" IsEnabled="False" Click="buttonRead_Click"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Read Instance Models" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox Name="lbInstanceModes" Grid.Row="1" ItemsSource="{Binding ParsedFoSItems}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock>FoSId : </TextBlock>
+                            <TextBlock Text="{Binding FoSId}"/>
+                            <TextBlock Text="{Binding FilePath}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Name="svOpHistory">
+                <TextBlock Name="tbOpHistory"/>
+            </ScrollViewer>
+            <ScrollViewer Name="svLogging" Grid.Column="1">
+                <TextBlock Name="tbLogging" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

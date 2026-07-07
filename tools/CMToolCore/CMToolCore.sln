@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.35230.98
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KAE.CMTools.Core", "KAE.CMTools.Core\KAE.CMTools.Core.csproj", "{8C596BC9-E584-4626-9773-56C7A1FAB79D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Core", "KAE.CMTools.Core\KAE.CMTools.Core.csproj", "{8C596BC9-E584-4626-9773-56C7A1FAB79D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KAE.CMTools.Generator.Core", "KAE.CMTools.Generator.Core\KAE.CMTools.Generator.Core.csproj", "{DB10016F-D934-4F45-AC22-04663514CD51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Generator.Core", "KAE.CMTools.Generator.Core\KAE.CMTools.Generator.Core.csproj", "{DB10016F-D934-4F45-AC22-04663514CD51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KAE.CMTools.Generator", "KAE.CMTools.Generator\KAE.CMTools.Generator.csproj", "{E4782684-8968-4C0B-A396-088928C47D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Generator", "KAE.CMTools.Generator\KAE.CMTools.Generator.csproj", "{E4782684-8968-4C0B-A396-088928C47D24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KAE.CMTools.Generator.Test", "KAE.CMTools.Generator.Test\KAE.CMTools.Generator.Test.csproj", "{88FE26A2-E050-46B4-9707-19DF869CB3AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Generator.Test", "KAE.CMTools.Generator.Test\KAE.CMTools.Generator.Test.csproj", "{88FE26A2-E050-46B4-9707-19DF869CB3AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDigitalTwinsRepository", "WpfAppDigitalTwinsRepository\WpfAppDigitalTwinsRepository.csproj", "{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{88FE26A2-E050-46B4-9707-19DF869CB3AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88FE26A2-E050-46B4-9707-19DF869CB3AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88FE26A2-E050-46B4-9707-19DF869CB3AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

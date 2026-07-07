@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using KAE.CMTools.Core.DataType;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using static KAE.CMTools.Core.Relationship;
 
 namespace KAE.CMTools.Core
 {
-    public class RelationshipEdge<T> : Validater
+    public class RelationshipEdge<T> : Validator
         where T: ConceptualClass
     {
         public T EdgeInstance { get => edgeInstance; }
@@ -22,15 +23,15 @@ namespace KAE.CMTools.Core
 
         public List<string> Properties { get => properties; }
 
-        public bool Validate()
+        public bool Validate(ILogger logger)
         {
             bool result = true;
 
             Action<string, string> ShowProblem = (propertyName, message) =>
             {
-                Console.WriteLine("Invalid Relationship description");
-                Console.WriteLine($" - Relationship Index {rIndex}");
-                Console.WriteLine($" - Property '{propertyName}' of '{edgeInstance.KeyLetter}' : {message}.");
+                logger.LogInformation("Invalid Relationship description");
+                logger.LogInformation($" - Relationship Index {rIndex}");
+                logger.LogInformation($" - Property '{propertyName}' of '{edgeInstance.KeyLetter}' : {message}.");
             };
 
             var referentProperties = new List<Property>();
@@ -48,7 +49,7 @@ namespace KAE.CMTools.Core
                     if (edgeRole == SemanticRole.Participant)
                     {
                         var property = edgeInstance.Properties[propertyName];
-                        if (!property.IsReferenDataType())
+                        if (!property.IsParticipantProperty())
                         {
                             ShowProblem(propertyName, $" Data Type should be {DataTypeKind.REFERENCE.ToString()}");
                             result = false;
@@ -86,9 +87,9 @@ namespace KAE.CMTools.Core
                         }
                         propList += $"'{propName}'";
                     }
-                    Console.WriteLine("Invalid Relationship description");
-                    Console.WriteLine($" - Relationship Index {rIndex}");
-                    Console.WriteLine($" - Properties : {propList} of {edgeInstance.KeyLetter} should be same level identity.");
+                    logger.LogInformation("Invalid Relationship description");
+                    logger.LogInformation($" - Relationship Index {rIndex}");
+                    logger.LogInformation($" - Properties : {propList} of {edgeInstance.KeyLetter} should be same level identity.");
                     result = false;
                 }
             }

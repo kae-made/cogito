@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Knowledge & Experience. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,12 @@ namespace KAE.CMTools.Core
 
         public void AddSubEdge(ConceptualClass subEdge, List<string> propertiesOnSub)
         {
-            this.subEdges.Add(subEdge.KeyLetter, new SubEdgeOnIsARelationship(relationshipIndex, referentProps, subEdge, propertiesOnSub));
+            this.subEdges.Add(subEdge.KeyLetter, new SubEdgeOnIsARelationship(relationshipIndex, superEdge, referentProps, subEdge, propertiesOnSub));
+
+           
         }
 
-        public override bool Validate()
+        public override bool Validate(ILogger logger)
         {
             bool result = true;
             Action<string, string> ShowProblem = (propertyName, message) =>
@@ -39,9 +42,9 @@ namespace KAE.CMTools.Core
             {
                 if (!superEdge.Properties.ContainsKey(propertyName))
                 {
-                    Console.WriteLine("Invalid Relationship description");
-                    Console.WriteLine($" - Relationship Index {relationshipIndex}");
-                    Console.WriteLine($" - Property '{propertyName}' of '{superEdge.KeyLetter}' : has not defined.");
+                    logger.LogInformation("Invalid Relationship description");
+                    logger.LogInformation($" - Relationship Index {relationshipIndex}");
+                    logger.LogInformation($" - Property '{propertyName}' of '{superEdge.KeyLetter}' : has not defined.");
                     result = false;
                 }
             }
@@ -69,17 +72,15 @@ namespace KAE.CMTools.Core
                         }
                         propList += $"'{propName}'";
                     }
-                    Console.WriteLine("Invalid Relationship description");
-                    Console.WriteLine($" - Relationship Index {relationshipIndex}");
-                    Console.WriteLine($" - Properties : {propList} of {superEdge.KeyLetter} should be same level identity.");
+                    logger.LogInformation("Invalid Relationship description");
+                    logger.LogInformation($" - Relationship Index {relationshipIndex}");
+                    logger.LogInformation($" - Properties : {propList} of {superEdge.KeyLetter} should be same level identity.");
                     result = false;
                 }
 
-
-
                 foreach (var keyLett in subEdges.Keys)
                 {
-                    result = subEdges[keyLett].Validate();
+                    result = subEdges[keyLett].Validate(logger);
                     if (result == false)
                     {
                         break;
@@ -94,58 +95,80 @@ namespace KAE.CMTools.Core
         private Dictionary<string, SubEdgeOnIsARelationship> subEdges;
     }
 
-    public class SubEdgeOnIsARelationship : Validater
+    public class SubEdgeOnIsARelationship : Validator
     {
         public ConceptualClass SubEdge { get => subEdge; }
         public List<string> Properties { get => propertiesOnSub; }
 
-        public SubEdgeOnIsARelationship(string rIndex, List<string> referentProps, ConceptualClass edgeInstance, List<string> properties)
+        public SubEdgeOnIsARelationship(string rIndex, ConceptualClass superEdge, List<string> referentProps, ConceptualClass edgeInstance, List<string> properties)
         {
             this.rIndex = rIndex;
+            this.superEdge = superEdge;
+            this.subEdge = edgeInstance;
             this.referentProps = referentProps;
             subEdge = edgeInstance;
             propertiesOnSub = new List<string>(properties);
         }
 
         private string rIndex;
+        private ConceptualClass superEdge;
         private List<string> referentProps;
         private ConceptualClass subEdge;
         private List<string> propertiesOnSub;
 
-        public bool Validate()
+        public bool Validate(ILogger logger)
         {
             bool result = true;
             if (referentProps.Count == propertiesOnSub.Count)
             {
-                foreach (var propertyName in propertiesOnSub)
+                bool isValid = true;
+                foreach(var propertyName in referentProps)
                 {
-                    if (!subEdge.Properties.ContainsKey(propertyName))
+                    if (!superEdge.Properties.ContainsKey(propertyName))
                     {
-                        Console.WriteLine("Invalid Relationship description");
-                        Console.WriteLine($" - Relationship Index {rIndex}");
-                        Console.WriteLine($" - Property '{propertyName}' of '{subEdge.KeyLetter}' : has not defined.");
-                        result = false;
+                        isValid = false;
+                        logger.LogInformation("Invalid Relationship description");
+                        logger.LogInformation($" - Relationship Index {rIndex}");
+                        logger.LogInformation($" - Property '{propertyName}' of '{superEdge.KeyLetter}' : has not defined.");
                         break;
                     }
-                    else
+                }
+                if (isValid)
+                {
+                    foreach (var (propertyName, index) in propertiesOnSub.Select((item, index) => (item, index)))
                     {
-                        var property = subEdge.Properties[propertyName];
-                        if (!property.IsReferenDataType())
+                        if (!subEdge.Properties.ContainsKey(propertyName))
                         {
-                            Console.WriteLine("Invalid Relationship description");
-                            Console.WriteLine($" - Relationship Index {rIndex}");
-                            Console.WriteLine($" - Property '{propertyName}' of '{subEdge.KeyLetter}' : Data Type should be 'REFERENCE'.");
+                            logger.LogInformation("Invalid Relationship description");
+                            logger.LogInformation($" - Relationship Index {rIndex}");
+                            logger.LogInformation($" - Property '{propertyName}' of '{subEdge.KeyLetter}' : has not defined.");
                             result = false;
                             break;
                         }
+                        else
+                        {
+                            var property = subEdge.Properties[propertyName];
+                            if (!property.IsParticipantProperty())
+                            {
+                                logger.LogInformation("Invalid Relationship description");
+                                logger.LogInformation($" - Relationship Index {rIndex}");
+                                logger.LogInformation($" - Property '{propertyName}' of '{subEdge.KeyLetter}' : Data Type should be 'REFERENCE'.");
+                                result = false;
+                                break;
+                            }
+                            property.AddReferentProperty(superEdge.KeyLetter, superEdge.Properties[referentProps[index]]);
+                        }
+
+
+
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Relationship description");
-                Console.WriteLine($" - Relationship Index {rIndex}");
-                Console.WriteLine($" - Number of Participant Properties  of '{subEdge.KeyLetter}' : should be same.");
+                logger.LogInformation("Invalid Relationship description");
+                logger.LogInformation($" - Relationship Index {rIndex}");
+                logger.LogInformation($" - Number of Participant properties  of '{subEdge.KeyLetter}' : should be same.");
 
                 result = false;
             }

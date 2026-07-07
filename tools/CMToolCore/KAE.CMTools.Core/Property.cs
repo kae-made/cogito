@@ -19,9 +19,12 @@ namespace KAE.CMTools.Core
 
         public bool IsDenote { get => isDenote; }
         public bool IsMethematical { get=> isMethematical; }
-        public string Grammer { get => Grammer; }
+        public bool IsNullable {  get => isNullable; set => isNullable = value; }
+        public string Grammar { get => grammar; }
 
-        public bool IsReferenDataType()
+        public DataType.DataType BaseDataType { get=> baseDataType; set => baseDataType = value; }
+
+        public bool IsParticipantProperty()
         {
             if (this.dataType is PrimitiveDataType)
             {
@@ -33,11 +36,13 @@ namespace KAE.CMTools.Core
             return false;
         }
 
+
         public Property(string name, DataType.DataType dataType, string description = null)
         {
             this.name = name;
             this.dataType = dataType;
             this.description = description;
+            this.isNullable= false;
         }
 
         public Property(string name, DataType.DataType dataType, bool isDenote, string description=null) : this(name, dataType, description)
@@ -45,20 +50,64 @@ namespace KAE.CMTools.Core
             this.isMethematical = isDenote;
         }
 
-        public Property(string name, DataType.DataType dataType, bool isDenote,  bool isMathematical, string grammer=null, string description=null):this(name, dataType, description)
+        public Property(string name, DataType.DataType dataType, bool isDenote,  bool isMathematical, string grammar=null, string description=null):this(name, dataType, description)
         {
             this.isMethematical = isMathematical;
-            this.grammer = grammer;
+            this.grammar = grammar;
             this.isDenote = isDenote;
         }
 
+        public void AddReferentProperty(string cclassKeyLett, Property referentProperty)
+        {
+            referentProperties.Add(new KeyValuePair<string, Property>(cclassKeyLett, referentProperty));
+        }
+
+        public DataType.DataType FixBaseDataType()
+        {
+
+            if (this.IsParticipantProperty())
+            {
+                foreach(var classKeyProp in referentProperties)
+                {
+                    var referentDataType = classKeyProp.Value.FixBaseDataType();
+                    if (referentDataType.Name != DataTypeKind.REFERENCE.ToString())
+                    {
+                        BaseDataType = referentDataType;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                if (this.baseDataType == null)
+                {
+                    if (this.dataType.Name== DataTypeKind.UNIQUE_ID.ToString())
+                    {
+                        this.baseDataType = PrimitiveDataType.GetPrimitiveDataTypes()[DataTypeKind.STRING];
+                    }
+                    else if (this.dataType.Name == DataTypeKind.OTHER.ToString())
+                    {
+                        this.baseDataType = PrimitiveDataType.GetPrimitiveDataTypes()[DataTypeKind.STRING];
+                    }
+                    else
+                    {
+                        this.baseDataType = this.dataType;
+                    }
+                }
+            }
+
+            return baseDataType;
+        }
 
         protected string name;
         protected DataType.DataType dataType;
         protected string description = null;
         protected bool isMethematical = false;
-        protected string grammer = null;
+        protected string grammar = null;
         protected bool isDenote = false;
+        protected bool isNullable = false;
+        protected DataType.DataType baseDataType = null;
+        protected List<KeyValuePair<string, Property>> referentProperties = new List<KeyValuePair<string, Property>>();
     }
 
     public class PropertyRef<T, TProp>
