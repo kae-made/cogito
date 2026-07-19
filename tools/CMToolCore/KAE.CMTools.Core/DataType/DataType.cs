@@ -37,6 +37,16 @@ namespace KAE.CMTools.Core.DataType
             this.name = name;
         }
 
+        public static void BuildBaseTypes(Dictionary<string, DataType> dictionary)
+        {
+            var kinds = Enum.GetNames(typeof(DataTypeKind));
+            for (int i = 0; i < kinds.Length; i++)
+            {
+                var kind = (DataTypeKind)Enum.Parse(typeof(DataTypeKind), kinds[i]);
+                dictionary.Add(kinds[i], new PrimitiveDataType(kind));
+            }
+        }
+
         protected string name;
     }
 }

@@ -13,12 +13,23 @@ namespace KAE.CMTools.Core.DataType
     public class PrimitiveDataType : DataType
     {
         public DataTypeKind Kind { get => dataTypeKind; }
+        public string Pattern { get=>pattern; set => pattern = value; }
+        public string Unit { get=> unit; set => unit = value; }
 
         protected DataTypeKind dataTypeKind;
 
         public PrimitiveDataType(DataTypeKind kind) : base(kind.ToString())
         {
             dataTypeKind = kind;
+            pattern = "";
+            unit = "";
+        }
+
+        public PrimitiveDataType(string name, DataTypeKind kind) : base(name)
+        {
+            dataTypeKind = kind;
+            pattern = "";
+            unit = "";
         }
 
         public static Dictionary<DataTypeKind, PrimitiveDataType> GetPrimitiveDataTypes()
@@ -73,6 +84,10 @@ namespace KAE.CMTools.Core.DataType
         }
 
         protected static Dictionary<DataTypeKind, PrimitiveDataType> primitiveDataTypes;
+
+        protected string pattern;
+        protected string unit;
+
 
     }
 }

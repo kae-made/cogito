@@ -20,8 +20,10 @@ string generatedSchemaFilePath = "";
 List<string> fosInstModelPaths = new List<string>();
 
 var services = new ServiceCollection();
+
 services.AddLogging(builder =>
 {
+    builder.ClearProviders();
     builder.AddConsole();
     builder.SetMinimumLevel(LogLevel.Information);
 });

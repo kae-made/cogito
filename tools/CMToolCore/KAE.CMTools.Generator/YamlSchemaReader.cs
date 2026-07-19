@@ -36,6 +36,21 @@ namespace KAE.CMTools.Generator
                                 string domainName = (string)domainProp.Value;
                                 parsedDomain = repository.AddConceptualDomain(domainName);
                             }
+                            else if (domainProp.Key == "datatypes")
+                            {
+                                JObject datatypes=(JObject)domainProp.Value;
+                                foreach (var datatypesProp in datatypes.Properties())
+                                {
+                                    if (datatypesProp.Value.Type == JTokenType.Array)
+                                    {
+                                        foreach(var datatype in (JArray)datatypesProp.Value)
+                                        {
+                                            var parsedDataType = ParseDatatype(parsedDomain, (JObject)datatype);
+                                            parsedDomain.AddDataType(parsedDataType);
+                                        }
+                                    }
+                                }
+                            }
                             else if (domainProp.Key == "cclasses")
                             {
                                 JObject cclasses = (JObject)domainProp.Value;
@@ -73,6 +88,133 @@ namespace KAE.CMTools.Generator
                     }
                 }
             }
+        }
+
+        private DataType ParseDatatype(ConceptualDomain domain, JObject dataTypeDef)
+        {
+            string dataTypeName = "";
+            DataType parsedDataType = null;
+            foreach (var dtProp in dataTypeDef)
+            {
+                if (dtProp.Key == "name")
+                {
+                    dataTypeName = (string)dtProp.Value;
+                    break;
+                }
+            }
+            string dataTypeKind = "";
+            foreach (var dtProp in dataTypeDef)
+            {
+                if (dtProp.Key == "kind")
+                {
+                    dataTypeKind = (string)dtProp.Value;
+                    break;
+                }
+            }
+            if (!string.IsNullOrEmpty(dataTypeName) && !string.IsNullOrEmpty(dataTypeKind))
+            {
+                if (dataTypeKind == "primitive")
+                {
+                    parsedDataType = ParsePrimitiveDataType(dataTypeName, dataTypeDef);
+                }
+                else if (dataTypeKind == "enumeration")
+                {
+                    foreach(var dtProp in dataTypeDef)
+                    {
+                        if (dtProp.Key == "items")
+                        {
+                            parsedDataType = ParseEnumerationDataType(dataTypeName, (JArray)dtProp.Value);
+                            break;
+                        }
+                    }
+                }
+                else if (dataTypeKind == "complex")
+                {
+                    foreach(var dtProp in dataTypeDef)
+                    {
+                        if (dtProp.Key == "items")
+                        {
+                            parsedDataType = ParseComplexDataType(domain, dataTypeName, (JArray)dtProp.Value);
+                        }
+                    }
+                }
+            }
+            return parsedDataType;
+        }
+
+        private PrimitiveDataType ParsePrimitiveDataType(string pdtName, JObject pdtDef)
+        {
+            PrimitiveDataType parsedPDT= null;
+            
+            foreach(var dtProp in pdtDef)
+            {
+                if (dtProp.Key == "basetype")
+                {
+                    DataType.DataTypeKind baseKind = (DataType.DataTypeKind)Enum.Parse(typeof(DataType.DataTypeKind), (string)dtProp.Value);
+                    parsedPDT = new PrimitiveDataType(pdtName, baseKind);
+                    break;
+                }
+            }
+            if (parsedPDT != null)
+            {
+                foreach (var dtProp in pdtDef)
+                {
+                    if (dtProp.Key == "pattern")
+                    {
+                        parsedPDT.Pattern = (string)dtProp.Value;
+                    }
+                    else if (dtProp.Key == "unit")
+                    {
+                        parsedPDT.Unit = (string)dtProp.Value;
+                    }
+                }
+            }
+            return parsedPDT;
+        }
+        private EnumerationDataType ParseEnumerationDataType(string edtName, JArray itemsDef)
+        {
+            EnumerationDataType parsedEDT= null;
+            var items = new List<string>();
+            foreach (var itemDef in itemsDef)
+            {
+                string itemName = (string)itemDef;
+                items.Add(itemName);
+            }
+            parsedEDT = new EnumerationDataType(edtName, items);
+
+            return parsedEDT;
+        }
+
+        private ComplexDataType ParseComplexDataType(ConceptualDomain domain, string cdtName, JArray cdtDef)
+        {
+            ComplexDataType parsedCDT = null;
+            var children = new Dictionary<string, DataType>();
+            foreach (var itemDef in cdtDef)
+            {
+                string childName = "";
+                string typeName = "";
+                foreach (var childDef in itemDef)
+                {
+                    var child = (JProperty)childDef;
+                    if (child.Name == "name")
+                    {
+                        childName = (string)child.Value;
+                    }
+                    else if (child.Name == "type")
+                    {
+                        typeName = (string)child.Value;
+                    }
+                    if (!string.IsNullOrEmpty(childName) && !string.IsNullOrEmpty(typeName))
+                    {
+                        var dataType = domain.DataTypes[typeName];
+                        children.Add(childName, dataType);
+                        break;
+                    }
+                }
+            }
+            parsedCDT = new ComplexDataType(cdtName, children);
+
+            return parsedCDT;
         }
 
         private ConceptualClass ParseConceptualClass(ConceptualDomain domain, JObject conceptualClassDef)
@@ -163,7 +305,8 @@ namespace KAE.CMTools.Generator
                                 DataType dataType = null;
                                 if (!string.IsNullOrEmpty(dataTypeName))
                                 {
-                                    dataType = PrimitiveDataType.GetPrimitiveDataTypes().Where(kv => kv.Key.ToString() == dataTypeName).FirstOrDefault().Value;
+                                    // dataType = PrimitiveDataType.GetPrimitiveDataTypes().Where(kv => kv.Key.ToString() == dataTypeName).FirstOrDefault().Value;
+                                    dataType = domain.DataTypes[dataTypeName];
                                 }
                                 var parsedProperty = new Property(name, dataType, isDenote, isMath, grammar, description);
                                 if (nullable)
