@@ -1,0 +1,369 @@
+# yaml-language-server: $schema: ../schema/cim.schema.yaml
+# conceptual modeling metamodel based change recognition definition
+
+domain:
+  name: "Identity and Authentication"
+  datatypes:
+    datatype:
+      - name: ItemType
+        kind: "enumeration"
+        items:
+          - "Property"
+          - "Relationship"
+          - "Event"
+      - name: AuthType
+        kind: "enumeration"
+        items:
+          - "Updatable"
+          - "Readable"
+  cclasses:
+    cclass:
+      - key_letter: A_ID
+        name: "Identity"
+        number: 1
+        properties:
+          property:
+            - name: I_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: Name:
+              type: STRING
+              identity: [2]
+      - key_letter: A_T
+        name: Target
+        number: 2
+        properties:
+          property:
+            - name: T_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: I_Id:
+              type: REFERENCE
+              identity: [2]
+      - key_letter: A_RT
+        name: "Resource Type"
+        number: 3
+        properties:
+          property:
+            - name: RT_Id
+              type: UNIQUE_ID
+              identity: [1]
+      - key_letter: A_IRT
+        name: "Instance Resource Type"
+        number: 4
+        properties:
+          property:
+            - name: RT_Id
+              type: REFERENCE
+              identity: [1, 2]
+            - name: DomainName
+              type: STRING
+              identity: [2]
+            - name: CClassName
+              type: STRING
+              identity: [2]
+      - key_letter: A_RIRT
+        name: "Related Item Resource Type"
+        number: 5
+        properties:
+          property:
+            - name: RT_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Instance_RT_Id
+              type: REFERENCE
+              identity: [2]
+            - name: ItemType
+              type: ItemType
+              identity: [2]
+            - name: Name
+              type: STRING
+              identity: [2]
+      - key_letter: A_ITG
+        name: "Instance Target"
+        number: 6
+        properties:
+          property:
+            - name: T_Id
+              type: REFERENCE
+              identity: [1, 2]
+            - name: Instance_Id
+              type: STRING
+              identity: [2]
+            - name: RT_Id
+              type: REFERENCE
+              identity: [2]
+      - key_letter: A_IRITG
+        name: "Instance Related Item Target"
+        number: 7
+        properties:
+          property:
+            - name: T_Id
+              type: REFERENCE
+              identity: [1, 2]
+            - name: Instance_T_Id
+              type: REFERENCE
+              identity: [2]
+            - name: Instance_Instance_Id
+              type: REFERENCE
+              identity: [2]
+            - name: Instance_RT_Id
+              type: REFERENCE
+              identity: [2]
+      - key_letter: A_S
+        name: "Subject"
+        number: 8
+        properties:
+          property:
+            - name: I_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: A_RL
+        name: "Role"
+        number: 9
+        properties:
+          property:
+            - name: Rl_Id
+              type: UNIQUE_ID
+              identity: [1]
+            - name: Name
+              type: STRING
+              identity: [2]
+      - key_letter: A_RLP
+        name: "Role Permission"
+        number: 10
+        properties:
+          property:
+            - name: Rl_Id
+              type: REFERENCE
+              identity: [1]
+            - name: T_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Permission
+              type: AuthType
+              identity: [1]
+      - key_letter: A_SIR
+        name: "Subject in Role"
+        number: 11
+        properties:
+          property:
+            - name: Rl_Id
+              type: REFERENCE
+              identity: [1]
+            - name: I_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: A_SP
+        name: "Subject Permission"
+        number: 12
+        properties:
+          property:
+            - name: I_Id
+              type: REFERENCE
+              identity: [1]
+            - name: T_Id
+              type: REFERENCE
+              identity: [1]
+      - key_letter: A_SPWR
+        name: "Subject Permission With Role"
+        number: 13
+        properties:
+          property:
+            - name: I_Id
+              type: REFERENCE
+              identity: [1]
+            - name: T_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Role_Rl_Id
+              type: REFERENCE
+            - name: Role_RT_Id
+              type: REFERENCE
+            - name: Role_Permission
+              type: AuthType
+      - key_letter: A_ISP
+        name: "Indipendent Subject Permission"
+        number: 14
+        properties:
+          property:
+            - name: I_Id
+              type: REFERENCE
+              identity: [1]
+            - name: T_Id
+              type: REFERENCE
+              identity: [1]
+            - name: Permission
+              type: AuthType
+  relationships:
+    relationship:
+      - index: R1
+        kind: "is-a"
+        referent:
+          cclass: A_T
+          properties:
+            - T_Id
+        participants:
+          - cclass: A_ITG
+            properties:
+              - T_Id
+          - cclass: A_IRITG
+            properties:
+              - T_Id
+      - index: R2
+        kind: "is-a"
+        referent:
+          cclass: A_RT
+          properties:
+            - RT_Id
+        participants:
+          - cclass: A_IRT
+            properties:
+              - RT_Id
+          - cclass: A_RIRT
+            properties:
+              - RT_Id
+      - index: R3
+        kind: "binary"
+        referent:
+          cclass: A_IRT
+          multiplicity: "1"
+          phrase: "is related to"
+        participant:
+          cclass: A_RIRT
+          multiplicity: "M"
+          phrase: "entails"
+        referencing:
+          - RT_Id: Instance_RT_Id
+      - index: R4
+        kind: "binary"
+        referent:
+          cclass: A_IRT
+          multiplicity: "1"
+          phrase: "is instance of"
+        participant:
+          cclass: A_ITG
+          multiplicity: "MC"
+          phrase: "is conceptual class of"
+        referencing:
+          - RT_Id: RT_Id
+      - index: R5
+        kind: "binary"
+        referent:
+          cclass: A_ITG
+          multiplicity: "1"
+          phrase: "is related to"
+        participant:
+          cclass: A_IRITG
+          multiplicity: "M"
+          phrase: "entails"
+        referencing:
+          - T_Id: Instance_T_Id
+          - Instance_Id: instance_Instance_Id
+      - index: R6
+        kind: "binary"
+        referent:
+          cclass: A_RIRT
+          multiplicity: "1"
+          phrase: "is instance of"
+        participant:
+          cclass: A_RITG
+          multiplicity: "M"
+          phrase: "is template of"
+        referencing:
+          - RT_Id: Instance_RT_Id
+      - index: R7
+        kind: "is-a"
+        referent:
+          cclass: A_ID
+          properties:
+            - I_Id
+        participants:
+          - cclass: A_T
+            properties:
+              - I_Id
+          - cclass: A_S
+            properties:
+              - I_Id
+      - index: R8
+        kind: "binary-associative"
+        one:
+          cclass: A_RL
+          multiplicity: "M"
+          phrase: "is refered by"
+        participant:
+          cclass: A_RTP
+          multiplicity: "M"
+          phrase: "is permitted to"
+        associative:
+          cclass: A_RLP
+        referencing:
+          one:
+            - Rl_Id: Rl_Id
+          other:
+            - RT_Id: RT_Id
+      - index: R9
+        kind: "binary-associative"
+        one:
+          cclass: A_AL
+          multiplicity: "MC"
+          phrase: "may take on"
+        other:
+          cclass: A_S
+          multiplicity: "M"
+          phrase: "restrict"
+        associative:
+          cclass: A_SIR
+        referencing:
+          one:
+            - Rl_Id: Rl_Id
+          other:
+            - I_Id: I_Id
+      - index: R10
+        kind: "binary-associative"
+        one:
+          cclass: A_S
+          multiplicity: "MC"
+          phrase: "may be accessed by"
+        other:
+          cclass: A_T
+          multiplicity: "MC"
+          phrase: "can access to"
+        associative:
+          cclass: A_SP
+        referencing:
+          one:
+            - I_Id: I_Id
+          other:
+            - T_Id: T_Id
+      - index: R11
+        kind: "is-a"
+        referent:
+          cclass: A_SP
+          properties:
+            - I_Id
+            - T_Id
+        participants:
+          - cclass: A_SPWR
+            properties:
+              - I_Id
+              - T_Id
+          - cclass: A_ISP
+            properties:
+              - I_Id
+              - T_Id
+      - index: R12
+        kind: "binary"
+        referent:
+          cclass: A_RLP
+          multiplicity: "1"
+          phrase: "is limited to"
+        participant:
+          cclass: A_SPWR
+          multiplicity: "MC"
+          phrase: "restrict"
+        referencing:
+          - Rl_Id: Role_Rl_Id
+          - RT_Id: Role_RT_Id
+          - Permission: Role_Permission
+

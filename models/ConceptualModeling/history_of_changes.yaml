@@ -2,11 +2,11 @@
 # conceptual modeling metamodel based change recognition definition
 
 domain:
-  name: "change recognition"
+  name: "History of Changes"
   datatypes:
     datatype:
       - name: LifeStage
-        kind: "eunmeration"
+        kind: "enumeration"
         items:
           - "created"
           - "deleted"
@@ -57,9 +57,14 @@ domain:
             - name: "DomainName"
               type: REFERENCE
               identity: [1,2]
-            - Name: "ClassName"
+            - name: "ClassName"
               type: STRING
               identity: [2]
+            - name: "Associative_Target_Id"
+              type: REFERENCE
+            - name: "FoS_Id"
+              type: REFERENCE
+              identity: [1]
       - key_letter: "L_TP"
         name: "Property Target"
         number: 3
@@ -71,12 +76,12 @@ domain:
             - name: "DomainName"
               type: REFERENCE
               identity: [1]
-            - Name: "Instance_Target_Id"
+            - name: "Instance_Target_Id"
               type: REFERENCE
               identity: [2]
             - name: "Instance_ClassName"
               type: REFERENCE
-            - Name: "PropertyName"
+            - name: "PropertyName"
               type: STRING
               identity: [2]
             - name: "FoS_Id"
@@ -95,11 +100,11 @@ domain:
               identity: [1]
             - name: RelationshipIndex
               type: STRING
-            - Name: "OneSide_Target_Id"
+            - name: "OneSide_Target_Id"
               type: REFERENCE
             - name: "OtherSide_Target_Id"
               type: REFERENCE
-            - Name: "FoS_Id"
+            - name: "FoS_Id"
               type: REFERENCE
               identity: [1]
       - key_letter: "L_TEI"
@@ -109,11 +114,11 @@ domain:
           property:
             - name: "Target_Id"
               type: REFERENCE
-              identity: [1]
+              identity: [1, 2]
             - name: "DomainName"
               type: REFERENCE
               identity: [1]
-            - Name: "EventLabel"
+            - name: "EventLabel"
               type: STRING
               identity: [2]
             - name: "Destination_Target_Id"
@@ -133,8 +138,8 @@ domain:
             - name: "Target_Id"
               type: REFERENCE
               identity: [1]
-            - Name: "EventLabel"
-              type: STRING
+            - name: "EventLabel"
+              type: REFERENCE
               identity: [1]
             - name: "ParameterName"
               type: STRING
@@ -190,7 +195,7 @@ domain:
               identity: [1]
             - name: "Target_DomainName"
               type: REFERENCE
-            - Name: "Target_Target_Id"
+            - name: "Target_Target_Id"
               type: REFERENCE
               identity: [2]
             - name: "LifeStage"
@@ -208,7 +213,7 @@ domain:
               identity: [1]
             - name: "Target_DomainName"
               type: REFERENCE
-            - Name: "Target_Target_Id"
+            - name: "Target_Target_Id"
               type: REFERENCE
               identity: [2]
             - name: "LifeStage"
@@ -226,10 +231,10 @@ domain:
               identity: [1]
             - name: "Target_DomainName"
               type: REFERENCE
-            - Name: "Target_Target_Id"
+            - name: "Target_Target_Id"
               type: REFERENCE
               identity: [2]
-            - Name: "LifeStage"
+            - name: "LifeStage"
               type: REFERENCE
               identity: [1,2]
             - name: "FoS_Id"
@@ -241,9 +246,10 @@ domain:
           property:
             - name: "FoS_Id"
               type: UNIQUE_ID
-              identity: [1]
+              identity: [1, 2]
             - name: "DomainName"
               type: STRING
+              identity: [2]
       - key_letter: "L_TA"
         name: "Temporal Axis"
         number: 14
@@ -299,7 +305,7 @@ domain:
               - Target_Id
               - DomainName
               - FoS_Id
-      - index: R2
+      - index: R1002
         kind: "binary"
         referent:
           cclass: L_TI
@@ -313,7 +319,7 @@ domain:
           - DomainName: DomainName
           - Target_Id: Instance_Target_Id
           - ClassName: Instance_ClassName
-      - index: R3
+      - index: R1003
         kind: "binary"
         referent:
           cclass: L_TI
@@ -327,7 +333,7 @@ domain:
           - DomainName: DomainName
           - Target_Id: OneSide_Target_Id
           - FoS_Id: FoS_Id
-      - index: R4
+      - index: R1004
         kind: "binary"
         referent: 
           cclass: L_TI
@@ -341,7 +347,7 @@ domain:
           - DomainName: DomainName
           - Target_Id: OtherSide_Target_Id
           - FoS_Id: FoS_Id
-      - index: R5
+      - index: R1005
         kind: "binary"
         referent:
           cclass: L_TL
@@ -355,21 +361,21 @@ domain:
           - DomainName: DomainName
           - Target_Id: Associative_Target_Id
           - FoS_Id: FoS_Id
-      - index: R6
+      - index: R1006
         kind: "binary"
         referent:
           cclass: L_TI
           multiplicity: "1"
           phrase: "is destination of"
         participant:
-          cclass: L_TA
+          cclass: L_TEI
           multiplicity: "MC"
           phrase: "receive"
         referencing:
           - DomainName: DomainName
           - Target_Id: Destination_Target_Id
-          - ClassName: Target_ClassName
-      - index: R7
+          - ClassName: Destination_ClassName
+      - index: R1007
         kind: "binary"
         referent:
           cclass: L_TEI
@@ -380,13 +386,13 @@ domain:
           multiplicity: "MC"
           phrase: "have"
         referencing:
-          - Target_Id: Sender_Target_Id
+          - Target_Id: Target_Id
           - EventLabel: EventLabel
-      - index: R8
+      - index: R1008
         kind: "binary"
         referent:
           cclass: L_TI
-          multiplicity: "0..1"
+          multiplicity: "1C"
           phrase: "is sent by"
         participant:
           cclass: L_TEI
@@ -396,7 +402,7 @@ domain:
           - DomainName: DomainName
           - Target_Id: Sender_Target_Id
           - FoS_Id: FoS_Id
-      - index: R9
+      - index: R1009
         kind: "is-a"
         referent:
           cclass: L_C
@@ -409,7 +415,7 @@ domain:
           - cclass: L_CLF
             properties:
               - Changed_Id
-      - index: R10
+      - index: R1010
         kind: "binary"
         referent:
           cclass: L_TP
@@ -420,10 +426,10 @@ domain:
           multiplicity: "M"
           phrase: "has as it history"
         referencing:
-          - DomanName: Target_DomainName
+          - DomainName: Target_DomainName
           - Target_Id: Target_Target_Id
           - FoS_Id: FoS_Id
-      - index: R11
+      - index: R1011
         kind: "is-a"
         referent:
           cclass: L_CLF
@@ -443,7 +449,7 @@ domain:
             properties:
               - Changed_Id
               - LifeStage
-      - index: R12
+      - index: R1012
         kind: "binary"
         referent:
           cclass: L_TI
@@ -454,10 +460,10 @@ domain:
           multiplicity: "M"
           phrase: "has as it history"
         referencing:
-          - DomanName: Target_DomainName
+          - DomainName: Target_DomainName
           - Target_Id: Target_Target_Id
           - FoS_Id: FoS_Id
-      - index: R13
+      - index: R1013
         kind: "binary"
         referent:
           cclass: L_TL
@@ -468,10 +474,10 @@ domain:
           multiplicity: "M"
           phrase: "has as it history"
         referencing:
-          - DomanName: Target_DomainName
+          - DomainName: Target_DomainName
           - Target_Id: Target_Target_Id
           - FoS_Id: FoS_Id
-      - index: R14
+      - index: R1014
         kind: "binary"
         referent:
           cclass: L_TEI
@@ -482,10 +488,10 @@ domain:
           multiplicity: "M"
           phrase: "has as it history"
         referencing:
-          - DomanName: Target_DomainName
+          - DomainName: Target_DomainName
           - Target_Id: Target_Target_Id
           - FoS_Id: FoS_Id
-      - index: R15
+      - index: R1015
         kind: "binary"
         referent:
           cclass: L_FOS
@@ -498,7 +504,7 @@ domain:
         referencing:
           - DomainName: DomainName
           - FoS_Id: FoS_Id
-      - index: R16
+      - index: R1016
         kind: "binary"
         referent:
           cclass: L_TA
@@ -509,8 +515,8 @@ domain:
           multiplicity: "MC"
           phrase: "is the axis of"
         referencing:
-          - TA_Id: TA_Id
-      - index: R17
+          - TA_Id: Event_TA_Id
+      - index: R1017
         kind: "binary"
         referent:
           cclass: L_C
@@ -522,7 +528,7 @@ domain:
           phrase: "is detected by"
         referencing:
           - Changed_Id: Changed_Id
-      - index: R18
+      - index: R1018
         kind: "binary"
         referent:
           cclass: L_TA
@@ -533,4 +539,4 @@ domain:
           multiplicity: "MC"
           phrase: "is the axis of"
         referencing:
-          - TA_Id: TA_Id
+          - TA_Id: Event_TA_Id

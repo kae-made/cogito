@@ -124,7 +124,7 @@ $defs:
       description:
         type: string
       type:
-        $ref: '#/$defs/propertyType'
+        type: string # '#/$defs/propertyType'
       identity:
         type: array
         items:
@@ -140,7 +140,6 @@ $defs:
         type: boolean
       nullable:
         type: boolean
-  
   # ---------------------------------------------------------
   # conceptual class structure definition
   # ---------------------------------------------------------
@@ -299,6 +298,8 @@ properties:
       - relationships
     properties:
       name:
+        type: string
+      key_letter:
         type: string
       description:
         type: string
