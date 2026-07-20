@@ -2056,16 +2056,20 @@ domain:
           cclass: CIM_TXN
           properties:
             - Txn_Id
+            - SMStt_Id
         participants:
           - cclass: CIM_NTXN
             properties:
               - Txn_Id
+              - SMStt_Id
           - cclass: CIM_CRTXN
             properties:
               - Txn_Id
+              - SMStt_Id
           - cclass: CIM_NETXN
             properties:
               - Txn_Id
+              - SMStt_Id
       - index: R109
         kind: is-a
         referent:
