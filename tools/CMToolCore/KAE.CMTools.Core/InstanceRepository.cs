@@ -3,48 +3,14 @@
 
 namespace KAE.CMTools.Core
 {
-    public class InstanceRepository
+    public interface InstanceRepository
     {
-        public Dictionary<string, ConceptualDomain> ConceptualDomains { get => cDomains; }
+        Dictionary<string, ConceptualDomain> ConceptualDomains { get; }
 
-        public Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get => fieldsOfSense; }
-        public ConceptualDomain? AddConceptualDomain(string domainName)
-        {
-            ConceptualDomain? cDomain = null;
-            if (!cDomains.ContainsKey(domainName))
-            {
-                cDomain = new ConceptualDomain(domainName);
-                cDomains.Add(domainName, cDomain);
-            }
-            return cDomain;
-        }
+        Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get; }
+        ConceptualDomain? AddConceptualDomain(string domainName);
 
-        public FieldOfSense? AddFieldOfSense(string domainName, string fosId, string describDate)
-        {
-            FieldOfSense fos = null;
-            if (!fieldsOfSense.ContainsKey(domainName))
-            {
-                fieldsOfSense.Add(domainName, new Dictionary<string, FieldOfSense>());
-            }
-            if (fieldsOfSense[domainName].ContainsKey(fosId))
-            {
-                fos = fieldsOfSense[domainName][fosId];
-            }
-            else
-            {
-                fos = new FieldOfSense(cDomains[domainName], fosId, describDate) { };
-                fieldsOfSense[domainName].Add(fosId, fos);
-            }
-            return fos;
-        }
-        public InstanceRepository()
-        {
-            cDomains = new Dictionary<string, ConceptualDomain>();
-            fieldsOfSense = new Dictionary<string, Dictionary<string, FieldOfSense>>();
-        }
-
-        protected Dictionary<string, ConceptualDomain> cDomains;
-        protected Dictionary<string, Dictionary<string, FieldOfSense>> fieldsOfSense;
+        FieldOfSense? AddFieldOfSense(string domainName, string fosId, string describDate);
         
     }
 }

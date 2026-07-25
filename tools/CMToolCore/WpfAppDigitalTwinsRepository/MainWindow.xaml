@@ -64,12 +64,31 @@
             <Button Name="buttonRead" Content="Read and Parse" Grid.Column="2" IsEnabled="False" Click="buttonRead_Click"/>
         </Grid>
         <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Read Instance Models" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <ListBox Name="lbInstanceModes" Grid.Row="1" ItemsSource="{Binding ParsedFoSItems}">
+            <Border BorderThickness="1" BorderBrush="Black">
+                <TextBlock Text="Conceptual Domains" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ListBox Grid.Row="1" x:Name="lbDomains" ItemsSource="{Binding ParsedDomains}" Margin="1" SelectionChanged="lbDomains_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Name : " VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="1">
+                <TextBlock Text="Instance Models" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <ListBox Grid.Column="1" Name="lbInstanceModes" Grid.Row="1" ItemsSource="{Binding ParsedFoSItems}" Margin="1">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

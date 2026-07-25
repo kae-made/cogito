@@ -9,8 +9,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using System.Reflection.Metadata.Ecma335;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
+//using YamlDotNet.Serialization;
+//using YamlDotNet.Serialization.NamingConventions;
 using static KAE.CMTools.Core.Relationship;
 
 namespace KAE.CMTools.Generator
@@ -46,7 +46,14 @@ namespace KAE.CMTools.Generator
                                         foreach(var datatype in (JArray)datatypesProp.Value)
                                         {
                                             var parsedDataType = ParseDatatype(parsedDomain, (JObject)datatype);
-                                            parsedDomain.AddDataType(parsedDataType);
+                                            if (parsedDomain.DataTypes.ContainsKey(parsedDataType.Name))
+                                            {
+                                                logger.LogWarning($"datatype : '{parsedDataType.Name}' has been defined!");
+                                            }
+                                            else
+                                            {
+                                                parsedDomain.AddDataType(parsedDataType);
+                                            }
                                         }
                                     }
                                 }
@@ -206,6 +213,11 @@ namespace KAE.CMTools.Generator
                     }
                     if (!string.IsNullOrEmpty(childName) && !string.IsNullOrEmpty(typeName))
                     {
+                        if (!domain.DataTypes.ContainsKey(typeName))
+                        {
+                            logger.LogWarning($"datatype '{typeName}' using for '{childName}' of complex type '{cdtName}' has not been defined.");
+                            continue;
+                        }
                         var dataType = domain.DataTypes[typeName];
                         children.Add(childName, dataType);
                         break;
@@ -660,6 +672,7 @@ namespace KAE.CMTools.Generator
             return false;
         }
 
+#if false
         public void ReadOld(Stream schemaStream, Stream descripStream)
         {
             string schemaText = "";
@@ -730,6 +743,7 @@ namespace KAE.CMTools.Generator
             }
 
         }
+#endif
 
         public bool Validate()
         {

@@ -1,0 +1,192 @@
+﻿<Window x:Class="WpfAppDigitalTwinsRepository.CIMDefWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppDigitalTwinsRepository"
+        mc:Ignorable="d"
+        Title="Conceptual Information Model Definition" Height="800" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="tbDomainName" VerticalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" Margin="1" BorderBrush="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Background="LightGray">
+                        <TextBlock Text="Conceptual Classes : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ListBox Name="lbClasses" ItemsSource="{Binding ConceptualClasses}" SelectedItem="{Binding SelectedClass, Mode=TwoWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="'" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="' {" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=KeyLetter}" VerticalAlignment="Center"/>
+                                        <TextBlock Text=", " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Number}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Name="lbProperties" Grid.Row="1" ItemsSource="{Binding PropertiesOfSelectedClass}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=Name}" VerticalAlignment="Center"/>
+                                        <TextBlock Text=" : " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Info}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Grid.Column="1" BorderThickness="1" Margin="1" BorderBrush="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Background="LightGray">
+                        <TextBlock Text="Relationships : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="6*"/>
+                        </Grid.RowDefinitions>
+                        <ListBox Name="lbRelationships" ItemsSource="{Binding Relationships}" SelectedItem="{Binding SelectedRelationship, Mode=TwoWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding RIndex}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Grid Grid.Row="1" Margin="0,0,0,1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="140"/>
+                                <RowDefinition Height="160"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Border Name="borderRelBinary" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,1">
+                                <Grid Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="tbRelKindBinary" Text="Binary Relationship : " VerticalAlignment="Center"/>
+                                    <Grid Grid.Row="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Referent Side : " VerticalAlignment="Center"/>
+                                            <TextBlock Name="tbRelEdgeClassRef" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                        </StackPanel>
+                                        <TextBlock Name="tbRelEdgeRef" Grid.Row="1"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Participant Side : " VerticalAlignment="Center"/>
+                                            <TextBlock Name="tbRelEdgeClassPart" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                        </StackPanel>
+                                        <TextBlock Name="tbRelEdgePart" Grid.Row="1"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Border Name="borderRelAssoc" Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="18"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="tbRelKindAssoc" Text="Associative Relationship : " VerticalAlignment="Center"/>
+                                    <Grid Grid.Row="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="One Side : " VerticalAlignment="Center"/>
+                                            <TextBlock  Name="tbRelEdgeClassOne" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                        </StackPanel>
+                                        <TextBlock Name="tbRelEdgeOne" Grid.Row="1"/>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Other Side : " VerticalAlignment="Center"/>
+                                            <TextBlock Name="tbRelEdgeClassOther" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                        </StackPanel>
+                                        <TextBlock Name="tbRelEdgeOther" Grid.Row="1"/>
+                                    </Grid>
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                        <TextBlock Text="Associative : " VerticalAlignment="Center"/>
+                                        <TextBlock Name="tbRelEdgeClassAssoc" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border Name="borderRelIsA" Grid.Row="2" BorderBrush="Black" BorderThickness="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition Height="18"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Name="tbRelKindSuper" Text="Is-a Relationship : " VerticalAlignment="Center"/>
+                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                        <TextBlock Text="Super Side : " VerticalAlignment="Center"/>
+                                        <TextBlock Name="tbRelEdgeClassSuper" VerticalAlignment="Center" MouseLeftButtonDown="tbRelEdgeClass_MouseLeftButtonDown" TouchDown="tbRelEdgeClass_TouchDown"/>
+                                    </StackPanel>
+                                    <TextBlock Name="tbRelKindSub" Grid.Row="2" Text="Sub classes : " VerticalAlignment="Center"/>
+                                    <ListBox Name="lbSubClasses" Grid.Row="3" ItemsSource="{Binding SubClasses}" SelectionChanged="lbSubClasses_SelectionChanged">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
+                            </Border>                            
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

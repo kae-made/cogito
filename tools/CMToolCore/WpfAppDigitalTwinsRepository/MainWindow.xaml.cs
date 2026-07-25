@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System;
+using KAE.CMTools.Repository.OnMemory;
 
 namespace WpfAppDigitalTwinsRepository
 {
@@ -122,7 +123,7 @@ namespace WpfAppDigitalTwinsRepository
         {
             if (repository == null)
             {
-                repository = new InstanceRepository();
+                repository = new InstanceRepositoryImpl();
             }
             if (!string.IsNullOrEmpty(tbCIMDefFilePath.Text) && !string.IsNullOrEmpty(tbCIMSchemaFilePath.Text))
             {
@@ -147,6 +148,12 @@ namespace WpfAppDigitalTwinsRepository
                                         app.UpdateSettingFile(cimSchemaFilePathKey, tbCIMSchemaFilePath.Text);
                                         app.UpdateSettingFile(cimDescripFilePathKey, tbCIMDefFilePath.Text);
                                         hasCIMSchemaReadAndParsed = true;
+
+                                        parsedDomains.Clear();
+                                        foreach(var domainName in repository.ConceptualDomains.Keys)
+                                        {
+                                            parsedDomains.Add(repository.ConceptualDomains[domainName]);
+                                        }
                                     }
                                 }
                                 if (validated && cbIsGenerateInstSchema.IsChecked == true)
@@ -277,14 +284,24 @@ namespace WpfAppDigitalTwinsRepository
         }
 
         public ObservableCollection<FoSItem> ParsedFoSItems { get => parsedFosItems; }
-
-
         public ObservableCollection<FoSItem> parsedFosItems = new ObservableCollection<FoSItem>();
 
         public class FoSItem
         {
             public string FilePath { get; set; }
             public string FoSId { get; set; }
+        }
+
+        public ObservableCollection<ConceptualDomain> ParsedDomains { get => parsedDomains; }
+        public ObservableCollection<ConceptualDomain> parsedDomains = new ObservableCollection<ConceptualDomain>();
+
+        private void lbDomains_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedDomain = (ConceptualDomain)lbDomains.SelectedItem;
+
+            var cimDefWindow = new CIMDefWindow() { ConceptualDomain=selectedDomain };
+            cimDefWindow.Closed += (s, args) => cimDefWindow = null;
+            cimDefWindow.Show();
         }
     }
 }

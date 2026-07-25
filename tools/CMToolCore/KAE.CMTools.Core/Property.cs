@@ -70,10 +70,13 @@ namespace KAE.CMTools.Core
                 foreach(var classKeyProp in referentProperties)
                 {
                     var referentDataType = classKeyProp.Value.FixBaseDataType();
-                    if (referentDataType.Name != DataTypeKind.REFERENCE.ToString())
+                    if (referentDataType != null)
                     {
-                        BaseDataType = referentDataType;
-                        break;
+                        if (referentDataType.Name != DataTypeKind.REFERENCE.ToString())
+                        {
+                            BaseDataType = referentDataType;
+                            break;
+                        }
                     }
                 }
             }

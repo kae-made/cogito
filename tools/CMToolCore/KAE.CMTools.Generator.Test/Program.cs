@@ -4,6 +4,7 @@
 
 using KAE.CMTools.Core;
 using KAE.CMTools.Generator;
+using KAE.CMTools.Repository.OnMemory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -58,7 +59,7 @@ using (var formatStream = File.OpenRead(schemaFilePath))
                 reader.Read(formatStream, schemaStream);
                 logger.LogInformation("Reading Done.");
 
-                var repository = new InstanceRepository();
+                var repository = new InstanceRepositoryImpl();
                 try
                 {
                     logger.LogInformation("Parsing Conceptual Model...");

@@ -16,6 +16,7 @@
     <ProjectReference Include="..\KAE.CMTools.Core\KAE.CMTools.Core.csproj" />
     <ProjectReference Include="..\KAE.CMTools.Generator.Core\KAE.CMTools.Generator.Core.csproj" />
     <ProjectReference Include="..\KAE.CMTools.Generator\KAE.CMTools.Generator.csproj" />
+    <ProjectReference Include="..\KAE.CMTools.Repository.OnMemory\KAE.CMTools.Repository.OnMemory.csproj" />
   </ItemGroup>
 
 </Project>

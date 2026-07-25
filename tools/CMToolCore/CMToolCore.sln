@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Generator", "KA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KAE.CMTools.Generator.Test", "KAE.CMTools.Generator.Test\KAE.CMTools.Generator.Test.csproj", "{88FE26A2-E050-46B4-9707-19DF869CB3AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppDigitalTwinsRepository", "WpfAppDigitalTwinsRepository\WpfAppDigitalTwinsRepository.csproj", "{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppDigitalTwinsRepository", "WpfAppDigitalTwinsRepository\WpfAppDigitalTwinsRepository.csproj", "{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KAE.CMTools.Repository.OnMemory", "KAE.CMTools.Repository.OnMemory\KAE.CMTools.Repository.OnMemory.csproj", "{44007E39-80A1-4EAC-B8BE-44BAC4AFB79E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CE476FD-A7C0-4AEB-A795-4147EE3BFAC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44007E39-80A1-4EAC-B8BE-44BAC4AFB79E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44007E39-80A1-4EAC-B8BE-44BAC4AFB79E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44007E39-80A1-4EAC-B8BE-44BAC4AFB79E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44007E39-80A1-4EAC-B8BE-44BAC4AFB79E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

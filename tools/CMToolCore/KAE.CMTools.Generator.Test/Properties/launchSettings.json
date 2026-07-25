@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "KAE.CMTools.Generator.Test": {
-      "commandName": "Project",
-      "commandLineArgs": "\"C:\\gitrep\\cogito\\models\\schema\\cim.schema.yaml\" \"C:\\gitrep\\cogito\\models\\ConceptualModeling\\history_of_changes.yaml\" \"History of Changes\""
-    }
-  }
-}
