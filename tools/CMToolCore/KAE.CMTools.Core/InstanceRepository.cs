@@ -10,6 +10,8 @@ namespace KAE.CMTools.Core
         Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get; }
         ConceptualDomain? AddConceptualDomain(string domainName);
 
+        void Clear();
+
         FieldOfSense? AddFieldOfSense(string domainName, string fosId, string describDate);
         
     }

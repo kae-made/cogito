@@ -36,6 +36,12 @@ namespace KAE.CMTools.Repository.OnMemory
             }
             return fos;
         }
+
+        public void Clear()
+        {
+            fieldsOfSense.Clear();
+            cDomains.Clear();
+        }
         public InstanceRepositoryImpl()
         {
             cDomains = new Dictionary<string, ConceptualDomain>();

@@ -213,7 +213,7 @@ namespace WpfAppDigitalTwinsRepository
             {
                 tbInstSchemaFilePath.Text = dialog.FileName;
                 AddOperationHistory($"Selected Instance Schema - {tbInstSchemaFilePath.Text}");
-                buttonRead.IsEnabled = true;
+                buttonReadInstModel.IsEnabled = true;
             }
         }
 
@@ -247,14 +247,15 @@ namespace WpfAppDigitalTwinsRepository
             {
                 tbInstanceModelFilePath.Text = dialog.FileName;
                 AddOperationHistory($"Selected Instance Model - {tbInstanceModelFilePath.Text}");
-                buttonRead.IsEnabled = true;
+                buttonReadInstModel.IsEnabled = true;
             }
         }
 
-        private void buttonRead_Click(object sender, RoutedEventArgs e)
+        private void buttonReadInstanceModel_Click(object sender, RoutedEventArgs e)
         {
             if (hasCIMSchemaReadAndParsed)
             {
+                tbLogging.Text = "";
                 using (var instanceSchemaStream = File.OpenRead(tbInstSchemaFilePath.Text))
                 {
                     using (var instanceModelStream = File.OpenRead(tbInstanceModelFilePath.Text))
@@ -278,6 +279,7 @@ namespace WpfAppDigitalTwinsRepository
                         {
                             logger.LogInformation($"Read Failed - {tbInstanceModelFilePath.Text}");
                         }
+                        buttonReadInstModel.IsEnabled = false;
                     }
                 }
             }
@@ -302,6 +304,15 @@ namespace WpfAppDigitalTwinsRepository
             var cimDefWindow = new CIMDefWindow() { ConceptualDomain=selectedDomain };
             cimDefWindow.Closed += (s, args) => cimDefWindow = null;
             cimDefWindow.Show();
+        }
+
+        private void buttonClearRepository_Click(object sender, RoutedEventArgs e)
+        {
+            ParsedFoSItems.Clear();
+            parsedDomains.Clear();
+            repository.Clear();
+
+            buttonReadCIMDef.IsEnabled = true;
         }
     }
 }
