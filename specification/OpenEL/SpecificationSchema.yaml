@@ -156,7 +156,7 @@ $defs:
     additionalProperties: false
   OE_DDS:
     type: object
-    required: [cclass, DeviceKindID, ProductID, VendorID, ComponentID, Description]
+    required: [cclass, DeviceKindID, ProductID, DefinedVendorID, ComponentID, Description]
     properties:
       cclass:
         const: OE_DDS
@@ -166,7 +166,7 @@ $defs:
       ProductID:
         type: [string, "null"]
         # REFERENCE
-      VendorID:
+      DefinedVendorID:
         type: [string, "null"]
         # REFERENCE
       ComponentID:
@@ -359,7 +359,7 @@ $defs:
     additionalProperties: false
   OEOE_EC:
     type: object
-    required: [cclass, InstanceID, EquipmentID, DeviceKindID, VendorID, ProductID, ComponentID]
+    required: [cclass, InstanceID, EquipmentID, DeviceKindID, DefinedVendorID, ProductID, ComponentID]
     properties:
       cclass:
         const: OEOE_EC
@@ -372,7 +372,7 @@ $defs:
       DeviceKindID:
         type: [string, "null"]
         # REFERENCE
-      VendorID:
+      DefinedVendorID:
         type: [string, "null"]
         # REFERENCE
       ProductID:
@@ -499,14 +499,14 @@ $defs:
     additionalProperties: false
   OE_SDT:
     type: object
-    required: [cclass, DataTypeID, ComponentID, Name]
+    required: [cclass, DataTypeID, DefinedVendorID, Name]
     properties:
       cclass:
         const: OE_SDT
       DataTypeID:
         type: [string, "null"]
         # REFERENCE
-      ComponentID:
+      DefinedVendorID:
         type: [string, "null"]
         # REFERENCE
       Name:

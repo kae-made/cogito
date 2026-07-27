@@ -32,3 +32,17 @@ fos:
         ProductName: "TSL2561"
         Description: "Digital Light Sensor"
         VendorID: "0x0000000E"
+    - instance: "313d8b7d-5146-4c0f-b762-e37cb77a7640"
+      properties:
+        cclass: OE_PD
+        ProductID: "0x00001001"
+        ProductName: "EV3 Motor"
+        Description: "Device Driver for 3 ports EV3 Motor"
+        VendorID: "0x00000009" # LEGO
+    - instance: "a12fc368-f2f1-4b28-a109-4d83187356b7"
+      properties:
+        cclass: OE_PD
+        ProductID: "0x00001002"
+        ProductName: "EV3 Rotate Angle Sensor"
+        Description: "Device Driver for EV3 Rotate Angle Sensor builtin Motor"
+        VendorID: "0x00000009" # LEGO

@@ -1,0 +1,58 @@
+# yaml-language-server: $schema: ./SpecificationSchema.yaml
+# OepnEL Device Driver Sample Specification
+# Under Construction for discussion. Not finalized yet.
+fos:
+  fosId: "9f01b85b-afd7-4d76-a4cd-bc730795c718"
+  domain: "OpenEL Device Driver Specification"
+  date: "2026-07-27"
+  instances:
+    - instance: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+      properties:
+        cclass: OE_C
+        DeviceKindID : "0x0000000E"
+        ProductID: "0x00001002"
+        VendorID: "0x00000009"
+        ComponentID: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+        DefinedVendorID: "0x00010000"
+    - instance: "73ba1a26-2df6-47c4-b71b-bcc001ba337d"
+      properties:
+        cclass: OE_DDS
+        DeviceKindID: "0x0000000E"
+        ProductID: "0x00001002"
+        DefinedVendorID: "0x00010000"
+        ComponentID: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+        Description: "Device Driver for 2ch EV3 Rotate Angle Sensor builtin Motor"
+    - instance: "34dce91c-b7dd-4763-80f1-7d6f2104303c"
+      properties:
+        cclass: OE_SDDS
+        ComponentID: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+        Parent_ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04" # EV3 3 ports Motor
+    - instance: "b83f7373-84f1-4655-aceb-a2fc0ec8e21d"
+      properties:
+        cclass: OE_OIS
+        ItemID: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+        ComponentID: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+    - instance: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+      properties:
+        cclass: OE_ITS
+        ItemID: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+        Name: "Get Rotation Angle"
+        ComponentID: "5afa9828-3434-4392-ab7f-bc80e9899fd7"
+        Description: "Get the rotation angle of the motor specified by the port"
+        Next_Name: NULL
+    - instance: "5f1e3c8-9b0a-4d5e-8f2c-1a2b3c4d5e6f"
+      properties:
+        cclass: OE_PS
+        ItemID: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+        Name: "Port"
+        Description: "Port number for the motor"
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f" # "Angle"
+        Next_Name: "Angle"
+    - instance: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+      properties:
+        cclass: OE_PS
+        ItemID: "152a858f-9c9d-4025-bfbb-8c0063d71e3d"
+        Name: "Angle"
+        Description: "Rotation angle of the motor"
+        DataTypeID: "8aa01859-2bcb-4000-83b0-772527e9ff74" # "integer"
+        Next_Name: NULL

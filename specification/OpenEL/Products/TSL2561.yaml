@@ -1,5 +1,5 @@
 # yaml-language-server: $schema: ./SpecificationSchema.yaml
-# OepnEL Device Driver Official Published Specification
+# OepnEL Device Driver Sample Specification
 # Under Construction for discussion. Not finalized yet.
 fos:
   fosId: "9f01b85b-afd7-4d76-a4cd-bc730795c718"
@@ -13,7 +13,7 @@ fos:
         ProductID     : "0x00001000"
         VendorID      : "0x0000000E"
         ComponentID   : "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
-        DefinedVendorID: "0x0000000E"
+        DefinedVendorID: "0x00010000"
     - instance: "29020367-f4a4-451b-8331-a7afa22352a5"
       properties:
         cclass: OE_CF
@@ -47,7 +47,7 @@ fos:
         cclass: OE_DDS
         DeviceKindID : "0x00001000"
         ProductID: "0x00001000"
-        VendorID: "0x0000000E"
+        DefinedVendorID: "0x00010000"
         ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
         Description: NULL
         # Who is defined and developer?
@@ -88,7 +88,7 @@ fos:
       properties:
         cclass: OE_SDT
         DataTypeID: "5201fa10-7d28-4840-bc18-c701ee77c0dd"
-        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
+        DefinedVendorID: "00010000"
         Name: "GainMode"
     - instance: "5d64766d-10ee-4861-a7cf-a207455a643b"
       properties:
@@ -116,7 +116,7 @@ fos:
       properties:
         cclass: OE_SDT
         DataTypeID: "79333786-b1c2-4c45-9692-2d1a4fe0a883"
-        ComponentID: "edb0fcf1-3237-41a4-8a0c-c67ee5d38690"
+        DefinedVendorID: "00010000"
         Name: "lux"
     - instance: "a6c04a9c-96ee-4226-aaa4-cb25a55146f8"
       properties:

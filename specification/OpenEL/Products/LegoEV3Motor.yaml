@@ -1,0 +1,100 @@
+# yaml-language-server: $schema: ./SpecificationSchema.yaml
+# OepnEL Device Driver Sample Specification
+# Under Construction for discussion. Not finalized yet.
+fos:
+  fosId: "9f01b85b-afd7-4d76-a4cd-bc730795c718"
+  domain: "OpenEL Device Driver Specification"
+  date: "2026-07-27"
+  instances:
+    - instance: "132cbb8e-dd34-4934-8b25-3f144debfa16"
+      properties:
+        cclass: OE_C
+        DeviceKindID: "0x00000001"
+        ProductID: "0x00001001"
+        VendorID: "0x00000009"
+        ComponentID: "132cbb8e-dd34-4934-8b25-3f144debfa16"
+        DefinedVendorID: "0x00010000"
+    # enumerated data type for EV3 Motor Port
+    - instance: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+      properties:
+        cclass: OE_DT
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+        Description: "Port name for EV3 Motor (Port A, B, C)"
+    - instance: "24ae488d-e014-421f-9850-c95c3f7a68ed"
+      properties:
+        cclass: OE_SDT
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+        DefinedVendorID: "0x00010000"
+        Name: "EV3 Motor Port"
+    - instance: "ef473a4d-103b-4ae5-a13e-3197871e6964"
+      properties:
+        cclass: OE_EDT
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+    - instance: "dd528d40-0c92-4211-b52f-aab6713714ce"
+      properties:
+        cclass: OE_EDTI
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+        Name: "PORT_A"
+        Description: "Port A for EV3 Motor"
+    - instance: "b4b56fdc-94ad-4162-84de-66323020cd78"
+      properties:
+        cclass: OE_EDTI
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+        Name: "PORT_B"
+        Description: "Port B for EV3 Motor"
+    - instance: "527b3e42-0318-407b-ab97-10402dbb1287"
+      properties:
+        cclass: OE_EDTI
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f"
+        Name: "PORT_C"
+        Description: "Port C for EV3 Motor"
+    # Device Driver Specification for EV3 Motor
+    - instance: "d4949fbe-76f2-4fb8-bcec-6dc53fdb2c6c"
+      properties:
+        cclass: OE_C
+        DeviceKindID: "0x00000001"
+        ProductID: "0x00001001"
+        VendorID: "0x00000009"
+        ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04"
+        DefinedVendorID: "0x00010000"
+    - instance: "43a5baca-ca5d-45cf-b223-aa838afb2579"
+      properties:
+        cclass: OE_DDS
+        DeviceKindID: "0x00000001"
+        ProductID: "0x00001001"
+        DefinedVendorID: "0x00010000"
+        ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04"
+        Description: "Device Driver for 3ch EV3 Motor"
+    - instance: "10356961-cb81-421b-8539-f283caf9ee9b"
+      properties:
+        cclass: OE_ADDS
+        ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04"
+    - instance: "5ddc4102-07cb-4051-98c2-44556776846e"
+      properties:
+        cclass: OE_ITS
+        ItemID: "5ddc4102-07cb-4051-98c2-44556776846e"
+        Name: "Set Power"
+        ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04"
+        Description: "Set the power for the motor specified by the port"
+        Next_Name: NULL
+    - instance: "0a5cff2f-bdac-46f0-a7b5-c600cd2392d6"
+      properties:
+        cclass: OE_IIS
+        ItemID: "5ddc4102-07cb-4051-98c2-44556776846e"
+        ComponentID: "71565bc8-e525-4f7a-b792-ddbf167a2e04"
+    - instance: "02a4c075-97ab-4dd3-8814-e7951207d4f8"
+      properties:
+        cclass: OE_PS
+        ItemID: "5ddc4102-07cb-4051-98c2-44556776846e"
+        Name: "Port"
+        Description: "Port number for the motor"
+        DataTypeID: "64a15187-94c3-4a6e-8e46-a3f06a7b747f" # "EV3 Motor Port"
+        Next_Name: "Power"
+    - instance: "aa86f12b-c653-42e4-8903-0247e29a1c8a"
+      properties:
+        cclass: OE_PS
+        ItemID: "5ddc4102-07cb-4051-98c2-44556776846e"
+        Name: "Power"
+        Description: "Power for the motor specified by the port"
+        DataTypeID: "8aa01859-2bcb-4000-83b0-772527e9ff74" # "integer"
+        Next_Name: NULL

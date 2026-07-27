@@ -73,9 +73,9 @@ domain:
               identity: [1]
             - name: VendorID
               type: REFERENCE
-              identity: [1]
             - name: DefinedVendorID
               type: REFERENCE
+              identity: [1]
       - key_letter: OE_DDS
         name: "Device Driver Specification"
         number: 5
@@ -87,7 +87,7 @@ domain:
             - name: ProductID
               type: REFERENCE
               identity: [2]
-            - name: VendorID
+            - name: DefinedVendorID
               type: REFERENCE
               identity: [2]
             - name: ComponentID
@@ -271,7 +271,7 @@ domain:
               identity: [1]
             - name: DeviceKindID
               type: REFERENCE
-            - name: VendorID
+            - name: DefinedVendorID
               type: REFERENCE
             - name: ProductID
               type: REFERENCE
@@ -380,7 +380,7 @@ domain:
             - name: DataTypeID
               type: REFERENCE
               identity: [1]
-            - name: ComponentID
+            - name: DefinedVendorID
               type: REFERENCE
               identity: [2]
             - name: Name
@@ -744,7 +744,7 @@ domain:
         referencing:
           - DeviceKindID: DeviceKindID
           - ProductID: ProductID 
-          - VendorID: VendorID
+          - DefinedVendorID: DefinedVendorID
           - ComponentID: ComponentID
       - index: R6
         kind: is-a
@@ -944,7 +944,7 @@ domain:
           phrase: "is imprelemtation for"
         referencing:
           - DeviceKindID: DeviceKindID
-          - VendorID: VendorID
+          - DefinedVendorID: DefinedVendorID
           - ProductID: ProductID
           - ComponentID: ComponentID
       - index: R103
@@ -1092,7 +1092,7 @@ domain:
       - index: R303
         kind: binary
         referent:
-          cclass: OE_C
+          cclass: OE_V
           multiplicity: "1"
           phrase: "is defined in the scope of"
         participant:
@@ -1100,7 +1100,7 @@ domain:
           multiplicity: "MC"
           phrase: "is owner of"
         referencing:
-          - ComponentID: ComponentID
+          - VendorID: DefinedVendorID
       - index: R304
         kind: is-a
         referent:
@@ -1413,7 +1413,7 @@ domain:
           phrase: "is defined by"
         participant:
           cclass: OEC_CI
-          multiplicity: "M"
+          multiplicity: "MC"
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
