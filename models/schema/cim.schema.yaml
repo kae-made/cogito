@@ -168,7 +168,6 @@ $defs:
               $ref: '#/$defs/classProperty'
         required:
           - property
-
   # ---------------------------------------------------------
   # relationship schema definition
   # ---------------------------------------------------------
@@ -294,6 +293,7 @@ properties:
     type: object
     required:
       - name
+      - key_letter
       - cclasses
       - relationships
     properties:

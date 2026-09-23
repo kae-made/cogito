@@ -1,0 +1,89 @@
+# yaml-language-server: $schema: ../schema/cim.schema.yaml
+# OpenEL Platform Independent Model
+# version: 2.9.1
+# date: 2026-09-23
+domain:
+  name: "OpenEL Platform Independent Model"
+  key_letter: "OpenEL:PIM"
+  cclasses:
+    - key_letter: DK
+      name: "Device Kind"
+      number: 1
+      properties:
+        property:
+          - name: deviceKindId
+            type: INTEGER
+            identity: [1]
+    - key_letter: V
+      name: "Vendor"
+      number: 2
+      properties:
+        property:
+          - name: vendorId
+            type: INTEGER
+            identity: [1]
+    - key_letter: P
+      name: "Product"
+      number: 3
+      properties:
+        property:
+          - name: productId
+            type: INTEGER
+            identity: [1]
+    - key_letter: HALC
+      name: "HAL Component"
+      number: 5
+      properties:
+        property:
+          - name: deviceKindId
+            type: INTEGER
+            identity: [1]
+          - name: productId
+            type: INTEGER
+            identity: [1]
+          - name: vendorId
+            type: INTEGER
+            identity: [1]
+          - name: instanceId
+            type: INTEGER
+            identity: [1, 2]
+          - name: equipmentId
+            type: INTEGER
+          - name: componentId
+            type: UNIQUE_ID
+            identity: [2]
+    - key_letter: APIS
+      name: "API Set"
+      number: 4
+      properties:
+        property:
+          - name: APISetId
+            type: UNIQUE_ID
+            identity: [1]
+          - name: namespace
+            type: STRING
+            identity: [2]
+          - name: name
+            type: STRING
+            identity: [2]
+    - key_letter: DT
+      name: "Data Type"
+      number: 6
+      properties:
+        property:
+          - name: name
+            type: STRING
+            identity: [1]
+    - key_letter: EDTIV
+      name: "Enumeration Data Type Item Value"
+      number: 7
+      properties:
+        property:
+          - name: EDTName
+            type: STRING
+            identity: [1]          
+          - name: name
+            type: STRING
+            identity: [1]
+          - name: value
+            type: INTEGER
