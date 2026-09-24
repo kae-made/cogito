@@ -24,255 +24,240 @@ domains:
       acceleration:
         kind: "complex"
         items:
-          - name: "x"
+          "x":
             type: "REAL"
-          - name: "y"
+          "y":
             type: "REAL"
-          - name: "z"
+          "z":
             type: "REAL"
     cclasses:
       "L_T":
         name: "Target"
         number: 1
         properties:
-          property:
-            - name: "Target_Id"
-              type: UNIQUE_ID
-              identity: [1,2]
-            - name: "DomainName"
-              type: REFERENCE
-              identity: [2]
-            - name: "FoS_Id"
-              type: REFERENCE
-              identity: [2]
+          "Target_Id":
+            type: UNIQUE_ID
+            identity: [1,2]
+          "DomainName":
+            type: REFERENCE
+            identity: [2]
+          "FoS_Id":
+            type: REFERENCE
+            identity: [2]
       "L_TI":
         name: "Instance Target"
         number: 2
         properties:
-          property:
-            - name: "Target_Id"
-              type: REFERENCE
-              identity: [1,2]
-            - name: "DomainName"
-              type: REFERENCE
-              identity: [1,2]
-            - name: "ClassName"
-              type: STRING
-              identity: [2]
-            - name: "Associative_Target_Id"
-              type: REFERENCE
-            - name: "FoS_Id"
-              type: REFERENCE
-              identity: [1]
+          "Target_Id":
+            type: REFERENCE
+            identity: [1,2]
+          "DomainName":
+            type: REFERENCE
+            identity: [1,2]
+          "ClassName":
+            type: STRING
+            identity: [2]
+          "Associative_Target_Id":
+            type: REFERENCE
+          "FoS_Id":
+            type: REFERENCE
+            identity: [1]
       "L_TP":
         name: "Property Target"
         number: 3
         properties:
-          property:
-            - name: "Target_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "DomainName"
-              type: REFERENCE
-              identity: [1]
-            - name: "Instance_Target_Id"
-              type: REFERENCE
-              identity: [2]
-            - name: "Instance_ClassName"
-              type: REFERENCE
-            - name: "PropertyName"
-              type: STRING
-              identity: [2]
-            - name: "FoS_Id"
-              type: REFERENCE
-              identity: [1]
+          "Target_Id":
+            type: REFERENCE
+            identity: [1]
+          "DomainName":
+            type: REFERENCE
+            identity: [1]
+          "Instance_Target_Id":
+            type: REFERENCE
+            identity: [2]
+          "Instance_ClassName":
+            type: REFERENCE
+          "PropertyName":
+            type: STRING
+            identity: [2]
+          "FoS_Id":
+            type: REFERENCE
+            identity: [1]
       "L_TL":
         name: "Link Target"
         number: 4
         properties:
-          property:
-            - name: "Target_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "DomainName"
-              type: REFERENCE
-              identity: [1]
-            - name: RelationshipIndex
-              type: STRING
-            - name: "OneSide_Target_Id"
-              type: REFERENCE
-            - name: "OtherSide_Target_Id"
-              type: REFERENCE
-            - name: "FoS_Id"
-              type: REFERENCE
-              identity: [1]
+          "Target_Id":
+            type: REFERENCE
+            identity: [1]
+          "DomainName":
+            type: REFERENCE
+            identity: [1]
+          RelationshipIndex:
+            type: STRING
+          "OneSide_Target_Id":
+            type: REFERENCE
+          "OtherSide_Target_Id":
+            type: REFERENCE
+          "FoS_Id":
+            type: REFERENCE
+            identity: [1]
       "L_TEI":
         name: "Event Instance Target"
         number: 5
         properties:
-          property:
-            - name: "Target_Id"
-              type: REFERENCE
-              identity: [1, 2]
-            - name: "DomainName"
-              type: REFERENCE
-              identity: [1]
-            - name: "EventLabel"
-              type: STRING
-              identity: [2]
-            - name: "Destination_Target_Id"
-              type: REFERENCE
-            - name: "Destination_ClassName"
-              type: REFERENCE
-            - name: "Sender_Target_Id"
-              type: REFERENCE
-            - name: "FoS_Id"
-              type: REFERENCE
-              identity: [1]
+          "Target_Id":
+            type: REFERENCE
+            identity: [1, 2]
+          "DomainName":
+            type: REFERENCE
+            identity: [1]
+          "EventLabel":
+            type: STRING
+            identity: [2]
+          "Destination_Target_Id":
+            type: REFERENCE
+          "Destination_ClassName":
+            type: REFERENCE
+          "Sender_Target_Id":
+            type: REFERENCE
+          "FoS_Id":
+            type: REFERENCE
+            identity: [1]
       "L_ESD":
         name: "Event Supplemental Data"
         number: 6
         properties:
-          property:
-            - name: "Target_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "EventLabel"
-              type: REFERENCE
-              identity: [1]
-            - name: "ParameterName"
-              type: STRING
-              identity: [2]
-            - name: "Value"
-              type: OTHER
+          "Target_Id":
+            type: REFERENCE
+            identity: [1]
+          "EventLabel":
+            type: REFERENCE
+            identity: [1]
+          "ParameterName":
+            type: STRING
+            identity: [2]
+          "Value":
+            type: OTHER
       "L_C":
         name: "Changed"
         number: 7
         properties:
-          property:
-            - name: "Changed_Id"
-              type: UNIQUE_ID
-              identity: [1]
-            - name: "EventTime"
-              type: TIMESTAMP
-            - name: "Event_TA_Id"
-              type: REFERENCE
+          "Changed_Id":
+            type: UNIQUE_ID
+            identity: [1]
+          "EventTime":
+            type: TIMESTAMP
+          "Event_TA_Id":
+            type: REFERENCE
       "L_VC":
         name: "Value Changed"
         number: 8
         properties:
-          property:
-            - name: "Changed_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "Target_DomainName"
-              type: REFERENCE
-            - name: "Target_Target_Id"
-              type: REFERENCE
-            - name: Value
-              type: OTHER
-            - name: "FoS_Id"
-              type: REFERENCE
+          "Changed_Id":
+            type: REFERENCE
+            identity: [1]
+          "Target_DomainName":
+            type: REFERENCE
+          "Target_Target_Id":
+            type: REFERENCE
+          Value:
+            type: OTHER
+          "FoS_Id":
+            type: REFERENCE
       "L_CLF":
         name: "Life Changed"
         number: 9
         properties:
-          property:
-            - name: "Changed_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "LifeStage"
-              type: LifeStage
-              identity: [1]
+          "Changed_Id":
+            type: REFERENCE
+            identity: [1]
+          "LifeStage":
+            type: LifeStage
+            identity: [1]
       "L_CI":
         name: "Instance Changed"
         number: 10
         properties:
-          property:
-            - name: "Changed_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "Target_DomainName"
-              type: REFERENCE
-            - name: "Target_Target_Id"
-              type: REFERENCE
-              identity: [2]
-            - name: "LifeStage"
-              type: REFERENCE
-              identity: [1,2]
-            - name: "FoS_Id"
-              type: REFERENCE
+          "Changed_Id":
+            type: REFERENCE
+            identity: [1]
+          "Target_DomainName":
+            type: REFERENCE
+          "Target_Target_Id":
+            type: REFERENCE
+            identity: [2]
+          "LifeStage":
+            type: REFERENCE
+            identity: [1,2]
+          "FoS_Id":
+            type: REFERENCE
       "L_CLK":
         name: "Link Changed"
         number: 11
         properties:
-          property:
-            - name: "Changed_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "Target_DomainName"
-              type: REFERENCE
-            - name: "Target_Target_Id"
-              type: REFERENCE
-              identity: [2]
-            - name: "LifeStage"
-              type: REFERENCE
-              identity: [1,2]
-            - name: "FoS_Id"
-              type: REFERENCE
+          "Changed_Id":
+            type: REFERENCE
+            identity: [1]
+          "Target_DomainName":
+            type: REFERENCE
+          "Target_Target_Id":
+            type: REFERENCE
+            identity: [2]
+          "LifeStage":
+            type: REFERENCE
+            identity: [1,2]
+          "FoS_Id":
+            type: REFERENCE
       "L_CEO":
         name: "Event Occurance Changed"
         number: 12
         properties:
-          property:
-            - name: "Changed_Id"
-              type: REFERENCE
-              identity: [1]
-            - name: "Target_DomainName"
-              type: REFERENCE
-            - name: "Target_Target_Id"
-              type: REFERENCE
-              identity: [2]
-            - name: "LifeStage"
-              type: REFERENCE
-              identity: [1,2]
-            - name: "FoS_Id"
-              type: REFERENCE
+          "Changed_Id":
+            type: REFERENCE
+            identity: [1]
+          "Target_DomainName":
+            type: REFERENCE
+          "Target_Target_Id":
+            type: REFERENCE
+            identity: [2]
+          "LifeStage":
+            type: REFERENCE
+            identity: [1,2]
+          "FoS_Id":
+            type: REFERENCE
       "L_FOS":
         name: "Field of Sense"
         number: 13
         properties:
-          property:
-            - name: "FoS_Id"
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: "DomainName"
-              type: STRING
-              identity: [2]
+          "FoS_Id":
+            type: UNIQUE_ID
+            identity: [1, 2]
+          "DomainName":
+            type: STRING
+            identity: [2]
       "L_TA":
         name: "Temporal Axis"
         number: 14
         properties:
-          property:
-            - name: "TA_Id"
-              type: UNIQUE_ID
-              identity: [1]
-            - name: "Name"
-              type: STRING
+          "TA_Id":
+            type: UNIQUE_ID
+            identity: [1]
+          "Name":
+            type: STRING
       "L_CD":
         name: "Change Detection"
         number: 15
         properties:
-          property:
-            - name: "Detection_Id"
-              type: UNIQUE_ID
-              identity: [1]
-            - name: "DetectionTime"
-              type: TIMESTAMP
-            - name: Changed_Id
-              type: REFERENCE
-            - name: "TA_Id"
-              type: REFERENCE
+          "Detection_Id":
+            type: UNIQUE_ID
+            identity: [1]
+          "DetectionTime":
+            type: TIMESTAMP
+          Changed_Id:
+            type: REFERENCE
+          "TA_Id":
+            type: REFERENCE
     relationships:
       R1001:
         kind: "is-a"

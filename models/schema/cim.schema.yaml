@@ -65,16 +65,13 @@ $defs:
       kind:
         const: complex
       items:
-        type: array
-        items:
-          type: object
-          required: [name, type]
-          properties:
-            name:
-              type: string
-            type:
-              type: string
-
+        type: object
+        propertyNames:
+          description: "フィールド名（最初の文字はアルファベット、2文字目以降は英数字またはアンダースコア）"
+          pattern: "^[a-zA-Z][a-zA-Z0-9_]*$"
+        # 💡 キーに対する値は、直接基本データ型（STRINGなど）や固有データ型（独自定義の型）の名前を表す文字列になります
+        additionalProperties:
+          type: string
   # -----------------------------
   # Specific Datatype
   # -----------------------------
@@ -116,11 +113,8 @@ $defs:
   classProperty:
     type: object
     required:
-      - name
       - type
     properties:
-      name:
-        type: string
       description:
         type: string
       type:
@@ -161,13 +155,11 @@ $defs:
         type: string
       properties:
         type: object
-        properties:
-          property:
-            type: array
-            items:
-              $ref: '#/$defs/classProperty'
-        required:
-          - property
+        propertyNames:
+          description: "プロパティ名（最初の文字はアルファベット、2文字目以降は英数字またはアンダースコア）"
+          pattern: "^[a-zA-Z][a-zA-Z0-9_]*$"
+        additionalProperties:
+          $ref: '#/$defs/classProperty'
 
   # ---------------------------------------------------------
   # relationship schema definition
@@ -377,7 +369,7 @@ properties:
     type: object
     propertyNames:
       description: "ドメインのキー文字（大文字のアルファベット1文字など）"
-      pattern: "^[A-Z]$" # 💡 例として「大文字アルファベット1文字」に制限しています
+      pattern: "^[A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)+$" # 💡 例として「大文字アルファベット1文字」に制限しています
     additionalProperties:
       type: object
       required:

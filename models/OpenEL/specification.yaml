@@ -18,633 +18,584 @@ domains:
         name: "Device Kind"
         number: 1
         properties:
-          property:
-            - name: DeviceKindID
-              type: UNIQUE_ID
-              identity: [1]
-              grammar: "^0x[0-9A-Fa-f]{8}$"
-            - name: Name
-              type: STRING
-              identity: [2]
-            - name: No
-              type: INTEGER
-              identity: [3]
-            - name: Description
-              type: STRING
-              nullable: true
+          DeviceKindID:
+            type: UNIQUE_ID
+            identity: [1]
+            grammar: "^0x[0-9A-Fa-f]{8}$"
+          Name:
+            type: STRING
+            identity: [2]
+          No:
+            type: INTEGER
+            identity: [3]
+          Description:
+            type: STRING
+            nullable: true
       OE_ORG:
         name: "Organization"
         number: 2
         properties:
-          property:
-            - name: Name
-              type: STRING
-              identity: [1]
-            - name: ShortName
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
+          Name:
+            type: STRING
+            identity: [1]
+          ShortName:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OE_V:
         name: "Vendor"
         number: 3
         properties:
-          property:
-            - name: VendorID
-              type: UNIQUE_ID
-              identity: [1]
-              grammar: "^0x[0-9A-Fa-f]{8}$"
-            - name: ShortName
-              type: REFERENCE
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
+          VendorID:
+            type: UNIQUE_ID
+            identity: [1]
+            grammar: "^0x[0-9A-Fa-f]{8}$"
+          ShortName:
+            type: REFERENCE
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OE_M:
         name: "Module"
         number: 4
         properties:
-          property:
-            - name: ModuleID
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: DeviceKindID
-              type: REFERENCE
-              identity: [2]
-            - name: ModuleName
-              type: STRING
-              identity: [3]
-            - nane: SupplierVendorID
-              type: REFERENCE
-              identity: [3]
-            - name: Description
-              type: STRING
-              nullable: true
+          ModuleID:
+            type: UNIQUE_ID
+            identity: [1, 2]
+          DeviceKindID:
+            type: REFERENCE
+            identity: [2]
+          ModuleName:
+            type: STRING
+            identity: [3]
+          SupplierVendorID:
+            type: REFERENCE
+            identity: [3]
+          Description:
+            type: STRING
+            nullable: true
       OE_DDS:
         name: "Device Driver Specification"
         number: 5
         properties:
-          property:
-            - name: DDSpecID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: ModuleID
-              type: REFERENCE
-              identity: [2]
-            - name: SpecificationName
-              type: STRING
-              identity: [2]
-            - name: DefinedVendorID
-              type: REFERENCE
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
+          DDSpecID:
+            type: UNIQUE_ID
+            identity: [1]
+          ModuleID:
+            type: REFERENCE
+            identity: [2]
+          SpecificationName:
+            type: STRING
+            identity: [2]
+          DefinedVendorID:
+            type: REFERENCE
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OE_PD:
         name: "Product"
         number: 6
         properties:
-          property:
-            - name: ProductID
-              type: UNIQUE_ID
-              identity: [1]
-              grammar: "^0x[0-9A-Fa-f]{8}$"
-            - name: ProductName
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
-            - name: VendorID
-              type: REFERENCE
-              identity: [1,2]
+          ProductID:
+            type: UNIQUE_ID
+            identity: [1]
+            grammar: "^0x[0-9A-Fa-f]{8}$"
+          ProductName:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
+          VendorID:
+            type: REFERENCE
+            identity: [1,2]
       OE_C:
         name: "Component"
         number: 7
         properties:
-          property:
-            - name: ComponentID 
-              type: UNIQUE_ID
-              identity: [1]
-            - name: DDSpecID
-              type: REFERENCE
-              identity: [2]
-            - name: ProductID
-              type: REFERENCE
-              identity: [2]
-            - name: DefinedVendorID
-              type: REFERENCE
-              identity: [2]
+          ComponentID :
+            type: UNIQUE_ID
+            identity: [1]
+          DDSpecID:
+            type: REFERENCE
+            identity: [2]
+          ProductID:
+            type: REFERENCE
+            identity: [2]
+          DefinedVendorID:
+            type: REFERENCE
+            identity: [2]
       OE_ITS:
         name: "Item Specification"
         number: 8
         properties:
-          property:
-            - name: ItemID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
-            - name: DefinedVendorID
-              type: REFERENCE
+          ItemID:
+            type: UNIQUE_ID
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
+          DefinedVendorID:
+            type: REFERENCE
       OE_CF:
         name: "Configuration"
         number: 9
         properties:
-          property:
-            - name: ConfigurationID # "ConfID" is name on CIM.
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: DeviceItemID
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
+          ConfigurationID: # "ConfID" is name on CIM.
+            type: UNIQUE_ID
+            identity: [1, 2]
+          DeviceItemID:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OE_DIS:
         name: "Device Item Specification"
         number: 10
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: DeviceKindID
-              type: REFERENCE
-            - name: Direction
-              type: DataDirection
-              mathematical: true
-            - name: Description
-              type: STRING
-              nullable: true
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          DeviceKindID:
+            type: REFERENCE
+          Direction:
+            type: DataDirection
+            mathematical: true
+          Description:
+            type: STRING
+            nullable: true
       OE_ISIS:
         name: "Internal State Item Specification" # "Internal State IS" is name on CIM.
         number: 11
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: DeviceItemID
-              type: REFERENCE
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          DeviceItemID:
+            type: REFERENCE
       OE_CIS:
         name: "Configuration Item Specification" # "Configuration IS" is name on CIM.
         number: 12
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: ConfigurationID # "ConfID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          ConfigurationID: # "ConfID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OE_EIS:
         name: "Environment Item Specification" # "Environment IS" is name on CIM.
         number: 13
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
       OE_DOIS:
         name: "Observed Item Specification" # "Observed IS" is name on CIM.
         number: 14
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
       OE_DIIS:
         name: "Instruct Item Specification" # "Instruct IS" is name on CIM.
         number: 15
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
       OE_PS:
         name: "Parameter Specification"
         number: 16
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-            - name: Description
-              type: STRING
-              nullable: true
-            - name: DataTypeID
-              type: REFERENCE
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+          Description:
+            type: STRING
+            nullable: true
+          DataTypeID:
+            type: REFERENCE
       OE_CFDDS:
         name: "Configuration for Device Driver Specification"
         number: 17
         properties:
-          property:
-            - name: ConfigurationID # "ConfID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: ComponentID
-              type: REFERENCE
-              identity: [1]
+          ConfigurationID: # "ConfID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          ComponentID:
+            type: REFERENCE
+            identity: [1]
       OE_ITDDS:
         name: "Item Specification in DDS"
         number: 18
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: DDSpecID 
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          DDSpecID: 
+            type: REFERENCE
+            identity: [1]
       # OpenEL::Operational Equipment Sub system
       OEOE_EQ:
         name: "Equipment"
         number: 100
         properties:
-          property:
-            - name: EquipmentID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Name
-              type: STRING
-            - name: Description
-              type: STRING
-              nullable: true
+          EquipmentID:
+            type: UNIQUE_ID
+            identity: [1]
+          Name:
+            type: STRING
+          Description:
+            type: STRING
+            nullable: true
       OEOE_EC:
         name: "Executing Component"
         number: 101
         properties:
-          property:
-            - name: InstanceID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: EquipmentID
-              type: REFERENCE
-              identity: [1]
-            - name: DeviceKindID
-              type: REFERENCE
-            - name: DefinedVendorID
-              type: REFERENCE
-            - name: ProductID
-              type: REFERENCE
-            - name: ComponentID
-              type: REFERENCE
+          InstanceID:
+            type: UNIQUE_ID
+            identity: [1]
+          EquipmentID:
+            type: REFERENCE
+            identity: [1]
+          DeviceKindID:
+            type: REFERENCE
+          DefinedVendorID:
+            type: REFERENCE
+          ProductID:
+            type: REFERENCE
+          ComponentID:
+            type: REFERENCE
       OEOE_P:
         name: "Parameter"
         number: 102
         properties:
-          property:
-            - name: InstanceID
-              type: REFERENCE
-              identity: [1]
-            - name: EquipmentID
-              type: REFERENCE
-              identity: [1]
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: REFERENCE
-              identity: [1]
-            - name: CurrentValue
-              type: OTHER
-            - name: Time
-              type: TIMESTAMP
+          InstanceID:
+            type: REFERENCE
+            identity: [1]
+          EquipmentID:
+            type: REFERENCE
+            identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: REFERENCE
+            identity: [1]
+          CurrentValue:
+            type: OTHER
+          Time:
+            type: TIMESTAMP
       # OpenEL::Specification Approvement Sub system
       OESA_AP:
         name: "Approvement"
         number: 200
-        properties:
-          property:
-            - name: ApprovementID  # "AppID" is name on CIM.
-              type: UNIQUE_ID
-              identity: [1]
-            - name: ApplicationDate
-              type: TIMESTAMP
-            - name: ApprovalDate
-              type: TIMESTAMP
-            - name: AuthorizerName
-              type: REFERENCE
-            - name: ApplicantName
-              type: REFERENCE
-            - name: Remarks
-              type: STRING
+        property:
+          ApprovementID:  # "AppID" is name on CIM.
+            type: UNIQUE_ID
+            identity: [1]
+          ApplicationDate:
+            type: TIMESTAMP
+          ApprovalDate:
+            type: TIMESTAMP
+          AuthorizerName:
+            type: REFERENCE
+          ApplicantName
+            type: REFERENCE
+          Remarks:
+            type: STRING
       OESA_DKAP:
         name: "Device Kind Approvement"
         number: 201
         properties:
-          property:
-            - name: ApprovementID  # "AppID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: DeviceKindID
-              type: REFERENCE
+          ApprovementID:  # "AppID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          DeviceKindID:
+            type: REFERENCE
       OESA_VAP:
         name: "Vendor Approvement"
         number: 202
         properties:
-          property:
-            - name: ApprovementID  # "AppID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: VendorID
-              type: REFERENCE
+          ApprovementID:  # "AppID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          VendorID:
+            type: REFERENCE
       OESA_PA:
         name: "Product Approvement"
         number: 203
         properties:
-          property:
-            - name: ApprovementID  # "AppID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: ProductID
-              type: REFERENCE
-            - name: VendorID
-              type: REFERENCE
+          ApprovementID:  # "AppID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          ProductID:
+            type: REFERENCE
+          VendorID:
+            type: REFERENCE
       OESA_AT:
         name: "Authorizer"
         number: 204
         properties:
-          property:
-            - name: ShortName
-              type: REFERENCE
-              identity: [1]
-            - name: Description
-              type: STRING
-              nullable: true
+          ShortName:
+            type: REFERENCE
+            identity: [1]
+          Description:
+            type: STRING
+            nullable: true
       # OpenEL::Data Type Sub system
       OE_DT:
         name: "Data Type"
         number: 20
         properties:
-          property:
-            - name: DataTypeID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Description
-              type: STRING
-              nullable: true
+          DataTypeID:
+            type: UNIQUE_ID
+            identity: [1]
+          Description:
+            type: STRING
+            nullable: true
       OE_SDT:
         name: "Specific Data Type"
         number: 21
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: DefinedVendorID
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          DefinedVendorID:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
       OE_BDT:
         name: "Base Data Type"
         number: 22
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [2]
-            - name: NotationID
-              type: REFERENCE
-              nullable: true
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [2]
+          NotationID:
+            type: REFERENCE
+            nullable: true
       OE_PDT:
         name: "Primitive Data Type"
         number: 23
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Base_DataTypeID
-              type: REFERENCE
-            - name: NotationID
-              type: REFERENCE
-              nullable: true
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Base_DataTypeID:
+            type: REFERENCE
+          NotationID:
+            type: REFERENCE
+            nullable: true
       OE_EDT:
         name: "Enumerated Data Type"
         number: 24
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
       OE_EDTI:
         name: "Enumerated Data Type Item"
         number: 25
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-            - name: Description
-              type: STRING
-              nullable: true
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+          Description:
+            type: STRING
+            nullable: true
       OE_CDT:
         name: "Composite Data Type"
         number: 26
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
       OE_CDTI:
         name: "Composite Data Type Item"
         number: 27
         properties:
-          property:
-            - name: Parent_DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-            - name: DataTypeID
-              type: REFERENCE
-            - name: Description
-              type: STRING
-              nullable: true
-            - name: Next_Name
-              type: REFERENCE
-              nullable: true
+          Parent_DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+          DataTypeID:
+            type: REFERENCE
+          Description:
+            type: STRING
+            nullable: true
       OE_VNR:
         name: "Value Notation Rule"
         number: 28
         properties:
-          property:
-            - name: NotationID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Rule
-              type: STRING # regular expression for validation
-            - name: Description
-              type: STRING
-              nullable: true
+          NotationID:
+            type: UNIQUE_ID
+            identity: [1]
+          Rule:
+            type: STRING # regular expression for validation
+          Description:
+            type: STRING
+            nullable: true
       # OpenEL::Calibration Sub system
       OEC_CB:
         name: "Calibration"
         number: 50
         properties:
-          property:
-            - name: CalibrationID
-              type: UNIQUE_ID
-              identity: [1]
-            - name: ModuleID
-              type: REFERENCE
-              identity: [2]
-            - name: DDSpecID
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
-              nullable: true
+          CalibrationID:
+            type: UNIQUE_ID
+            identity: [1]
+          ModuleID:
+            type: REFERENCE
+            identity: [2]
+          DDSpecID:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OEC_CBM:
         name: "Calibration with Model"
         number: 51
         properties:
-          property:
-            - name: CalibrationID
-              type: REFERENCE
-              identity: [1]
-            - name: Model
-              type: OTHER
-              nullable: true
+          CalibrationID:
+            type: REFERENCE
+            identity: [1]
+          Model:
+            type: OTHER
+            nullable: true
       OEC_CBI:
         name: "Calibration with Item"
         number: 52
         properties:
-          property:
-            - name: CalibrationID
-              type: REFERENCE
-              identity: [1]
+          CalibrationID:
+            type: REFERENCE
+            identity: [1]
       OEC_CI:
         name: "Calibration Item"
         number: 53
         properties:
-          property:
-            - name: CalItemID
-              type: UNIQUE_ID
-              identity: [1, 2, 3]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [2, 3]
-            - name: ItemID
-              type: REFERENCE
-              identity: [3]
+          CalItemID:
+            type: UNIQUE_ID
+            identity: [1, 2, 3]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [2, 3]
+          ItemID:
+            type: REFERENCE
+            identity: [3]
       OEC_CSI:
         name: "Calibration Item"
         number: 54
         properties:
-          property:
-            - name: CalItemID
-              type: REFERENCE
-              identity: [2]
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          CalItemID:
+            type: REFERENCE
+            identity: [2]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_ECSI:
         name: "Environment Calibration Specification Item"  # "Environment CSI" is name on CIM.
         number: 55
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_ICSI:
         name: "Instruct State Calibration Specification Item"  # "Instruct CSI" is name on CIM.
         number: 56
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_CEI:
         name: "Caibration Expected Item"
         number: 57
         properties:
-          property:
-            - name: CalItemID
-              type: REFERENCE
-              identity: [2]
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          CalItemID:
+            type: REFERENCE
+            identity: [2]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_ECEI:
         name: "Environment Calibration Expected Item"  # "Environment CEI" is name on CIM.
         number: 58
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_OCEI:
         name: "Observed Calibration Expected Item"  # "Observed CEI" is name on CIM.
         number: 59
         properties:
-          property:
-            - name: ItemID 
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
+          ItemID: 
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
       OEC_CP:
         name: "Calibration Parameter"
         number: 60
         properties:
-          property:
-            - name: CalItemID
-              type: REFERENCE
-              identity: [1]
-            - name: CalibrationID  # "CalID" is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: REFERENCE
-              identity: [1]
-            - name: Value
-              type: OTHER
-              nullable: true
+          CalItemID:
+            type: REFERENCE
+            identity: [1]
+          CalibrationID:  # "CalID" is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: REFERENCE
+            identity: [1]
+          Value:
+            type: OTHER
+            nullable: true
     relationships:
       # OpenEL::Specification Sub system
       R1:

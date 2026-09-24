@@ -10,217 +10,198 @@ bridges:
         name: "Device Kind Mapping"
         number: 1
         properties:
-          property:
-            - name: DeviceKindID
-              type: REFERENCE
-              identity: [1]
+          DeviceKindID:
+            type: REFERENCE
+            identity: [1]
       VM:
         name: "Vendor Mapping"
         number: 2
         properties:
-          property:
-            - name: VendorID
-              type: REFERENCE
-              identity: [1]
+          VendorID:
+            type: REFERENCE
+            identity: [1]
       PM:
         name: "Product Mapping"
         number: 3
         properties:
-          property:
-            - name: ProductID
-              type: REFERENCE
-              identity: [1]
+          ProductID:
+            type: REFERENCE
+            identity: [1]
       CM:
         name: "Component Mapping"
         number: 4
         properties:
-          property:
-            - name: ComponentID
-              type: REFERENCE
-              identity: [1]
+          ComponentID:
+            type: REFERENCE
+            identity: [1]
       ECM:
         name: "Executing Component Mapping"
         number: 5
         properties:
-          property:
-            - name: ComponentID
-              type: REFERENCE
-              identity: [1]
-            - name: EquipmentID
-              type: REFERENCE
-              identity: [1]
-            - name: PIM:InstanceID
-              type: REFERENCE
-              identity: [1]
+          ComponentID:
+            type: REFERENCE
+            identity: [1]
+          EquipmentID:
+            type: REFERENCE
+            identity: [1]
+          InstanceID:
+            type: REFERENCE
+            identity: [1]
       SC:
         name: "Sensor Component"
         number: 6
         properties:
-          property:
-            - name: ComponentID
-              type: REFERENCE
-              identity: [1]
+          ComponentID:
+            type: REFERENCE
+            identity: [1]
       AC:
         name: "Actuator Component"
         number: 7
         properties:
-          property:
-            - name: ComponentID
-              type: REFERENCE
-              identity: [1]
+          ComponentID:
+            type: REFERENCE
+            identity: [1]
       DDSM:
         name: "Device Driver Specification Mapping"
         number: 8
         properties:
-          property:
-            - name: DDSpecID
-              type: REFERENCE
-              identity: [1]
-            - name: APISetID
-              type: REFERENCE
-              identity: [1]
+          DDSpecID:
+            type: REFERENCE
+            identity: [1]
+          APISetID:
+            type: REFERENCE
+            identity: [1]
       PDTM:
         name: "Primitive Data Type Mapping"
         number: 9
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: REFERENCE
-              identity: [1]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: REFERENCE
+            identity: [1]
       EDTIM:
         name: "Enumeration Data Type Item Mapping"
         number: 10
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: EDTName
-              type: REFERENCE
-              identity: [1]
-            - name: ItemName
-              type: REFERENCE
-              identity: [1]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          EDTName:
+            type: REFERENCE
+            identity: [1]
+          ItemName:
+            type: REFERENCE
+            identity: [1]
       # Item & Parameter Mapping
       PF_MB:
         name: "Memory Block"
         number: 300
         properties:
-          property:
-            - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Length
-              type: INTEGER
-              mathematical: true
-            - name: APISetID
-              type: REFERENCE
+          MemoryBlockID:  # MB_ID is name on CIM.
+            type: UNIQUE_ID
+            identity: [1]
+          Length:
+            type: INTEGER
+            mathematical: true
+          APISetID:
+            type: REFERENCE
       PF_CMB:
         name: "CDT Memory Block" # "CDT MB" is name on CIM.
         number: 301
         properties:
-          property:
-            - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: DataTypeID
-              type: REFERENCE
+          MemoryBlockID:  # MB_ID is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          DataTypeID:
+            type: REFERENCE
       PF_IMB:
         name: "Item Memory Block" # "Item MB" is name on CIM.
         number: 302
         properties:
-          property:
-            - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: ItemID
-              type: REFERENCE
+          MemoryBlockID:  # MB_ID is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          ItemID:
+            type: REFERENCE
       PF_PIM:
         name: "Position in Memory"
         number: 304
         properties:
-          property:
-            - name: PositionInMemoryID  # PIM_ID is name on CIM.
-              type: UNIQUE_ID
-              identity: [1]
-            - name: MemoryBlockID  # MB_ID is name on CIM.
-              type: REFERENCE
-              identity: [2]
-            - name: OffsetInMemoryBlock  # "OffsetInMB" is name on CIM.
-              type: INTEGER
-              identity: [2]
-            - name: PositionInBits
-              type: INTEGER
-              identity: [2]
+          PositionInMemoryID:  # PIM_ID is name on CIM.
+            type: UNIQUE_ID
+            identity: [1]
+          MemoryBlockID:  # MB_ID is name on CIM.
+            type: REFERENCE
+            identity: [2]
+          OffsetInMemoryBlock:  # "OffsetInMB" is name on CIM.
+            type: INTEGER
+            identity: [2]
+          PositionInBits:
+            type: INTEGER
+            identity: [2]
       PF_CPIM:
         name: "CDTI Position in Memory" # "CDTI PIM" is name on CIM.
         number: 305
         properties:
-          property:
-            - name: PositionInMemoryID  # PIM_ID is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: DataTypeID
-              type: REFERENCE
-            - name: Name
-              type: REFERENCE
+          PositionInMemoryID:  # PIM_ID is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          DataTypeID:
+            type: REFERENCE
+          Name:
+            type: REFERENCE
       PF_PPIM:
         name: "Parameter Position in Memory" # "Param PIM" is name on CIM.
         number: 306
         properties:
-          property:
-            - name: PositionInMemoryID  # PIM_ID is name on CIM.
-              type: REFERENCE
-              identity: [1]
-            - name: ItemID
-              type: REFERENCE
-            - name: Name
-              type: REFERENCE
+          PositionInMemoryID:  # PIM_ID is name on CIM.
+            type: REFERENCE
+            identity: [1]
+          ItemID:
+            type: REFERENCE
+          Name:
+            type: REFERENCE
       PF_ISO:
         name: "Item Specification Order"
         number: 303
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: Prev_Name
-              type: REFERENCE
-              identity: [1]
-            - name: Next_Name
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          Prev_Name:
+            type: REFERENCE
+            identity: [1]
+          Next_Name:
+            type: REFERENCE
+            identity: [1]
       PF_IPO:
         name: "Parameter Specification Order"
         number: 307
         properties:
-          property:
-            - name: ItemID
-              type: REFERENCE
-              identity: [1]
-            - name: Prev_ParamName
-              type: REFERENCE
-              identity: [1]
-            - name: Next_ParamName
-              type: REFERENCE
-              identity: [1]
+          ItemID:
+            type: REFERENCE
+            identity: [1]
+          Prev_ParamName:
+            type: REFERENCE
+            identity: [1]
+          Next_ParamName:
+            type: REFERENCE
+            identity: [1]
       PF_CDTIO:
         name: "CDT Item Order"
         number: 308
         properties:
-          property:
-            - name: DataTypeID
-              type: REFERENCE
-              identity: [1]
-            - name: Prev_Name
-              type: REFERENCE
-              identity: [1]
-            - name: Next_Name
-              type: REFERENCE
-              identity: [1]
+          DataTypeID:
+            type: REFERENCE
+            identity: [1]
+          Prev_Name:
+            type: REFERENCE
+            identity: [1]
+          Next_Name:
+            type: REFERENCE
+            identity: [1]
     relationships:
       R1:
         kind: "binary"

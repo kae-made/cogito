@@ -21,179 +21,165 @@ domains:
         name: "Identity"
         number: 1
         properties:
-          property:
-            - name: I_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Name:
-              type: STRING
-              identity: [2]
+          I_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [2]
       A_T:
         name: Target
         number: 2
         properties:
-          property:
-            - name: T_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: I_Id:
-              type: REFERENCE
-              identity: [2]
+          T_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          I_Id:
+            type: REFERENCE
+            identity: [2]
       A_RT:
         name: "Resource Type"
         number: 3
         properties:
-          property:
-            - name: RT_Id
-              type: UNIQUE_ID
-              identity: [1]
+          RT_Id:
+            type: UNIQUE_ID
+            identity: [1]
       A_IRT:
         name: "Instance Resource Type"
         number: 4
         properties:
-          property:
-            - name: RT_Id
-              type: REFERENCE
-              identity: [1, 2]
-            - name: DomainName
-              type: STRING
-              identity: [2]
-            - name: CClassName
-              type: STRING
-              identity: [2]
+          RT_Id:
+            type: REFERENCE
+            identity: [1, 2]
+          DomainName:
+            type: STRING
+            identity: [2]
+          CClassName:
+            type: STRING
+            identity: [2]
       A_RIRT:
         name: "Related Item Resource Type"
         number: 5
         properties:
-          property:
-            - name: RT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Instance_RT_Id
-              type: REFERENCE
-              identity: [2]
-            - name: ItemType
-              type: ItemType
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
+          RT_Id:
+            type: REFERENCE
+            identity: [1]
+          Instance_RT_Id:
+            type: REFERENCE
+            identity: [2]
+          ItemType:
+            type: ItemType
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
       A_ITG:
         name: "Instance Target"
         number: 6
         properties:
-          property:
-            - name: T_Id
-              type: REFERENCE
-              identity: [1, 2]
-            - name: Instance_Id
-              type: STRING
-              identity: [2]
-            - name: RT_Id
-              type: REFERENCE
-              identity: [2]
+          T_Id:
+            type: REFERENCE
+            identity: [1, 2]
+          Instance_Id:
+            type: STRING
+            identity: [2]
+          RT_Id:
+            type: REFERENCE
+            identity: [2]
       A_IRITG:
         name: "Instance Related Item Target"
         number: 7
         properties:
-          property:
-            - name: T_Id
-              type: REFERENCE
-              identity: [1, 2]
-            - name: Instance_T_Id
-              type: REFERENCE
-              identity: [2]
-            - name: Instance_Instance_Id
-              type: REFERENCE
-              identity: [2]
-            - name: Instance_RT_Id
-              type: REFERENCE
-              identity: [2]
+          T_Id:
+            type: REFERENCE
+            identity: [1, 2]
+          Instance_T_Id:
+            type: REFERENCE
+            identity: [2]
+          Instance_Instance_Id:
+            type: REFERENCE
+            identity: [2]
+          Instance_RT_Id:
+            type: REFERENCE
+            identity: [2]
       A_S:
         name: "Subject"
         number: 8
         properties:
-          property:
-            - name: I_Id
-              type: REFERENCE
-              identity: [1]
+          I_Id:
+            type: REFERENCE
+            identity: [1]
       A_RL:
         name: "Role"
         number: 9
         properties:
-          property:
-            - name: Rl_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [2]
+          Rl_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [2]
       A_RLP:
         name: "Role Permission"
         number: 10
         properties:
-          property:
-            - name: Rl_Id
-              type: REFERENCE
-              identity: [1]
-            - name: T_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Permission
-              type: AuthType
-              identity: [1]
+          Rl_Id:
+            type: REFERENCE
+            identity: [1]
+          T_Id:
+            type: REFERENCE
+            identity: [1]
+          Permission:
+            type: AuthType
+            identity: [1]
       A_SIR:
         name: "Subject in Role"
         number: 11
         properties:
-          property:
-            - name: Rl_Id
-              type: REFERENCE
-              identity: [1]
-            - name: I_Id
-              type: REFERENCE
-              identity: [1]
+          Rl_Id:
+            type: REFERENCE
+            identity: [1]
+          I_Id:
+            type: REFERENCE
+            identity: [1]
       A_SP:
         name: "Subject Permission"
         number: 12
         properties:
-          property:
-            - name: I_Id
-              type: REFERENCE
-              identity: [1]
-            - name: T_Id
-              type: REFERENCE
-              identity: [1]
+          I_Id:
+            type: REFERENCE
+            identity: [1]
+          T_Id:
+            type: REFERENCE
+            identity: [1]
       A_SPWR:
         name: "Subject Permission With Role"
         number: 13
         properties:
-          property:
-            - name: I_Id
-              type: REFERENCE
-              identity: [1]
-            - name: T_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Role_Rl_Id
-              type: REFERENCE
-            - name: Role_RT_Id
-              type: REFERENCE
-            - name: Role_Permission
-              type: AuthType
+          I_Id:
+            type: REFERENCE
+            identity: [1]
+          T_Id:
+            type: REFERENCE
+            identity: [1]
+          Role_Rl_Id:
+            type: REFERENCE
+          Role_RT_Id:
+            type: REFERENCE
+          Role_Permission:
+            type: AuthType
       A_ISP:
         name: "Indipendent Subject Permission"
         number: 14
         properties:
-          property:
-            - name: I_Id
-              type: REFERENCE
-              identity: [1]
-            - name: T_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Permission
-              type: AuthType
+          I_Id:
+            type: REFERENCE
+            identity: [1]
+          T_Id:
+            type: REFERENCE
+            identity: [1]
+          Permission:
+            type: AuthType
     relationships:
       R1:
         kind: "is-a"

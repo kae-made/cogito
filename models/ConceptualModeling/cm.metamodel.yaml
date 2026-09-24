@@ -12,851 +12,793 @@ domains:
         name: "Conceptual Domain"
         number: 0
         properties:
-          property:
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: Description
-              type: STRING
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          Description:
+            type: STRING
       CIM_CC:
         name: "Conceptual Class"
         number: 1
-        properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1,2,3]
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: KeyLetter
-              type: STRING
-              identity: [2]
-            - name: Number
-              type: STRING
-              identity: [3]
-            - name: Description
-              type: STRING
+        property:
+          CDomainName:
+            type: REFERENCE
+            identity: [1,2,3]
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          KeyLetter:
+            type: STRING
+            identity: [2]
+          Number:
+            type: STRING
+            identity: [3]
+          Description:
+            type: STRING
       CIM_PR:
         name: "Property"
         number: 2
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: Description
-              type: STRING
-            - name: DataTypeName
-              type: REFERENCE
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          Description:
+            type: STRING
+          DataTypeName:
+            type: REFERENCE
       CIM_REL:
         name: "Relationships"
         number: 3
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1,2]
-            - name: Index
-              type: STRING
-              identity: [1]
-              mathematical: true
-            - name: Number
-              type: INTEGER
-              identity: [2]
+          CDomainName:
+            type: REFERENCE
+            identity: [1,2]
+          Index:
+            type: STRING
+            identity: [1]
+            mathematical: true
+          Number:
+            type: INTEGER
+            identity: [2]
       CIM_DT:
         name: "Data Type"
         number: 4
         properties:
-          property:
-            - name: DT_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [2]
-              denote: true
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
-            - name: Grammar
-              type: STRING
-            - name: Description
-              type: STRING
+          DT_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [2]
+            denote: true
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
+          Grammar:
+            type: STRING
+          Description:
+            type: STRING
       CIM_ID:
         name: "Identity"
         number: 5
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: Level
-              type: INTEGER
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          Level:
+            type: INTEGER
+            identity: [1]
       CIM_BPR:
         name: "Base Property"
         number: 6
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
       CIM_RPR:
         name: "Reference Property"
         number: 7
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
       CIM_ISR:
         name: "is-a Relationship"
         number: 8
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: Index
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          Index:
+            type: REFERENCE
+            identity: [1]
       CIM_BR:
         name: "Binary Relationship"
         number: 9
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: Index
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          Index:
+            type: REFERENCE
+            identity: [1]
       CIM_AR:
         name: "Associative Relationship"
         number: 10
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: Index
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          Index:
+            type: REFERENCE
+            identity: [1]
       CIM_CIR:
         name: "CClass in Relationship"
         number: 11
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_RIR:
         name: "Referent in Relationship"
         number: 12
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_PIR:
         name: "Participant in Relationship"
         number: 13
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
-            - name: Level
-              type: REFERENCE
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
+          Level:
+            type: REFERENCE
       CIM_CPID:
         name: "Property in CClass Identity"
         number: 14
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
-            - name: Level
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
+          Level:
+            type: REFERENCE
+            identity: [1]
       CIM_IPIR:
         name: "Identity Property in Relationship"
         number: 15
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
-            - name: Level
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
+          Level:
+            type: REFERENCE
+            identity: [1]
       CIM_REF:
         name: "Reference"
         number: 16
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
-            - name: Level
-              type: REFERENCE
-              identity: [1]
-            - name: RefCClassName
-              type: REFERENCE
-            - name: RefPropertyName
-              type: REFERENCE
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
+          Level:
+            type: REFERENCE
+            identity: [1]
+          RefCClassName:
+            type: REFERENCE
+          RefPropertyName:
+            type: REFERENCE
       CIM_SRIR:
         name: "Super RIR"
         number: 17
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_FRIR:
         name: "Form RIR"
         number: 18
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
-            - name: Multiplicity
-              type: STRING
-            - name: Conditionality
-              type: BOOLEAN
-            - name: TextPhrase
-              type: STRING
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
+          Multiplicity:
+            type: STRING
+          Conditionality:
+            type: BOOLEAN
+          TextPhrase:
+            type: STRING
       CIM_BFRIR:
         name: "Binary Form RIR"
         number: 19
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_ONRIR:
         name: "One RIR"
         number: 20
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_OTRIR:
         name: "Other RIR"
         number: 21
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_SPIR:
         name: "Sub PIR"
         number: 22
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       CIM_PPIR:
         name: "Part PIR"
         number: 23
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
-            - name: Multiplicity
-              type: STRING
-            - name: Conditionality
-              type: BOOLEAN
-            - name: TextPhrase
-              type: STRING
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
+          Multiplicity:
+            type: STRING
+          Conditionality:
+            type: BOOLEAN
+          TextPhrase:
+            type: STRING
       CIM_APIR:
         name: "Associative PIR"
         number: 24
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: RIndex
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          RIndex:
+            type: REFERENCE
+            identity: [1]
       # Data Type
       # Diagram: ./images/meta-model-cim-data-type.svg
       CIM_BDT:
         name: "Base Data Type"
         number: 30
         properties:
-          property:
-            - name: DT_Id
-              type: UNIQUE_ID
-              identity: [1]
+          DT_Id:
+            type: UNIQUE_ID
+            identity: [1]
       CIM_RDT:
         name: "Reference Data Type"
         number: 31
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Refering_DT_Id
-              type: REFERENCE
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          Refering_DT_Id:
+            type: REFERENCE
       CIM_UDT:
         name: "User Data Type"
         number: 32
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: UnitName
-              type: STRING
-            - name: Base_DT_Id
-              type: REFERENCE
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          UnitName:
+            type: STRING
+          Base_DT_Id:
+            type: REFERENCE
       CIM_EDT:
         name: "Enumerated Data Type"
         number: 33
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_EDTI:
         name: "Enumerated Data Type Item"
         number: 34
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: Description
-              type: STRING
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          Description:
+            type: STRING
       CIM_SDT:
         name: "Structured Data Type"
         number: 35
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SDTI:
         name: "Structured Data Type Item"
         number: 36
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-            - name: Item_DT_Id
-              type: REFERENCE
-            - name: Description
-              type: STRING
-              denote: true
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+          Item_DT_Id:
+            type: REFERENCE
+          Description:
+            type: STRING
+            denote: true
       CIM_CIRDT:
         name: "CClass Instance Reference Data Type"
         number: 37
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassKeyLetter
-              type: REFERENCE
-              identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassKeyLetter:
+            type: REFERENCE
+            identity: [1]
       CIM_EIRDT:
         name: "Event Instance Reference Data Type"
         number: 38
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Event_SM_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Event_Label
-              type: REFERENCE
-              identity: [1]
-            - name: Event_Number
-              type: REFERENCE
-              identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          Event_SM_Id:
+            type: REFERENCE
+            identity: [1]
+          Event_Label:
+            type: REFERENCE
+            identity: [1]
+          Event_Number:
+            type: REFERENCE
+            identity: [1]
       CIM_SODT:
         name: "Set of Data Type"
         number: 39
         properties:
-          property:
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Element_DT_Id
-              type: REFERENCE
-              identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          Element_DT_Id:
+            type: REFERENCE
+            identity: [1]
       # State Model
       # Diagram: ./images/meta-model-state-model.svg
       CIM_SM:
         name: "State Model"
         number: 100
         properties:
-          property:
-            - name: SM_Id
-              type: UNIQUE_ID
-              identity: [1, 3]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2, 3]
-            - name: CClassName
-              type: REFERENCE
-              identity: [2, 3]
+          SM_Id:
+            type: UNIQUE_ID
+            identity: [1, 3]
+          CDomainName:
+            type: REFERENCE
+            identity: [2, 3]
+          CClassName:
+            type: REFERENCE
+            identity: [2, 3]
       CIM_STT:
         name: "State"
         number: 101
         properties:
-          property:
-            - name: SMStt_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: SM_Id
-              type: REFERENCE
-              identity: [2,3]
-            - name: Number
-              type: INTEGER
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [3]
-              denote: true
-            - name: Description
-              type: STRING
-            - name: FinalState
-              type: BOOLEAN
+          SMStt_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          SM_Id:
+            type: REFERENCE
+            identity: [2,3]
+          Number:
+            type: INTEGER
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [3]
+            denote: true
+          Description:
+            type: STRING
+          FinalState:
+            type: BOOLEAN
       CIM_SMEVT:
         name: "Event"
         number: 102
         properties:
-          property:
-            - name: SMEvt_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: SM_Id
-              type: REFERENCE
-              identity: [2,3]
-            - name: Label
-              type: STRING
-              identity: [2]
-              mathematical: true
-              denote: true
-            - name: Number
-              type: INTEGER
-              identity: [2]
-            - name: Meaning
-              type: STRING
-              identity: [3]
-            - name: DelayTime
-              type: TIMESPAN
-            - name: Description
-              type: STRING
+          SMEvt_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          SM_Id:
+            type: REFERENCE
+            identity: [2,3]
+          Label:
+            type: STRING
+            identity: [2]
+            mathematical: true
+            denote: true
+          Number:
+            type: INTEGER
+            identity: [2]
+          Meaning:
+            type: STRING
+            identity: [3]
+          DelayTime:
+            type: TIMESPAN
+          Description:
+            type: STRING
       CIM_TXN:
         name: "Transition"
         number: 103
         properties:
-          property:
-            - name: Txn_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: SM_Id
-              type: REFERENCE
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
+          Txn_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          SM_Id:
+            type: REFERENCE
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_EVTDI:
         name: "Event Supplemental Data Item"
         number: 104
         properties:
-          property:
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: DT_Id
-              type: REFERENCE
-            - name: Description
-              type: STRING
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          DT_Id:
+            type: REFERENCE
+          Description:
+            type: STRING
       CIM_PEVT:
         name: "Polymorphic Event"
         number: 105
         properties:
-          property:
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SEVT:
         name: "Simple Event"
         number: 106
         properties:
-          property:
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_NLEVT:
         name: "Non Local Event"
         number: 107
         properties:
-          property:
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: PolySMEvt_Id
-              type: REFERENCE
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
+          PolySMEvt_Id:
+            type: REFERENCE
       CIM_LEVT:
         name: "Local Event"
         number: 108
         properties:
-          property:
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Txn_Id
-              type: REFERENCE
-            - name: SMStt_Id
-              type: REFERENCE
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
+          Txn_Id:
+            type: REFERENCE
+          SMStt_Id:
+            type: REFERENCE
       CIM_TXNC:
         name: "Transition Cell"
         number: 109
         properties:
-          property:
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SMCHN:
         name: "Can't  Happen Cell"
         number: 110
         properties:
-          property:
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SMIGN:
         name: "Ignore Cell"
         number: 111
         properties:
-          property:
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_NTXN:
         name: "Normal Transition"
         number: 112
         properties:
-          property:
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Txn_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DestinationSMStt_Id
-              type: REFERENCE
-              identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
+          Txn_Id:
+            type: REFERENCE
+            identity: [1]
+          DestinationSMStt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_CRTXN:
         name: "Creation Transition"
         number: 113
         properties:
-          property:
-            - name: Txn_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
+          Txn_Id:
+            type: REFERENCE
+            identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_NETXN:   # depricated ?
         name: "NE Transition"
         number: 199
         properties:
-          property:
-            - name: SMStt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Txn_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DestinationSMStt_Id
-              type: REFERENCE
-              identity: [1]
+          SMStt_Id:
+            type: REFERENCE
+            identity: [1]
+          Txn_Id:
+            type: REFERENCE
+            identity: [1]
+          DestinationSMStt_Id:
+            type: REFERENCE
+            identity: [1]
       # Operation and Function
       # Diagram: ./images/meta-model-operation-function.svg
       CIM_EE:
         name: "External Entity"
         number: 200
         properties:
-          property:
-            - name: EE_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2, 3]
-            - name: Name
-              type: STRING
-              identity: [3]
-              denote: true
-            - name: KeyLetter
-              type: STRING
-              identity: [2]
-            - name: Description
-              type: STRING
+          EE_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [2, 3]
+          Name:
+            type: STRING
+            identity: [3]
+            denote: true
+          KeyLetter:
+            type: STRING
+            identity: [2]
+          Description:
+            type: STRING
       CIM_FUNC:
         name: "Function"
         number: 201
         properties:
-          property:
-            - name: FUNC_Id
-              type: UNIQUE_ID
-              identity: [1]
+          FUNC_Id:
+            type: UNIQUE_ID
+            identity: [1]
       CIM_EEF:
         name: "External Entity Function"
         # This is another name for BridgePoint’s Bridge
         number: 202
         properties:
-          property:
-            - name: FUNC_Id
-              type: REFERENCE
-              identity: [1]
-            - name: EE_Id
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-              denote: true
-            - name: Description
-              type: STRING
+          FUNC_Id:
+            type: REFERENCE
+            identity: [1]
+          EE_Id:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
+            denote: true
+          Description:
+            type: STRING
       CIM_DFUNC:
         name: "Domain Function"
         number: 203
         properties:
-          property:
-            - name: FUNC_Id
-              type: REFERENCE
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-              denote: true
-            - name: Description
-              type: STRING
+          FUNC_Id:
+            type: REFERENCE
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
+            denote: true
+          Description:
+            type: STRING
       CIM_COP:
         name: "CClass Operation"
         number: 204
         properties:
-          property:
-            - name: FUNC_Id
-              type: REFERENCE
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
-            - name: CClassName
-              type: REFERENCE
-              identity: [2]
-            - name: Name
-              type: STRING
-              identity: [2]
-              denote: true
-            - name: IsInstanceOperation
-              type: BOOLEAN
-              mathematical: true # true CIOP[R207], false CCOP[R207]
-            - name: Description
-              type: STRING
+          FUNC_Id:
+            type: REFERENCE
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
+          CClassName:
+            type: REFERENCE
+            identity: [2]
+          Name:
+            type: STRING
+            identity: [2]
+            denote: true
+          IsInstanceOperation:
+            type: BOOLEAN
+            mathematical: true # true CIOP[R207], false CCOP[R207]
+          Description:
+            type: STRING
       CIM_FNP:
         name: "Function Parameter"
         number: 205
         properties:
-          property:
-            - name: FUNC_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: STRING
-              identity: [1]
-              denote: true
-            - name: DataDirection
-              type: BOOLEAN   # true for input, false for output
-              mathematical: true
-            - name: DT_Id
-              type: REFERENCE
-            - name: Description
-              type: STRING
+          FUNC_Id:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: STRING
+            identity: [1]
+            denote: true
+          DataDirection:
+            type: BOOLEAN   # true for input, false for output
+            mathematical: true
+          DT_Id:
+            type: REFERENCE
+          Description:
+            type: STRING
       CIM_CCOP:
         name: "Class Class Operation"
         number: 206
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: REFERENCE
+            identity: [1]
       CIM_CIOP:
         name: "CClass Instance Operation"
         number: 207
         properties:
-          property:
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: Name
-              type: REFERENCE
-              identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          Name:
+            type: REFERENCE
+            identity: [1]
       # Action Home Model
       # Diagram: ./images/meta-model-action-home-part1.svg
       # Diagram: ./images/meta-model-action-home-part2.svg
@@ -865,592 +807,552 @@ domains:
         name: "Action Home"
         number: 300
         properties:
-          property:
-            - name: AH_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: ActionDescription
-              type: STRING
+          AH_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          ActionDescription:
+            type: STRING
       CIM_EEFAH:
         name: "External Entity Function Action Home"
         number: 301
         properties:
-          property:
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: FUNC_Id
-              type: REFERENCE
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          FUNC_Id:
+            type: REFERENCE
       CIM_CDFAH:
         name: "Conceptual Domain Function Action Home"
         number: 302
         properties:
-          property:
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: FUNC_Id
-              type: REFERENCE
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          FUNC_Id:
+            type: REFERENCE
       CIM_CCOAH:
         name: "Conceptual Class Operation Action Home"
         number: 303
         properties:
-          property:
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: FUNC_Id
-              type: REFERENCE
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          FUNC_Id:
+            type: REFERENCE
       CIM_SEAH:
         name: "State Entry Action Home"
         number: 304
         properties:
-          property:
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMStt_Id
-              type: REFERENCE
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          SMStt_Id:
+            type: REFERENCE
       CIM_ACT:
         name: "Action"
         number: 305
         properties:
-          property:
-            - name: ACT_Id
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [2]
-            - name: Parent_ACT_Id
-              type: REFERENCE
+          ACT_Id:
+            type: UNIQUE_ID
+            identity: [1, 2]
+          AH_Id:
+            type: REFERENCE
+            identity: [2]
+          Parent_ACT_Id:
+            type: REFERENCE
       CIM_BACT:
         name: "Block Action"
         number: 306
         properties:
-          property:
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_PACT:
         name: "Primitive Action"
         number: 307
         properties:
-          property:
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_DF:
         name: "Data Flow"
         number: 308
         properties:
-          property:
-            - name: DF_Id
-              type: UNIQUE_ID
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: UNIQUE_ID
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_DPN:
         name: "Data Pin"
         number: 309
         properties:
-          property:
-            - name: DPN_Id
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [2]
+          DPN_Id:
+            type: UNIQUE_ID
+            identity: [1, 2]
+          DT_Id:
+            type: REFERENCE
+            identity: [2]
       CIM_PAR:
         name: Pin Arrangement
         number: 312
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_AHPAR:
         name: "Action Home Pin Arrangement"
         number: 313
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_APAR:
         name: "Action Pin Arrangement"
         number: 314
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_BPAR:
         name: "Block Action Pin Arrangement"
         number: 315
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1, 2]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [2]
-            - name: AH_Id
-              type: REFERENCE
+          DPN_Id:
+            type: REFERENCE
+            identity: [1, 2]
+          ACT_Id:
+            type: REFERENCE
+            identity: [2]
+          AH_Id:
+            type: REFERENCE
       CIM_IPN:
         name: "Input Pin"
         number: 316
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_OPN:
         name: "Output Pin"
         number: 317
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SOPN:
         name: "Source Pin"
         number: 318
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_SIPN:
         name: "Sink Pin"
         number: 319
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_AHSOPN:
         name: "Action Home Source Pin" # "AH Source Pin" on Diagram.
         number: 320
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_AHSIPN:
         name: "Action Home Sink Pin" # "AH Sink Pin" on Diagram.
         number: 321
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_BASOPN:
         name: "Block Action Source Pin" # "BA Source Pin" on Diagram.
         number: 322
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_BASIPN:
         name: "Block Action Sink Pin" # "BA Sink Pin" on Diagram.
         number: 323
         properties:
-          property:
-            - name: DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
+          DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_IODF:
         name: "Input Pin To Output Pin Data Flow" # "I2O Data Flow" on Diagram.
         number: 324
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_AHSIDF:
         name: "Action Home Source Pin To Input Pin Data Flow" # "AHS2OI Data Flow" on Diagram.
         number: 325
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_AHSOBASODF:
         name: "Action Home Source Pin To Block Action Source Pin Data Flow" # "AHSO2OBASO Data Flow" on Diagram.
         number: 326
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_BASOIDF:
         name: "Block Action Source Pin To Input Pin Data Flow" # "BASO2I Data Flow" on Diagram.
         number: 327
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_OBASIDF:
         name: "Output Pin To Block Action Sink Pin Data Flow" # "O2BBASI Data Flow" on Diagram.
         number: 328
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_OAHSIDF:
         name: "Output Pin To Action Home Sink Pin Data Flow" # "O2AHSI Data Flow" on Diagram.
         number: 329
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       CIM_BASIAHSIDF:
         name: "Block Action Sink Pin To Action Home Sink Pin Data Flow" # "BASI2AHSI Data Flow" on Diagram.
         number: 330
         properties:
-          property:
-            - name: DF_Id
-              type: REFERENCE
-              identity: [1]
-            - name: AH_Id
-              type: REFERENCE
-              identity: [1]
-            - name: DT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_ACT_Id
-              type: REFERENCE
-              identity: [1]
-            - name: From_DPN_Id
-              type: REFERENCE
-              identity: [1]
-            - name: To_DPN_Id
-              type: REFERENCE
-              identity: [1]
+          DF_Id:
+            type: REFERENCE
+            identity: [1]
+          AH_Id:
+            type: REFERENCE
+            identity: [1]
+          DT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_ACT_Id:
+            type: REFERENCE
+            identity: [1]
+          From_DPN_Id:
+            type: REFERENCE
+            identity: [1]
+          To_DPN_Id:
+            type: REFERENCE
+            identity: [1]
       # Instance Model
       # Diagram: ./images/meta-model-instance-model.svg
       CIMI_FOS:
         name: "Field of Sense"
         number: 1000
         properties:
-          property:
-            - name: FoS_Id
-              type: UNIQUE_ID
-              identity: [1, 2]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
+          FoS_Id:
+            type: UNIQUE_ID
+            identity: [1, 2]
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
       CIMI_INST:
         name: "Instance"
         number: 1001
         properties:
-          property:
-            - name: FoS_Id
-              type: REFERENCE
-              identity: [2]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
-            - name: CClassName
-              type: REFERENCE
-              identity: [2]
-            - name: INST_Id
-              type: UNIQUE_ID
-              identity: [1, 2]
+          FoS_Id:
+            type: REFERENCE
+            identity: [2]
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
+          CClassName:
+            type: REFERENCE
+            identity: [2]
+          INST_Id:
+            type: UNIQUE_ID
+            identity: [1, 2]
       CIMI_IPR:
         name: "Instanced Property"
         number: 1002
         properties:
-          property:
-            - name: IPR_Id
-              type: UNIQUE_ID
-              identity: [2, 3]
-            - name: FoS_Id
-              type: REFERENCE
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: PropertyName
-              type: REFERENCE
-              identity: [1]
-            - name: value
-              type: OTHER
-            - name: INST_Id
-              type: REFERENCE
-              identity: [1,2]
+          IPR_Id:
+            type: UNIQUE_ID
+            identity: [2, 3]
+          FoS_Id:
+            type: REFERENCE
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          PropertyName:
+            type: REFERENCE
+            identity: [1]
+          value:
+            type: OTHER
+          INST_Id:
+            type: REFERENCE
+            identity: [1,2]
       CIMI_SMI:
         name: "State Machine"
         number: 1003
         properties:
-          property:
-            - name: FoS_Id
-              type: REFERENCE
-              identity: [2]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [2]
-            - name: CClassName
-              type: REFERENCE
-              identity: [2]
-            - name: SM_Id
-              type: REFERENCE
-              identity: [2]
-            - name: INST_Id
-              type: REFERENCE
-              identity: [1,2]
+          FoS_Id:
+            type: REFERENCE
+            identity: [2]
+          CDomainName:
+            type: REFERENCE
+            identity: [2]
+          CClassName:
+            type: REFERENCE
+            identity: [2]
+          SM_Id:
+            type: REFERENCE
+            identity: [2]
+          INST_Id:
+            type: REFERENCE
+            identity: [1,2]
       CIMI_CSOI:
         name: "Current State of Instance"
         number: 1004
         properties:
-          property:
-            - name: FoS_Id
-              type: REFERENCE
-              identity: [1]
-            - name: CDomainName
-              type: REFERENCE
-              identity: [1]
-            - name: CClassName
-              type: REFERENCE
-              identity: [1]
-            - name: SM_Id
-              type: REFERENCE
-              identity: [1]
-            - name: INST_Id
-              type: REFERENCE
-              identity: [1, 2]
-            - name: StateName
-              type: REFERENCE
-              identity: [1]
+          FoS_Id:
+            type: REFERENCE
+            identity: [1]
+          CDomainName:
+            type: REFERENCE
+            identity: [1]
+          CClassName:
+            type: REFERENCE
+            identity: [1]
+          SM_Id:
+            type: REFERENCE
+            identity: [1]
+          INST_Id:
+            type: REFERENCE
+            identity: [1, 2]
+          StateName:
+            type: REFERENCE
+            identity: [1]
       CIMI_EVTI:
         name: "Event Instance"
         number: 1005
         properties:
-          property:
-            - name: EVTI_Id
-              type: UNIQUE_ID
-              identity: [1,2]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [2]
-            - name: INST_Id
-              type: REFERENCE
+          EVTI_Id:
+            type: UNIQUE_ID
+            identity: [1,2]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [2]
+          INST_Id:
+            type: REFERENCE
       CIMI_EISI:
         name: "Instanced Supplemental Item"
         number: 1006
         properties:
-          property:
-            - name: EVTI_Id
-              type: REFERENCE
-              identity: [1]
-            - name: SMEvt_Id
-              type: REFERENCE
-              identity: [1]
-            - name: ItemName
-              type: REFERENCE
-              identity: [1]
-            - name: value
-              type: OTHER
+          EVTI_Id:
+            type: REFERENCE
+            identity: [1]
+          SMEvt_Id:
+            type: REFERENCE
+            identity: [1]
+          ItemName:
+            type: REFERENCE
+            identity: [1]
+          value:
+            type: OTHER
       CIMI_SEVTI:
         name: "Self Event Instance"
         number: 1007
         properties:
-          property:
-            - name: EVTI_Id
-              type: REFERENCE
-              identity: [1]
+          EVTI_Id:
+            type: REFERENCE
+            identity: [1]
       CIMI_OEVTI:
         name: "Outcome Event Instance"        
         number: 1008
         properties:
-          property:
-            - name: EVTI_Id
-              type: REFERENCE
-              identity: [1]
+          EVTI_Id:
+            type: REFERENCE
+            identity: [1]
       CIMI_ISTT:
         name: "Intermediate State"
         number: 1009
         properties:
-          property:
-            - name: INST_Id
-              type: REFERENCE
-              identity: [1]
-            - name: Consuming_EVTI_Id
-              type: REFERENCE
+          INST_Id:
+            type: REFERENCE
+            identity: [1]
+          Consuming_EVTI_Id:
+            type: REFERENCE
       CIMI_CSTT:
         name: "Committed State"
         number: 1010
         properties:
-          property:
-            - name: INST_Id
-              type: REFERENCE
-              identity: [1]
+          INST_Id:
+            type: REFERENCE
+            identity: [1]
     relationships:
       R1:
         kind: binary

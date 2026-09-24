@@ -10,81 +10,74 @@ domains:
       name: "Device Kind"
       number: 1
       properties:
-        property:
-          - name: deviceKindId
+        deviceKindId:
             type: INTEGER
             identity: [1]
     V:
       name: "Vendor"
       number: 2
       properties:
-        property:
-          - name: vendorId
-            type: INTEGER
-            identity: [1]
+        vendorId:
+          type: INTEGER
+          identity: [1]
     P:
       name: "Product"
       number: 3
       properties:
-        property:
-          - name: productId
-            type: INTEGER
-            identity: [1]
+        productId
+          type: INTEGER
+          identity: [1]
     HALC:
       name: "HAL Component"
       number: 5
       properties:
-        property:
-          - name: deviceKindId
-            type: INTEGER
-            identity: [1]
-          - name: productId
-            type: INTEGER
-            identity: [1]
-          - name: vendorId
-            type: INTEGER
-            identity: [1]
-          - name: instanceId
-            type: INTEGER
-            identity: [1, 2]
-          - name: equipmentId
-            type: INTEGER
-          - name: componentId
-            type: UNIQUE_ID
-            identity: [2]
+        deviceKindId:
+          type: INTEGER
+          identity: [1]
+        productId:
+          type: INTEGER
+          identity: [1]
+        vendorId:
+          type: INTEGER
+          identity: [1]
+        instanceId:
+          type: INTEGER
+          identity: [1, 2]
+        equipmentId:
+          type: INTEGER
+        componentId:
+          type: UNIQUE_ID
+          identity: [2]
     APIS:
       name: "API Set"
       number: 4
       properties:
-        property:
-          - name: APISetId
-            type: UNIQUE_ID
-            identity: [1]
-          - name: namespace
-            type: STRING
-            identity: [2]
-          - name: name
-            type: STRING
-            identity: [2]
+        APISetId:
+          type: UNIQUE_ID
+          identity: [1]
+        namespace:
+          type: STRING
+          identity: [2]
+        name:
+          type: STRING
+          identity: [2]
     DT:
       name: "Data Type"
       number: 6
       properties:
-        property:
-          - name: name
-            type: STRING
-            identity: [1]
+        name
+          type: STRING
+          identity: [1]
     EDTIV:
       name: "Enumeration Data Type Item Value"
       number: 7
       properties:
-        property:
-          - name: EDTName
-            type: STRING
-            identity: [1]          
-          - name: name
-            type: STRING
-            identity: [1]
-          - name: value
-            type: INTEGER
+        EDTName:
+          type: STRING
+          identity: [1]          
+        name:
+          type: STRING
+          identity: [1]
+        value:
+          type: INTEGER
   
