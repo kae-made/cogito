@@ -2,11 +2,11 @@
 # OpenEL Platform Independent Model
 # version: 2.9.1
 # date: 2026-09-23
-domain:
+domains:
+  "OpenEL:PIM":
   name: "OpenEL Platform Independent Model"
-  key_letter: "OpenEL:PIM"
   cclasses:
-    - key_letter: DK
+    DK:
       name: "Device Kind"
       number: 1
       properties:
@@ -14,7 +14,7 @@ domain:
           - name: deviceKindId
             type: INTEGER
             identity: [1]
-    - key_letter: V
+    V:
       name: "Vendor"
       number: 2
       properties:
@@ -22,7 +22,7 @@ domain:
           - name: vendorId
             type: INTEGER
             identity: [1]
-    - key_letter: P
+    P:
       name: "Product"
       number: 3
       properties:
@@ -30,7 +30,7 @@ domain:
           - name: productId
             type: INTEGER
             identity: [1]
-    - key_letter: HALC
+    HALC:
       name: "HAL Component"
       number: 5
       properties:
@@ -52,7 +52,7 @@ domain:
           - name: componentId
             type: UNIQUE_ID
             identity: [2]
-    - key_letter: APIS
+    APIS:
       name: "API Set"
       number: 4
       properties:
@@ -66,7 +66,7 @@ domain:
           - name: name
             type: STRING
             identity: [2]
-    - key_letter: DT
+    DT:
       name: "Data Type"
       number: 6
       properties:
@@ -74,7 +74,7 @@ domain:
           - name: name
             type: STRING
             identity: [1]
-    - key_letter: EDTIV
+    EDTIV:
       name: "Enumeration Data Type Item Value"
       number: 7
       properties:
@@ -87,3 +87,4 @@ domain:
             identity: [1]
           - name: value
             type: INTEGER
+  

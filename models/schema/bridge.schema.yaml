@@ -1,11 +1,9 @@
 $schema: "https://json-schema.org/draft/2020-12/schema"
-title: Conceptual Information Model (CIM) Schema
-description: A schema for defining a Conceptual Information Model (CIM) in a structured format
+title: Conceptual Information Model Bridge Schema
+description: A schema for defining a Conceptual Information Model Bridge in a structured format
 type: object
-
-anyOf:
-  - required: ["domains"]
-  - required: ["bridges"]
+required:
+  - bridges
 
 $defs:
   # property type definition
@@ -140,7 +138,6 @@ $defs:
         type: boolean
       nullable:
         type: boolean
-
   # ---------------------------------------------------------
   # conceptual class structure definition
   # ---------------------------------------------------------
@@ -371,46 +368,8 @@ $defs:
             pattern: "^[A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)+$"
           cclass: { not: {} }            
 
-# main CIM structure definition
+# main Bridge structure definition
 properties:
-  domains:
-    type: object
-    propertyNames:
-      description: "ドメインのキー文字（大文字のアルファベット1文字など）"
-      pattern: "^[A-Z]$" # 💡 例として「大文字アルファベット1文字」に制限しています
-    additionalProperties:
-      type: object
-      required:
-        - name
-        - cclasses
-        - relationships
-      properties:
-        name:
-          type: string
-        # 💡 ドメインのキー文字をオブジェクトのキーにしたため、内部の key_letter プロパティは不要になり削除しました
-        description:
-          type: string
-        datatypes:
-          type: object
-          propertyNames:
-            description: "固有のデータタイプ名（英数字・アンダースコア）"
-            pattern: "^[a-zA-Z][a-zA-Z0-9_]*$"
-          additionalProperties:
-            $ref: '#/$defs/specificDatatype'
-        cclasses:
-          type: object
-          propertyNames:
-            description: "the key is key_letter of conceptual class"
-            pattern: "^[a-zA-Z][a-zA-Z0-9_]*$"
-          additionalProperties:
-            $ref: '#/$defs/cclass'
-        relationships:
-          type: object
-          propertyNames:
-            description: "関連インデックス（例: R1, R2 などの関連番号）"
-            pattern: "^R[1-9][0-9]*$"
-          additionalProperties:
-            $ref: '#/$defs/relationship'
   bridges:
     type: object
     propertyNames:

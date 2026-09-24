@@ -2,503 +2,503 @@
 # Bridge for OepnEL Specification and OpenEL Platform Independent Model
 # version: 2.9.1
 # date: 2026-09-23
-bridge:
-  name: "Bridge for OpenEL Device Driver Specification and OpenEL Platform Independent Model"
-  key_letter: "BSPECPIM"
-  cclasses:
-    - key_letter: DKM
-      name: "Device Kind Mapping"
-      number: 1
-      properties:
-        property:
-          - name: DeviceKindID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: VM
-      name: "Vendor Mapping"
-      number: 2
-      properties:
-        property:
-          - name: VendorID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: PM
-      name: "Product Mapping"
-      number: 3
-      properties:
-        property:
-          - name: ProductID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: CM
-      name: "Component Mapping"
-      number: 4
-      properties:
-        property:
-          - name: ComponentID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: ECM
-      name: "Executing Component Mapping"
-      number: 5
-      properties:
-        property:
-          - name: ComponentID
-            type: REFERENCE
-            identity: [1]
-          - name: EquipmentID
-            type: REFERENCE
-            identity: [1]
-          - name: PIM:InstanceID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: SC
-      name: "Sensor Component"
-      number: 6
-      properties:
-        property:
-          - name: ComponentID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: AC
-      name: "Actuator Component"
-      number: 7
-      properties:
-        property:
-          - name: ComponentID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: DDSM
-      name: "Device Driver Specification Mapping"
-      number: 8
-      properties:
-        property:
-          - name: DDSpecID
-            type: REFERENCE
-            identity: [1]
-          - name: APISetID
-            type: REFERENCE
-            identity: [1]
-    - key_letter: PDTM
-      name: "Primitive Data Type Mapping"
-      number: 9
-      properties:
-        property:
-          - name: DataTypeID
-            type: REFERENCE
-            identity: [1]
-          - name: Name
-            type: REFERENCE
-            identity: [1]
-    - key_letter: EDTIM
-      name: "Enumeration Data Type Item Mapping"
-      number: 10
-      properties:
-        property:
-          - name: DataTypeID
-            type: REFERENCE
-            identity: [1]
-          - name: EDTName
-            type: REFERENCE
-            identity: [1]
-          - name: ItemName
-            type: REFERENCE
-            identity: [1]
-    # Item & Parameter Mapping
-    - key_letter: PF_MB
-      name: "Memory Block"
-      number: 300
-      properties:
-        property:
-          - name: MemoryBlockID  # MB_ID is name on CIM.
-            type: UNIQUE_ID
-            identity: [1]
-          - name: Length
-            type: INTEGER
-            mathematical: true
-          - name: APISetID
-            type: REFERENCE
-    - key_letter: PF_CMB
-      name: "CDT Memory Block" # "CDT MB" is name on CIM.
-      number: 301
-      properties:
-        property:
-          - name: MemoryBlockID  # MB_ID is name on CIM.
-            type: REFERENCE
-            identity: [1]
-          - name: DataTypeID
-            type: REFERENCE
-    - key_letter: PF_IMB
-      name: "Item Memory Block" # "Item MB" is name on CIM.
-      number: 302
-      properties:
-        property:
-          - name: MemoryBlockID  # MB_ID is name on CIM.
-            type: REFERENCE
-            identity: [1]
-          - name: ItemID
-            type: REFERENCE
-    - key_letter: PF_PIM
-      name: "Position in Memory"
-      number: 304
-      properties:
-        property:
-          - name: PositionInMemoryID  # PIM_ID is name on CIM.
-            type: UNIQUE_ID
-            identity: [1]
-          - name: MemoryBlockID  # MB_ID is name on CIM.
-            type: REFERENCE
-            identity: [2]
-          - name: OffsetInMemoryBlock  # "OffsetInMB" is name on CIM.
-            type: INTEGER
-            identity: [2]
-          - name: PositionInBits
-            type: INTEGER
-            identity: [2]
-    - key_letter: PF_CPIM
-      name: "CDTI Position in Memory" # "CDTI PIM" is name on CIM.
-      number: 305
-      properties:
-        property:
-          - name: PositionInMemoryID  # PIM_ID is name on CIM.
-            type: REFERENCE
-            identity: [1]
-          - name: DataTypeID
-            type: REFERENCE
-          - name: Name
-            type: REFERENCE
-    - key_letter: PF_PPIM
-      name: "Parameter Position in Memory" # "Param PIM" is name on CIM.
-      number: 306
-      properties:
-        property:
-          - name: PositionInMemoryID  # PIM_ID is name on CIM.
-            type: REFERENCE
-            identity: [1]
-          - name: ItemID
-            type: REFERENCE
-          - name: Name
-            type: REFERENCE
-    - key_letter: PF_ISO
-      name: "Item Specification Order"
-      number: 303
-      properties:
-        property:
-          - name: ItemID
-            type: REFERENCE
-            identity: [1]
-          - name: Prev_Name
-            type: REFERENCE
-            identity: [1]
-          - name: Next_Name
-            type: REFERENCE
-            identity: [1]
-    - key_letter: PF_IPO
-      name: "Parameter Specification Order"
-      number: 307
-      properties:
-        property:
-          - name: ItemID
-            type: REFERENCE
-            identity: [1]
-          - name: Prev_ParamName
-            type: REFERENCE
-            identity: [1]
-          - name: Next_ParamName
-            type: REFERENCE
-            identity: [1]
-    - key_letter: PF_CDTIO
-      name: "CDT Item Order"
-      number: 308
-      properties:
-        property:
-          - name: DataTypeID
-            type: REFERENCE
-            identity: [1]
-          - name: Prev_Name
-            type: REFERENCE
-            identity: [1]
-          - name: Next_Name
-            type: REFERENCE
-            identity: [1]
-  relationships:
-    - index: R1
-      kind: "binary"
-      referent:
-        cclass: CM
-        multiplicity: "1"
-        phrase: "is execution mapping of"
-      partcipant:
-        - cclass: ECM
-          multiplicity: "MC"
-          phrase: "is mapping base of"
-      referencing:
-        - ComponentID: ComponentID
-    # Item & Parameter Order Mapping
-    - index: R301
-      kind: binary
-      referent:
-        cclass: OE_MB
-        multiplicity: "1"
-        phrase: "are arranged in"
-      participant:
-        cclass: OE_PIM
-        multiplicity: "M"
-        phrase: "is filled in"
-      referencing:
-        - MemoryBlockID: MemoryBlockID
-    - index: R300
-      kind: is-a
-      referent:
-        cclass: OE_MB
+bridges:
+  "BSPECPIM":
+    name: "Bridge for OpenEL Device Driver Specification and OpenEL Platform Independent Model"
+    cclasses:
+      DKM:
+        name: "Device Kind Mapping"
+        number: 1
         properties:
-          - MemoryBlockID
-      participants:
-        - cclass: OE_CMB
-          properties:
-            - MemoryBlockID
-        - cclass: OE_IMB
-          properties:
-            - MemoryBlockID
-    - index: R302
-      kind: is-a
-      referent:
-        cclass: OE_PIM
+          property:
+            - name: DeviceKindID
+              type: REFERENCE
+              identity: [1]
+      VM:
+        name: "Vendor Mapping"
+        number: 2
         properties:
-          - PositionInMemoryID
-      participants:
-        - cclass: OE_CPIM
-          properties:
-            - PositionInMemoryID
-        - cclass: OE_PPIM
-          properties:
-            - PositionInMemoryID
-  functors:
-    - index: F1
-      kind: "binary"
-      one:
-        pclass: OPENE:SPC:OE_DK
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:DK
-        multiplicity: "1"
-      associative:
-        cclass: DKM
-      referencing:
-        one:
-          - DeviceKindId: DeviceKindID
-        other:
-          - deviceKindId: DeviceKindID
-    - index: F2
-      kind: "binary"
-      one:
-        pclass: OPENEL:SPC:OE_V
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:V
-        multiplicity: "1"
-      associative:
-        cclass: VM
-      referencing:
-        one:
-          - VendorId: VendorID
-        other:
-          - vendorId: VendorID
-    - index: F3
-      kind: "binary"
-      one:
-        pclass: OPENEL:SPC:OE_P
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:P
-        multiplicity: "1"
-      associative:
-        cclass: PM
-      referencing:
-        one:
-          - ProductId: ProductID
-        other:
-          - productId: ProductID
-    - index: F4
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_C
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:HALC
-        multiplicity: "MC"
-      associative:
-        cclass: OPENEL:SPC:CM
-      referencing:
-        one:
-          - ComponentID: ComponentID
-        other:
-          - componentId: ComponentID
-    - index: F5
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OEOE_EC
-        multiplicity: "MC"
-      other:
-        pclass: OPENEL:PIM:HALC
-        multiplicity: "1"
-      associative:
-        cclass: ECM
-      referencing:
-        one:
-          - ComponentID: ComponentID
-          - EquipmentID: EquipmentID
-        other:
-          - componentId: ComponentID
-          - instanceId: InstanceID
-    - index: F6
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_DDS
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:APIS
-        multiplicity: "MC"
-      associative:
-        cclass: DDSM
-      referencing:
-        one:
-          - DDSpecID: DDSpecID
-        other:
-          - apiId: ApiID
-    - index: F7
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_PDT
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:DT
-        multiplicity: "MC"
-      associative:
-        cclass: PDTM
-      referencing:
-        one:
-          - DataTypeID: DataTypeID
-        other:
-          - name: Name
-    - index: F8
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_EDTI
-        multiplicity: "1"
-      other:
-        pclass: OPENEL:PIM:EDTIV
-        multiplicity: "MC"
-      associative:
-        cclass: EDTIM
-      referencing:
-        one:
-          - DataTypeID: DataTypeID
-        other:
-          - EDTName: EDTName
-          - name: ItemName
-    # Item & Parameter Order Mapping
-    - index: F300
-      kind: binary
-      referent:
-        pclass: OPENEL:PIM:APIS
-        multiplicity: "1"
-      participant:
-        cclass: PF_MB
-        multiplicity: "1"
-      referencing:
-        - APISetID: APISetID
-    - index: F301
-      kind: binary
-      referent:
-        pclass: OPENEL:SPC:OE_ITS
-        multiplicity: "1"
-      participant:
-        cclass: PF_IMB
-        multiplicity: "1C"
-      referencing:
-        - ItemID: ItemID
-    - index: F304
-      kind: binary
-      referent:
-        pclass: OPENEL:SPC:OE_PS
-        multiplicity: "1"
-      participant:
-        cclass: PF_PPIM
-        multiplicity: "1C"
-      referencing:
-        - ItemID: ItemID
-        - Name: Name
-    - index: F303
-      kind: binary
-      referent:
-        pclass: OPENEL:SPC:OE_CDT
-        multiplicity: "1"
-      participant:
-        cclass: OE_CMB
-        multiplicity: "1C"
+          property:
+            - name: VendorID
+              type: REFERENCE
+              identity: [1]
+      PM:
+        name: "Product Mapping"
+        number: 3
+        properties:
+          property:
+            - name: ProductID
+              type: REFERENCE
+              identity: [1]
+      CM:
+        name: "Component Mapping"
+        number: 4
+        properties:
+          property:
+            - name: ComponentID
+              type: REFERENCE
+              identity: [1]
+      ECM:
+        name: "Executing Component Mapping"
+        number: 5
+        properties:
+          property:
+            - name: ComponentID
+              type: REFERENCE
+              identity: [1]
+            - name: EquipmentID
+              type: REFERENCE
+              identity: [1]
+            - name: PIM:InstanceID
+              type: REFERENCE
+              identity: [1]
+      SC:
+        name: "Sensor Component"
+        number: 6
+        properties:
+          property:
+            - name: ComponentID
+              type: REFERENCE
+              identity: [1]
+      AC:
+        name: "Actuator Component"
+        number: 7
+        properties:
+          property:
+            - name: ComponentID
+              type: REFERENCE
+              identity: [1]
+      DDSM:
+        name: "Device Driver Specification Mapping"
+        number: 8
+        properties:
+          property:
+            - name: DDSpecID
+              type: REFERENCE
+              identity: [1]
+            - name: APISetID
+              type: REFERENCE
+              identity: [1]
+      PDTM:
+        name: "Primitive Data Type Mapping"
+        number: 9
+        properties:
+          property:
+            - name: DataTypeID
+              type: REFERENCE
+              identity: [1]
+            - name: Name
+              type: REFERENCE
+              identity: [1]
+      EDTIM:
+        name: "Enumeration Data Type Item Mapping"
+        number: 10
+        properties:
+          property:
+            - name: DataTypeID
+              type: REFERENCE
+              identity: [1]
+            - name: EDTName
+              type: REFERENCE
+              identity: [1]
+            - name: ItemName
+              type: REFERENCE
+              identity: [1]
+      # Item & Parameter Mapping
+      PF_MB:
+        name: "Memory Block"
+        number: 300
+        properties:
+          property:
+            - name: MemoryBlockID  # MB_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            - name: Length
+              type: INTEGER
+              mathematical: true
+            - name: APISetID
+              type: REFERENCE
+      PF_CMB:
+        name: "CDT Memory Block" # "CDT MB" is name on CIM.
+        number: 301
+        properties:
+          property:
+            - name: MemoryBlockID  # MB_ID is name on CIM.
+              type: REFERENCE
+              identity: [1]
+            - name: DataTypeID
+              type: REFERENCE
+      PF_IMB:
+        name: "Item Memory Block" # "Item MB" is name on CIM.
+        number: 302
+        properties:
+          property:
+            - name: MemoryBlockID  # MB_ID is name on CIM.
+              type: REFERENCE
+              identity: [1]
+            - name: ItemID
+              type: REFERENCE
+      PF_PIM:
+        name: "Position in Memory"
+        number: 304
+        properties:
+          property:
+            - name: PositionInMemoryID  # PIM_ID is name on CIM.
+              type: UNIQUE_ID
+              identity: [1]
+            - name: MemoryBlockID  # MB_ID is name on CIM.
+              type: REFERENCE
+              identity: [2]
+            - name: OffsetInMemoryBlock  # "OffsetInMB" is name on CIM.
+              type: INTEGER
+              identity: [2]
+            - name: PositionInBits
+              type: INTEGER
+              identity: [2]
+      PF_CPIM:
+        name: "CDTI Position in Memory" # "CDTI PIM" is name on CIM.
+        number: 305
+        properties:
+          property:
+            - name: PositionInMemoryID  # PIM_ID is name on CIM.
+              type: REFERENCE
+              identity: [1]
+            - name: DataTypeID
+              type: REFERENCE
+            - name: Name
+              type: REFERENCE
+      PF_PPIM:
+        name: "Parameter Position in Memory" # "Param PIM" is name on CIM.
+        number: 306
+        properties:
+          property:
+            - name: PositionInMemoryID  # PIM_ID is name on CIM.
+              type: REFERENCE
+              identity: [1]
+            - name: ItemID
+              type: REFERENCE
+            - name: Name
+              type: REFERENCE
+      PF_ISO:
+        name: "Item Specification Order"
+        number: 303
+        properties:
+          property:
+            - name: ItemID
+              type: REFERENCE
+              identity: [1]
+            - name: Prev_Name
+              type: REFERENCE
+              identity: [1]
+            - name: Next_Name
+              type: REFERENCE
+              identity: [1]
+      PF_IPO:
+        name: "Parameter Specification Order"
+        number: 307
+        properties:
+          property:
+            - name: ItemID
+              type: REFERENCE
+              identity: [1]
+            - name: Prev_ParamName
+              type: REFERENCE
+              identity: [1]
+            - name: Next_ParamName
+              type: REFERENCE
+              identity: [1]
+      PF_CDTIO:
+        name: "CDT Item Order"
+        number: 308
+        properties:
+          property:
+            - name: DataTypeID
+              type: REFERENCE
+              identity: [1]
+            - name: Prev_Name
+              type: REFERENCE
+              identity: [1]
+            - name: Next_Name
+              type: REFERENCE
+              identity: [1]
+    relationships:
+      R1:
+        kind: "binary"
+        referent:
+          cclass: CM
+          multiplicity: "1"
+          phrase: "is execution mapping of"
+        partcipant:
+          - cclass: ECM
+            multiplicity: "MC"
+            phrase: "is mapping base of"
         referencing:
-          - DataTypeID: DataTypeID
-    - index: F306
-      kind: binary
-      referent:
-        pclass: OPENEL:SPC:OE_CDTI
-        multiplicity: "1"
-      participant:
-        cclass: OE_CPIM
-        multiplicity: "1C"
-      referencing:
-        - Parent_DataTypeID: DataTypeID
-        - Name: Name
-    - index: F302
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_ITS
-        multiplicity: "1C"
-      other:
-        pclass: OPENEL:SPC:OE_ITS
-        multiplicity: "1C"
-      associative:
-        cclass: PF_ISO
-      referencing:
+          - ComponentID: ComponentID
+      # Item & Parameter Order Mapping
+      R301:
+        kind: binary
+        referent:
+          cclass: OE_MB
+          multiplicity: "1"
+          phrase: "are arranged in"
+        participant:
+          cclass: OE_PIM
+          multiplicity: "M"
+          phrase: "is filled in"
+        referencing:
+          - MemoryBlockID: MemoryBlockID
+      R300:
+        kind: is-a
+        referent:
+          cclass: OE_MB
+          properties:
+            - MemoryBlockID
+        participants:
+          - cclass: OE_CMB
+            properties:
+              - MemoryBlockID
+          - cclass: OE_IMB
+            properties:
+              - MemoryBlockID
+      R302:
+        kind: is-a
+        referent:
+          cclass: OE_PIM
+          properties:
+            - PositionInMemoryID
+        participants:
+          - cclass: OE_CPIM
+            properties:
+              - PositionInMemoryID
+          - cclass: OE_PPIM
+            properties:
+              - PositionInMemoryID
+    functors:
+      F1:
+        kind: "binary"
         one:
-          - ItemID: ItemID
-          - Name: Prev_Name
+          pclass: OPENE:SPC:OE_DK
+          multiplicity: "1"
         other:
-          - ItemID: ItemID
-          - Name: Next_Name
-    - index: F305
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_PS
-        multiplicity: "1C"
-      other:
-        pclass: OPENEL:SPC:OE_PS
-        multiplicity: "1C"
-      associative:
-        cclass: PF_IPO
-      referencing:
+          pclass: OPENEL:PIM:DK
+          multiplicity: "1"
+        associative:
+          cclass: DKM
+        referencing:
+          one:
+            - DeviceKindId: DeviceKindID
+          other:
+            - deviceKindId: DeviceKindID
+      F2:
+        kind: "binary"
         one:
-          - ItemID: ItemID
-          - Name: Prev_ParamName
+          pclass: OPENEL:SPC:OE_V
+          multiplicity: "1"
         other:
-          - ItemID: ItemID
-          - Name: Next_ParamName
-    - index: F307
-      kind: "binary-associative"
-      one:
-        pclass: OPENEL:SPC:OE_CDTI
-        multiplicity: "1C"
-      other:
-        pclass: OPENEL:SPC:OE_CDTI
-        multiplicity: "1C"
-      associative:
-        cclass: PF_CDTIO
-      referencing:
+          pclass: OPENEL:PIM:V
+          multiplicity: "1"
+        associative:
+          cclass: VM
+        referencing:
+          one:
+            - VendorId: VendorID
+          other:
+            - vendorId: VendorID
+      F3:
+        kind: "binary"
         one:
-          - DataTypeID: DataTypeID
-          - Name: Prev_Name
+          pclass: OPENEL:SPC:OE_P
+          multiplicity: "1"
         other:
-          - DataTypeID: DataTypeID
-          - Name: Next_Name
-      
+          pclass: OPENEL:PIM:P
+          multiplicity: "1"
+        associative:
+          cclass: PM
+        referencing:
+          one:
+            - ProductId: ProductID
+          other:
+            - productId: ProductID
+      F4:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_C
+          multiplicity: "1"
+        other:
+          pclass: OPENEL:PIM:HALC
+          multiplicity: "MC"
+        associative:
+          cclass: OPENEL:SPC:CM
+        referencing:
+          one:
+            - ComponentID: ComponentID
+          other:
+            - componentId: ComponentID
+      F5:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OEOE_EC
+          multiplicity: "MC"
+        other:
+          pclass: OPENEL:PIM:HALC
+          multiplicity: "1"
+        associative:
+          cclass: ECM
+        referencing:
+          one:
+            - ComponentID: ComponentID
+            - EquipmentID: EquipmentID
+          other:
+            - componentId: ComponentID
+            - instanceId: InstanceID
+      F6:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_DDS
+          multiplicity: "1"
+        other:
+          pclass: OPENEL:PIM:APIS
+          multiplicity: "MC"
+        associative:
+          cclass: DDSM
+        referencing:
+          one:
+            - DDSpecID: DDSpecID
+          other:
+            - apiId: ApiID
+      F7:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_PDT
+          multiplicity: "1"
+        other:
+          pclass: OPENEL:PIM:DT
+          multiplicity: "MC"
+        associative:
+          cclass: PDTM
+        referencing:
+          one:
+            - DataTypeID: DataTypeID
+          other:
+            - name: Name
+      F8:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_EDTI
+          multiplicity: "1"
+        other:
+          pclass: OPENEL:PIM:EDTIV
+          multiplicity: "MC"
+        associative:
+          cclass: EDTIM
+        referencing:
+          one:
+            - DataTypeID: DataTypeID
+          other:
+            - EDTName: EDTName
+            - name: ItemName
+      # Item & Parameter Order Mapping
+      F300:
+        kind: binary
+        referent:
+          pclass: OPENEL:PIM:APIS
+          multiplicity: "1"
+        participant:
+          cclass: PF_MB
+          multiplicity: "1"
+        referencing:
+          - APISetID: APISetID
+      F301:
+        kind: binary
+        referent:
+          pclass: OPENEL:SPC:OE_ITS
+          multiplicity: "1"
+        participant:
+          cclass: PF_IMB
+          multiplicity: "1C"
+        referencing:
+          - ItemID: ItemID
+      F304:
+        kind: binary
+        referent:
+          pclass: OPENEL:SPC:OE_PS
+          multiplicity: "1"
+        participant:
+          cclass: PF_PPIM
+          multiplicity: "1C"
+        referencing:
+          - ItemID: ItemID
+          - Name: Name
+      F303:
+        kind: binary
+        referent:
+          pclass: OPENEL:SPC:OE_CDT
+          multiplicity: "1"
+        participant:
+          cclass: OE_CMB
+          multiplicity: "1C"
+          referencing:
+            - DataTypeID: DataTypeID
+      F306:
+        kind: binary
+        referent:
+          pclass: OPENEL:SPC:OE_CDTI
+          multiplicity: "1"
+        participant:
+          cclass: OE_CPIM
+          multiplicity: "1C"
+        referencing:
+          - Parent_DataTypeID: DataTypeID
+          - Name: Name
+      F302:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_ITS
+          multiplicity: "1C"
+        other:
+          pclass: OPENEL:SPC:OE_ITS
+          multiplicity: "1C"
+        associative:
+          cclass: PF_ISO
+        referencing:
+          one:
+            - ItemID: ItemID
+            - Name: Prev_Name
+          other:
+            - ItemID: ItemID
+            - Name: Next_Name
+      F305:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_PS
+          multiplicity: "1C"
+        other:
+          pclass: OPENEL:SPC:OE_PS
+          multiplicity: "1C"
+        associative:
+          cclass: PF_IPO
+        referencing:
+          one:
+            - ItemID: ItemID
+            - Name: Prev_ParamName
+          other:
+            - ItemID: ItemID
+            - Name: Next_ParamName
+      F307:
+        kind: "binary-associative"
+        one:
+          pclass: OPENEL:SPC:OE_CDTI
+          multiplicity: "1C"
+        other:
+          pclass: OPENEL:SPC:OE_CDTI
+          multiplicity: "1C"
+        associative:
+          cclass: PF_CDTIO
+        referencing:
+          one:
+            - DataTypeID: DataTypeID
+            - Name: Prev_Name
+          other:
+            - DataTypeID: DataTypeID
+            - Name: Next_Name
+        

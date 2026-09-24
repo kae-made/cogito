@@ -2,20 +2,19 @@
 # OepnEL Device Driver Specification
 # version: 2.9.1
 # date: 2026-09-19
-domain:
-  name: "OpenEL Device Driver Specification"
-  key_letter: "OpenEL:SPC"
-  datatypes:
-    datatype:
-      - name: DataDirection
+domains:
+  # OpenEL Device Driver Specification definition
+  "OpenEL:SPC":
+    name: "OpenEL Device Driver Specification"
+    datatypes:
+      DataDirection:
         kind: "enumeration"
         items:
           - "Instruct"
           - "Observe"
-  cclasses:
-    cclass:
+    cclasses:
       # OpenEL::Specification Sub system
-      - key_letter: OE_DK
+      OE_DK:
         name: "Device Kind"
         number: 1
         properties:
@@ -33,7 +32,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_ORG
+      OE_ORG:
         name: "Organization"
         number: 2
         properties:
@@ -47,7 +46,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_V
+      OE_V:
         name: "Vendor"
         number: 3
         properties:
@@ -62,7 +61,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_M
+      OE_M:
         name: "Module"
         number: 4
         properties:
@@ -82,7 +81,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_DDS
+      OE_DDS:
         name: "Device Driver Specification"
         number: 5
         properties:
@@ -102,7 +101,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_PD
+      OE_PD:
         name: "Product"
         number: 6
         properties:
@@ -120,7 +119,7 @@ domain:
             - name: VendorID
               type: REFERENCE
               identity: [1,2]
-      - key_letter: OE_C
+      OE_C:
         name: "Component"
         number: 7
         properties:
@@ -137,7 +136,7 @@ domain:
             - name: DefinedVendorID
               type: REFERENCE
               identity: [2]
-      - key_letter: OE_ITS
+      OE_ITS:
         name: "Item Specification"
         number: 8
         properties:
@@ -153,7 +152,7 @@ domain:
               nullable: true
             - name: DefinedVendorID
               type: REFERENCE
-      - key_letter: OE_CF
+      OE_CF:
         name: "Configuration"
         number: 9
         properties:
@@ -170,7 +169,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_DIS
+      OE_DIS:
         name: "Device Item Specification"
         number: 10
         properties:
@@ -186,7 +185,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_ISIS
+      OE_ISIS:
         name: "Internal State Item Specification" # "Internal State IS" is name on CIM.
         number: 11
         properties:
@@ -196,7 +195,7 @@ domain:
               identity: [1]
             - name: DeviceItemID
               type: REFERENCE
-      - key_letter: OE_CIS
+      OE_CIS:
         name: "Configuration Item Specification" # "Configuration IS" is name on CIM.
         number: 12
         properties:
@@ -207,7 +206,7 @@ domain:
             - name: ConfigurationID # "ConfID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_EIS
+      OE_EIS:
         name: "Environment Item Specification" # "Environment IS" is name on CIM.
         number: 13
         properties:
@@ -215,7 +214,7 @@ domain:
             - name: ItemID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_DOIS
+      OE_DOIS:
         name: "Observed Item Specification" # "Observed IS" is name on CIM.
         number: 14
         properties:
@@ -223,7 +222,7 @@ domain:
             - name: ItemID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_DIIS
+      OE_DIIS:
         name: "Instruct Item Specification" # "Instruct IS" is name on CIM.
         number: 15
         properties:
@@ -231,7 +230,7 @@ domain:
             - name: ItemID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_PS
+      OE_PS:
         name: "Parameter Specification"
         number: 16
         properties:
@@ -247,7 +246,7 @@ domain:
               nullable: true
             - name: DataTypeID
               type: REFERENCE
-      - key_letter: OE_CFDDS
+      OE_CFDDS:
         name: "Configuration for Device Driver Specification"
         number: 17
         properties:
@@ -258,7 +257,7 @@ domain:
             - name: ComponentID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_ITDDS
+      OE_ITDDS:
         name: "Item Specification in DDS"
         number: 18
         properties:
@@ -270,7 +269,7 @@ domain:
               type: REFERENCE
               identity: [1]
       # OpenEL::Operational Equipment Sub system
-      - key_letter: OEOE_EQ
+      OEOE_EQ:
         name: "Equipment"
         number: 100
         properties:
@@ -283,7 +282,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OEOE_EC
+      OEOE_EC:
         name: "Executing Component"
         number: 101
         properties:
@@ -302,7 +301,7 @@ domain:
               type: REFERENCE
             - name: ComponentID
               type: REFERENCE
-      - key_letter: OEOE_P
+      OEOE_P:
         name: "Parameter"
         number: 102
         properties:
@@ -324,7 +323,7 @@ domain:
             - name: Time
               type: TIMESTAMP
       # OpenEL::Specification Approvement Sub system
-      - key_letter: OESA_AP
+      OESA_AP:
         name: "Approvement"
         number: 200
         properties:
@@ -342,7 +341,7 @@ domain:
               type: REFERENCE
             - name: Remarks
               type: STRING
-      - key_letter: OESA_DKAP
+      OESA_DKAP:
         name: "Device Kind Approvement"
         number: 201
         properties:
@@ -352,7 +351,7 @@ domain:
               identity: [1]
             - name: DeviceKindID
               type: REFERENCE
-      - key_letter: OESA_VAP
+      OESA_VAP:
         name: "Vendor Approvement"
         number: 202
         properties:
@@ -362,7 +361,7 @@ domain:
               identity: [1]
             - name: VendorID
               type: REFERENCE
-      - key_letter: OESA_PA
+      OESA_PA:
         name: "Product Approvement"
         number: 203
         properties:
@@ -374,7 +373,7 @@ domain:
               type: REFERENCE
             - name: VendorID
               type: REFERENCE
-      - key_letter: OESA_AT
+      OESA_AT:
         name: "Authorizer"
         number: 204
         properties:
@@ -386,7 +385,7 @@ domain:
               type: STRING
               nullable: true
       # OpenEL::Data Type Sub system
-      - key_letter: OE_DT
+      OE_DT:
         name: "Data Type"
         number: 20
         properties:
@@ -397,7 +396,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_SDT
+      OE_SDT:
         name: "Specific Data Type"
         number: 21
         properties:
@@ -411,7 +410,7 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
-      - key_letter: OE_BDT
+      OE_BDT:
         name: "Base Data Type"
         number: 22
         properties:
@@ -425,7 +424,7 @@ domain:
             - name: NotationID
               type: REFERENCE
               nullable: true
-      - key_letter: OE_PDT
+      OE_PDT:
         name: "Primitive Data Type"
         number: 23
         properties:
@@ -438,7 +437,7 @@ domain:
             - name: NotationID
               type: REFERENCE
               nullable: true
-      - key_letter: OE_EDT
+      OE_EDT:
         name: "Enumerated Data Type"
         number: 24
         properties:
@@ -446,7 +445,7 @@ domain:
             - name: DataTypeID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_EDTI
+      OE_EDTI:
         name: "Enumerated Data Type Item"
         number: 25
         properties:
@@ -460,7 +459,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OE_CDT
+      OE_CDT:
         name: "Composite Data Type"
         number: 26
         properties:
@@ -468,7 +467,7 @@ domain:
             - name: DataTypeID
               type: REFERENCE
               identity: [1]
-      - key_letter: OE_CDTI
+      OE_CDTI:
         name: "Composite Data Type Item"
         number: 27
         properties:
@@ -487,7 +486,7 @@ domain:
             - name: Next_Name
               type: REFERENCE
               nullable: true
-      - key_letter: OE_VNR
+      OE_VNR:
         name: "Value Notation Rule"
         number: 28
         properties:
@@ -501,7 +500,7 @@ domain:
               type: STRING
               nullable: true
       # OpenEL::Calibration Sub system
-      - key_letter: OEC_CB
+      OEC_CB:
         name: "Calibration"
         number: 50
         properties:
@@ -521,7 +520,7 @@ domain:
             - name: Description
               type: STRING
               nullable: true
-      - key_letter: OEC_CBM
+      OEC_CBM:
         name: "Calibration with Model"
         number: 51
         properties:
@@ -532,7 +531,7 @@ domain:
             - name: Model
               type: OTHER
               nullable: true
-      - key_letter: OEC_CBI
+      OEC_CBI:
         name: "Calibration with Item"
         number: 52
         properties:
@@ -540,7 +539,7 @@ domain:
             - name: CalibrationID
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_CI
+      OEC_CI:
         name: "Calibration Item"
         number: 53
         properties:
@@ -554,7 +553,7 @@ domain:
             - name: ItemID
               type: REFERENCE
               identity: [3]
-      - key_letter: OEC_CSI
+      OEC_CSI:
         name: "Calibration Item"
         number: 54
         properties:
@@ -568,7 +567,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_ECSI
+      OEC_ECSI:
         name: "Environment Calibration Specification Item"  # "Environment CSI" is name on CIM.
         number: 55
         properties:
@@ -579,7 +578,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_ICSI
+      OEC_ICSI:
         name: "Instruct State Calibration Specification Item"  # "Instruct CSI" is name on CIM.
         number: 56
         properties:
@@ -590,7 +589,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_CEI
+      OEC_CEI:
         name: "Caibration Expected Item"
         number: 57
         properties:
@@ -604,7 +603,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_ECEI
+      OEC_ECEI:
         name: "Environment Calibration Expected Item"  # "Environment CEI" is name on CIM.
         number: 58
         properties:
@@ -615,7 +614,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_OCEI
+      OEC_OCEI:
         name: "Observed Calibration Expected Item"  # "Observed CEI" is name on CIM.
         number: 59
         properties:
@@ -626,7 +625,7 @@ domain:
             - name: CalibrationID  # "CalID" is name on CIM.
               type: REFERENCE
               identity: [1]
-      - key_letter: OEC_CP
+      OEC_CP:
         name: "Calibration Parameter"
         number: 60
         properties:
@@ -646,10 +645,9 @@ domain:
             - name: Value
               type: OTHER
               nullable: true
-  relationships:
-    relationship:
+    relationships:
       # OpenEL::Specification Sub system
-      - index: R1
+      R1:
         kind: binary
         referent:
           cclass: OE_ORG
@@ -661,7 +659,7 @@ domain:
           phrase: "may be"  
         referencing:
           - ShortName: ShortName
-      - index: R2
+      R2:
         kind: binary
         referent:
           cclass: OE_V
@@ -673,7 +671,7 @@ domain:
            phrase: "provide"
         referencing:
           - VendorID: VendorID
-      - index: R3
+      R3:
         kind: binary
         referent:
           cclass: OE_DK
@@ -685,7 +683,7 @@ domain:
            phrase: "is kind of"
         referencing:
           - DeviceKindID: DeviceKindID
-      - index: R4
+      R4:
         kind: binary
         referent:
           cclass: OE_PD
@@ -698,7 +696,7 @@ domain:
         referencing:
           - ProductID: ProductID
           - VendorID: VendorID
-      - index: R5
+      R5:
         kind: binary
         referent:
           cclass: OE_C
@@ -710,7 +708,7 @@ domain:
           phrase: "is operated under the control of"
         referencing:
           - DDSpecID: DDSpecID
-      - index: R6
+      R6:
         kind: binary-associative
         one:
           cclass: OE_DDS
@@ -727,7 +725,7 @@ domain:
             - DDSpecID: DDSpecID
           other:
             - ItemID: ItemID
-      - index: R7
+      R7:
         kind: binary
         referent:
           cclass: OE_DK
@@ -739,7 +737,7 @@ domain:
           phrase: "is target of"
         referencing:
           - DeviceKindID: DeviceKindID
-      - index: R8
+      R8:
         kind: binary
         referent:
           cclass: OE_DDS
@@ -751,7 +749,7 @@ domain:
           phrase: "is owner of"
         referencing:
           - ComponentID: ComponentID
-      - index: R9
+      R9:
         kind: binary
         referent:
           cclass: OE_CF
@@ -763,7 +761,7 @@ domain:
           phrase: "is defined by"
         referencing:
           - ConfigurationID: ConfigurationID
-      - index: R11
+      R11:
         kind: is-a
         referent:
           cclass: OE_ITS
@@ -785,7 +783,7 @@ domain:
           - cclass: OE_EIS
             properties:
               - ItemID
-      - index: R12
+      R12:
         kind: binary
         referent:
           cclass: OE_ITS
@@ -797,7 +795,7 @@ domain:
           phrase: "is accompanied by"
         referencing:
           - ItemID: ItemID
-      - index: R13
+      R13:
         kind: binary
         referent:
           cclass: OE_V
@@ -809,7 +807,7 @@ domain:
           phrase: "define"
         referencing:
           - VendorID: DefinedVendorID
-      - index: R14
+      R14:
         kind: is-a
         referent:
           cclass: OE_DIS
@@ -822,7 +820,7 @@ domain:
           - cclass: OE_DIIS
             properties:
               - ItemID
-      - index: R15
+      R15:
         kind: binary
         referent:
           cclass: OE_DIS
@@ -834,7 +832,7 @@ domain:
           phrase: "may hold"
         referencing:
           - DeviceItemID: DeviceItemID
-      - index: R16
+      R16:
         kind: binary
         referent:
           cclass: OE_V
@@ -846,7 +844,7 @@ domain:
           phrase: "is manufacturer of"
         referencing:
           - VendorID: VendorID
-      - index: R17
+      R17:
         kind: binary
         referent:
           cclass: OE_M
@@ -858,7 +856,7 @@ domain:
           phrase: "is operated via"
         referencing:
           - ModuleID: ModuleID
-      - index: R18
+      R18:
         kind: binary
         referent:
           cclass: OE_V
@@ -871,7 +869,7 @@ domain:
         referencing:
           - VendorID: DefinedVendorID
       # OpenEL::Operational Equipment Sub system
-      - index: R101
+      R101:
         kind: binary
         referent:
           cclass: OEOE_EQ
@@ -883,7 +881,7 @@ domain:
           phrase: "run with"
         referencing:
           - EquipmentID: EquipmentID
-      - index: R102
+      R102:
         kind: binary
         participant:
           cclass: OEOE_EC
@@ -898,7 +896,7 @@ domain:
           - DefinedVendorID: DefinedVendorID
           - ProductID: ProductID
           - ComponentID: ComponentID
-      - index: R103
+      R103:
         kind: binary
         referent:
           cclass: OEOE_EC
@@ -911,7 +909,7 @@ domain:
         referencing:
           - InstanceID: InstanceID
           - EquipmentID: EquipmentID
-      - index: R104
+      R104:
         kind: binary
         participant:
           cclass: OEOE_P
@@ -925,7 +923,7 @@ domain:
           - ItemID: ItemID
           - Name: Name
       # OpenEL::Specification Approvement Sub system
-      - index: R201
+      R201:
         kind: binary
         referent:
           cclass: OESA_AT
@@ -937,7 +935,7 @@ domain:
           phrase: "authorize"
         referencing:
           - ShortName: AuthorizerName
-      - index: R202
+      R202:
         kind: is-a
         referent:
           cclass: OESA_AP
@@ -953,7 +951,7 @@ domain:
           - cclass: OESA_PA
             properties:
               - ApprovementID
-      - index: R203
+      R203:
         kind: binary
         participant:
           cclass: OESA_DKAP
@@ -965,7 +963,7 @@ domain:
           phrase: "approved"
         referencing:
           - DeviceKindID: DeviceKindID
-      - index: R204
+      R204:
         kind: binary 
         participant:
           cclass: OESA_VAP
@@ -977,7 +975,7 @@ domain:
           phrase: "approved"
         referencing:
           - VendorID: VendorID
-      - index: R205
+      R205:
         kind: binary
         participant:
           cclass: OESA_PA
@@ -990,7 +988,7 @@ domain:
         referencing:
           - ProductID: ProductID
           - VendorID: VendorID
-      - index: R206
+      R206:
         kind: binary
         referent:
           cclass: OE_ORG
@@ -1002,7 +1000,7 @@ domain:
           phrase: "may be"
         referencing:
           - ShortName: ShortName
-      - index: R207
+      R207:
         kind: binary
         referent:
           cclass: OE_ORG
@@ -1015,7 +1013,7 @@ domain:
         referencing:
           - ShortName: ApplicantName
       # OpenEL::Data Type Sub system
-      - index: R23
+      R23:
         kind: binary
         referent:
           cclass: OE_DT
@@ -1027,7 +1025,7 @@ domain:
           phrase: "is data type of"
         referencing:
           - DataTypeID: DataTypeID
-      - index: R20
+      R20:
         kind: is-a
         referent:
           cclass: OE_DT
@@ -1040,7 +1038,7 @@ domain:
           - cclass: OE_BDT
             properties:
               - DataTypeID
-      - index: R22
+      R22:
         kind: binary
         referent:
           cclass: OE_V
@@ -1052,7 +1050,7 @@ domain:
           phrase: "is owner of"
         referencing:
           - VendorID: DefinedVendorID
-      - index: R21
+      R21:
         kind: is-a
         referent:
           cclass: OE_SDT
@@ -1068,7 +1066,7 @@ domain:
           - cclass: OE_EDT
             properties:
               - DataTypeID
-      - index: R25
+      R25:
         kind: binary
         referent:
           cclass: OE_EDT
@@ -1080,7 +1078,7 @@ domain:
           phrase: "have"
         referencing:
           - DataTypeID: DataTypeID
-      - index: R26
+      R26:
         kind: binary
         referent:
           cclass: OE_BDT
@@ -1092,7 +1090,7 @@ domain:
           phrase: "is base data type of"
         referencing:
           - DataTypeID: Base_DataTypeID
-      - index: R24
+      R24:
         kind: binary
         referent:
           cclass: OE_CDT
@@ -1104,7 +1102,7 @@ domain:
           phrase: "consist from"
         referencing:
           - DataTypeID: Parent_DataTypeID
-      - index: R27
+      R27:
         kind: binary
         referent:
           cclass: OE_DT
@@ -1116,7 +1114,7 @@ domain:
           phrase: "is data type of"
         referencing:
           - DataTypeID: DataTypeID
-      - index: R28
+      R28:
         kind: binary
         referent:
           cclass: OE_VNR
@@ -1128,7 +1126,7 @@ domain:
           phrase: "define value constraints"
         referencing:
           - NotationID: NotationID
-      - index: R29
+      R29:
         kind: binary
         referent:
           cclass: OE_VNR
@@ -1141,7 +1139,7 @@ domain:
         referencing:
           - NotationID: NotationID
       # OpenEL::Calibration Sub system
-      - index: R10
+      R10:
         kind: binary-associative
         one:
           cclass: OE_M
@@ -1158,7 +1156,7 @@ domain:
             - ModuleID: ModuleID
           other:
             - DDSpecID: DDSpecID
-      - index: R51
+      R51:
         kind: is-a
         referent:
           cclass: OEC_CB
@@ -1171,7 +1169,7 @@ domain:
           - cclass: OEC_CBI
             properties:
               - CalibrationID
-      - index: R52
+      R52:
         kind: binary-associative
         one:
           cclass: OEC_CBI
@@ -1188,7 +1186,7 @@ domain:
             - CalibrationID: CalibrationID
           other:
             - ItemID: ItemID
-      - index: R53
+      R53:
         kind: binary-associative
         one:
           cclass: OEC_CBI
@@ -1205,7 +1203,7 @@ domain:
             - CalibrationID: CalibrationID
           other:
             - ItemID: ItemID
-      - index: R54
+      R54:
         kind: is-a
         referent:
           cclass: OEC_CI
@@ -1221,7 +1219,7 @@ domain:
             properties:
               - CalItemID
               - CalibrationID
-      - index: R55
+      R55:
         kind: binary
         referent:
           cclass: OEC_CBI
@@ -1233,7 +1231,7 @@ domain:
           phrase: "operation is accompanied by"
         referencing:
           - CalibrationID: CalibrationID
-      - index: R56
+      R56:
         kind: binary
         referent:
           cclass: OE_ITS
@@ -1245,7 +1243,7 @@ domain:
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
-      - index: R57
+      R57:
         kind: is-a
         referent:
           cclass: OEC_CSI
@@ -1261,7 +1259,7 @@ domain:
             properties:
               - CalibrationID
               - ItemID
-      - index: R58
+      R58:
         kind: is-a
         referent:
           cclass: OEC_CEI
@@ -1277,7 +1275,7 @@ domain:
             properties:
               - CalibrationID
               - ItemID
-      - index: R59
+      R59:
         kind: binary
         referent:
           cclass: OE_EIS
@@ -1289,7 +1287,7 @@ domain:
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
-      - index: R60
+      R60:
         kind: binary
         referent:
           cclass: OE_IIS
@@ -1301,7 +1299,7 @@ domain:
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
-      - index: R61
+      R61:
         kind: binary
         referent:
           cclass: OE_OIS
@@ -1313,7 +1311,7 @@ domain:
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
-      - index: R62
+      R62:
         kind: binary
         referent:
           cclass: OE_EIS
@@ -1325,7 +1323,7 @@ domain:
           phrase: "is specification of"
         referencing:
           - ItemID: ItemID
-      - index: R63
+      R63:
         kind: binary
         referent:
           cclass: OEC_CI
@@ -1339,7 +1337,7 @@ domain:
           - CalItemID: CalItemID
           - CalibrationID: CalibrationID
           - ItemID: ItemID
-      - index: R64
+      R64:
         kind: binary
         referent:
           cclass: OE_PS

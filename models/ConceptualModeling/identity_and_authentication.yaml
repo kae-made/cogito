@@ -1,24 +1,23 @@
 # yaml-language-server: $schema: ../schema/cim.schema.yaml
 # conceptual modeling metamodel based change recognition definition
 
-domain:
-  name: "Identity and Authentication"
-  datatypes:
-    datatype:
-      - name: ItemType
+domains:
+  "IaA":
+    name: "Identity and Authentication"
+    datatypes:
+      ItemType:
         kind: "enumeration"
         items:
           - "Property"
           - "Relationship"
           - "Event"
-      - name: AuthType
+      AuthType:
         kind: "enumeration"
         items:
           - "Updatable"
           - "Readable"
-  cclasses:
-    cclass:
-      - key_letter: A_ID
+    cclasses:
+      A_ID:
         name: "Identity"
         number: 1
         properties:
@@ -29,7 +28,7 @@ domain:
             - name: Name:
               type: STRING
               identity: [2]
-      - key_letter: A_T
+      A_T:
         name: Target
         number: 2
         properties:
@@ -40,7 +39,7 @@ domain:
             - name: I_Id:
               type: REFERENCE
               identity: [2]
-      - key_letter: A_RT
+      A_RT:
         name: "Resource Type"
         number: 3
         properties:
@@ -48,7 +47,7 @@ domain:
             - name: RT_Id
               type: UNIQUE_ID
               identity: [1]
-      - key_letter: A_IRT
+      A_IRT:
         name: "Instance Resource Type"
         number: 4
         properties:
@@ -62,7 +61,7 @@ domain:
             - name: CClassName
               type: STRING
               identity: [2]
-      - key_letter: A_RIRT
+      A_RIRT:
         name: "Related Item Resource Type"
         number: 5
         properties:
@@ -79,7 +78,7 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
-      - key_letter: A_ITG
+      A_ITG:
         name: "Instance Target"
         number: 6
         properties:
@@ -93,7 +92,7 @@ domain:
             - name: RT_Id
               type: REFERENCE
               identity: [2]
-      - key_letter: A_IRITG
+      A_IRITG:
         name: "Instance Related Item Target"
         number: 7
         properties:
@@ -110,7 +109,7 @@ domain:
             - name: Instance_RT_Id
               type: REFERENCE
               identity: [2]
-      - key_letter: A_S
+      A_S:
         name: "Subject"
         number: 8
         properties:
@@ -118,7 +117,7 @@ domain:
             - name: I_Id
               type: REFERENCE
               identity: [1]
-      - key_letter: A_RL
+      A_RL:
         name: "Role"
         number: 9
         properties:
@@ -129,7 +128,7 @@ domain:
             - name: Name
               type: STRING
               identity: [2]
-      - key_letter: A_RLP
+      A_RLP:
         name: "Role Permission"
         number: 10
         properties:
@@ -143,7 +142,7 @@ domain:
             - name: Permission
               type: AuthType
               identity: [1]
-      - key_letter: A_SIR
+      A_SIR:
         name: "Subject in Role"
         number: 11
         properties:
@@ -154,7 +153,7 @@ domain:
             - name: I_Id
               type: REFERENCE
               identity: [1]
-      - key_letter: A_SP
+      A_SP:
         name: "Subject Permission"
         number: 12
         properties:
@@ -165,7 +164,7 @@ domain:
             - name: T_Id
               type: REFERENCE
               identity: [1]
-      - key_letter: A_SPWR
+      A_SPWR:
         name: "Subject Permission With Role"
         number: 13
         properties:
@@ -182,7 +181,7 @@ domain:
               type: REFERENCE
             - name: Role_Permission
               type: AuthType
-      - key_letter: A_ISP
+      A_ISP:
         name: "Indipendent Subject Permission"
         number: 14
         properties:
@@ -195,9 +194,8 @@ domain:
               identity: [1]
             - name: Permission
               type: AuthType
-  relationships:
-    relationship:
-      - index: R1
+    relationships:
+      R1:
         kind: "is-a"
         referent:
           cclass: A_T
@@ -210,7 +208,7 @@ domain:
           - cclass: A_IRITG
             properties:
               - T_Id
-      - index: R2
+      R2:
         kind: "is-a"
         referent:
           cclass: A_RT
@@ -223,7 +221,7 @@ domain:
           - cclass: A_RIRT
             properties:
               - RT_Id
-      - index: R3
+      R3:
         kind: "binary"
         referent:
           cclass: A_IRT
@@ -235,7 +233,7 @@ domain:
           phrase: "entails"
         referencing:
           - RT_Id: Instance_RT_Id
-      - index: R4
+      R4:
         kind: "binary"
         referent:
           cclass: A_IRT
@@ -247,7 +245,7 @@ domain:
           phrase: "is conceptual class of"
         referencing:
           - RT_Id: RT_Id
-      - index: R5
+      R5:
         kind: "binary"
         referent:
           cclass: A_ITG
@@ -260,7 +258,7 @@ domain:
         referencing:
           - T_Id: Instance_T_Id
           - Instance_Id: instance_Instance_Id
-      - index: R6
+      R6:
         kind: "binary"
         referent:
           cclass: A_RIRT
@@ -272,7 +270,7 @@ domain:
           phrase: "is template of"
         referencing:
           - RT_Id: Instance_RT_Id
-      - index: R7
+      R7:
         kind: "is-a"
         referent:
           cclass: A_ID
@@ -285,7 +283,7 @@ domain:
           - cclass: A_S
             properties:
               - I_Id
-      - index: R8
+      R8:
         kind: "binary-associative"
         one:
           cclass: A_RL
@@ -302,7 +300,7 @@ domain:
             - Rl_Id: Rl_Id
           other:
             - RT_Id: RT_Id
-      - index: R9
+      R9:
         kind: "binary-associative"
         one:
           cclass: A_AL
@@ -319,7 +317,7 @@ domain:
             - Rl_Id: Rl_Id
           other:
             - I_Id: I_Id
-      - index: R10
+      R10:
         kind: "binary-associative"
         one:
           cclass: A_S
@@ -336,7 +334,7 @@ domain:
             - I_Id: I_Id
           other:
             - T_Id: T_Id
-      - index: R11
+      R11:
         kind: "is-a"
         referent:
           cclass: A_SP
@@ -352,7 +350,7 @@ domain:
             properties:
               - I_Id
               - T_Id
-      - index: R12
+      R12:
         kind: "binary"
         referent:
           cclass: A_RLP
