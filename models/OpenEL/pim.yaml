@@ -4,80 +4,95 @@
 # date: 2026-09-23
 domains:
   "OpenEL:PIM":
-  name: "OpenEL Platform Independent Model"
-  cclasses:
-    DK:
-      name: "Device Kind"
-      number: 1
-      properties:
-        deviceKindId:
+    name: "OpenEL Platform Independent Model"
+    cclasses:
+      DK:
+        name: "Device Kind"
+        number: 1
+        properties:
+          deviceKindId:
+              type: INTEGER
+              identity: [1]
+      V:
+        name: "Vendor"
+        number: 2
+        properties:
+          vendorId:
             type: INTEGER
             identity: [1]
-    V:
-      name: "Vendor"
-      number: 2
-      properties:
-        vendorId:
-          type: INTEGER
-          identity: [1]
-    P:
-      name: "Product"
-      number: 3
-      properties:
-        productId
-          type: INTEGER
-          identity: [1]
-    HALC:
-      name: "HAL Component"
-      number: 5
-      properties:
-        deviceKindId:
-          type: INTEGER
-          identity: [1]
-        productId:
-          type: INTEGER
-          identity: [1]
-        vendorId:
-          type: INTEGER
-          identity: [1]
-        instanceId:
-          type: INTEGER
-          identity: [1, 2]
-        equipmentId:
-          type: INTEGER
-        componentId:
-          type: UNIQUE_ID
-          identity: [2]
-    APIS:
-      name: "API Set"
-      number: 4
-      properties:
-        APISetId:
-          type: UNIQUE_ID
-          identity: [1]
-        namespace:
-          type: STRING
-          identity: [2]
-        name:
-          type: STRING
-          identity: [2]
-    DT:
-      name: "Data Type"
-      number: 6
-      properties:
-        name
-          type: STRING
-          identity: [1]
-    EDTIV:
-      name: "Enumeration Data Type Item Value"
-      number: 7
-      properties:
-        EDTName:
-          type: STRING
-          identity: [1]          
-        name:
-          type: STRING
-          identity: [1]
-        value:
-          type: INTEGER
-  
+      P:
+        name: "Product"
+        number: 3
+        properties:
+          productId:
+            type: INTEGER
+            identity: [1]
+      HALC:
+        name: "HAL Component"
+        number: 5
+        properties:
+          deviceKindId:
+            type: INTEGER
+            identity: [1]
+          productId:
+            type: INTEGER
+            identity: [1]
+          vendorId:
+            type: INTEGER
+            identity: [1]
+          instanceId:
+            type: INTEGER
+            identity: [1, 2]
+          equipmentId:
+            type: INTEGER
+          componentId:
+            type: UNIQUE_ID
+            identity: [2]
+          apiSetId:
+            type: REFERENCE
+      APIS:
+        name: "API Set"
+        number: 4
+        properties:
+          APISetId:
+            type: UNIQUE_ID
+            identity: [1]
+          namespace:
+            type: STRING
+            identity: [2]
+          name:
+            type: STRING
+            identity: [2]
+      DT:
+        name: "Data Type"
+        number: 6
+        properties:
+          name:
+            type: STRING
+            identity: [1]
+      EDTIV:
+        name: "Enumeration Data Type Item Value"
+        number: 7
+        properties:
+          EDTName:
+            type: STRING
+            identity: [1]          
+          name:
+            type: STRING
+            identity: [1]
+          value:
+            type: INTEGER
+    relationships:
+      R1:
+        kind: "binary"
+        referent:
+          cclass: APIS
+          multiplicity: "1"
+          phrase: "is defined in"
+        participant:
+          cclass: HALC
+          multiplicity: "M"
+          phrase: "is base of"
+        referencing:
+          - APISetId: apiSetId
+    

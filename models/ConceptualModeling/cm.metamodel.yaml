@@ -21,7 +21,7 @@ domains:
       CIM_CC:
         name: "Conceptual Class"
         number: 1
-        property:
+        properties:
           CDomainName:
             type: REFERENCE
             identity: [1,2,3]
@@ -614,7 +614,7 @@ domains:
             type: REFERENCE
             identity: [1]
       CIM_SMCHN:
-        name: "Can't  Happen Cell"
+        name: "Can't Happen Cell"
         number: 110
         properties:
           SMStt_Id:
@@ -2349,7 +2349,7 @@ domains:
             - DPN_Id
             - DT_Id
         participants:
-          - cclass : CIM_BASIPN
+          - cclass: CIM_BASIPN
             properties:
               - DPN_Id
               - DT_Id
@@ -2704,7 +2704,7 @@ domains:
           phrase: "is meaning schema of"
         referencing:
           - Name: CDomainName
-       R1001:
+      R1001:
         kind: binary
         referent:
           cclass: CIM_CC
@@ -2882,7 +2882,7 @@ domains:
         referent:
           cclass: CIMI_EVTI
           multiplicity: "1"
-          prhase: "is consuming"
+          phrase: "is consuming"
         participant:
           cclass: CIMI_ISTT
           multiplicity: "1C"

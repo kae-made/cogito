@@ -275,7 +275,7 @@ domains:
           cclass: A_RL
           multiplicity: "M"
           phrase: "is refered by"
-        participant:
+        other:
           cclass: A_RTP
           multiplicity: "M"
           phrase: "is permitted to"

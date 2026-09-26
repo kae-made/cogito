@@ -305,7 +305,7 @@ domains:
       OESA_AP:
         name: "Approvement"
         number: 200
-        property:
+        properties:
           ApprovementID:  # "AppID" is name on CIM.
             type: UNIQUE_ID
             identity: [1]
@@ -315,7 +315,7 @@ domains:
             type: TIMESTAMP
           AuthorizerName:
             type: REFERENCE
-          ApplicantName
+          ApplicantName:
             type: REFERENCE
           Remarks:
             type: STRING

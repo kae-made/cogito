@@ -69,9 +69,17 @@ $defs:
         propertyNames:
           description: "フィールド名（最初の文字はアルファベット、2文字目以降は英数字またはアンダースコア）"
           pattern: "^[a-zA-Z][a-zA-Z0-9_]*$"
-        # 💡 キーに対する値は、直接基本データ型（STRINGなど）や固有データ型（独自定義の型）の名前を表す文字列になります
+        # 💡 メンバー（追加プロパティ）のパターンをオブジェクト型に定義
         additionalProperties:
-          type: string
+          type: object
+          required: [type] # 型名は必須にします
+          properties:
+            type:
+              type: string
+              description: "基本データ型、または定義済みの特定データ型名"
+            description:
+              type: string
+              description: "このフィールド（メンバー）の説明文"
   # -----------------------------
   # Specific Datatype
   # -----------------------------
@@ -369,7 +377,7 @@ properties:
     type: object
     propertyNames:
       description: "ドメインのキー文字（大文字のアルファベット1文字など）"
-      pattern: "^[A-Za-z_][A-Za-z0-9_]*(?::[A-Za-z_][A-Za-z0-9_]*)+$" # 💡 例として「大文字アルファベット1文字」に制限しています
+      pattern: "^[a-zA-Z0-9_]+(?::[a-zA-Z0-9_]+)*$" # 💡 例として「大文字アルファベット1文字」に制限しています
     additionalProperties:
       type: object
       required:
@@ -406,8 +414,8 @@ properties:
   bridges:
     type: object
     propertyNames:
-      description: "ドメインのキー文字（大文字のアルファベット1文字など）"
-      pattern: "^[A-Z]$" # 💡 例として「大文字アルファベット1文字」に制限しています
+      description: "Bridge のキー文字"
+      pattern: "^[a-zA-Z0-9_]+(?::[a-zA-Z0-9_]+)*$"
     additionalProperties:
       type: object
       required:
