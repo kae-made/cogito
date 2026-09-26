@@ -7,12 +7,12 @@ namespace KAE.CMTools.Repository.OnMemory
         public Dictionary<string, ConceptualDomain> ConceptualDomains { get => cDomains; }
 
         public Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get => fieldsOfSense; }
-        public ConceptualDomain? AddConceptualDomain(string domainName)
+        public ConceptualDomain? AddConceptualDomain(string domainName, string KeyLetter)
         {
             ConceptualDomain? cDomain = null;
             if (!cDomains.ContainsKey(domainName))
             {
-                cDomain = new ConceptualDomain(domainName);
+                cDomain = new ConceptualDomain(domainName, KeyLetter);
                 cDomains.Add(domainName, cDomain);
             }
             return cDomain;

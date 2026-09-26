@@ -71,6 +71,7 @@ namespace WpfAppDigitalTwinsRepository
             if (!string.IsNullOrEmpty(instanceSchemaFilePath))
             {
                 tbInstSchemaFilePath.Text = instanceSchemaFilePath;
+                buttonSelectInstanceModel.IsEnabled = true;
                 AddOperationHistory($"Selected Instance Schema - {instanceSchemaFilePath}");
             }
 
@@ -313,6 +314,16 @@ namespace WpfAppDigitalTwinsRepository
             repository.Clear();
 
             buttonReadCIMDef.IsEnabled = true;
+        }
+
+        private void lbInstanceModes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedDomain = (ConceptualDomain)lbDomains.SelectedItem;
+            var fos =(FoSItem) lbInstanceModes.SelectedItem;
+
+            var cimDefWindow = new CIMDefWindow() { ConceptualDomain = selectedDomain, Repository=repository, FosId=fos.FoSId };
+            cimDefWindow.Closed += (s, args) => cimDefWindow = null;
+            cimDefWindow.Show();
         }
     }
 }

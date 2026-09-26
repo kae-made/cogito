@@ -8,7 +8,7 @@ namespace KAE.CMTools.Core
         Dictionary<string, ConceptualDomain> ConceptualDomains { get; }
 
         Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get; }
-        ConceptualDomain? AddConceptualDomain(string domainName);
+        ConceptualDomain? AddConceptualDomain(string domainName, string domainKeyLetter);
 
         void Clear();
 

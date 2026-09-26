@@ -47,6 +47,7 @@ namespace WpfAppDigitalTwinsRepository
                 ConceptualClasses = new ObservableCollection<ConceptualClass>(currentDomain.ConceptualClasses.Values);
                 Relationships = new ObservableCollection<Relationship>(currentDomain.Relationships.Values);
                 SubClasses = new ObservableCollection<SubClassInfo>();
+                InstancesOfSelectedCClass = new ObservableCollection<InstanceInfo>();
             }
         }
 
@@ -57,6 +58,11 @@ namespace WpfAppDigitalTwinsRepository
         public ObservableCollection<PropertyItem> PropertiesOfSelectedClass { get; set; }
 
         public ObservableCollection<SubClassInfo> SubClasses { get; set; }
+
+        public ObservableCollection<InstanceInfo> InstancesOfSelectedCClass { get; set; }
+
+        public string FosId { get; set; }
+        public InstanceRepository Repository { get; set; }
 
         public ConceptualClass SelectedClass
         {
@@ -100,7 +106,24 @@ namespace WpfAppDigitalTwinsRepository
                     }
                     PropertiesOfSelectedClass.Add(propItem);
                 }
+                UpdateInstanceList(selectedClass);
             }
+        }
+
+        private void UpdateInstanceList(ConceptualClass conceptualClass)
+        {
+            if (!string.IsNullOrEmpty(FosId)&&Repository!=null)
+            {
+                InstancesOfSelectedCClass.Clear();
+                var domain = conceptualClass.CDomain;
+                var fos = Repository.FieldsOfSense[domain.Name][FosId];
+                var instances = fos.Instances[conceptualClass.KeyLetter];
+                foreach(var instanceId in instances.Keys)
+                {
+                    InstancesOfSelectedCClass.Add(new InstanceInfo(instances[instanceId]));
+                }
+            }
+
         }
 
         private ConceptualClass selectedClass;
@@ -252,5 +275,32 @@ namespace WpfAppDigitalTwinsRepository
         public string Title { get; set; }
         public string KeyLetter { get; set; }
         public ConceptualClass ConceptualClass { get; set; }
+    }
+
+    public class InstanceInfo
+    {
+        public string InstanceId { get; set;}
+        public string ValuedProperties { get; set;}
+        public Instance Instance { get; set; }
+
+        public InstanceInfo(Instance instance)
+        {
+            Instance = instance;
+            InstanceId = instance.InstanceId;
+
+            var cclass = instance.ConceptualClass;
+            var idFirstLevel = cclass.Identities[0];
+
+            string idPropValues = "";
+            foreach(var idPropDef in idFirstLevel.Keys)
+            {
+                if (!string.IsNullOrEmpty(idPropValues))
+                {
+                    idPropValues += ",";
+                }
+                idPropValues += $"{idPropDef}:{instance.DeterminedProperties[idPropDef].Value}";
+            }
+            ValuedProperties = idPropValues;
+        }
     }
 }

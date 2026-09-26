@@ -23,73 +23,62 @@ namespace KAE.CMTools.Generator
             {
                 foreach (var prop in validDescripJson)
                 {
-                    if (prop.Key == "domain")
+                    if (prop.Key == "domains")
                     {
                         currentRepository = repository;
                         var domainValue = prop.Value;
-                        ConceptualDomain parsedDomain = null;
-
-                        foreach (var domainProp in (JObject)domainValue)
+                        foreach (var domainDef in (JObject)domainValue)
                         {
-                            if (domainProp.Key == "name")
-                            {
-                                string domainName = (string)domainProp.Value;
-                                parsedDomain = repository.AddConceptualDomain(domainName);
-                            }
-                            else if (domainProp.Key == "datatypes")
-                            {
-                                JObject datatypes=(JObject)domainProp.Value;
-                                foreach (var datatypesProp in datatypes.Properties())
-                                {
-                                    if (datatypesProp.Value.Type == JTokenType.Array)
-                                    {
-                                        foreach(var datatype in (JArray)datatypesProp.Value)
-                                        {
-                                            var parsedDataType = ParseDatatype(parsedDomain, (JObject)datatype);
-                                            if (parsedDomain.DataTypes.ContainsKey(parsedDataType.Name))
-                                            {
-                                                logger.LogWarning($"datatype : '{parsedDataType.Name}' has been defined!");
-                                            }
-                                            else
-                                            {
-                                                parsedDomain.AddDataType(parsedDataType);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            else if (domainProp.Key == "cclasses")
-                            {
-                                JObject cclasses = (JObject)domainProp.Value;
-                                foreach (var cclassesProp in cclasses.Properties())
-                                {
-                                    if (cclassesProp.Value.Type == JTokenType.Array)
-                                    {
-                                        foreach (var cclass in (JArray)cclassesProp.Value)
-                                        {
-                                            var parsedCClass = ParseConceptualClass(parsedDomain, (JObject)cclass);
-                                        }
-                                    }
-                                }
+                            string domainKeyLetter = domainDef.Key;
+                            ConceptualDomain parsedDomain = null;
 
-                            }
-                            else if (domainProp.Key == "relationships")
+                            foreach (var domainProp in (JObject)domainDef.Value)
                             {
-                                JObject relationships = (JObject)domainProp.Value;
-                                foreach (var relationshipProp in relationships.Properties())
+                                if (domainProp.Key == "name")
                                 {
-                                    if (relationshipProp.Value.Type == JTokenType.Array)
+                                    string domainName = (string)domainProp.Value;
+                                    parsedDomain = repository.AddConceptualDomain(domainName, domainKeyLetter);
+                                }
+                                else if (domainProp.Key == "datatypes")
+                                {
+                                    JObject datatypes = (JObject)domainProp.Value;
+                                    foreach (var datatypesProp in datatypes)
                                     {
-                                        foreach (var relationship in (JArray)relationshipProp.Value)
+                                        string datatypeName = datatypesProp.Key;
+                                        var datatypeDef = (JObject)datatypesProp.Value;
+                                        var parsedDataType = ParseDatatype(parsedDomain, datatypeName, datatypeDef);
+                                        if (parsedDomain.DataTypes.ContainsKey(parsedDataType.Name))
                                         {
-                                            var parsedRelationship = ParseRelationship(parsedDomain, (JObject)relationship);
+                                            logger.LogWarning($"datatype : '{parsedDataType.Name}' has been defined!");
+                                        }
+                                        else
+                                        {
+                                            parsedDomain.AddDataType(parsedDataType);
                                         }
                                     }
                                 }
-                            }
-                            else
-                            {
+                                else if (domainProp.Key == "cclasses")
+                                {
+                                    var cclasses = (JObject)domainProp.Value;
+                                    foreach (var cclassDef in cclasses)
+                                    {
+                                        string cclassKeyLett = cclassDef.Key;
+                                        var parsedCClass = ParseConceptualClass(parsedDomain, cclassKeyLett, (JObject)cclassDef.Value);
+                                    }
+                                }
+                                else if (domainProp.Key == "relationships")
+                                {
+                                    JObject relationships = (JObject)domainProp.Value;
+                                    foreach(var relDef in relationships)
+                                    {
+                                        string relIndex = relDef.Key;
+                                        var parsedRelationship = ParseRelationship(parsedDomain, relIndex, (JObject)relDef.Value);
+                                    }
+                                }
+                                else
+                                {
 
+                                }
                             }
                         }
                     }
@@ -97,18 +86,8 @@ namespace KAE.CMTools.Generator
             }
         }
 
-        private DataType ParseDatatype(ConceptualDomain domain, JObject dataTypeDef)
+        private DataType ParseDatatype(ConceptualDomain domain, string dataTypeName, JObject dataTypeDef)
         {
-            string dataTypeName = "";
-            DataType parsedDataType = null;
-            foreach (var dtProp in dataTypeDef)
-            {
-                if (dtProp.Key == "name")
-                {
-                    dataTypeName = (string)dtProp.Value;
-                    break;
-                }
-            }
             string dataTypeKind = "";
             foreach (var dtProp in dataTypeDef)
             {
@@ -118,7 +97,8 @@ namespace KAE.CMTools.Generator
                     break;
                 }
             }
-            if (!string.IsNullOrEmpty(dataTypeName) && !string.IsNullOrEmpty(dataTypeKind))
+            DataType parsedDataType = null;
+            if (!string.IsNullOrEmpty(dataTypeKind))
             {
                 if (dataTypeKind == "primitive")
                 {
@@ -229,10 +209,10 @@ namespace KAE.CMTools.Generator
             return parsedCDT;
         }
 
-        private ConceptualClass ParseConceptualClass(ConceptualDomain domain, JObject conceptualClassDef)
+        private ConceptualClass ParseConceptualClass(ConceptualDomain domain, string cclassKeyLett, JObject conceptualClassDef)
         {
             string cclassName = "";
-            string keyLetter = "";
+            string keyLetter = cclassKeyLett;
             string number = "";
             string description = null;
             foreach (var cclassDef in conceptualClassDef)
@@ -240,10 +220,6 @@ namespace KAE.CMTools.Generator
                 if (cclassDef.Key == "name")
                 {
                     cclassName = (string)cclassDef.Value;
-                }
-                else if (cclassDef.Key == "key_letter")
-                {
-                    keyLetter = (string)cclassDef.Value;
                 }
                 else if (cclassDef.Key == "number")
                 {
@@ -269,6 +245,70 @@ namespace KAE.CMTools.Generator
             {
                 if (cclassDef.Key == "properties")
                 {
+                    var props = (JObject)cclassDef.Value;
+                    foreach (var propBlock in props)
+                    {
+                        string propName = propBlock.Key;
+                        string dataTypeName = null;
+                        description = null;
+                        bool isMath = false;
+                        string grammar = null;
+                        bool isDenote = false;
+                        bool nullable = false;
+                        foreach (var aPropDef in (JObject)propBlock.Value)
+                        {
+                            // parsing property description
+                            if (aPropDef.Key == "description")
+                            {
+                                description = (string)aPropDef.Value;
+                            }
+                            else if (aPropDef.Key == "type")
+                            {
+                                dataTypeName = (string)aPropDef.Value;
+                            }
+                            else if (aPropDef.Key == "mathematical")
+                            {
+                                isMath = (bool)aPropDef.Value;
+                            }
+                            else if (aPropDef.Key == "grammar")
+                            {
+                                grammar = (string)aPropDef.Value;
+                            }
+                            else if (aPropDef.Key == "denote")
+                            {
+                                isDenote = (bool)aPropDef.Value;
+                            }
+                            else if (aPropDef.Key == "nullable")
+                            {
+                                nullable = (bool)aPropDef.Value;
+                            }
+                        }
+                        DataType dataType = null;
+                        if (!string.IsNullOrEmpty(dataTypeName))
+                        {
+                            // dataType = PrimitiveDataType.GetPrimitiveDataTypes().Where(kv => kv.Key.ToString() == dataTypeName).FirstOrDefault().Value;
+                            dataType = domain.DataTypes[dataTypeName];
+                        }
+                        var parsedProperty = new Property(propName, dataType, isDenote, isMath, grammar, description);
+                        if (nullable)
+                        {
+                            parsedProperty.IsNullable = true;
+                        }
+
+                        parsedCClass.AddProperty(parsedProperty);
+
+                        foreach (var aPropDef in (JObject)propBlock.Value)
+                        {
+                            if (aPropDef.Key == "identity")
+                            {
+                                foreach (var idDef in (JArray)aPropDef.Value)
+                                {
+                                    int idLevel = (int)idDef;
+                                    parsedCClass.AddIdentity(idLevel, parsedProperty);
+                                }
+                            }
+                        }
+                    }
                     foreach (var propsDef in ((JObject)cclassDef.Value).Properties())
                     {
                         if (propsDef.Value.Type == JTokenType.Array)
@@ -350,19 +390,15 @@ namespace KAE.CMTools.Generator
             return parsedCClass;
         }
 
-        private Relationship ParseRelationship(ConceptualDomain domain, JObject relationshipDef)
+        private Relationship ParseRelationship(ConceptualDomain domain, string relIndex, JObject relationshipDef)
         {
             Relationship parsedRelationship = null;
             int relKind = 0; // 1->binary,2->is-a,3->binary-associative
-            string rIndex = "";
+            string rIndex = relIndex;
 
             foreach (var relDef in relationshipDef)
             {
-                if (relDef.Key == "index")
-                {
-                    rIndex = (string)relDef.Value;
-                }
-                else if (relDef.Key == "kind")
+                if (relDef.Key == "kind")
                 {
                     string relKindDef = (string)relDef.Value;
                     if (relKindDef == "binary")

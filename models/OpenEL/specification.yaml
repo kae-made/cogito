@@ -60,7 +60,7 @@ domains:
             nullable: true
       OE_M:
         name: "Module"
-        number: 4
+        number: 5
         properties:
           ModuleID:
             type: UNIQUE_ID
@@ -79,7 +79,7 @@ domains:
             nullable: true
       OE_DDS:
         name: "Device Driver Specification"
-        number: 5
+        number: 7
         properties:
           DDSpecID:
             type: UNIQUE_ID
@@ -98,7 +98,7 @@ domains:
             nullable: true
       OE_PD:
         name: "Product"
-        number: 6
+        number: 4
         properties:
           ProductID:
             type: UNIQUE_ID
@@ -113,6 +113,19 @@ domains:
           VendorID:
             type: REFERENCE
             identity: [1,2]
+      OE_MIP:
+        name: "Module in Product"
+        number: 6
+        properties:
+          ProductID:
+            type: REFERENCE
+            identity: [1]
+          ProductVendorID:
+            type: REFERENCE
+            identity: [1]
+          ModuleID:
+            type: REFERENCE
+            identity: [1]
       OE_C:
         name: "Component"
         number: 7
@@ -123,6 +136,9 @@ domains:
           DDSpecID:
             type: REFERENCE
             identity: [2]
+          VendorID:
+            type: REFERENCE
+            identity: [2]
           ProductID:
             type: REFERENCE
             identity: [2]
@@ -131,7 +147,7 @@ domains:
             identity: [2]
       OE_ITS:
         name: "Item Specification"
-        number: 8
+        number: 9
         properties:
           ItemID:
             type: UNIQUE_ID
@@ -146,7 +162,7 @@ domains:
             type: REFERENCE
       OE_CF:
         name: "Configuration"
-        number: 9
+        number: 10
         properties:
           ConfigurationID: # "ConfID" is name on CIM.
             type: UNIQUE_ID
@@ -162,7 +178,7 @@ domains:
             nullable: true
       OE_DIS:
         name: "Device Item Specification"
-        number: 10
+        number: 11
         properties:
           ItemID:
             type: REFERENCE
@@ -177,7 +193,7 @@ domains:
             nullable: true
       OE_ISIS:
         name: "Internal State Item Specification" # "Internal State IS" is name on CIM.
-        number: 11
+        number: 12
         properties:
           ItemID:
             type: REFERENCE
@@ -186,7 +202,7 @@ domains:
             type: REFERENCE
       OE_CIS:
         name: "Configuration Item Specification" # "Configuration IS" is name on CIM.
-        number: 12
+        number: 13
         properties:
           ItemID:
             type: REFERENCE
@@ -196,28 +212,28 @@ domains:
             identity: [1]
       OE_EIS:
         name: "Environment Item Specification" # "Environment IS" is name on CIM.
-        number: 13
+        number: 14
         properties:
           ItemID:
             type: REFERENCE
             identity: [1]
       OE_DOIS:
         name: "Observed Item Specification" # "Observed IS" is name on CIM.
-        number: 14
+        number: 15
         properties:
           ItemID:
             type: REFERENCE
             identity: [1]
       OE_DIIS:
         name: "Instruct Item Specification" # "Instruct IS" is name on CIM.
-        number: 15
+        number: 16
         properties:
           ItemID:
             type: REFERENCE
             identity: [1]
       OE_PS:
         name: "Parameter Specification"
-        number: 16
+        number: 17
         properties:
           ItemID:
             type: REFERENCE
@@ -230,16 +246,6 @@ domains:
             nullable: true
           DataTypeID:
             type: REFERENCE
-      OE_CFDDS:
-        name: "Configuration for Device Driver Specification"
-        number: 17
-        properties:
-          ConfigurationID: # "ConfID" is name on CIM.
-            type: REFERENCE
-            identity: [1]
-          ComponentID:
-            type: REFERENCE
-            identity: [1]
       OE_ITDDS:
         name: "Item Specification in DDS"
         number: 18
@@ -650,13 +656,13 @@ domains:
       R5:
         kind: binary
         referent:
-          cclass: OE_C
-          multiplicity: "1"
-          phrase: "serve as the operational specification for "
-        participant:
           cclass: OE_DDS
           multiplicity: "1"
           phrase: "is operated under the control of"
+        participant:
+          cclass: OE_C
+          multiplicity: "1"
+          phrase: "serve as the operational specification for "
         referencing:
           - DDSpecID: DDSpecID
       R6:
@@ -691,15 +697,15 @@ domains:
       R8:
         kind: binary
         referent:
-          cclass: OE_DDS
+          cclass: OE_DIS
           multiplicity: "1"
-          phrase: "is part of"
+          phrase: "configure"
         participant:
-          cclass: OE_ITS
+          cclass: OE_CF
           multiplicity: "MC"
-          phrase: "is owner of"
+          phrase: "is target of"
         referencing:
-          - ComponentID: ComponentID
+          - ItemID: DeviceItemID
       R9:
         kind: binary
         referent:
@@ -712,6 +718,24 @@ domains:
           phrase: "is defined by"
         referencing:
           - ConfigurationID: ConfigurationID
+      R10:
+        kind: "binary-associative"
+        one:
+          cclass: OE_M
+          multiplicity: "M"
+          phrase: "contains"
+        other:
+          cclass: OE_PD
+          multiplicity: "MC"
+          phrase: "is built in"
+        associative:
+          cclass: OE_MIP
+        referencing:
+          one:
+            - ModuleID: ModuleID
+          other:
+            - ProductID: ProductID
+            - VendorID: ProductVendorID
       R11:
         kind: is-a
         referent:
@@ -719,13 +743,10 @@ domains:
           properties:
             - ItemID
         participants:
-          - cclass: OE_OIS
-            properties:
-              - ItemID
-          - cclass: OE_IIS
-            properties:
-              - ItemID
           - cclass: OE_ISIS
+            properties:
+              - ItemID
+          - cclass: OE_DIS
             properties:
               - ItemID
           - cclass: OE_CIS
@@ -782,7 +803,7 @@ domains:
           multiplicity: "MC"
           phrase: "may hold"
         referencing:
-          - DeviceItemID: DeviceItemID
+          - ItemID: DeviceItemID
       R16:
         kind: binary
         referent:
@@ -794,7 +815,7 @@ domains:
           multiplicity: "MC"
           phrase: "is manufacturer of"
         referencing:
-          - VendorID: VendorID
+          - VendorID: SupplierVendorID
       R17:
         kind: binary
         referent:
@@ -843,9 +864,6 @@ domains:
           multiplicity: "1"
           phrase: "is imprelemtation for"
         referencing:
-          - DeviceKindID: DeviceKindID
-          - DefinedVendorID: DefinedVendorID
-          - ProductID: ProductID
           - ComponentID: ComponentID
       R103:
         kind: binary
@@ -1090,7 +1108,7 @@ domains:
         referencing:
           - NotationID: NotationID
       # OpenEL::Calibration Sub system
-      R10:
+      R19:
         kind: binary-associative
         one:
           cclass: OE_M
@@ -1241,7 +1259,7 @@ domains:
       R60:
         kind: binary
         referent:
-          cclass: OE_IIS
+          cclass: OE_DIIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:
@@ -1253,7 +1271,7 @@ domains:
       R61:
         kind: binary
         referent:
-          cclass: OE_OIS
+          cclass: OE_DOIS
           multiplicity: "1"
           phrase: "may use as specification"
         participant:

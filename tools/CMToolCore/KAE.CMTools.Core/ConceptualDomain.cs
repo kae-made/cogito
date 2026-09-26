@@ -11,6 +11,7 @@ namespace KAE.CMTools.Core
 {
     public class ConceptualDomain
     {
+        public string KeyLetter { get => cDomainKeyLetter; } 
         public string Name { get => cDomainName; }
 
         public IReadOnlyDictionary<string, DataType.DataType> DataTypes { get => dataTypes; }
@@ -19,8 +20,9 @@ namespace KAE.CMTools.Core
         public IReadOnlyDictionary<string, Relationship> Relationships { get => relationships; }
 
 
-        public ConceptualDomain(string Name)
+        public ConceptualDomain(string Name, string KeyLetter)
         {
+            this.cDomainKeyLetter = KeyLetter;
             this.cDomainName = Name;
             this.cClasses = new Dictionary<string, ConceptualClass>();
             this.relationships = new Dictionary<string, Relationship>();
@@ -75,6 +77,7 @@ namespace KAE.CMTools.Core
         }
 
         protected string cDomainName;
+        protected string cDomainKeyLetter;
 
         protected Dictionary<string, DataType.DataType> dataTypes;
         protected Dictionary<string, ConceptualClass> cClasses;

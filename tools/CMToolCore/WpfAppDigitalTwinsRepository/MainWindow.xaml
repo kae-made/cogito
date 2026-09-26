@@ -49,19 +49,20 @@
                 <ColumnDefinition Width="55.277"/>
                 <ColumnDefinition Width="94.723"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Instance Schema File Path : " VerticalAlignment="Center"/>
+            <TextBlock Text="Instance Schema File Path : " VerticalAlignment="Center" />
             <TextBox Name="tbInstSchemaFilePath" VerticalAlignment="Center" Grid.Column="1"/>
             <Button Name="buttonSetInstSchemaFilePath" Content="Set or Select" Grid.Column="2" Margin="1,1,1,1" IsEnabled="False" Click="buttonSetInstSchemaFilePath_Click" Grid.ColumnSpan="2"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="353*"/>
+                <ColumnDefinition Width="97*"/>
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
             <Button Name="buttonSelectInstanceModel" Content="Select Instance Model" VerticalAlignment="Center" IsEnabled="False" Click="buttonSelectInstanceModel_Click"/>
-            <TextBox Name="tbInstanceModelFilePath" VerticalAlignment="Center" Grid.Column="1"/>
-            <Button Name="buttonReadInstModel" Content="Read and Parse" Grid.Column="2" IsEnabled="False" Click="buttonReadInstanceModel_Click"/>
+            <TextBox Name="tbInstanceModelFilePath" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Button Name="buttonReadInstModel" Content="Read and Parse" Grid.Column="3" IsEnabled="False" Click="buttonReadInstanceModel_Click"/>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
@@ -89,11 +90,11 @@
             <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="1">
                 <TextBlock Text="Instance Models" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
-            <ListBox Grid.Column="1" Name="lbInstanceModes" Grid.Row="1" ItemsSource="{Binding ParsedFoSItems}" Margin="1">
+            <ListBox Grid.Column="1" Name="lbInstanceModes" Grid.Row="1" ItemsSource="{Binding ParsedFoSItems}" Margin="1" SelectionChanged="lbInstanceModes_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock>FoSId : </TextBlock>
+                            <TextBlock>FoSId :</TextBlock>
                             <TextBlock Text="{Binding FoSId}"/>
                             <TextBlock Text="{Binding FilePath}"/>
                         </StackPanel>
