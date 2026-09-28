@@ -29,7 +29,7 @@ domains:
             identity: [1]
       HALC:
         name: "HAL Component"
-        number: 5
+        number: 4
         properties:
           deviceKindId:
             type: INTEGER
@@ -52,7 +52,7 @@ domains:
             type: REFERENCE
       APIS:
         name: "API Set"
-        number: 4
+        number: 5
         properties:
           APISetId:
             type: UNIQUE_ID
@@ -63,16 +63,26 @@ domains:
           name:
             type: STRING
             identity: [2]
+      PB:
+        name: "Parameter Block"
+        number: 6
+        properties:
+          componentId:
+            type: REFERENCE
+            identity: [1]
+          parameterId:
+            type: INTEGER
+            identity: [1]
       DT:
         name: "Data Type"
-        number: 6
+        number: 7
         properties:
           name:
             type: STRING
             identity: [1]
       EDTIV:
         name: "Enumeration Data Type Item Value"
-        number: 7
+        number: 8
         properties:
           EDTName:
             type: STRING

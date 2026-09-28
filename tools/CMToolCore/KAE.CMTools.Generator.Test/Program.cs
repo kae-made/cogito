@@ -16,7 +16,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 string schemaFilePath = args[0];
 string descripFilePath = args[1];
-string targetDomainName = args[2];
+string targetDomainKeyLetter = args[2];
 string generatedSchemaFilePath = "";
 List<string> fosInstModelPaths = new List<string>();
 
@@ -81,7 +81,7 @@ using (var formatStream = File.OpenRead(schemaFilePath))
                                     using (var writer = new StreamWriter(outputStream))
                                     {
                                         var generator = new DomainSchemaGenerator() { Logger = logger };
-                                        generator.Generate(targetDomainName, repository, writer);
+                                        generator.Generate(targetDomainKeyLetter, repository, writer);
                                     }
                                 }
                             }

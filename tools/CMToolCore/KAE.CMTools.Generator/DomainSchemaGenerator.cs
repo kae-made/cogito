@@ -13,9 +13,9 @@ namespace KAE.CMTools.Generator
     {
         public ILogger Logger { get => logger; set => logger = value; }
 
-        public void Generate(string domainName, InstanceRepository repository, TextWriter output)
+        public void Generate(string domainKeyLetter, InstanceRepository repository, TextWriter output)
         {
-            var domain = repository.ConceptualDomains[domainName];
+            var domain = repository.ConceptualDomains[domainKeyLetter];
             var generator = new templates.InstanceSchema(domain);
 
             string resultText = generator.TransformText();

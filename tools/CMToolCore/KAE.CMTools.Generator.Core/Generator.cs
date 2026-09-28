@@ -11,6 +11,6 @@ namespace KAE.CMTools.Generator.Core
     public interface Generator
     {
         ILogger Logger { get; set; }
-        void Generate(string domainName, InstanceRepository repository, TextWriter output);
+        void Generate(string domainKeyLetter, InstanceRepository repository, TextWriter output);
     }
 }

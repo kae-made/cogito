@@ -6,9 +6,13 @@ namespace KAE.CMTools.Core
     public interface InstanceRepository
     {
         Dictionary<string, ConceptualDomain> ConceptualDomains { get; }
+        
+        Dictionary<string, Bridge> Bridges { get; }
 
         Dictionary<string, Dictionary<string, FieldOfSense>> FieldsOfSense { get; }
         ConceptualDomain? AddConceptualDomain(string domainName, string domainKeyLetter);
+
+        Bridge? AddBridge(string bridgeName, string bridgeKeyLetter);
 
         void Clear();
 

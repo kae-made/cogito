@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using System.Reflection.Metadata.Ecma335;
+using System.Transactions;
+
 //using YamlDotNet.Serialization;
 //using YamlDotNet.Serialization.NamingConventions;
 using static KAE.CMTools.Core.Relationship;
@@ -41,39 +43,15 @@ namespace KAE.CMTools.Generator
                                 }
                                 else if (domainProp.Key == "datatypes")
                                 {
-                                    JObject datatypes = (JObject)domainProp.Value;
-                                    foreach (var datatypesProp in datatypes)
-                                    {
-                                        string datatypeName = datatypesProp.Key;
-                                        var datatypeDef = (JObject)datatypesProp.Value;
-                                        var parsedDataType = ParseDatatype(parsedDomain, datatypeName, datatypeDef);
-                                        if (parsedDomain.DataTypes.ContainsKey(parsedDataType.Name))
-                                        {
-                                            logger.LogWarning($"datatype : '{parsedDataType.Name}' has been defined!");
-                                        }
-                                        else
-                                        {
-                                            parsedDomain.AddDataType(parsedDataType);
-                                        }
-                                    }
+                                    ParseDataTypes(parsedDomain, (JObject)domainProp.Value);
                                 }
                                 else if (domainProp.Key == "cclasses")
                                 {
-                                    var cclasses = (JObject)domainProp.Value;
-                                    foreach (var cclassDef in cclasses)
-                                    {
-                                        string cclassKeyLett = cclassDef.Key;
-                                        var parsedCClass = ParseConceptualClass(parsedDomain, cclassKeyLett, (JObject)cclassDef.Value);
-                                    }
+                                    ParseCClasses(parsedDomain, (JObject)domainProp.Value);
                                 }
                                 else if (domainProp.Key == "relationships")
                                 {
-                                    JObject relationships = (JObject)domainProp.Value;
-                                    foreach(var relDef in relationships)
-                                    {
-                                        string relIndex = relDef.Key;
-                                        var parsedRelationship = ParseRelationship(parsedDomain, relIndex, (JObject)relDef.Value);
-                                    }
+                                    ParseRelationships(parsedDomain, (JObject)domainProp.Value);
                                 }
                                 else
                                 {
@@ -82,6 +60,76 @@ namespace KAE.CMTools.Generator
                             }
                         }
                     }
+                    else if (prop.Key == "bridges")
+                    {
+                        currentRepository = repository;
+                        var bridgesValue = (JObject)prop.Value;
+                        foreach(var bridgeDef in bridgesValue)
+                        {
+                            string bridgeKeyLetter = bridgeDef.Key;
+                            Bridge parsedBridge = null;
+                            foreach( var bridgeProp in (JObject)bridgeDef.Value)
+                            {
+                                if (bridgeProp.Key == "name")
+                                {
+                                    string bridgeName = (string)bridgeProp.Value;
+                                    parsedBridge = currentRepository.AddBridge(bridgeName, bridgeKeyLetter);
+                                }
+                                else if (bridgeDef.Key == "datatypes")
+                                {
+                                    ParseDataTypes(parsedBridge, (JObject)bridgeProp.Value);
+                                }
+                                else if (bridgeProp.Key == "cclasses")
+                                {
+                                    ParseCClasses(parsedBridge, (JObject)bridgeProp.Value);
+                                }
+                                else if (bridgeProp.Key == "relationships")
+                                {
+                                    ParseRelationships(parsedBridge, (JObject)bridgeProp.Value);
+                                }
+                                else if (bridgeProp.Key == "functors")
+                                {
+                                    ParseRelationships(parsedBridge, (JObject) bridgeProp.Value, isFunctor:true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ParseRelationships(ConceptualDomain parsedDomain, JObject relationships, bool isFunctor = false)
+        {
+            foreach (var relDef in relationships)
+            {
+                string relIndex = relDef.Key;
+                var parsedRelationship = ParseRelationship(parsedDomain, relIndex, (JObject)relDef.Value, isFunctor);
+            }
+        }
+
+        private void ParseCClasses(ConceptualDomain parsedDomain, JObject? cclasses)
+        {
+            foreach (var cclassDef in cclasses)
+            {
+                string cclassKeyLett = cclassDef.Key;
+                var parsedCClass = ParseConceptualClass(parsedDomain, cclassKeyLett, (JObject)cclassDef.Value);
+            }
+        }
+
+        private void ParseDataTypes(ConceptualDomain parsedDomain, JObject datatypes)
+        {
+            foreach (var datatypesProp in datatypes)
+            {
+                string datatypeName = datatypesProp.Key;
+                var datatypeDef = (JObject)datatypesProp.Value;
+                var parsedDataType = ParseDatatype(parsedDomain, datatypeName, datatypeDef);
+                if (parsedDomain.DataTypes.ContainsKey(parsedDataType.Name))
+                {
+                    logger.LogWarning($"datatype : '{parsedDataType.Name}' has been defined!");
+                }
+                else
+                {
+                    parsedDomain.AddDataType(parsedDataType);
                 }
             }
         }
@@ -390,7 +438,7 @@ namespace KAE.CMTools.Generator
             return parsedCClass;
         }
 
-        private Relationship ParseRelationship(ConceptualDomain domain, string relIndex, JObject relationshipDef)
+        private Relationship ParseRelationship(ConceptualDomain domain, string relIndex, JObject relationshipDef, bool isFunctor)
         {
             Relationship parsedRelationship = null;
             int relKind = 0; // 1->binary,2->is-a,3->binary-associative
@@ -423,11 +471,12 @@ namespace KAE.CMTools.Generator
 
             logger.LogInformation($"Parsing Relationship - {rIndex}...");
 
-            Func<JObject, (string, string, string)> ParseEdge = token =>
+            Func<JObject, (string, string, string, string)> ParseEdge = token =>
             {
                 string keyLetter = "";
                 string mult = "";
                 string phrase = "";
+                string ownerDomain = "";
                 foreach (var edgeDef in token)
                 {
                     if (edgeDef.Key == "cclass")
@@ -442,8 +491,15 @@ namespace KAE.CMTools.Generator
                     {
                         phrase = (string)edgeDef.Value;
                     }
+                    else if (edgeDef.Key == "pclass")
+                    {
+                        string keyletters = (string)edgeDef.Value;
+                        int pos = keyletters.LastIndexOf(":");
+                        keyLetter = keyletters.Substring(pos + 1);
+                        ownerDomain = keyletters.Substring(0, pos);
+                    }
                 }
-                return (keyLetter, mult, phrase);
+                return (keyLetter, mult, phrase, ownerDomain);
             };
 
             Action<string, string, string> ShowRelationshipError = (rIndex, keyLett, reason) =>
@@ -462,30 +518,81 @@ namespace KAE.CMTools.Generator
                 string refKeyLetter = "";
                 string refMult = "";
                 string refPhrase = "";
+                string refDomain = "";
                 string partKeyLetter = "";
                 string partMult = "";
                 string partPhrase = "";
+                string partDomain = "";
                 foreach (var relDef in relationshipDef)
                 {
                     if (relDef.Key == "referent")
                     {
-                        (refKeyLetter, refMult, refPhrase) = ParseEdge((JObject)relDef.Value);
+                        (refKeyLetter, refMult, refPhrase, refDomain) = ParseEdge((JObject)relDef.Value);
                     }
                     else if (relDef.Key == "participant")
                     {
-                        (partKeyLetter, partMult, partPhrase) = ParseEdge((JObject)relDef.Value);
+                        (partKeyLetter, partMult, partPhrase, partDomain) = ParseEdge((JObject)relDef.Value);
                     }
                 }
-                if (!domain.ConceptualClasses.ContainsKey(refKeyLetter))
+                ConceptualClass refClassDef = null;
+                ConceptualClass partClassDef = null;
+               
+                if (isFunctor)
                 {
-                    ShowRelationshipError(rIndex, refKeyLetter, "undefined");
+                    if (currentRepository.ConceptualDomains.ContainsKey(refDomain))
+                    {
+                        var baseDomain = currentRepository.ConceptualDomains[refDomain];
+                        if (baseDomain.ConceptualClasses.ContainsKey(refKeyLetter))
+                        {
+                            var baseClass = baseDomain.ConceptualClasses[refKeyLetter];
+                            refClassDef = new ProjectionClass(baseClass);
+                        }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(refDomain))
+                        {
+                            if (!domain.ConceptualClasses.ContainsKey(refKeyLetter))
+                            {
+                                ShowRelationshipError(rIndex, refKeyLetter, "undefined");
+                            }
+                            refClassDef = domain.ConceptualClasses[refKeyLetter];
+                        }
+                    }
+                    if (currentRepository.ConceptualDomains.ContainsKey(partDomain))
+                    {
+                        var baseDomain = currentRepository.ConceptualDomains[partDomain];
+                        if (baseDomain.ConceptualClasses.ContainsKey(partKeyLetter))
+                        {
+                            var baseClass = baseDomain.ConceptualClasses[(partKeyLetter)];
+                            partClassDef = new ProjectionClass(baseClass);
+                        }
+                    }
+                    else
+                    {
+                        if (string.IsNullOrEmpty(partDomain))
+                        {
+                            if (!domain.ConceptualClasses.ContainsKey(partKeyLetter))
+                            {
+                                ShowRelationshipError(rIndex, partKeyLetter, "undefined");
+                            }
+                            partClassDef = domain.ConceptualClasses[partKeyLetter];
+                        }
+                    }
                 }
-                if (!domain.ConceptualClasses.ContainsKey(partKeyLetter))
+                else
                 {
-                    ShowRelationshipError(rIndex, partKeyLetter, "undefined");
+                    if (!domain.ConceptualClasses.ContainsKey(refKeyLetter))
+                    {
+                        ShowRelationshipError(rIndex, refKeyLetter, "undefined");
+                    }
+                    if (!domain.ConceptualClasses.ContainsKey(partKeyLetter))
+                    {
+                        ShowRelationshipError(rIndex, partKeyLetter, "undefined");
+                    }
+                    refClassDef = domain.ConceptualClasses[refKeyLetter];
+                    partClassDef = domain.ConceptualClasses[partKeyLetter];
                 }
-                var refClassDef = domain.ConceptualClasses[refKeyLetter];
-                var partClassDef = domain.ConceptualClasses[partKeyLetter];
                 Multipricity refMulti = Relationship.ToMultiplicity(refMult);
                 Multipricity partMulti = Relationship.ToMultiplicity(partMult);
 
@@ -509,8 +616,18 @@ namespace KAE.CMTools.Generator
                     }
                 }
 
-                var binaryRelationship = new BinaryRelationship<ConceptualClass, ConceptualClass>(rIndex, refClassDef, refMulti, refPhrase, relProps, partClassDef, partMulti, partPhrase, partProps);
-                domain.AddRelationship(binaryRelationship);
+                Relationship binaryRelationship = null;
+                if (isFunctor)
+                {
+                    var binaryFunctor =new BinaryFunctor<ConceptualClass,ConceptualClass>(rIndex, refClassDef, refMulti,  relProps, partClassDef, partMulti,  partProps);
+                    ((Bridge)domain).AddFunctor(binaryFunctor);
+                    binaryRelationship = binaryFunctor;
+                }
+                else
+                {
+                    binaryRelationship = new BinaryRelationship<ConceptualClass, ConceptualClass>(rIndex, refClassDef, refMulti, refPhrase, relProps, partClassDef, partMulti, partPhrase, partProps);
+                    domain.AddRelationship(binaryRelationship);
+                }
                 parsedRelationship = binaryRelationship;
             }
             else if (relKind == 2)
@@ -596,8 +713,10 @@ namespace KAE.CMTools.Generator
                 ConceptualClass assocClass = null;
                 string oneMult = "";
                 string onePhrase = "";
+                string oneDomain = "";
                 string otherMult = "";
                 string otherPhrase = "";
+                string otherDomain = "";
                 List<string> oneProps = new List<string>();
                 List<string> otherProps = new List<string>();
                 List<string> assocOnOneProps = new List<string>();
@@ -607,22 +726,52 @@ namespace KAE.CMTools.Generator
                     if (relDef.Key == "one")
                     {
                         string keyLett;
-                        (keyLett, oneMult, onePhrase) = ParseEdge((JObject)relDef.Value);
-                        if (!domain.ConceptualClasses.ContainsKey(keyLett))
+                        (keyLett, oneMult, onePhrase, oneDomain) = ParseEdge((JObject)relDef.Value);
+                        if (isFunctor)
                         {
-                            ShowRelationshipError(rIndex, keyLett, "has not defined.");
+                            if (currentRepository.ConceptualDomains.ContainsKey(oneDomain))
+                            {
+                                var baseDomain = currentRepository.ConceptualDomains[oneDomain];
+                                if (baseDomain.ConceptualClasses.ContainsKey(keyLett))
+                                {
+                                    var baseClass = baseDomain.ConceptualClasses[keyLett];
+                                    oneClass=new ProjectionClass(baseClass);
+                                }
+                            }
                         }
-                        oneClass = domain.ConceptualClasses[keyLett];
+                        else
+                        {
+                            if (!domain.ConceptualClasses.ContainsKey(keyLett))
+                            {
+                                ShowRelationshipError(rIndex, keyLett, "has not defined.");
+                            }
+                            oneClass = domain.ConceptualClasses[keyLett];
+                        }
                     }
                     else if (relDef.Key == "other")
                     {
                         string keyLett;
-                        (keyLett, otherMult, otherPhrase) = ParseEdge((JObject)relDef.Value);
-                        if (!domain.ConceptualClasses.ContainsKey(keyLett))
+                        (keyLett, otherMult, otherPhrase, otherDomain) = ParseEdge((JObject)relDef.Value);
+                        if (isFunctor)
                         {
-                            ShowRelationshipError(rIndex, keyLett, "has not defined.");
+                            if (currentRepository.ConceptualDomains.ContainsKey(otherDomain))
+                            {
+                                var baseDomain = currentRepository.ConceptualDomains[otherDomain];
+                                if (baseDomain.ConceptualClasses.ContainsKey(keyLett))
+                                {
+                                    var baseClass = baseDomain.ConceptualClasses[(keyLett)];
+                                    otherClass = new ProjectionClass(baseClass);
+                                }
+                            }
                         }
-                        otherClass = domain.ConceptualClasses[keyLett];
+                        else
+                        {
+                            if (!domain.ConceptualClasses.ContainsKey(keyLett))
+                            {
+                                ShowRelationshipError(rIndex, keyLett, "has not defined.");
+                            }
+                            otherClass = domain.ConceptualClasses[keyLett];
+                        }
                     }
                     else if (relDef.Key == "associative")
                     {
@@ -673,10 +822,22 @@ namespace KAE.CMTools.Generator
 
                 if (oneClass != null && otherClass != null && assocClass != null)
                 {
-                    var binAssocRelationship = new AssociativeRelationship<ConceptualClass, ConceptualClass, ConceptualClass>(
-                        rIndex, oneClass, Relationship.ToMultiplicity(oneMult), onePhrase, oneProps, assocOnOneProps,
-                        otherClass, Relationship.ToMultiplicity(otherMult), otherPhrase, otherProps, assocClass, assocOnOtherProps);
-                    domain.AddRelationship(binAssocRelationship);
+                    Relationship binAssocRelationship = null;
+                    if (isFunctor)
+                    {
+                        var binAssocFunctor = new AssociativeFunctor<ConceptualClass,ConceptualClass,ConceptualClass>(
+                            rIndex, oneClass, Relationship.ToMultiplicity(oneMult), oneProps, assocOnOneProps,
+                            otherClass, Relationship.ToMultiplicity(otherMult), otherProps, assocClass, assocOnOtherProps);
+                        ((Bridge)domain).AddFunctor(binAssocFunctor);
+                        binAssocRelationship = binAssocFunctor;
+                    }
+                    else
+                    {
+                        binAssocRelationship = new AssociativeRelationship<ConceptualClass, ConceptualClass, ConceptualClass>(
+                            rIndex, oneClass, Relationship.ToMultiplicity(oneMult), onePhrase, oneProps, assocOnOneProps,
+                            otherClass, Relationship.ToMultiplicity(otherMult), otherPhrase, otherProps, assocClass, assocOnOtherProps);
+                        domain.AddRelationship(binAssocRelationship);
+                    }
                     parsedRelationship = binAssocRelationship;
                 }
             }

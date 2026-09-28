@@ -125,6 +125,13 @@ bridges:
             identity: [1]
           ItemID:
             type: REFERENCE
+            identity: [2]
+          componentId:
+            type: REFERENCE
+            identity: [2]
+          parameterId:
+            type: REFERENCE
+            identity: [2]
       PF_PIM:
         name: "Position in Memory"
         number: 304
@@ -209,21 +216,21 @@ bridges:
           cclass: CM
           multiplicity: "1"
           phrase: "is execution mapping of"
-        partcipant:
-          - cclass: ECM
-            multiplicity: "MC"
-            phrase: "is mapping base of"
+        participant:
+          cclass: ECM
+          multiplicity: "MC"
+          phrase: "is mapping base of"
         referencing:
           - ComponentID: ComponentID
       # Item & Parameter Order Mapping
       R301:
         kind: binary
         referent:
-          cclass: OE_MB
+          cclass: PF_MB
           multiplicity: "1"
           phrase: "are arranged in"
         participant:
-          cclass: OE_PIM
+          cclass: PF_PIM
           multiplicity: "M"
           phrase: "is filled in"
         referencing:
@@ -231,37 +238,37 @@ bridges:
       R300:
         kind: is-a
         referent:
-          cclass: OE_MB
+          cclass: PF_MB
           properties:
             - MemoryBlockID
         participants:
-          - cclass: OE_CMB
+          - cclass: PF_CMB
             properties:
               - MemoryBlockID
-          - cclass: OE_IMB
+          - cclass: PF_IMB
             properties:
               - MemoryBlockID
       R302:
         kind: is-a
         referent:
-          cclass: OE_PIM
+          cclass: PF_PIM
           properties:
             - PositionInMemoryID
         participants:
-          - cclass: OE_CPIM
+          - cclass: PF_CPIM
             properties:
               - PositionInMemoryID
-          - cclass: OE_PPIM
+          - cclass: PF_PPIM
             properties:
               - PositionInMemoryID
     functors:
       F1:
-        kind: "binary"
+        kind: "binary-associative"
         one:
-          pclass: OPENE:SPC:OE_DK
+          pclass: OpenEL:SPC:OE_DK
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:DK
+          pclass: OpenEL:PIM:DK
           multiplicity: "1"
         associative:
           cclass: DKM
@@ -271,12 +278,12 @@ bridges:
           other:
             - deviceKindId: DeviceKindID
       F2:
-        kind: "binary"
+        kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_V
+          pclass: OpenEL:SPC:OE_V
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:V
+          pclass: OpenEL:PIM:V
           multiplicity: "1"
         associative:
           cclass: VM
@@ -286,12 +293,12 @@ bridges:
           other:
             - vendorId: VendorID
       F3:
-        kind: "binary"
+        kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_P
+          pclass: OpenEL:SPC:OE_P
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:P
+          pclass: OpenEL:PIM:P
           multiplicity: "1"
         associative:
           cclass: PM
@@ -303,13 +310,13 @@ bridges:
       F4:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_C
+          pclass: OpenEL:SPC:OE_C
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:HALC
+          pclass: OpenEL:PIM:HALC
           multiplicity: "MC"
         associative:
-          cclass: OPENEL:SPC:CM
+          cclass: CM
         referencing:
           one:
             - ComponentID: ComponentID
@@ -318,10 +325,10 @@ bridges:
       F5:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OEOE_EC
+          pclass: OpenEL:SPC:OEOE_EC
           multiplicity: "MC"
         other:
-          pclass: OPENEL:PIM:HALC
+          pclass: OpenEL:PIM:HALC
           multiplicity: "1"
         associative:
           cclass: ECM
@@ -335,10 +342,10 @@ bridges:
       F6:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_DDS
+          pclass: OpenEL:SPC:OE_DDS
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:APIS
+          pclass: OpenEL:PIM:APIS
           multiplicity: "MC"
         associative:
           cclass: DDSM
@@ -350,10 +357,10 @@ bridges:
       F7:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_PDT
+          pclass: OpenEL:SPC:OE_PDT
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:DT
+          pclass: OpenEL:PIM:DT
           multiplicity: "MC"
         associative:
           cclass: PDTM
@@ -365,10 +372,10 @@ bridges:
       F8:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_EDTI
+          pclass: OpenEL:SPC:OE_EDTI
           multiplicity: "1"
         other:
-          pclass: OPENEL:PIM:EDTIV
+          pclass: OpenEL:PIM:EDTIV
           multiplicity: "MC"
         associative:
           cclass: EDTIM
@@ -380,19 +387,25 @@ bridges:
             - name: ItemName
       # Item & Parameter Order Mapping
       F300:
-        kind: binary
-        referent:
-          pclass: OPENEL:PIM:APIS
+        kind: "binary-associative"
+        one:
+          pclass: OpenEL:PIM:PB
+          multiplicity: "MC"
+        other:
+          pclass: OpenEL:SPC:OE_ITS
           multiplicity: "1"
-        participant:
-          cclass: PF_MB
-          multiplicity: "1"
+        associative:
+          cclass: PF_IMB
         referencing:
-          - APISetID: APISetID
+          one:
+            - componentId: componentId
+            - parameterId: parameterId
+          other:
+            - ItemID: ItemID
       F301:
         kind: binary
         referent:
-          pclass: OPENEL:SPC:OE_ITS
+          pclass: OpenEL:SPC:OE_ITS
           multiplicity: "1"
         participant:
           cclass: PF_IMB
@@ -402,7 +415,7 @@ bridges:
       F304:
         kind: binary
         referent:
-          pclass: OPENEL:SPC:OE_PS
+          pclass: OpenEL:SPC:OE_PS
           multiplicity: "1"
         participant:
           cclass: PF_PPIM
@@ -413,20 +426,20 @@ bridges:
       F303:
         kind: binary
         referent:
-          pclass: OPENEL:SPC:OE_CDT
+          pclass: OpenEL:SPC:OE_CDT
           multiplicity: "1"
         participant:
-          cclass: OE_CMB
+          cclass: PF_CMB
           multiplicity: "1C"
-          referencing:
-            - DataTypeID: DataTypeID
+        referencing:
+          - DataTypeID: DataTypeID
       F306:
         kind: binary
         referent:
-          pclass: OPENEL:SPC:OE_CDTI
+          pclass: OpenEL:SPC:OE_CDTI
           multiplicity: "1"
         participant:
-          cclass: OE_CPIM
+          cclass: PF_CPIM
           multiplicity: "1C"
         referencing:
           - Parent_DataTypeID: DataTypeID
@@ -434,10 +447,10 @@ bridges:
       F302:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_ITS
+          pclass: OpenEL:SPC:OE_ITS
           multiplicity: "1C"
         other:
-          pclass: OPENEL:SPC:OE_ITS
+          pclass: OpenEL:SPC:OE_ITS
           multiplicity: "1C"
         associative:
           cclass: PF_ISO
@@ -451,10 +464,10 @@ bridges:
       F305:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_PS
+          pclass: OpenEL:SPC:OE_PS
           multiplicity: "1C"
         other:
-          pclass: OPENEL:SPC:OE_PS
+          pclass: OpenEL:SPC:OE_PS
           multiplicity: "1C"
         associative:
           cclass: PF_IPO
@@ -468,10 +481,10 @@ bridges:
       F307:
         kind: "binary-associative"
         one:
-          pclass: OPENEL:SPC:OE_CDTI
+          pclass: OpenEL:SPC:OE_CDTI
           multiplicity: "1C"
         other:
-          pclass: OPENEL:SPC:OE_CDTI
+          pclass: OpenEL:SPC:OE_CDTI
           multiplicity: "1C"
         associative:
           cclass: PF_CDTIO
@@ -482,4 +495,3 @@ bridges:
           other:
             - DataTypeID: DataTypeID
             - Name: Next_Name
-        

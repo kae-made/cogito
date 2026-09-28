@@ -116,6 +116,7 @@ namespace WpfAppDigitalTwinsRepository
                 tbCIMDefFilePath.Text = dialog.FileName;
                 AddOperationHistory($"Selected CIM Descrip - {tbCIMDefFilePath.Text}");
                 hasCIMSchemaReadAndParsed = false;
+                buttonReadCIMDef.IsEnabled = true;
             }
         }
 
@@ -180,15 +181,15 @@ namespace WpfAppDigitalTwinsRepository
 
         private void GenerateInstanceSchema()
         {
-            foreach (var domainName in repository.ConceptualDomains.Keys)
+            foreach (var domainKeyLetter in repository.ConceptualDomains.Keys)
             {
-                MessageBox.Show($"Generate Instance Schema of '{domainName}'");
+                MessageBox.Show($"Generate Instance Schema of '{domainKeyLetter}'");
                 var generator = new DomainSchemaGenerator() { Logger = logger };
                 using (var writer = new StreamWriter(File.OpenWrite(tbInstSchemaFilePath.Text)))
                 {
                     try
                     {
-                        generator.Generate(domainName, repository, writer);
+                        generator.Generate(domainKeyLetter, repository, writer);
                         AddOperationHistory($"Generated Instance Schema - {tbInstSchemaFilePath.Text}");
                         var app = (App)Application.Current;
                         app.UpdateSettingFile(instanceSchemaFilePathKey, tbInstSchemaFilePath.Text);
