@@ -369,6 +369,7 @@ bridges:
           multiplicity: "1"
         participant:
           cclass: "CM"
+          multiplicity: "MC"
         referencing:
           - DDSpecID: DDSpecID
       F8:

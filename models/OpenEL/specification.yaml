@@ -283,7 +283,7 @@ domains:
             type: REFERENCE
           ProductID:
             type: REFERENCE
-          ComponentID:
+          DDSpecID:
             type: REFERENCE
       OEOE_P:
         name: "Parameter"
@@ -473,7 +473,10 @@ domains:
           CalibrationID:
             type: UNIQUE_ID
             identity: [1]
-          ModuleID:
+          ProductID:
+            type: REFERENCE
+            identity: [2]
+          VendorID:
             type: REFERENCE
             identity: [2]
           DDSpecID:
@@ -639,7 +642,7 @@ domains:
         referencing:
           - DeviceKindID: DeviceKindID
       R4:
-        kind: "binary-associative
+        kind: "binary-associative"
         one:
           cclass: OE_PD
           multiplicity: "1C"
@@ -657,7 +660,6 @@ domains:
           other:
             - ProductID: Child_ProductID
             - VendorID: VendorID
-            - Parent_ProductID: Parent_ProductID
       R5:
         kind: "is-a"
         referent:
@@ -674,12 +676,6 @@ domains:
             properties:
               - ProductID
               - VendorID
-        participant:
-          cclass: OE_C
-          multiplicity: "1"
-          phrase: "serve as the operational specification for "
-        referencing:
-          - DDSpecID: DDSpecID
       R6:
         kind: "binary"
         referent:
@@ -688,11 +684,12 @@ domains:
           phrase: "position of ～ is represented by"
         participant:
           cclass: "OE_CPD"
-          multiplicity "1"
+          multiplicity: "1"
           phrase: "reprenset position of"
         referencing:
           - Parent_ProductID: Parent_ProductID
-          - VendorID: VensorID
+          - VendorID: VendorID
+          - Child_ProductID: ProductID
       R8:
         kind: binary-associative
         one:
@@ -831,7 +828,7 @@ domains:
             - ProductID: ProductID
             - VendorID: VendorID
           other:
-            - DDDSpecID: DDSpecID
+            - DDSpecID: DDSpecID
       R17:
         kind: binary
         referent:
@@ -843,14 +840,14 @@ domains:
           multiplicity: "MC"
           phrase: "define"
         referencing:
-          - VendorID: VendorID
+          - VendorID: DefinedVendorID
       R18:
         kind: "binary-associative"
         one:
           cclass: OE_TPD
           multiplicity: "1"
           phrase: "is a mechanism for adjusting"
-        participant:
+        other:
           cclass: OE_DDS
           multiplicity: "MC"
           phrase: "is target of"
@@ -886,7 +883,7 @@ domains:
           multiplicity: "1"
           phrase: "is imprelemtation for"
         referencing:
-          - DDSoecUD: DDSpecID
+          - DDSpecID: DDSpecID
       R103:
         kind: binary
         referent:
@@ -1130,23 +1127,6 @@ domains:
         referencing:
           - NotationID: NotationID
       # OpenEL::Calibration Sub system
-      R19:
-        kind: binary-associative
-        one:
-          cclass: OE_M
-          multiplicity: "1"
-          phrase: "is a mechanism for adjusting"
-        other:
-          cclass: OE_DDS
-          multiplicity: "MC"
-          phrase: "is target of"
-        associative:
-          cclass: OEC_CB
-        referencing:
-          one:
-            - ModuleID: ModuleID
-          other:
-            - DDSpecID: DDSpecID
       R51:
         kind: is-a
         referent:
@@ -1195,7 +1175,7 @@ domains:
           other:
             - ItemID: ItemID
       R54:
-        kind: is-a
+        kind: "is-a"
         referent:
           cclass: OEC_CI
           properties:
