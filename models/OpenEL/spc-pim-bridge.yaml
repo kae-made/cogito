@@ -62,13 +62,22 @@ bridges:
             type: REFERENCE
             identity: [1]
       DDSM:
-        name: "Device Driver Specification Mapping"
+        name: "APISetMapping"
         number: 8
         properties:
-          DDSpecID:
+          ProductID:
             type: REFERENCE
             identity: [1]
-          APISetID:
+          VendorID:
+            type: REFERENCE
+            identity: [1]
+          namespace:
+            type: REFERENCE
+            identity: [1]
+          name:
+            type: REFERENCE
+            identity: [1]
+          ImplVendorID:
             type: REFERENCE
             identity: [1]
       PDTM:
@@ -310,19 +319,33 @@ bridges:
       F4:
         kind: "binary-associative"
         one:
-          pclass: OpenEL:SPC:OE_C
+          pclass: OpenEL:SPC:OE_TPD
           multiplicity: "1"
         other:
-          pclass: OpenEL:PIM:HALC
+          pclass: OpenEL:PIM:APIS
           multiplicity: "MC"
         associative:
-          cclass: CM
+          cclass: DDSM
         referencing:
           one:
-            - ComponentID: ComponentID
+            - ProductID: ProductID
+            - VendorID: VendorID
           other:
-            - componentId: ComponentID
+            - namespace: namespace
+            - name: name
       F5:
+        kind: binary
+        referent:
+          pclass: SPC:OE_V
+          multiplicity: "1"
+          # phrase: "is implemented by"
+        participant:
+          cclass: DDSM
+          multiplicity: "MC"
+          # phrase: "is impmementer of"
+        referencing:
+          - VendorID: ImplVendorID
+      F6:
         kind: "binary-associative"
         one:
           pclass: OpenEL:SPC:OEOE_EC
@@ -339,7 +362,34 @@ bridges:
           other:
             - componentId: ComponentID
             - instanceId: InstanceID
-      F6:
+      F7:
+        kind: binary
+        referent:
+          pclass: "SPC:OE_DDS"
+          multiplicity: "1"
+        participant:
+          cclass: "CM"
+        referencing:
+          - DDSpecID: DDSpecID
+      F8:
+        kind: "binary-associative"
+        one:
+          pclass: OpenEL:SPC:OEOE_EC
+          multiplicity: "MC"
+        other:
+          pclass: OpenEL:PIM:HALC
+          multiplicity: "1"
+        associative:
+          cclass: ECM
+        referencing:
+          one:
+            - InstanceID: InstanceID
+            - DDSpecID: DDSpecID
+            - EquipmentID: EquipmentID
+          other:
+            - DDSpecID: DDSpecID
+            - instanceId: InstanceID
+      F9:
         kind: "binary-associative"
         one:
           pclass: OpenEL:SPC:OE_DDS
@@ -354,7 +404,7 @@ bridges:
             - DDSpecID: DDSpecID
           other:
             - apiId: ApiID
-      F7:
+      F10:
         kind: "binary-associative"
         one:
           pclass: OpenEL:SPC:OE_PDT
@@ -369,7 +419,7 @@ bridges:
             - DataTypeID: DataTypeID
           other:
             - name: Name
-      F8:
+      F11:
         kind: "binary-associative"
         one:
           pclass: OpenEL:SPC:OE_EDTI

@@ -45,7 +45,7 @@ domains:
             identity: [1, 2]
           equipmentId:
             type: INTEGER
-          componentId:
+          DDspecID:
             type: UNIQUE_ID
             identity: [2]
           apiSetId:

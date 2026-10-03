@@ -58,44 +58,6 @@ domains:
           Description:
             type: STRING
             nullable: true
-      OE_M:
-        name: "Module"
-        number: 5
-        properties:
-          ModuleID:
-            type: UNIQUE_ID
-            identity: [1, 2]
-          DeviceKindID:
-            type: REFERENCE
-            identity: [2]
-          ModuleName:
-            type: STRING
-            identity: [3]
-          SupplierVendorID:
-            type: REFERENCE
-            identity: [3]
-          Description:
-            type: STRING
-            nullable: true
-      OE_DDS:
-        name: "Device Driver Specification"
-        number: 7
-        properties:
-          DDSpecID:
-            type: UNIQUE_ID
-            identity: [1]
-          ModuleID:
-            type: REFERENCE
-            identity: [2]
-          SpecificationName:
-            type: STRING
-            identity: [2]
-          DefinedVendorID:
-            type: REFERENCE
-            identity: [2]
-          Description:
-            type: STRING
-            nullable: true
       OE_PD:
         name: "Product"
         number: 4
@@ -113,38 +75,58 @@ domains:
           VendorID:
             type: REFERENCE
             identity: [1,2]
-      OE_MIP:
-        name: "Module in Product"
+      OE_AIPD:
+        name: "Assembly in Product"
+        number: 5
+        properties:
+          Parent_ProductID:
+            type: REFERENCE
+            identity: [1]
+          VendorID:
+            type: REFERENCE
+            identity: [1]
+          Child_ProductID:
+            type: REFERENCE
+            identity: [1]
+      OE_TPD:
+        name: "Top Product"
         number: 6
         properties:
           ProductID:
             type: REFERENCE
             identity: [1]
-          ProductVendorID:
-            type: REFERENCE
-            identity: [1]
-          ModuleID:
-            type: REFERENCE
-            identity: [1]
-      OE_C:
-        name: "Component"
-        number: 7
-        properties:
-          ComponentID :
-            type: UNIQUE_ID
-            identity: [1]
-          DDSpecID:
-            type: REFERENCE
-            identity: [2]
           VendorID:
             type: REFERENCE
-            identity: [2]
+            identity: [1]
+      OE_CPD:
+        name: "Child Product"
+        number: 7
+        properties:
           ProductID:
             type: REFERENCE
+            identity: [1]
+          VendorID:
+            type: REFERENCE
+            identity: [1]
+          Parent_ProductID:
+            type: REFERENCE
+            identity: [1]
+      OE_DDS:
+        name: "Device Driver Specification"
+        number: 8
+        properties:
+          DDSpecID:
+            type: UNIQUE_ID
+            identity: [1]
+          SpecificationName:
+            type: STRING
             identity: [2]
           DefinedVendorID:
             type: REFERENCE
             identity: [2]
+          Description:
+            type: STRING
+            nullable: true
       OE_ITS:
         name: "Item Specification"
         number: 9
@@ -254,6 +236,22 @@ domains:
             type: REFERENCE
             identity: [1]
           DDSpecID: 
+            type: REFERENCE
+            identity: [1]
+      OE_DKIPD:
+        name: "Device Kind in Product"
+        number: 19
+        properties:
+          ProductID:
+            type: REFERENCE
+            identity: [1]
+          VendorID:
+            type: REFERENCE
+            identity: [1]
+          DeviceKindID:
+            type: REFERENCE
+            identity: [1]
+          DDSpecID:
             type: REFERENCE
             identity: [1]
       # OpenEL::Operational Equipment Sub system
@@ -635,30 +633,47 @@ domains:
           multiplicity: "1"
           phrase: "is real module for"
         participant:
-           cclass: OE_M
+           cclass: OE_DKIPD
            multiplicity: "MC" # "*"
            phrase: "is kind of"
         referencing:
           - DeviceKindID: DeviceKindID
       R4:
-        kind: binary
+        kind: "binary-associative
+        one:
+          cclass: OE_PD
+          multiplicity: "1C"
+          phrase: "may have ～ as parent"
+        other:
+          cclass: OE_PD
+          multiplicity: "MC"
+          phrase: "may consist from"
+        associative:
+          cclass: OE_AIPD
+        referencing:
+          one:
+            - ProductID: Parent_ProductID
+            - VendorID: VendorID
+          other:
+            - ProductID: Child_ProductID
+            - VendorID: VendorID
+            - Parent_ProductID: Parent_ProductID
+      R5:
+        kind: "is-a"
         referent:
           cclass: OE_PD
-          multiplicity: "1"
-          phrase: "is part of"
-        participant:
-          cclass: OE_C
-          multiplicity: "MC" # "*"
-          phrase: "is target of"
-        referencing:
-          - ProductID: ProductID
-          - VendorID: VendorID
-      R5:
-        kind: binary
-        referent:
-          cclass: OE_DDS
-          multiplicity: "1"
-          phrase: "is operated under the control of"
+          properties:
+            - ProductID
+            - VendorID
+        participants:
+          - cclass: OE_TPD
+            properties:
+              - ProductID
+              - VendorID
+          - cclass: OE_CPD
+            properties:
+              - ProductID
+              - VendorID
         participant:
           cclass: OE_C
           multiplicity: "1"
@@ -666,6 +681,19 @@ domains:
         referencing:
           - DDSpecID: DDSpecID
       R6:
+        kind: "binary"
+        referent:
+          cclass: "OE_AIPD"
+          multiplicity: "1"
+          phrase: "position of ～ is represented by"
+        participant:
+          cclass: "OE_CPD"
+          multiplicity "1"
+          phrase: "reprenset position of"
+        referencing:
+          - Parent_ProductID: Parent_ProductID
+          - VendorID: VensorID
+      R8:
         kind: binary-associative
         one:
           cclass: OE_DDS
@@ -694,7 +722,7 @@ domains:
           phrase: "is target of"
         referencing:
           - DeviceKindID: DeviceKindID
-      R8:
+      R9:
         kind: binary
         referent:
           cclass: OE_DIS
@@ -706,7 +734,7 @@ domains:
           phrase: "is target of"
         referencing:
           - ItemID: DeviceItemID
-      R9:
+      R10:
         kind: binary
         referent:
           cclass: OE_CF
@@ -718,24 +746,6 @@ domains:
           phrase: "is defined by"
         referencing:
           - ConfigurationID: ConfigurationID
-      R10:
-        kind: "binary-associative"
-        one:
-          cclass: OE_M
-          multiplicity: "M"
-          phrase: "contains"
-        other:
-          cclass: OE_PD
-          multiplicity: "MC"
-          phrase: "is built in"
-        associative:
-          cclass: OE_MIP
-        referencing:
-          one:
-            - ModuleID: ModuleID
-          other:
-            - ProductID: ProductID
-            - VendorID: ProductVendorID
       R11:
         kind: is-a
         referent:
@@ -805,41 +815,53 @@ domains:
         referencing:
           - ItemID: DeviceItemID
       R16:
-        kind: binary
-        referent:
-          cclass: OE_V
+        kind: "binary-associative"
+        one:
+          cclass: OE_PD
           multiplicity: "1"
-          phrase: "is supplied by"
-        participant:
-          cclass: OE_M
-          multiplicity: "MC"
-          phrase: "is manufacturer of"
-        referencing:
-          - VendorID: SupplierVendorID
-      R17:
-        kind: binary
-        referent:
-          cclass: OE_M
-          multiplicity: "1"
-          phrase: "is specification to operate"
-        participant:
+          phrase: "is operation specification of"
+        other:
           cclass: OE_DDS
           multiplicity: "MC"
           phrase: "is operated via"
+        associative:
+          cclass: "OE_DKIPD"
         referencing:
-          - ModuleID: ModuleID
-      R18:
+          one:
+            - ProductID: ProductID
+            - VendorID: VendorID
+          other:
+            - DDDSpecID: DDSpecID
+      R17:
         kind: binary
         referent:
           cclass: OE_V
           multiplicity: "1"
-          phrase: "is specified by"
+          phrase: "is defined by"
         participant:
-          cclass: OE_C
+          cclass: OE_DDS
           multiplicity: "MC"
-          phrase: "describe details of"
+          phrase: "define"
         referencing:
-          - VendorID: DefinedVendorID
+          - VendorID: VendorID
+      R18:
+        kind: "binary-associative"
+        one:
+          cclass: OE_TPD
+          multiplicity: "1"
+          phrase: "is a mechanism for adjusting"
+        participant:
+          cclass: OE_DDS
+          multiplicity: "MC"
+          phrase: "is target of"
+        associative:
+          cclass: OEC_CB
+        referencing:
+          one:
+            - ProductID: ProductID
+            - VendorID: VendorID
+          other:
+            - DDSpecID: DDSpecID
       # OpenEL::Operational Equipment Sub system
       R101:
         kind: binary
@@ -860,11 +882,11 @@ domains:
           multiplicity: "MC"
           phrase: "is specification of"
         referent:
-          cclass: OE_C
+          cclass: OE_DDS
           multiplicity: "1"
           phrase: "is imprelemtation for"
         referencing:
-          - ComponentID: ComponentID
+          - DDSoecUD: DDSpecID
       R103:
         kind: binary
         referent:
