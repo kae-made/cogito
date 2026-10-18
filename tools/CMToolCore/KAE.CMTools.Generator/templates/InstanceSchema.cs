@@ -48,7 +48,14 @@ namespace KAE.CMTools.Generator.templates
             
             #line default
             #line hidden
-            this.Write(@"""
+            this.Write("{");
+            
+            #line 17 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.domain.KeyLetter));
+            
+            #line default
+            #line hidden
+            this.Write(@"}""
 type: object
 required: [fos]
 properties:

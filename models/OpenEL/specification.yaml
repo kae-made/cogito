@@ -277,12 +277,6 @@ domains:
           EquipmentID:
             type: REFERENCE
             identity: [1]
-          DeviceKindID:
-            type: REFERENCE
-          DefinedVendorID:
-            type: REFERENCE
-          ProductID:
-            type: REFERENCE
           DDSpecID:
             type: REFERENCE
       OEOE_P:

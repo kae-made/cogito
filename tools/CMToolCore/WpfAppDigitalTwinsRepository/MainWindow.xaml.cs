@@ -183,9 +183,9 @@ namespace WpfAppDigitalTwinsRepository
         {
             foreach (var domainKeyLetter in repository.ConceptualDomains.Keys)
             {
-                MessageBox.Show($"Generate Instance Schema of '{domainKeyLetter}'");
+                MessageBox.Show($"Generating Instance Schema of '{domainKeyLetter}'...");
                 var generator = new DomainSchemaGenerator() { Logger = logger };
-                using (var writer = new StreamWriter(File.OpenWrite(tbInstSchemaFilePath.Text)))
+                using (var writer = new StreamWriter(File.Create(tbInstSchemaFilePath.Text)))
                 {
                     try
                     {

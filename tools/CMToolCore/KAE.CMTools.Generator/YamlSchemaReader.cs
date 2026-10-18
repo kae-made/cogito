@@ -971,6 +971,18 @@ namespace KAE.CMTools.Generator
                         property.FixBaseDataType();
                     }
                 }
+                foreach(var cclassKeyLett in domain.ConceptualClasses.Keys)
+                {
+                    var cclass = domain.ConceptualClasses[cclassKeyLett];
+                    foreach(var propName in cclass.Properties.Keys)
+                    {
+                        var property = cclass.Properties[propName];
+                        if (property.BaseDataType== null && property.DataType.Name== PrimitiveDataType.DataTypeKind.REFERENCE.ToString())
+                        {
+                            logger.LogWarning($"Property:'{propName}' of {cclassKeyLett} may not join any relationship.");
+                        }
+                    }
+                }
             }
 
             if (result)

@@ -27,7 +27,7 @@ namespace KAE.CMTools.Generator
                     {
                         var fosValue = prop.Value;
                         string fosId = "";
-                        string domainName = "";
+                        string domainKeyLetter = "";
                         string descripDate = "";
                         foreach (var fosProp in (JObject)fosValue)
                         {
@@ -37,23 +37,23 @@ namespace KAE.CMTools.Generator
                             }
                             else if (fosProp.Key == "domain")
                             {
-                                domainName = (string)fosProp.Value;
+                                domainKeyLetter = (string)fosProp.Value;
                             }
                             else if (fosProp.Key == "date")
                             {
                                 descripDate = (string)fosProp.Value;
                             }
                         }
-                        if (!string.IsNullOrEmpty(fosId) && !string.IsNullOrEmpty(domainName) && !string.IsNullOrEmpty(descripDate))
+                        if (!string.IsNullOrEmpty(fosId) && !string.IsNullOrEmpty(domainKeyLetter) && !string.IsNullOrEmpty(descripDate))
                         {
-                            if (currentRepository.ConceptualDomains.ContainsKey(domainName))
+                            if (currentRepository.ConceptualDomains.ContainsKey(domainKeyLetter))
                             {
-                                parsedFoS = currentRepository.AddFieldOfSense(domainName, fosId, descripDate);
+                                parsedFoS = currentRepository.AddFieldOfSense(domainKeyLetter, fosId, descripDate);
                             }
                             else
                             {
                                 logger.LogInformation($"Description Error :");
-                                logger.LogInformation($" '{domainName}' has not described.");
+                                logger.LogInformation($" '{domainKeyLetter}' has not described.");
                                 break;
                             }
                         }
@@ -63,15 +63,26 @@ namespace KAE.CMTools.Generator
                             {
                                 foreach (var inst in (JArray)fosProp.Value)
                                 {
-                                    ParseInstance(currentRepository.ConceptualDomains[domainName], parsedFoS, inst);
+                                    ParseInstance(currentRepository.ConceptualDomains[domainKeyLetter], parsedFoS, inst);
                                 }
                             }
                         }
                     }
                 }
             }
-            parsedFosId = parsedFoS.FoSId;
-            currentFoS = parsedFoS;
+            try
+            {
+                parsedFosId = parsedFoS.FoSId;
+                currentFoS = parsedFoS;
+            }
+            catch (Exception ex)
+            {
+                if (parsedFoS == null)
+                {
+                    logger.LogError(ex.Message);
+                    logger.LogInformation($"Please check domain keyletter for FoS.");
+                }
+            }
         }
 
         protected void ParseInstance(ConceptualDomain domain, FieldOfSense fos, JToken? instanceDesc)
@@ -87,7 +98,7 @@ namespace KAE.CMTools.Generator
                 if (instProp.Key == "cclass")
                 {
                     string cclassKeyLett = (string)instProp.Value;
-                    cclass = currentRepository.ConceptualDomains[domain.Name].ConceptualClasses[cclassKeyLett];
+                    cclass = currentRepository.ConceptualDomains[domain.KeyLetter].ConceptualClasses[cclassKeyLett];
                     break;
                 }
             }
@@ -223,6 +234,10 @@ namespace KAE.CMTools.Generator
                 else if (relationship is AssociativeRelationship<ConceptualClass, ConceptualClass, ConceptualClass>)
                 {
                     result = ValidateLinkAssociativeRelationship((AssociativeRelationship<ConceptualClass, ConceptualClass, ConceptualClass>)relationship);
+                }
+                if (result == false)
+                {
+                    break;
                 }
             }
             return result;
@@ -619,7 +634,7 @@ namespace KAE.CMTools.Generator
                 {
                     if (currentFoS.Instances[relationship.SuperEdge.KeyLetter].ContainsKey(instId))
                     {
-                        logger.LogInformation($" Validating instance : {instId} on super side in is-a relationship...");
+                        logger.LogInformation($" Validating instance : {instId} on super side in {relationship.RIndex} is-a relationship...");
                         Instance participantInst = null;
                         bool found = false;
 
@@ -675,6 +690,7 @@ namespace KAE.CMTools.Generator
                         }
                         else
                         {
+                            logger.LogWarning($"  Sub side instance of {instId} doesn't exist.");
                             result = false;
                         }
                     }
@@ -683,6 +699,11 @@ namespace KAE.CMTools.Generator
                 {
                     break;
                 }
+            }
+
+            if (!result)
+            {
+                return result;
             }
 
             // Validating from Sub side

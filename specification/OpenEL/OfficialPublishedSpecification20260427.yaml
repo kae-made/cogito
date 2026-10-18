@@ -3,7 +3,7 @@
 # Under Construction for discussion. Not finalized yet.
 fos:
   fosId: "9f01b85b-afd7-4d76-a4cd-bc730795c718"
-  domain: "OpenEL Device Driver Specification"
+  domain: "OpenEL:SPC"
   date: "2026-04-27"
   instances:
     - instance: "38df16d1-b04f-42fa-becf-5322c7c706b5"
@@ -591,6 +591,11 @@ fos:
         AuthorizerName: "JASA"
         ApplicantName: "DIA"
         Remarks: "JASA OpenEL WG"
+    - instance: "0f179bb7-8fa4-46a4-bfad-5be3ba8fb017"
+      properties:
+        cclass: OESA_VAP
+        ApprovementID: "5dcea2ad-1ddc-4972-bb02-b16c3d7f862c"
+        VendorID: "0x00000008"
     - instance: "e384693b-8916-419f-84a8-93300197148c"
       properties:
         cclass: OE_V
@@ -706,6 +711,11 @@ fos:
         AuthorizerName: "JASA"
         ApplicantName: "UTI"
         Remarks: "JASA OpenEL WG"
+    - instance: "c93957c4-1504-442f-8df6-1be2aa446dbb"
+      properties:
+        cclass: OESA_VAP
+        ApprovementID: "d4f1c40b-6e53-4d1b-8b91-bca2c18c2b53"
+        VendorID: "0x0000000E"
     - instance: "3c57e4ca-bc0d-4bc6-b2a7-b4a79cebee2f"
       properties:
         cclass: OE_PD
@@ -713,6 +723,11 @@ fos:
         ProductName: "UTRX-17"
         VendorID: "0x00000001"
         Description: NULL
+    - instance: "f2ba5c7a-2003-472e-964f-9cb6e0135e9c"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000001"
     - instance: "a98420b2-afba-4f4f-95e5-cda3e2bd1db4"
       properties:
         cclass: OE_PD
@@ -720,6 +735,11 @@ fos:
         ProductName: "USB-9AXIS"
         VendorID: "0x00000005"
         Description: NULL
+    - instance: "74f0dd5c-ad88-4a51-88f9-d793ccb03cb6"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000005"
     - instance: "c38653a1-102d-4b46-afd7-e1002d506ecc"
       properties:
         cclass: OE_PD
@@ -727,6 +747,11 @@ fos:
         ProductName: "AGB65-DCM"
         VendorID: "0x00000006"
         Description: NULL
+    - instance: "58105539-0ed4-4b3c-9f9d-1e4190a3bb93"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000006"
     - instance: "d91e8c1d-d98f-407c-80e4-7e34eb93aff6"
       properties:
         cclass: OE_PD
@@ -734,6 +759,11 @@ fos:
         ProductName: "SCD30"
         VendorID: "0x00000007"
         Description: NULL
+    - instance: "e20adddd-b22a-400d-accf-d65ac3634f70"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000007"
     - instance: "086e08ad-66f9-4101-a22c-f69e159c0bd6"
       properties:
         cclass: OE_PD
@@ -741,6 +771,11 @@ fos:
         ProductName: "Diarkis"
         VendorID: "0x00000008"
         Description: NULL
+    - instance: "8bb5f91d-82a5-49dc-8305-82330436fa99"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000008"
     - instance: "960ff961-33ae-4187-8173-14aaad80886a"
       properties:
         cclass: OE_PD
@@ -748,6 +783,11 @@ fos:
         ProductName: "EV3"
         VendorID: "0x00000009"
         Description: NULL
+    - instance: "9291a2a7-47f9-4d3e-9316-02c98f756cf1"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x00000009"
     - instance: "a6cabe9a-7613-4e0b-ad3e-fb0fe39e5c1f"
       properties:
         cclass: OE_PD
@@ -755,6 +795,11 @@ fos:
         ProductName: "BALA2"
         VendorID: "0x0000000A"
         Description: NULL
+    - instance: "5819cdc1-3487-45b8-9baf-38e4af9258ff"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x0000000A"
     - instance: "9fe490c8-791b-4cfc-9afc-b688d280abb7"
       properties:
         cclass: OE_PD
@@ -762,6 +807,11 @@ fos:
         ProductName: "JETBOT"
         VendorID: "0x0000000B"
         Description: NULL
+    - instance : "726e10f8-fb53-4edb-992e-cbd3cad44c6c"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x0000000B"
     - instance: "892f498d-e79a-4a33-a6cb-b8370ba5da39"
       properties:
         cclass: OE_PD
@@ -769,6 +819,11 @@ fos:
         ProductName: "BME280"
         VendorID: "0x0000000C"
         Description: NULL
+    - instance: "6b741dcd-fecb-4fcc-836e-f954f14b1c02"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x0000000C"
     - instance: "b5c77bdd-f718-461f-a862-fb4ce5b412df"
       properties:
         cclass: OE_PD
@@ -776,6 +831,11 @@ fos:
         ProductName: "Grove Rotary Angle Sensor"
         VendorID: "0x0000000D"
         Description: NULL
+    - instance: "7d690289-d3f1-49d7-af25-13aa1dda062c"
+      properties:
+        cclass: OE_TPD
+        ProductID: "0x00000001"
+        VendorID: "0x0000000D"
     - instance: "385aaba4-8fb2-4bfe-aa0d-e9eb63895135"
       properties:
         cclass: OE_DT
