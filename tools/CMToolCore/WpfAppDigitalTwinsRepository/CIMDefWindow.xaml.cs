@@ -116,7 +116,7 @@ namespace WpfAppDigitalTwinsRepository
             {
                 InstancesOfSelectedCClass.Clear();
                 var domain = conceptualClass.CDomain;
-                var fos = Repository.FieldsOfSense[domain.Name][FosId];
+                var fos = Repository.FieldsOfSense[domain.KeyLetter][FosId];
                 var instances = fos.Instances[conceptualClass.KeyLetter];
                 foreach(var instanceId in instances.Keys)
                 {
@@ -289,7 +289,7 @@ namespace WpfAppDigitalTwinsRepository
             InstanceId = instance.InstanceId;
 
             var cclass = instance.ConceptualClass;
-            var idFirstLevel = cclass.Identities[0];
+            var idFirstLevel = cclass.Identities[1];
 
             string idPropValues = "";
             foreach(var idPropDef in idFirstLevel.Keys)

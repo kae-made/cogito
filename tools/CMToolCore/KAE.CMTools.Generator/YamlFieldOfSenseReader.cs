@@ -457,24 +457,40 @@ namespace KAE.CMTools.Generator
                             }
                             if (referentDProps.Select(dp => dp.Value).SequenceEqual(candidateProps.Select(dp => dp.Value)))
                             {
-                                participantDProps.Clear();
-                                participantInst = candidateInst;
-                                participantDProps.AddRange(candidateProps);
-
-                                var link = new BinaryLink(currentFoS, relationship, referentInst, participantInst);
-                                foreach (var (rdp, pdf) in referentDProps.Zip(participantDProps, (x, y) => (x, y)))
+                                bool existed = false;
+                                if (referentInst.ParticipantLinks.ContainsKey(relationship.RIndex))
                                 {
-                                    link.AddFormedProperties(rdp, pdf);
+                                    foreach (var existedLink in referentInst.ParticipantLinks[relationship.RIndex])
+                                    {
+                                        var bLink = (BinaryLink)existedLink;
+                                        if (bLink.Referent == referentInst && bLink.Participant == candidateInst)
+                                        {
+                                            existed = true;
+                                            break;
+                                        }
+                                    }
                                 }
-                                referentInst.AddLink(link);
-                                participantInst.AddLink(link);
+                                if (!existed)
+                                {
+                                    participantDProps.Clear();
+                                    participantInst = candidateInst;
+                                    participantDProps.AddRange(candidateProps);
+
+                                    var link = new BinaryLink(currentFoS, relationship, referentInst, participantInst);
+                                    foreach (var (rdp, pdf) in referentDProps.Zip(participantDProps, (x, y) => (x, y)))
+                                    {
+                                        link.AddFormedProperties(rdp, pdf);
+                                    }
+                                    referentInst.AddLink(link);
+                                    participantInst.AddLink(link);
+                                }
                             }
                         }
                     }
                     if (relationship.ParticipantEdge.Multiplicity == Relationship.Multipricity.JustOne)
                     {
                         string detail = "";
-                        if (!referentInst.DeterminedProperties.ContainsKey(relationship.RIndex))
+                        if (!referentInst.ParticipantLinks.ContainsKey(relationship.RIndex))
                         {
                             detail = "no";
                         }

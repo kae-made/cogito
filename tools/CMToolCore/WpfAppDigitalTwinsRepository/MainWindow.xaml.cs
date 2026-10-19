@@ -319,8 +319,19 @@ namespace WpfAppDigitalTwinsRepository
 
         private void lbInstanceModes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedDomain = (ConceptualDomain)lbDomains.SelectedItem;
+            ConceptualDomain selectedDomain = (ConceptualDomain)lbDomains.SelectedItem;
             var fos =(FoSItem) lbInstanceModes.SelectedItem;
+            if (selectedDomain == null)
+            {
+                foreach(var domainKL in repository.ConceptualDomains.Keys)
+                {
+                    selectedDomain = repository.ConceptualDomains[domainKL];
+                    if (repository.FieldsOfSense[selectedDomain.KeyLetter].ContainsKey(fos.FoSId))
+                    {
+                        break;
+                    }
+                }
+            }
 
             var cimDefWindow = new CIMDefWindow() { ConceptualDomain = selectedDomain, Repository=repository, FosId=fos.FoSId };
             cimDefWindow.Closed += (s, args) => cimDefWindow = null;
