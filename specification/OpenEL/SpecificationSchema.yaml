@@ -249,6 +249,9 @@ $defs:
       DeviceKindID:
         type: [string, "null"]
         # REFERENCE
+      Direction:
+        type: string
+        enum: [null, Instruct, Observe]
       Description:
         type: [string, "null"]
     additionalProperties: false

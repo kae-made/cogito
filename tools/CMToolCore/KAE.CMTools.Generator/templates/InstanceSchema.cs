@@ -258,6 +258,65 @@ properties:
 
                 }
             }
+            else
+            {
+                var baseDataType = property.BaseDataType;
+                string baseDataTypeName = baseDataType.Name;
+                string enumItems = "null";
+                if (baseDataType is EnumerationDataType)
+                {
+                    baseDataTypeName = "string";
+                    var enumDataType = (EnumerationDataType)baseDataType;
+                    foreach(var enumItem in enumDataType.Enumarations)
+                    {
+                        enumItems += $", {enumItem}";
+                    }
+                }
+                else
+                {
+                    baseDataTypeName = $"[{baseDataTypeName}, \"null\"]";
+                }
+
+            
+            #line default
+            #line hidden
+            this.Write("      ");
+            
+            #line 140 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(propName));
+            
+            #line default
+            #line hidden
+            this.Write(":\r\n        type: ");
+            
+            #line 141 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(baseDataTypeName));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 142 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+
+                if (baseDataType is EnumerationDataType)
+                {
+
+            
+            #line default
+            #line hidden
+            this.Write("        enum: [");
+            
+            #line 146 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(enumItems));
+            
+            #line default
+            #line hidden
+            this.Write("]\r\n");
+            
+            #line 147 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+
+                }
+            }
         }
 
             
@@ -265,7 +324,7 @@ properties:
             #line hidden
             this.Write("    additionalProperties: false\r\n");
             
-            #line 124 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
+            #line 153 "C:\Users\kae-m\source\repos\CMToolCore\KAE.CMTools.Generator\templates\InstanceSchema.tt"
 
     }
 

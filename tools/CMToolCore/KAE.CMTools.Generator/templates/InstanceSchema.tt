@@ -118,6 +118,35 @@ $defs:
 <#
                 }
             }
+            else
+            {
+                var baseDataType = property.BaseDataType;
+                string baseDataTypeName = baseDataType.Name;
+                string enumItems = "null";
+                if (baseDataType is EnumerationDataType)
+                {
+                    baseDataTypeName = "string";
+                    var enumDataType = (EnumerationDataType)baseDataType;
+                    foreach(var enumItem in enumDataType.Enumarations)
+                    {
+                        enumItems += $", {enumItem}";
+                    }
+                }
+                else
+                {
+                    baseDataTypeName = $"[{baseDataTypeName}, \"null\"]";
+                }
+#>
+      <#= propName #>:
+        type: <#= baseDataTypeName #>
+<#
+                if (baseDataType is EnumerationDataType)
+                {
+#>
+        enum: [<#= enumItems #>]
+<#
+                }
+            }
         }
 #>
     additionalProperties: false

@@ -37,7 +37,7 @@ namespace KAE.CMTools.Generator.templates
         public string GetPropertyNameList(ConceptualClass cclass)
         {
             string result = "";
-            foreach(var propertyName in  cclass.Properties.Keys)
+            foreach (var propertyName in cclass.Properties.Keys)
             {
                 var property = cclass.Properties[propertyName];
                 if (!property.IsMethematical)
@@ -79,7 +79,7 @@ namespace KAE.CMTools.Generator.templates
                         if (property.DataType.Name == DataTypeKind.UNIQUE_ID.ToString()
                             || property.DataType.Name == DataTypeKind.OTHER.ToString()
                             || property.DataType.Name == DataTypeKind.REFERENCE.ToString()
-                            || property.DataType.Name==DataTypeKind.UNKNOWN.ToString())
+                            || property.DataType.Name == DataTypeKind.UNKNOWN.ToString())
                         {
                             dataTypeName += $" # {property.DataType.Name}";
                         }
@@ -94,6 +94,26 @@ namespace KAE.CMTools.Generator.templates
                     }
 
                 }
+            }
+        }
+
+        private void prototypeEnumDataOfProperty(Property property)
+        {
+            var baseDataType = property.BaseDataType;
+            string baseDataTypeName = baseDataType.Name;
+            string enumItems = "NULL";
+            if (baseDataType is EnumerationDataType)
+            {
+                baseDataTypeName = "string";
+                var enumDataType = (EnumerationDataType)baseDataType;
+                foreach(var enumItem in enumDataType.Enumarations)
+                {
+                    enumItems += $", {enumItem}";
+                }
+            }
+            else
+            {
+                baseDataTypeName = $"[{baseDataTypeName}, \"null\"]";
             }
         }
     }
