@@ -212,14 +212,14 @@ namespace WpfAppDigitalTwinsRepository
                         tbRelEdgeClassOne.Text = CClassTitleFormatter(oneInsst);
                         using (var writer = new StringWriter())
                         {
-                            writer.WriteLine($"  Multiplisity: {assocRel.OneSideRelationship.ReferentEdge.Multiplicity}");
+                            writer.WriteLine($"  Multiplisity: {assocRel.OneSideRelationship.ParticipantEdge.Multiplicity}");
                             writer.WriteLine($"  Phrase: {assocRel.OneSideRelationship.ReferentEdge.Phrase}");
                             tbRelEdgeOne.Text = writer.ToString();
                         }
                         tbRelEdgeClassOther.Text = CClassTitleFormatter(otherInst);
                         using (var writer = new StringWriter())
                         {
-                            writer.WriteLine($"  Multiplisity: {assocRel.OtherSideRelationship.ReferentEdge.Multiplicity}");
+                            writer.WriteLine($"  Multiplisity: {assocRel.OtherSideRelationship.ParticipantEdge.Multiplicity}");
                             writer.WriteLine($"  Phrase: {assocRel.OtherSideRelationship.ReferentEdge.Phrase}");
                             tbRelEdgeOther.Text = writer.ToString();
                         }

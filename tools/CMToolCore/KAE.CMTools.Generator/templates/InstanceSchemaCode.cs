@@ -116,5 +116,17 @@ namespace KAE.CMTools.Generator.templates
                 baseDataTypeName = $"[{baseDataTypeName}, \"null\"]";
             }
         }
+
+        private void prototypeCheckNullableForProperty(ConceptualClass cclass)
+        {
+            foreach(var propName in cclass.Properties.Keys)
+            {
+                var property = cclass.Properties[propName];
+                if (property.IsParticipantProperty())
+                {
+
+                }
+            }
+        }
     }
 }

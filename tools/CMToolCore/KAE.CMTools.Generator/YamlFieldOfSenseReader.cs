@@ -304,6 +304,7 @@ namespace KAE.CMTools.Generator
                                     {
                                         // error
                                         result = false;
+                                        logger.LogWarning($"No instance of other side for {assocInstId}");
                                     }
                                     else
                                     {
@@ -323,6 +324,11 @@ namespace KAE.CMTools.Generator
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            logger.LogWarning($"No instance of one side for {assocInstId}");
+                            break;
                         }
                     }
                 }

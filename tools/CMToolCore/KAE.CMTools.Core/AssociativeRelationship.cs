@@ -25,7 +25,7 @@ namespace KAE.CMTools.Core
         public AssociativeRelationship( string rIndex, TOne oneEdgeInstance, Multipricity oneMult, string onePhrase, List<string>oneProperties, List<string> assocOnOneProperties,
             TOther otherEdgeInstance, Multipricity otherMult, string otherPhrase, List<string>otherProperties, TAssoc assocEdgeInstance, List<string>assocOnOtherProperties) : base(rIndex)
         {
-            oneSideRel = new BinaryRelationship<TOne, TAssoc>(rIndex, oneEdgeInstance, Multipricity.JustOne, onePhrase, oneProperties, assocEdgeInstance, otherMult, "", assocOnOneProperties, true);
+            oneSideRel = new BinaryRelationship<TOne, TAssoc>(rIndex, oneEdgeInstance, Multipricity.JustOne, onePhrase, oneProperties, assocEdgeInstance, oneMult, "", assocOnOneProperties, true);
             otherSideRel = new BinaryRelationship<TOther, TAssoc>(rIndex,otherEdgeInstance, Multipricity.JustOne, otherPhrase, otherProperties, assocEdgeInstance, otherMult, "", assocOnOtherProperties, true);
         }
 
